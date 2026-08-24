@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.32
+**Specification version:** 1.35
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -384,12 +384,52 @@ Raw conversation, project facts, tool observations, and retrieval results
   -> minimal TaskContext
 ```
 
+The S2-01 C0 assembly boundary is deterministic and provider-neutral. Every candidate carries an
+exact tenant and project, user or project visibility, permission version, required roles and
+permissions, classification, source type, source reference, source version, source hash, trust
+level, observation time, canonical content hash, relevance score, and protected flag. Artifact and
+tool candidates use the same default-deny scope and permission rules. The filter order is exact
+scope, visibility, permission freshness, roles, permissions, classification, relevance, and then
+lossless content-hash deduplication. Deduplication preserves every authorized source label.
+
+Protected content bypasses relevance dropping and fails with a typed next action if it cannot fit
+the active lossless policy. The selected bundle contains no rejected content or grant list. Its
+authorization digest and the final complete-context manifest make the result deterministic and
+invalidate it when scope, permissions, clearance, policy, content, artifacts, tools, or versions
+change. The Main Agent retains the non-content decision report. A General child receives all
+manifest-verified selected entries; a professional child receives only entries explicitly selected
+by content hash. Raw parent dependency data and rejected candidates never enter a child.
+
 | Level | Trigger against application context budget | Action |
 |---|---:|---|
 | C0 | below 40% | permission filter and lossless deduplication only |
 | C1 | 40% to 60% | remove repeated confirmations, retrieval duplicates, and long logs |
 | C2 | 60% to 80% | summarize older turns to at most 800 tokens; keep six recent turns |
 | C3 | above 80% | checkpoint first, then build a task digest of at most 1,200 tokens |
+
+The S2-02 pipeline expresses this table as one versioned strict policy. Its ordered raw-event input
+binds the exact task and tenant scope, monotonic sequence, event kind, canonical content hash,
+token estimate, protected status, creation time, and optional recoverable artifact. It rejects
+reordered, duplicate, hash-invalid, cross-scope, and summary-derived input before compression. C0
+and C1 make no semantic call. C1 may replace only a non-protected tool log with a reference that
+binds both the raw-event hash and immutable artifact hash. C2 retains every protected event and six
+recent conversation turns. C3 requires an exact-task, exact-scope durable checkpoint before the
+semantic call.
+
+Every semantic call is rebuilt from raw events, identifies the exact ordered source set, and uses a
+provider-neutral bounded port. C2 and C3 candidates remain validation-required and are not
+execution-ready. S2-03 must compare their protected fields with raw sources and either authorize
+the result or automatically retry a less aggressive level.
+
+The S2-03 validator binds the candidate to the exact task, tenant scope, raw-event manifest, and
+one-time coverage of every source event. It compares canonical atomic leaves and treats protected
+events, instructions, security and permission state, tenant identity, conflicts, unresolved
+issues, standards, clauses, numeric values, units, citations, hashes, tool errors, approvals, and
+decisions as critical. Critical retention must be 100 percent, confirmed non-critical retention
+must be at least 98 percent, and supplied answer-quality degradation must not exceed three points.
+Only a passing hash-bound report makes C2 or C3 execution-ready. Unsafe C3 retries C2 and then C1;
+unsafe C2 retries C1. Every retry starts from raw events and remains inside the two-semantic-call
+limit.
 
 Never lossily compress the current user instruction, security policy, permissions, tenant data, unresolved conflicts, standard identifiers, clause numbers, critical values, units, source hashes, tool errors, or approval decisions.
 
@@ -414,6 +454,14 @@ Memory layers:
 6. professional knowledge;
 7. audit and evidence records.
 
+The S2-04 memory store maps these into five runtime contract scopes: runtime, session, user,
+project, and audit. Every record is immutable and binds exact tenant scope, namespace, canonical
+content hash, provenance, confidence, classification, approval state, protected state, source
+version, creation time, and optional expiry. Runtime, session, and user reads require the exact
+user; project and audit sharing still require the exact tenant, project, and permission version.
+Distinct read/write grants, candidate-read grants, clearance, expiry, forced PostgreSQL RLS, and
+immutable update denial are enforced before content is returned.
+
 Distillation triggers when any condition is true:
 
 - active context reaches 60 percent of its application budget;
@@ -424,12 +472,28 @@ Distillation triggers when any condition is true:
 
 Keep the last six raw turns and distill older conversation into at most 800 tokens. Store at most 30 candidate project facts per distillation. Separate facts from inferences, preserve sources, detect conflicts, and do not silently overwrite old facts.
 
+The S2-05 pipeline evaluates every trigger deterministically, retains protected events and the six
+recent turns, and sends only eligible raw events through a bounded provider-neutral port. Exact
+ordered source attestation is mandatory. Fact, inference, and preference proposals preserve
+provenance, confidence, classification, expiry, sensitivity, durability, and adapter versions.
+They enter immutable candidate state with stable scope-derived IDs. Content hashes remove exact
+duplicates; same-key different-value proposals create explicit conflicts without overwriting
+existing memory. A run cannot exceed 30 project fact candidates.
+
 Restore paths:
 
 - Intent restore: search at most five snapshots. Initial auto-restore requires confidence >= 0.90 and a top-two score margin >= 0.12. Otherwise show candidates.
 - Direct restore: the user selects a snapshot in the UI.
 
 Restore creates a new branch and never overwrites the current session. Recheck tenant, project, permission, artifact existence, and version compatibility. Inject at most 6,000 tokens, 20 project facts, ten artifact references, and six required turns.
+
+The S2-06 snapshot binds the exact user scope, task, source branch, checkpoint, graph and state
+versions, canonical state hash, memory IDs, project facts, artifacts, required turns, and injection
+budget. Direct and intent restore always create a hash-bound preview. Intent search sees only
+authorized snapshots, returns at most five ordered matches, and auto-previews only at confidence
+at least 0.90 with a top-two margin at least 0.12. Confirmation creates a deterministic child
+branch; cancel and confirm are append-only terminal decisions. Every preview and confirmation
+revalidates scope, permission version, compatibility, hashes, artifact availability, and limits.
 
 ## 10. Cache design
 
@@ -445,6 +509,22 @@ Restore creates a new branch and never overwrites the current session. Recheck t
 | negative cache | 60 seconds | prevent failure storms |
 
 Cache keys include tenant, project, permission scope, model, prompt, Skill, knowledge index, tool, input hash, and parameter hash. A cache hit never bypasses current authorization or standards validation.
+
+The S2-07 cache service implements exact response, retrieval, pure tool result, parse result, and
+semantic classes with the table TTLs above. Every record binds exact user scope, canonical value
+hash, complete version manifest, provenance, validation state, and saved-token estimate. Expired or
+version-stale records are removed on lookup. Current-information intent bypasses cache. Secrets,
+authorization decisions, unstable values, write side effects, and non-pure tool operations are
+uncacheable. Semantic entries require G0/P1 and similarity at least 0.95. Metrics separate lookup,
+hit, miss, stale rejection, bypass, and saved tokens.
+
+The S2-08 key is canonical over exact tenant, project, user, sorted roles, permission and RBAC
+versions, normalized request, task type, parameters, class, model, prompts, Skills, graph, route
+policy, tool and adapter, knowledge corpus and documents, public schema, parser, context policy,
+and bounded class-specific dimensions. Mapping order cannot change the digest; every correctness,
+source, or authorization change must. The backend repeats exact user scope in its physical key and
+lookup compares the complete current version manifest, preventing cross-scope reuse and stale
+authorization after revocation.
 
 ## 11. Knowledge Agent
 
@@ -634,6 +714,16 @@ The security baseline is approved in S0 and implemented with the protected capab
 - a code-and-model SBOM, dependency and container scanning, license obligations, and replacement plans;
 - incident response ownership, evidence preservation, notification criteria, and tested recovery procedures;
 - approved service-level indicators, objectives, error budgets, RPO, RTO, and degraded-mode behavior.
+
+The S2 lifecycle boundary registers immutable scoped data records with classification, canonical
+content hashes, retention deadlines, and optional object-unique key references. Export is exact
+scope and permission filtered and carries a canonical manifest hash. Deletion requires a hash-bound
+preview and current approval, retains a non-content tombstone, and distinguishes approved forced
+deletion from expiry-based deletion. Active legal holds block deletion and cryptographic erasure.
+Cryptographic erasure requires retention expiry, exact approval, and confirmed revocation of an
+object-unique key before content removal. Every successful lifecycle action appends hash-bound audit
+evidence. Backup expiry, cache and index invalidation, and live-service probes remain integration
+requirements; local contract tests cannot promote them to production gate evidence.
 
 ## 16. Core data objects
 

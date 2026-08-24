@@ -1,10 +1,9 @@
 # NDT Agents
 
 NDT Agents is the V1 foundation for a multi-tenant civil-infrastructure non-destructive-testing
-agent platform. The repository contains the S0 engineering baseline and the first isolated S1
-runtime task: a provider-neutral FastAPI application with validated settings, JSON logs, request
-correlation, typed failures, and liveness/readiness endpoints. Production enablement remains
-blocked by the approvals and external evidence recorded in `plan.md`.
+agent platform. The repository contains the S0 engineering baseline, the isolated S1 agent runtime,
+and the S2 context, memory, restore, cache, and governed data-lifecycle boundaries. Production
+enablement remains blocked by the approvals and external evidence recorded in `plan.md`.
 
 ## Repository layout
 
@@ -36,6 +35,21 @@ The deterministic rules-first routing boundary is documented in
 [`docs/contracts/main-graph-v1.md`](./docs/contracts/main-graph-v1.md).
 The isolated General and professional child execution boundary is documented in
 [`docs/contracts/child-subgraphs-v1.md`](./docs/contracts/child-subgraphs-v1.md).
+The deterministic permission-filtered context-assembly boundary is documented in
+[`docs/contracts/context-assembly-v1.md`](./docs/contracts/context-assembly-v1.md).
+The provider-neutral C0 through C3 context-compression boundary is documented in
+[`docs/contracts/context-compression-v1.md`](./docs/contracts/context-compression-v1.md).
+The context-validation and raw-input fallback boundary is documented in
+[`docs/contracts/context-validation-v1.md`](./docs/contracts/context-validation-v1.md).
+Memory storage, distillation, and restore are documented in
+[`docs/contracts/memory-store-v1.md`](./docs/contracts/memory-store-v1.md),
+[`docs/contracts/memory-distillation-v1.md`](./docs/contracts/memory-distillation-v1.md), and
+[`docs/contracts/memory-restore-v1.md`](./docs/contracts/memory-restore-v1.md).
+Cache policy and canonical cache keys are documented in
+[`docs/contracts/cache-service-v1.md`](./docs/contracts/cache-service-v1.md) and
+[`docs/contracts/cache-keys-v1.md`](./docs/contracts/cache-keys-v1.md).
+The governed retention, export, deletion, legal-hold, and cryptographic-erasure boundary is
+documented in [`docs/contracts/data-lifecycle-v1.md`](./docs/contracts/data-lifecycle-v1.md).
 The explicit synchronous and queued-asynchronous scheduling boundary is documented in
 [`docs/contracts/task-scheduler-v1.md`](./docs/contracts/task-scheduler-v1.md).
 The immutable checkpoint, idempotency, interrupt, and restart-recovery boundary is documented in

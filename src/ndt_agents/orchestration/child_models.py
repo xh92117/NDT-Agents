@@ -8,6 +8,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ndt_agents.context.models import SelectedContextEntry
 from ndt_agents.contracts.v1 import (
     AgentResult,
     ArtifactRef,
@@ -56,6 +57,7 @@ class ChildInput(ChildModel):
     assignment_id: str = Field(min_length=1, max_length=128)
     goal: str = Field(min_length=1, max_length=8000)
     success_criteria: tuple[str, ...] = Field(min_length=1, max_length=20)
+    context_entry_sha256s: tuple[str, ...] = Field(default=(), max_length=100)
     artifact_ids: tuple[UUID, ...] = Field(default=(), max_length=20)
     requested_tools: tuple[str, ...] = Field(default=(), max_length=12)
     side_effect_class: ChildSideEffectClass = ChildSideEffectClass.READ_ONLY
@@ -73,6 +75,7 @@ class ChildTaskContext(ChildModel):
     goal: str = Field(min_length=1, max_length=8000)
     success_criteria: tuple[str, ...] = Field(min_length=1, max_length=20)
     risk_level: RiskLevel
+    context_entries: tuple[SelectedContextEntry, ...] = Field(default=(), max_length=100)
     artifacts: tuple[ArtifactRef, ...] = Field(max_length=20)
     dependency_assignment_ids: tuple[str, ...] = Field(max_length=4)
     side_effect_class: ChildSideEffectClass

@@ -60,6 +60,13 @@ def test_schema_has_pgvector_and_explicit_scope_on_every_business_table() -> Non
         "runtime_side_effect",
         "runtime_interrupt",
         "runtime_audit_event",
+        "memory_record",
+        "memory_snapshot",
+        "memory_restore_event",
+        "cache_entry",
+        "data_lifecycle_object",
+        "data_legal_hold",
+        "data_lifecycle_event",
         "artifact_record",
         "knowledge_embedding",
     }
@@ -72,6 +79,13 @@ def test_schema_has_pgvector_and_explicit_scope_on_every_business_table() -> Non
         "runtime_side_effect",
         "runtime_interrupt",
         "runtime_audit_event",
+        "memory_record",
+        "memory_snapshot",
+        "memory_restore_event",
+        "cache_entry",
+        "data_lifecycle_object",
+        "data_legal_hold",
+        "data_lifecycle_event",
         "artifact_record",
         "knowledge_embedding",
     }:
@@ -99,6 +113,15 @@ def test_alembic_migration_compiles_upgrade_and_rollback_for_postgresql() -> Non
     assert "CREATE TABLE runtime_approval_event" in upgrade_sql
     assert "CREATE TRIGGER runtime_approval_event_append_only" in upgrade_sql
     assert "CREATE TABLE runtime_review_recovery_event" in upgrade_sql
+    assert "CREATE TABLE memory_record" in upgrade_sql
+    assert "CREATE TRIGGER memory_record_no_update" in upgrade_sql
+    assert "CREATE TABLE memory_snapshot" in upgrade_sql
+    assert "CREATE TABLE memory_restore_event" in upgrade_sql
+    assert "CREATE TABLE cache_entry" in upgrade_sql
+    assert "CREATE TABLE data_lifecycle_object" in upgrade_sql
+    assert "CREATE TABLE data_legal_hold" in upgrade_sql
+    assert "CREATE TABLE data_lifecycle_event" in upgrade_sql
+    assert "CREATE TRIGGER lifecycle_event_append_only" in upgrade_sql
     assert "CREATE TRIGGER review_recovery_append_only" in upgrade_sql
     assert "FORCE ROW LEVEL SECURITY" in upgrade_sql
     assert "ADD COLUMN graph_version" in upgrade_sql
@@ -114,6 +137,13 @@ def test_alembic_migration_compiles_upgrade_and_rollback_for_postgresql() -> Non
     assert "DROP TABLE runtime_audit_event" in downgrade_sql
     assert "DROP TABLE runtime_approval_event" in downgrade_sql
     assert "DROP TABLE runtime_review_recovery_event" in downgrade_sql
+    assert "DROP TABLE memory_record" in downgrade_sql
+    assert "DROP TABLE memory_snapshot" in downgrade_sql
+    assert "DROP TABLE memory_restore_event" in downgrade_sql
+    assert "DROP TABLE cache_entry" in downgrade_sql
+    assert "DROP TABLE data_lifecycle_object" in downgrade_sql
+    assert "DROP TABLE data_legal_hold" in downgrade_sql
+    assert "DROP TABLE data_lifecycle_event" in downgrade_sql
 
 
 def test_connection_settings_are_immutable_strict_and_secret_safe() -> None:

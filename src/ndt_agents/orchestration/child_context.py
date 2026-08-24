@@ -6,6 +6,10 @@ import hashlib
 import json
 from uuid import UUID, uuid4
 
+from pydantic import ValidationError
+
+from ndt_agents.context.assembly import task_context_manifest_sha256
+from ndt_agents.context.models import ContextBundle, SelectedContextEntry
 from ndt_agents.contracts.v1 import ArtifactRef, TaskContext
 from ndt_agents.orchestration.child_models import (
     AgentDefinition,
@@ -57,6 +61,9 @@ class ChildContextFactory:
                 assignment_id="general",
                 goal=task.goal,
                 success_criteria=task.success_criteria,
+                context_entry_sha256s=tuple(
+                    entry.content_sha256 for entry in self._context_bundle(task).entries
+                ),
                 artifact_ids=tuple(artifact.artifact_id for artifact in task.artifacts),
                 requested_tools=task.allowed_tools,
                 side_effect_class=ChildSideEffectClass.READ_ONLY,
@@ -97,6 +104,46 @@ class ChildContextFactory:
                 )
             )
         return tuple(contexts)
+
+    @staticmethod
+    def _context_bundle(task: TaskContext) -> ContextBundle:
+        raw_bundle = task.dependency_data.get("context_bundle")
+        if raw_bundle is None:
+            return ContextBundle(
+                policy_version="legacy-empty",
+                authorization_sha256="0" * 64,
+                selected_content_bytes=0,
+                entries=(),
+            )
+        if task_context_manifest_sha256(task) != task.context_manifest_sha256:
+            raise AgentRegistryError(
+                code="CHILD_CONTEXT_MANIFEST_INVALID",
+                message="The parent context manifest failed integrity validation.",
+                next_action="Reassemble the parent TaskContext from verified source candidates.",
+            )
+        try:
+            return ContextBundle.model_validate(raw_bundle)
+        except ValidationError as exc:
+            raise AgentRegistryError(
+                code="CHILD_CONTEXT_BUNDLE_INVALID",
+                message="The parent context bundle failed strict validation.",
+                next_action="Reassemble the parent TaskContext with the supported context schema.",
+            ) from exc
+
+    @classmethod
+    def _select_context_entries(
+        cls, task: TaskContext, content_sha256s: tuple[str, ...]
+    ) -> tuple[SelectedContextEntry, ...]:
+        bundle = cls._context_bundle(task)
+        available = {entry.content_sha256: entry for entry in bundle.entries}
+        requested = set(content_sha256s)
+        if len(requested) != len(content_sha256s) or not requested <= set(available):
+            raise AgentRegistryError(
+                code="CHILD_CONTEXT_ENTRY_DENIED",
+                message="A requested context entry is not in the authorized parent bundle.",
+                next_action="Use only content hashes from the verified parent context bundle.",
+            )
+        return tuple(available[content_sha256] for content_sha256 in content_sha256s)
 
     @staticmethod
     def _select_artifacts(
@@ -149,6 +196,7 @@ class ChildContextFactory:
             goal=child_input.goal,
             success_criteria=child_input.success_criteria,
             risk_level=task.risk_level,
+            context_entries=self._select_context_entries(task, child_input.context_entry_sha256s),
             artifacts=self._select_artifacts(task, child_input.artifact_ids),
             dependency_assignment_ids=dependencies,
             side_effect_class=child_input.side_effect_class,
