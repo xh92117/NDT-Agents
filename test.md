@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.27
+**Version:** 1.28
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -571,6 +571,12 @@ version endpoint and response hash, and preserves either the author-declared SPD
 the legacy/missing-metadata review state. The refresh tool may use the network only when explicitly
 run; CI validation is offline. Automated evidence capture must leave every legal decision pending.
 
+When a personal-project governance record exists, validate its exact baseline hash, provisional
+jurisdiction, pre-commercial stage, accepted engineering targets, and source. Confirm the Security,
+Legal, Operations, and Quality roles remain unassigned unless separately evidenced; independent
+approval remains unsatisfied; R-005 and R-007 remain open; and production deployment, production
+customer data, formal compliance claims, and commercial release remain blocked.
+
 Run after any baseline policy or major architecture dependency changes, before the related architecture decision is approved, at `TG-00`, and in `RELEASE`.
 
 Acceptance: 100 percent critical assets, trust boundaries, and locked components are covered;
@@ -759,6 +765,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S0-08-PROTECTION-20260824-01 | 2026-08-24 | S0-08 / `main` at `8d27c42d70cad030c8c430d4a98b42e8a0633860` | repository governance configuration and API readback | GitHub public repository / owner-authorized visibility | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); `main` requires pull requests, strict `quality`, administrator enforcement, linear history, and resolved conversations; force pushes and deletion are disabled; approving-review count is zero for the single-owner repository | R-013 closed; R-005 and R-007 remain external blockers | Codex |
 | S0-08-PROTECTION-LOCAL-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-branch-protection` / controlled documents 1.26 | `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); DOC 1.26, all 220 tests, Ruff lint, Ruff format over 74 files, and strict mypy over 74 source files passed | R-005 and R-007 remain external blockers | Codex |
 | S0-08-APPROVAL-READINESS-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-approval-readiness` / license evidence `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / official PyPI snapshot / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 87 of 87 components captured, 56 SPDX expressions, 30 legacy records, one missing metadata record, 20 targeted checks and all 226 tests passed; four generators, DOC 1.27, Ruff, format over 76 files, strict mypy over 76 source files, and dependency audit passed | R-005 legal/security text review and component decisions; R-007 accountable identity, jurisdiction, retention, SLO, RPO/RTO, and environment decisions remain external blockers | Codex |
+| S0-08-PERSONAL-GOVERNANCE-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-personal-governance` / governance record `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 25 targeted checks and all 231 tests passed; four generators had zero drift; DOC 1.28, Ruff, format over 77 files, strict mypy over 77 source files, and dependency audit passed after one bounded UTF-8 environment retry | personal confirmation is non-approval; all four independent roles remain unassigned; production, customer-data, formal-compliance, and commercial paths remain blocked; R-005 and R-007 stay open | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 

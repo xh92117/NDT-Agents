@@ -8,6 +8,7 @@
 | Task | `S0-10` |
 | State | `PROPOSED_FOR_HUMAN_APPROVAL` |
 | Machine-readable source | `security/security-baseline.v1.json` |
+| Personal-project record | [provisional governance record](../../security/personal-project-governance.v1.json) |
 | Approval packet | [S0 Security and License Approval Packet](./s0-approval-packet.md) |
 | Required approvers | Security Owner, Legal Owner, Operations Owner, Quality Owner |
 
@@ -15,6 +16,11 @@ This baseline is an implementable engineering proposal. Automated checks can est
 completeness and internal consistency, but cannot grant organizational, legal, accreditation, or
 production approval. Production use remains blocked until the required approvers record decisions
 against this exact version and hash.
+
+The current owner has recorded a personal pre-commercial project, provisional Mainland China
+jurisdiction, and acceptance of these values only as engineering targets. The record leaves all
+four independent approval roles unassigned. It does not change this baseline state or authorize
+production, customer-data, formal-compliance, or commercial use.
 
 ## 2. Security objectives
 

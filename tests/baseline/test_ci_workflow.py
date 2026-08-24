@@ -42,6 +42,7 @@ def test_workflow_runs_all_s0_quality_controls() -> None:
         "uv run mypy",
         "uv run pip-audit",
         "actions/upload-artifact@",
+        "security/personal-project-governance.v1.json",
         "security/license-evidence.v1.json",
     ):
         assert required in WORKFLOW_TEXT
@@ -72,6 +73,7 @@ def test_generated_text_artifacts_are_utf8_lf() -> None:
         *sorted((ROOT / "fixtures" / "v1").rglob("*.md")),
         *sorted((ROOT / "fixtures" / "v1").rglob("*.txt")),
         ROOT / "sbom" / "cyclonedx.v1.json",
+        ROOT / "security" / "personal-project-governance.v1.json",
         ROOT / "security" / "license-evidence.v1.json",
         ROOT / "security" / "license-decisions.v1.json",
     ]

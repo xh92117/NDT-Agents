@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.27
+**Specification version:** 1.28
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -98,6 +98,12 @@ Author-declared SPDX expressions are preserved without legal reinterpretation. M
 metadata remains explicitly queued for license-text review. Refresh is a deliberate networked
 maintenance action; CI performs offline integrity and coverage validation and never grants legal
 or production approval.
+
+For the personal pre-commercial stage, the current repository owner may record a provisional
+jurisdiction and accept baseline values as engineering targets. That record does not satisfy the
+independent Security, Legal, Operations, or Quality approval roles. It cannot authorize production
+deployment, production customer data, a formal compliance claim, or commercial release. The
+jurisdiction, targets, authority, and applicable obligations require review before commercialization.
 
 The S1 API bootstrap uses an application factory that performs no external I/O. Its immutable
 environment settings use an explicit `NDT_` allowlist. Unknown or unsafe values fail startup with a
