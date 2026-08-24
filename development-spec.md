@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.26
+**Specification version:** 1.27
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -90,6 +90,14 @@ MinerU are architecture candidates or adapters at this stage, not approved produ
 dependencies. S0 and default CI use deterministic synthetic data and no live model provider.
 Production selection remains blocked until the recorded security, legal, data-rights, expert,
 provider, hardware, and immutable-CI conditions are satisfied.
+
+S0-08 captures one versioned license-evidence snapshot from the official PyPI version JSON API for
+every exact locked Python distribution. The snapshot binds each response hash, package URL,
+declared SPDX expression or legacy metadata, dependency scope, SBOM hash, and lock-file hash.
+Author-declared SPDX expressions are preserved without legal reinterpretation. Missing or legacy
+metadata remains explicitly queued for license-text review. Refresh is a deliberate networked
+maintenance action; CI performs offline integrity and coverage validation and never grants legal
+or production approval.
 
 The S1 API bootstrap uses an application factory that performs no external I/O. Its immutable
 environment settings use an explicit `NDT_` allowlist. Unknown or unsafe values fail startup with a

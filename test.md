@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.26
+**Version:** 1.27
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -565,9 +565,20 @@ Initial acceptance targets:
 
 Review the threat model, trust boundaries, data classification, approval boundaries, retention and deletion rules, encryption and key-management policy, incident ownership, code-and-model SBOM, third-party license obligations, replacement plans, SLI/SLO definitions, error budgets, RPO, RTO, and degraded modes. Trace every mandatory control to an implementation task and test owner.
 
+For each locked Python component, validate that a versioned evidence snapshot covers the exact
+SBOM purl and dependency scope, binds the SBOM and lock-file hashes, records the official PyPI
+version endpoint and response hash, and preserves either the author-declared SPDX expression or
+the legacy/missing-metadata review state. The refresh tool may use the network only when explicitly
+run; CI validation is offline. Automated evidence capture must leave every legal decision pending.
+
 Run after any baseline policy or major architecture dependency changes, before the related architecture decision is approved, at `TG-00`, and in `RELEASE`.
 
-Acceptance: 100 percent critical assets and trust boundaries are covered; every high-risk threat and license obligation has an owner and treatment; every required control maps to a task and test; no unresolved critical legal or security assumption is treated as approved; SLO metrics are versioned and measurable.
+Acceptance: 100 percent critical assets, trust boundaries, and locked components are covered;
+every high-risk threat and license obligation has an owner and treatment; official metadata and
+source-response hashes are complete; every required control maps to a task and test; SLO metrics
+are versioned and measurable; unresolved legacy licenses, jurisdiction-specific decisions, and
+authority mappings remain explicit; accountable human approval is required before the baseline
+becomes effective.
 
 ### 8.34 `SEC-PLATFORM` - Platform secrets, encryption, and approval security
 
@@ -747,6 +758,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S0-08-REMOTE-20260824-03 | 2026-08-24 | S0-08 / commit `d15c4a448d25222e667339831edf91b7bc8a7916` / tree `e0eb0aad0ee7090c2b155ed59f6426f760e664b3` | remote CI smoke: locked sync, controlled generation, drift rejection, `DOC`, 220 tests, Ruff, strict mypy, dependency audit, evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `PASS` | [run 32685686560](https://github.com/xh92117/NDT-Agents/actions/runs/32685686560) and [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); all workflow steps passed in 52 seconds; artifact `s0-baseline-d15c4a448d25222e667339831edf91b7bc8a7916`, ID `9505578701`, 24,959 bytes, digest `a7a360e545066272d552d1cae25d7c83f512af061053b86f7620b36b2ce36145`, expires 2026-09-23 | D-002 closed; R-005 and R-007 approvals and the R-013 repository-protection decision remain external blockers | Codex |
 | S0-08-PROTECTION-20260824-01 | 2026-08-24 | S0-08 / `main` at `8d27c42d70cad030c8c430d4a98b42e8a0633860` | repository governance configuration and API readback | GitHub public repository / owner-authorized visibility | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); `main` requires pull requests, strict `quality`, administrator enforcement, linear history, and resolved conversations; force pushes and deletion are disabled; approving-review count is zero for the single-owner repository | R-013 closed; R-005 and R-007 remain external blockers | Codex |
 | S0-08-PROTECTION-LOCAL-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-branch-protection` / controlled documents 1.26 | `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); DOC 1.26, all 220 tests, Ruff lint, Ruff format over 74 files, and strict mypy over 74 source files passed | R-005 and R-007 remain external blockers | Codex |
+| S0-08-APPROVAL-READINESS-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-approval-readiness` / license evidence `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / official PyPI snapshot / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 87 of 87 components captured, 56 SPDX expressions, 30 legacy records, one missing metadata record, 20 targeted checks and all 226 tests passed; four generators, DOC 1.27, Ruff, format over 76 files, strict mypy over 76 source files, and dependency audit passed | R-005 legal/security text review and component decisions; R-007 accountable identity, jurisdiction, retention, SLO, RPO/RTO, and environment decisions remain external blockers | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 

@@ -8,6 +8,7 @@
 | Task | `S0-10` |
 | State | `PROPOSED_FOR_HUMAN_APPROVAL` |
 | Machine-readable source | `security/security-baseline.v1.json` |
+| Approval packet | [S0 Security and License Approval Packet](./s0-approval-packet.md) |
 | Required approvers | Security Owner, Legal Owner, Operations Owner, Quality Owner |
 
 This baseline is an implementable engineering proposal. Automated checks can establish its
@@ -180,4 +181,3 @@ The machine-readable baseline must pass `SEC-BASELINE` before human review. The 
 Legal Owner, Operations Owner, and Quality Owner then approve or reject the exact baseline version
 and hash. A change to threats, classifications, retention, encryption, secrets, dependency/model
 license policy, SLO, RPO/RTO, or degraded modes creates a new version and reruns affected tests.
-
