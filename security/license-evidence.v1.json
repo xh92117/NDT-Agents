@@ -1091,7 +1091,7 @@
       "license_expression": null,
       "name": "pyyaml",
       "purl": "pkg:pypi/pyyaml@6.0.3",
-      "scope": "DEVELOPMENT_DIRECT",
+      "scope": "RUNTIME_DIRECT",
       "source_response_sha256": "c3f35597bc2f08cc990c2a5fe57bef6687b3a3d7c61d8b0ba4cc067777eb1def",
       "source_url": "https://pypi.org/pypi/pyyaml/6.0.3/json",
       "version": "6.0.3"
@@ -1471,7 +1471,7 @@
     "source_api_documentation": "https://docs.pypi.org/api/json/"
   },
   "sbom_path": "sbom/cyclonedx.v1.json",
-  "sbom_sha256": "c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd",
+  "sbom_sha256": "755a8ffbd4a4657412816d3975683ebdd212ad8d41b0d6c772d0c9984e9bcec4",
   "summary": {
     "component_count": 87,
     "legacy_metadata_review_count": 30,
@@ -1479,5 +1479,5 @@
     "spdx_expression_count": 56
   },
   "uv_lock_path": "uv.lock",
-  "uv_lock_sha256": "fdba41c6834c6b3cb44ac844966ee65fd5c93f9008383eac8039b63cf304a908"
+  "uv_lock_sha256": "2c3267c7de70a602067c9e86bdc2842ae01733a51b4641a15e554e2c17765966"
 }

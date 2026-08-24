@@ -43,11 +43,20 @@ class AppSettings(BaseModel):
     host: str = Field(default="127.0.0.1", min_length=1, max_length=255)
     port: int = Field(default=8000, ge=1, le=65535)
     expose_api_docs: bool = False
+    model_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
+    model_env_file: str | None = Field(default=None, min_length=1, max_length=4096)
 
     @model_validator(mode="after")
     def validate_production_docs(self) -> Self:
         if self.environment is RuntimeEnvironment.PRODUCTION and self.expose_api_docs:
             raise ValueError("API documentation cannot be exposed in production")
+        if self.model_env_file is not None and self.model_config_path is None:
+            raise ValueError("a model environment file requires a model configuration")
+        if self.environment is RuntimeEnvironment.PRODUCTION and self.model_env_file is not None:
+            raise ValueError("a local model environment file is forbidden in production")
+        for path in (self.model_config_path, self.model_env_file):
+            if path is not None and ("\x00" in path or "\r" in path or "\n" in path):
+                raise ValueError("model configuration paths contain forbidden characters")
         return self
 
     @classmethod
@@ -62,6 +71,8 @@ class AppSettings(BaseModel):
             "NDT_HOST": "host",
             "NDT_PORT": "port",
             "NDT_EXPOSE_API_DOCS": "expose_api_docs",
+            "NDT_MODEL_CONFIG": "model_config_path",
+            "NDT_MODEL_ENV_FILE": "model_env_file",
         }
         unknown = sorted(
             key for key in source if key.startswith("NDT_") and key not in environment_keys
@@ -80,6 +91,14 @@ class AppSettings(BaseModel):
         if values.get("environment") == RuntimeEnvironment.PRODUCTION.value and str(
             values.get("expose_api_docs", "false")
         ).lower() in {"1", "true", "yes", "on"}:
+            raise ConfigurationError(
+                "CONFIG_UNSAFE",
+                "The selected runtime configuration violates a safety constraint.",
+            )
+        if (
+            values.get("environment") == RuntimeEnvironment.PRODUCTION.value
+            and "model_env_file" in values
+        ):
             raise ConfigurationError(
                 "CONFIG_UNSAFE",
                 "The selected runtime configuration violates a safety constraint.",

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Mapping
 from contextlib import asynccontextmanager
 from typing import Literal, cast
 
@@ -15,11 +15,13 @@ from starlette.exceptions import HTTPException as StarletteHttpException
 from ndt_agents.contracts.v1 import TenantScope
 from ndt_agents.identity.middleware import IdentityRuntime, ScopeAuthorizationMiddleware
 from ndt_agents.identity.models import ScopeResponse
+from ndt_agents.models.config import load_model_runtime_configuration
 from ndt_agents.runtime.config import AppSettings
 from ndt_agents.runtime.logging import configure_logging
 from ndt_agents.runtime.middleware import RequestContextMiddleware, apply_response_headers
 from ndt_agents.runtime.models import HealthCheck, HealthResponse, ProblemDetail
 from ndt_agents.runtime.readiness import DependencyProbe
+from ndt_agents.security.models import SecurityEnvironment
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -40,10 +42,19 @@ def create_app(
     configure_logs: bool = True,
     readiness_probes: tuple[DependencyProbe, ...] = (),
     identity: IdentityRuntime | None = None,
+    model_environment: Mapping[str, str] | None = None,
 ) -> FastAPI:
-    """Build an application without contacting storage, models, or external services."""
+    """Build an application without contacting storage, model providers, or external services."""
 
     active_settings = settings or AppSettings.from_environment()
+    model_runtime = None
+    if active_settings.model_config_path is not None:
+        model_runtime = load_model_runtime_configuration(
+            active_settings.model_config_path,
+            env_file_path=active_settings.model_env_file,
+            environ=model_environment,
+            expected_environment=SecurityEnvironment(active_settings.environment.value),
+        )
     if configure_logs:
         configure_logging(
             service_name=active_settings.service_name,
@@ -68,6 +79,7 @@ def create_app(
         lifespan=lifespan,
     )
     app.state.settings = active_settings
+    app.state.model_runtime = model_runtime
     if identity is not None:
         app.add_middleware(ScopeAuthorizationMiddleware, identity=identity)
     app.add_middleware(RequestContextMiddleware)
@@ -85,7 +97,16 @@ def create_app(
     @app.get("/health/ready", response_model=HealthResponse, tags=["runtime"])
     async def readiness(response: Response) -> HealthResponse:
         dependency_checks = tuple([await probe.evaluate() for probe in readiness_probes])
-        checks = (HealthCheck(name="application", status="PASS"), *dependency_checks)
+        model_checks = (
+            (HealthCheck(name="model_configuration", status="PASS"),)
+            if model_runtime is not None
+            else ()
+        )
+        checks = (
+            HealthCheck(name="application", status="PASS"),
+            *model_checks,
+            *dependency_checks,
+        )
         status: Literal["PASS", "FAIL"] = (
             "FAIL" if any(check.status == "FAIL" for check in checks) else "PASS"
         )

@@ -8,14 +8,14 @@ import re
 from collections.abc import Callable, Sequence
 from datetime import UTC, date, datetime
 from enum import StrEnum
-from typing import Literal, NoReturn, Self
+from typing import Literal, NoReturn, Protocol, Self
 from urllib.parse import urlsplit
 from uuid import UUID, uuid4
 
 from pydantic import Field, model_validator
 
 from ndt_agents.contracts.v1 import StrictModel, TenantScope
-from ndt_agents.observability.audit import AuditKind, AuditOutcome, AuditRecord, AuditService
+from ndt_agents.observability.audit import AuditKind, AuditOutcome, AuditRecord
 from ndt_agents.security.models import SecretSelector, SecurityEnvironment
 
 MODEL_API_REGISTRY_CONTRACT_VERSION: Literal["1.0.0"] = "1.0.0"
@@ -323,6 +323,10 @@ class ModelRegistryError(RuntimeError):
         super().__init__(message)
 
 
+class ModelAuditSink(Protocol):
+    def record(self, record: AuditRecord) -> object: ...
+
+
 def canonical_sha256(value: object) -> str:
     try:
         payload = json.dumps(
@@ -360,7 +364,7 @@ class ModelApiRegistry:
         catalog: ModelCatalogManifest,
         bindings: Sequence[ProviderBinding],
         *,
-        audit: AuditService,
+        audit: ModelAuditSink,
         clock: Callable[[], datetime] = lambda: datetime.now(UTC),
         event_id_factory: Callable[[], UUID] = uuid4,
     ) -> None:

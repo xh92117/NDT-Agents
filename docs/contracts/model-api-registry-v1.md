@@ -14,7 +14,8 @@ environment, and resolves a policy-checked route. It does not execute inference,
 or complete the S5-01 unified tool gateway and S5-06 canonical inspection-data dependencies.
 
 The implementation is `ndt_agents.models`. The initial non-secret catalog is
-`config/model-providers/deepseek-v4.v1.json`.
+`config/model-providers/deepseek-v4.v1.json`; the startup example is
+`config/runtime/model-bindings.example.yaml`.
 
 ## 2. Three separate objects
 
@@ -46,7 +47,26 @@ Every allow or deny decision emits one hash-only `MODEL` audit event. A failure 
 code, retryability flag, and required next action. Configuration-only resolution makes no physical
 provider call and consumes no API quota.
 
-## 4. DeepSeek V4 candidate
+## 4. Startup configuration bootstrap
+
+`NDT_MODEL_CONFIG` selects one explicit strict YAML document. The checked-in example contains only
+catalog paths, provider/model policy, exact tenant/project/environment scope, budgets, and an
+environment-variable name plus immutable secret version. It never contains the API key. Local
+copies use `config/runtime/*.local.yaml` and are ignored by Git.
+
+`NDT_MODEL_ENV_FILE` may explicitly select an ignored literal `NAME=VALUE` file for local or CI
+development. The file is not auto-discovered and supports no shell expansion, `export`, duplicate
+variables, YAML anchors, or aliases. The process environment has precedence over that file. Reads
+are bounded and require UTF-8 without BOM. Enabled bindings require a non-empty referenced secret;
+disabled bindings may assemble without one. Staging and production reject this environment-backed
+secret source and require a later managed adapter.
+
+Startup builds a typed `ConfiguredModelRuntime`, validates that catalogs and bindings produce one
+registry hash, retains secret material only in a non-serializable read-only provider, and exposes
+only non-secret counts and hashes in status. `build_registry(audit)` is the future audited execution
+boundary. Bootstrap itself makes no provider-network call.
+
+## 5. DeepSeek V4 candidate
 
 The catalog records the official OpenAI-compatible base URL and current model IDs checked on
 2026-08-24. The personal-development binding policy is:
@@ -63,7 +83,7 @@ The catalog records the official OpenAI-compatible base URL and current model ID
 Current pricing is deliberately not hardcoded in the registry. A later cost policy must reference a
 dated provider source and version because prices can change independently of code.
 
-## 5. Adding another API
+## 6. Adding another API
 
 To add a provider without changing domain code:
 
@@ -74,16 +94,16 @@ To add a provider without changing domain code:
 5. publish the new registry snapshot and invalidate contexts or caches that reference the old hash;
 6. enable the binding only after its secret reference, data policy, and environment are approved.
 
-Do not place an API key in chat, source, JSON, Markdown, environment examples committed to Git,
-logs, traces, evidence, or exception text. Local and production secret-provider adapters remain a
-separate S1-11 operational concern.
+Do not place an API key in chat, source, JSON, Markdown, committed environment examples, logs,
+traces, evidence, or exception text. The local/CI read-only environment adapter is implemented;
+production secret-provider selection remains a separate S1-11 operational concern.
 
-## 6. Deferred live integration
+## 7. Deferred live integration
 
 Before the first DeepSeek call, complete or explicitly approve:
 
 - provider processing/storage region, retention, training-use, and commercial/exit terms;
-- a local managed secret-provider binding and rotation test;
+- a production managed secret-provider binding and rotation test;
 - S5-01 model execution through the shared Tool Registry and S1-08 physical-call budget;
 - strict request/response, tool-call, timeout, rate-limit, cancellation, and incomplete-state
   mapping;

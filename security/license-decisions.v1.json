@@ -719,7 +719,7 @@
       "name": "pyyaml",
       "purl": "pkg:pypi/pyyaml@6.0.3",
       "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
-      "scope": "DEVELOPMENT_DIRECT",
+      "scope": "RUNTIME_DIRECT",
       "version": "6.0.3"
     },
     {
@@ -967,7 +967,7 @@
   ],
   "inventory_version": "1.1.0",
   "license_evidence_path": "security/license-evidence.v1.json",
-  "license_evidence_sha256": "640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e",
+  "license_evidence_sha256": "b2beb773b7ff92897718b0134cd36c63aaa079f9bad48dff4dad11b8fbbc923a",
   "sbom_path": "sbom/cyclonedx.v1.json",
-  "sbom_sha256": "c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd"
+  "sbom_sha256": "755a8ffbd4a4657412816d3975683ebdd212ad8d41b0d6c772d0c9984e9bcec4"
 }

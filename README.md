@@ -18,6 +18,7 @@ blocked by the approvals and external evidence recorded in `plan.md`.
 | `fixtures/v1` | synthetic parser, template, and raw-inspection fixtures |
 | `benchmarks/v1` | synthetic evaluation JSONL sets and frozen manifest |
 | `config/model-providers` | non-secret provider and model catalogs |
+| `config/runtime` | non-secret model binding examples; local copies are ignored |
 | `security` | machine-readable security and license decision baselines |
 | `sbom` | generated CycloneDX inventory |
 | `tools` | deterministic generators and repository checks |
@@ -68,14 +69,32 @@ Start the API without storage, cache, model, or network dependencies:
 uv run python -m ndt_agents.runtime
 ```
 
+To assemble the disabled DeepSeek reference binding without making a provider call, copy
+`config/runtime/model-bindings.example.yaml` to the ignored
+`config/runtime/model-bindings.local.yaml`, then set these process or IDE environment values:
+
+```text
+NDT_MODEL_CONFIG=config/runtime/model-bindings.local.yaml
+NDT_MODEL_ENV_FILE=.env.local
+```
+
+Copy `.env.example` to the ignored `.env.local` and place the real value after
+`DEEPSEEK_API_KEY=`. Do not commit or send that file. The application does not automatically load
+`.env.example` or `.env.local`; `NDT_MODEL_ENV_FILE` explicitly selects the latter. Process
+environment variables take precedence over the selected file. Change a binding to `ENABLED` only
+when its referenced secret is present; startup otherwise fails closed. This bootstrap validates and
+assembles configuration but still performs zero model-network calls.
+
 Supported settings are `NDT_SERVICE_NAME`, `NDT_ENVIRONMENT`, `NDT_LOG_LEVEL`, `NDT_HOST`,
-`NDT_PORT`, and `NDT_EXPOSE_API_DOCS`. Unknown `NDT_` settings fail startup. API documentation is
-disabled by default and cannot be enabled when `NDT_ENVIRONMENT=production`.
+`NDT_PORT`, `NDT_EXPOSE_API_DOCS`, `NDT_MODEL_CONFIG`, and `NDT_MODEL_ENV_FILE`. Unknown `NDT_`
+settings fail startup. API documentation is disabled by default and cannot be enabled when
+`NDT_ENVIRONMENT=production`. Local environment files are forbidden in production.
 
 Runtime probes:
 
 - `GET /health/live` confirms that the service process is serving requests;
-- `GET /health/ready` confirms that the S1-01 application scaffold initialized;
+- `GET /health/ready` confirms that the S1-01 application scaffold initialized and, when selected,
+  that non-secret model configuration assembled successfully;
 - both responses use schema version `1.0.0` and return `Cache-Control: no-store`.
 
 On Windows paths containing non-ASCII characters, run the dependency audit in explicit UTF-8 mode:

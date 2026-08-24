@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Packet version | `1.2.0` |
+| Packet version | `1.3.0` |
 | Task | `S0-08` with required `S0-10` baseline input |
 | State | `PENDING_ACCOUNTABLE_REVIEW` |
 | Prepared from | `main` commit `0b3e9a88694135cbccd15324496a6c65da8bf818` plus the review branch |
@@ -21,12 +21,12 @@ requires a new packet and review.
 |---|---|---|
 | [security baseline](./security-baseline.md) machine source | `1.0.0` | `90315dd61e1c378addf6d6e20186de75ef865a8b0782df0c97fde7c20b774bed` |
 | [personal-project governance](../../security/personal-project-governance.v1.json) | `1.0.0` | `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` |
-| [personal-development runtime candidate](../../architecture/personal-development-runtime.v1.json) | `1.1.0` | `d77fc516704d4d0dd5e91e61de5432e6cf800bded956b8aec6b1b78cbadb22bb` |
+| [personal-development runtime candidate](../../architecture/personal-development-runtime.v1.json) | `1.2.0` | `3259b8d6297fbea93e409ad8f20a2d401331ff8ea2dd83c8ddcafd033101da7f` |
 | [DeepSeek V4 non-secret catalog](../../config/model-providers/deepseek-v4.v1.json) | `1.0.0` | `7eb570adb12b029a4995b77e39813a534a89109fe92e2f13ef09f1a344f01fef` |
-| [CycloneDX SBOM](../../sbom/cyclonedx.v1.json) | `1` / CycloneDX `1.6` | `c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd` |
-| [official license evidence](../../security/license-evidence.v1.json) | `1.0.0` | `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` |
-| [pending license decisions](../../security/license-decisions.v1.json) | `1.1.0` | `38c1cffa96f14174fdeea30b8221639f2040c231f057ee100571f1b58c5dcb18` |
-| [locked dependency graph](../../uv.lock) | lock revision `1` | `fdba41c6834c6b3cb44ac844966ee65fd5c93f9008383eac8039b63cf304a908` |
+| [CycloneDX SBOM](../../sbom/cyclonedx.v1.json) | `1` / CycloneDX `1.6` | `755a8ffbd4a4657412816d3975683ebdd212ad8d41b0d6c772d0c9984e9bcec4` |
+| [official license evidence](../../security/license-evidence.v1.json) | `1.0.0` | `b2beb773b7ff92897718b0134cd36c63aaa079f9bad48dff4dad11b8fbbc923a` |
+| [pending license decisions](../../security/license-decisions.v1.json) | `1.1.0` | `bdbad0452e34e86abec4d833144ed4772d96b4c17eeea4c46da0421314403c3a` |
+| [locked dependency graph](../../uv.lock) | lock revision `1` | `2c3267c7de70a602067c9e86bdc2842ae01733a51b4641a15e554e2c17765966` |
 
 The license snapshot was captured at `2026-08-24T04:03:33Z` from the official PyPI version JSON
 API. Its method follows the Python packaging `License-Expression` and `License-File` metadata
@@ -48,7 +48,7 @@ data, formal compliance claims, and commercial release remain blocked.
 
 ## 4. R-005 review summary
 
-The exact Python inventory contains 87 components: 13 runtime-direct, 15 development-direct, and
+The exact Python inventory contains 87 components: 14 runtime-direct, 14 development-direct, and
 59 transitive. Official release metadata provides:
 
 - 56 author-declared SPDX expressions;
@@ -61,9 +61,9 @@ of `BSD-2-Clause`, `MIT-0`, `MIT-CMU`, `PSF-2.0`, `MIT AND PSF-2.0`,
 
 The direct dependencies requiring text review are:
 
-- runtime: `sqlalchemy@2.0.52`;
+- runtime: `pyyaml@6.0.3` and `sqlalchemy@2.0.52`;
 - development: `openpyxl@3.1.5`, `pip-audit@2.10.1`, `python-docx@1.2.0`,
-  `python-pptx@1.0.2`, `pyyaml@6.0.3`, and `reportlab@5.0.1`.
+  `python-pptx@1.0.2`, and `reportlab@5.0.1`.
 
 The remaining 23 legacy transitive records and the one missing record are listed by exact purl,
 source URL, raw metadata value, classifier, and response hash in the license-evidence JSON.

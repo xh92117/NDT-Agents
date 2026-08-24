@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.30
+**Specification version:** 1.31
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -596,6 +596,16 @@ region, retention, training use, and commercial terms. Unverified hosted provide
 enabled for production or confidential/restricted data. The initial DeepSeek V4 catalog is a
 non-secret personal-development candidate; it does not perform inference, resolve a secret, or
 satisfy the unfinished S5-01 and S5-06 dependencies.
+
+The S5-07 configuration bootstrap reads an explicitly selected strict YAML document at application
+startup. The YAML contains only catalog paths, scoped provider bindings, limits, and secret-source
+references. An optional ignored local environment file and the process environment contain secret
+values; process environment values take precedence. Secret values never enter Pydantic models,
+registry hashes, readiness responses, logs, exceptions, or checked-in examples. Startup without a
+model configuration remains provider-neutral. An enabled binding with a missing, empty, duplicate,
+or invalid secret source fails with a typed non-disclosing configuration error; a disabled binding
+may remain unprovisioned. Successful loading validates every catalog and binding and attaches the
+reference-only model runtime configuration to application state without making a provider call.
 
 ## 15. Multi-tenancy, security, and audit
 
