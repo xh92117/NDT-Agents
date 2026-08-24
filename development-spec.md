@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.35
+**Specification version:** 1.36
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -529,6 +529,13 @@ authorization after revocation.
 ## 11. Knowledge Agent
 
 The Knowledge Agent starts only from an explicit user intent, a UI action, or an approved administrator job. Normal question answering uses read-only retrieval and does not start an ingestion agent.
+
+The S3-01 entry boundary accepts only typed, scope-bound start signals. A normal question produces
+a non-start result and remains on the read-only retrieval path. An accepted import creates exactly
+one asynchronous `K1` professional dispatch through the Main Graph, requires independent review,
+keeps Main at zero LLM and tool calls, and never grants the child a user-delivery channel. UI starts
+derive tenant, project, and user scope from authenticated middleware. Administrator jobs additionally
+require a current approval grant bound to the exact task and candidate hash.
 
 Supported first-release inputs:
 

@@ -2,8 +2,9 @@
 
 NDT Agents is the V1 foundation for a multi-tenant civil-infrastructure non-destructive-testing
 agent platform. The repository contains the S0 engineering baseline, the isolated S1 agent runtime,
-and the S2 context, memory, restore, cache, and governed data-lifecycle boundaries. Production
-enablement remains blocked by the approvals and external evidence recorded in `plan.md`.
+the S2 context, memory, restore, cache, and governed data-lifecycle boundaries, and the S3-01
+Knowledge Agent entry graph. Production enablement remains blocked by the approvals and external
+evidence recorded in `plan.md`.
 
 ## Repository layout
 
@@ -50,6 +51,8 @@ Cache policy and canonical cache keys are documented in
 [`docs/contracts/cache-keys-v1.md`](./docs/contracts/cache-keys-v1.md).
 The governed retention, export, deletion, legal-hold, and cryptographic-erasure boundary is
 documented in [`docs/contracts/data-lifecycle-v1.md`](./docs/contracts/data-lifecycle-v1.md).
+The explicit-intent, authenticated UI, and approved administrator Knowledge start boundary is
+documented in [`docs/contracts/knowledge-entry-v1.md`](./docs/contracts/knowledge-entry-v1.md).
 The explicit synchronous and queued-asynchronous scheduling boundary is documented in
 [`docs/contracts/task-scheduler-v1.md`](./docs/contracts/task-scheduler-v1.md).
 The immutable checkpoint, idempotency, interrupt, and restart-recovery boundary is documented in
@@ -110,6 +113,10 @@ Runtime probes:
 - `GET /health/ready` confirms that the S1-01 application scaffold initialized and, when selected,
   that non-secret model configuration assembled successfully;
 - both responses use schema version `1.0.0` and return `Cache-Control: no-store`.
+
+When an authenticated identity runtime and `KnowledgeEntryGraph` are explicitly injected,
+`POST /v1/knowledge/imports` accepts a scoped import start and returns safe asynchronous dispatch
+metadata. The route remains unavailable in the default standalone runtime.
 
 On Windows paths containing non-ASCII characters, run the dependency audit in explicit UTF-8 mode:
 

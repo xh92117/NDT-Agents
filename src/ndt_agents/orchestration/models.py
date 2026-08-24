@@ -16,6 +16,7 @@ class OrchestrationModel(BaseModel):
 class RouteKind(StrEnum):
     GENERAL_SYNC = "GENERAL_SYNC"
     ONE_PROFESSIONAL_SYNC_REVIEW = "ONE_PROFESSIONAL_SYNC_REVIEW"
+    ONE_PROFESSIONAL_ASYNC_REVIEW = "ONE_PROFESSIONAL_ASYNC_REVIEW"
     MULTIPLE_INDEPENDENT_ASYNC_REVIEW = "MULTIPLE_INDEPENDENT_ASYNC_REVIEW"
     MULTIPLE_DEPENDENT_ASYNC_REVIEW = "MULTIPLE_DEPENDENT_ASYNC_REVIEW"
     HUMAN_REQUIRED = "HUMAN_REQUIRED"
@@ -44,6 +45,7 @@ class RouteSignals(OrchestrationModel):
     general_eligible: bool
     professional_assignments: tuple[ProfessionalAssignment, ...] = Field(default=(), max_length=4)
     human_required: bool = False
+    asynchronous_required: bool = False
 
     @model_validator(mode="after")
     def validate_shape(self) -> Self:
@@ -52,10 +54,14 @@ class RouteSignals(OrchestrationModel):
             raise ValueError("professional assignment IDs must be unique")
         if self.general_eligible and (self.professional_assignments or self.human_required):
             raise ValueError("general route cannot declare professional or human work")
+        if self.general_eligible and self.asynchronous_required:
+            raise ValueError("general route cannot require asynchronous professional work")
         if not self.general_eligible and not self.professional_assignments:
             raise ValueError("non-general route requires a professional assignment")
         if self.human_required and not self.professional_assignments:
             raise ValueError("human route requires a responsible professional assignment")
+        if self.human_required and self.asynchronous_required:
+            raise ValueError("human route cannot also require asynchronous dispatch")
         known = set(identifiers)
         for assignment in self.professional_assignments:
             if assignment.assignment_id in assignment.depends_on:

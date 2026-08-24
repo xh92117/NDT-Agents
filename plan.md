@@ -1,11 +1,11 @@
 # Civil Infrastructure NDT Agent Platform Development Plan
 
-**Plan version:** 1.35
+**Plan version:** 1.36
 **Specification:** [development-spec.md](./development-spec.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)  
 **Duration:** 26 weeks, provisional until S0 resourcing and critical-path approval  
-**Current phase:** S2 implementation complete locally; TG-02 external gate evidence remains blocked
+**Current phase:** S3-01 is complete locally; S3-03 is next and TG-02 external gate evidence remains blocked
 **Overall status:** BLOCKED
 
 ## 1. Plan rules
@@ -68,7 +68,7 @@ Per-task LLM-call hard limits: G0 = 4, P1 = 10, P2 = 32, P3 = 40, K1 = 12.
 | S0 | 1-2 | Requirements, models, fixtures, and CI baseline | BLOCKED | TG-00 |
 | S1 | 3-6 | Lightweight agent runtime | BLOCKED | TG-01 |
 | S2 | 7-9 | Context, memory, restore, cache, and data lifecycle | BLOCKED | TG-02 |
-| S3 | 10-13 | Bash files, encoding, MinerU, and knowledge lifecycle | TODO | TG-03 |
+| S3 | 10-13 | Bash files, encoding, MinerU, and knowledge lifecycle | IN_PROGRESS | TG-03 |
 | S4 | 14-18 | Professional Skills and review workflows | TODO | TG-04 |
 | S5 | 19-22 | Tools, instruments, applications, and AI models | TODO | TG-05 |
 | S6 | 23-26 | Clients, hardening, calibration, pilot, and release | TODO | TG-06 |
@@ -130,7 +130,7 @@ Exit: critical compression retention is 100 percent, restore is isolated, cache 
 
 | ID | Task | Dependencies | Deliverable | Status |
 |---|---|---|---|---|
-| S3-01 | Implement explicit-intent and UI entry points for Knowledge Agent | S1-04 | Knowledge Graph | TODO |
+| S3-01 | Implement explicit-intent and UI entry points for Knowledge Agent | S1-04 | [Knowledge Agent entry graph](./docs/contracts/knowledge-entry-v1.md) | DONE |
 | S3-02 | Build Bash allowlist and list/search/read/write/edit/execute tools | S1-08, S1-03, S1-12 | [controlled Bash file gateway](./docs/contracts/bash-file-gateway-v1.md) | DONE |
 | S3-03 | Build MIME, hash, path, Chinese encoding, and security intake | S3-02 | file intake and UTF-8 normalization | TODO |
 | S3-04 | Integrate MinerU Markdown and structured outputs | S3-03 | MinerU adapter | TODO |
@@ -222,6 +222,10 @@ Exit: the immutable release candidate passes TG-06, authorized release approval 
 
 Only selected or recently completed tasks appear here. Preserve completed records and evidence references.
 
+S3-01 proceeds as a provider-neutral continuation of the verified S1 Main Graph, child isolation,
+review, approval, and S2 TaskContext boundaries. It does not parse, OCR, index, publish, or approve
+knowledge and does not promote the blocked TG-02 or TG-03 gates.
+
 S2-01 through S2-09 proceeded under the user's explicit instruction as isolated, provider-neutral
 development tasks while TG-01 remained blocked. All nine task deliverables and their local task
 profiles are complete. They do not approve the S0 security or license baseline, enable production
@@ -230,6 +234,7 @@ automated subset passes; the phase gate remains blocked on those external requir
 
 | Task ID | Owner role | Start | Target | Acceptance criteria | Minimum tests | Evidence | Status |
 |---|---|---|---|---|---|---|---|
+| `S3-01` | Knowledge Runtime Owner | 2026-08-24 | 2026-08-24 | one versioned entry graph accepts only explicit user import intent, authenticated UI import action, or an administrator job carrying a current exact-task and exact-candidate approval grant; a normal question returns a typed non-start result with zero child, tool, and LLM calls; every accepted request revalidates exact tenant, project, user, permission, task, `K1` budget, immutable source-artifact membership, and the 50-file hard limit; rules-first Main routing creates exactly one asynchronous Knowledge professional assignment with mandatory review and zero Main tools or LLM calls; the prepared child uses minimal S2 context, has a private scratch namespace, and cannot deliver directly to the user; the authenticated UI endpoint is default-deny under an explicit route permission; parsing, OCR, indexing, publication, and lifecycle mutation remain later S3 tasks | `INT-KNOWLEDGE`, `INT-ORCH`, `SEC-TENANT`, `INT-APPROVAL` administrator-entry cases, `QUICK`, `DOC` | `S3-01-TASK-20260824-01` in test.md and [durable evidence](./evidence/s3/s3-01-knowledge-entry-20260824.md); 34 dedicated and routing tests, 135 affected-boundary tests, and all 423 collected tests completed with one platform skip; Code Graph impact review, four generators, Ruff, format, strict mypy, DOC 1.36, dependency audit, and diff checks passed | DONE |
 | `S2-09` | Data Governance Owner | 2026-08-24 | 2026-08-24 | one versioned lifecycle service registers exact-scope governed objects with classification, content hash, retention deadline, optional object-unique encryption key, and state; exports are permission-filtered and hash-manifested; deletion is previewed, hash-bound, approval-gated, idempotent, and leaves non-content tombstone evidence; legal hold application and release require exact current approvals and block deletion or erasure; cryptographic erasure requires an object-unique key, approval, successful key revocation, content removal, and immutable audit proof; cross-scope, premature retention, stale approval, shared key, unavailable key provider, and repeated/conflicting operations fail explicitly; PostgreSQL lifecycle, hold, and append-only event tables use forced RLS and reversible migration | `INT-DATA-LIFECYCLE`, `SEC-TENANT`, `SEC-PLATFORM`, migration upgrade/rollback, `QUICK`, `DOC` | `S2-09-TASK-20260824-01` in test.md and [durable evidence](./evidence/s2/s2-09-data-lifecycle-20260824.md); ten dedicated lifecycle cases, affected migration tests, and all 413 tests completed with one platform skip; DOC 1.35 passed | DONE |
 | `S2-08` | Cache Security Owner | 2026-08-24 | 2026-08-24 | one canonical versioned key includes exact tenant, project, user, sorted roles, permission and RBAC versions, normalized request, task type, cache class, model, prompt, Skill, graph, route, tool/adapter, knowledge corpus/document, schema, parser, and context-policy versions plus bounded class-specific dimensions; authorization digest is separate; input order cannot change the key, while every correctness or authorization dimension change must; lookup remains exact-scope and stale versions miss; unknown fields, empty version sets, unsafe normalization, cross-tenant/project/user access, collisions, poisoning, and revocation reuse are rejected | `SEC-CACHE`, `SEC-TENANT`, `QUICK`, `DOC` | `S2-08-TASK-20260824-01` in test.md and [durable evidence](./evidence/s2/s2-08-cache-keys-20260824.md); 24 dedicated key/isolation tests and all 403 tests completed with one platform skip; DOC 1.34 passed | DONE |
 | `S2-07` | Cache Runtime Owner | 2026-08-24 | 2026-08-24 | one strict cache service supports exact response, retrieval, tool result, parse result, and bounded semantic classes with class-specific TTL, immutable provenance, validation state, canonical value hash, hit/miss/stale/saved-token metrics, idempotent writes, expiry and invalidation; secrets, authorization decisions, unsafe side effects, unstable values, invalid semantic task classes, and similarity below 0.95 are rejected; current-information requests bypass or refresh cached data | `SEC-CACHE`, `INT-MEMORY`, `SEC-TENANT`, `QUICK`, `DOC` | `S2-07-TASK-20260824-01` in test.md and [durable evidence](./evidence/s2/s2-07-cache-service-20260824.md); 16 dedicated cache tests, affected migration tests, and all 379 tests completed with one platform skip; DOC 1.34 passed | DONE |
@@ -358,3 +363,4 @@ required before TG-01 and are not claimed by local restart tests.
 | 2026-08-24 | 1.33 | Completed S2-01 with bounded default-deny context candidates, exact scope and permission filtering, relevance selection, provenance-preserving content-hash deduplication, protected-item handling, authorization-bound manifests, and verified minimal General and professional child handoff while retaining the TG-01 and TG-02 gate limits | S2-01, UNIT-CONTEXT, C0 EVAL-COMPRESSION, SEC-TENANT, and INT-ORCH |
 | 2026-08-24 | 1.34 | Completed S2-02 with strict raw-event contracts, deterministic C0/C1 reduction, provider-neutral bounded C2/C3 candidates, recent-turn retention, semantic-call limits, exact source attestation, C3 checkpoint enforcement, typed failures, and an explicit S2-03 validation boundary | S2-02, UNIT-CONTEXT, EVAL-COMPRESSION, RES-CHECKPOINT, and SEC-TENANT |
 | 2026-08-24 | 1.35 | Completed S2-03 through S2-09 with validated compression fallback, scoped memory and distillation, branch-only restore, bounded cache and canonical keys, and governed data lifecycle; all S2 task profiles and the local automated TG-02 subset pass, while immutable CI, approved live services, backup and invalidation integration, and accountable approvals keep the phase gate blocked | S2, TG-02, UNIT-CONTEXT, EVAL-COMPRESSION, INT-MEMORY, SEC-CACHE, and INT-DATA-LIFECYCLE |
+| 2026-08-24 | 1.36 | Continued S3 on the existing Main Graph, S2 minimal-context, child-isolation, and review boundaries; completed the explicit Knowledge Agent entry graph, exact administrator grant validation, default-deny authenticated UI route, single-professional asynchronous dispatch plan, and local evidence without starting parsing or publication | S3-01, INT-KNOWLEDGE, INT-ORCH, SEC-TENANT, and INT-APPROVAL |

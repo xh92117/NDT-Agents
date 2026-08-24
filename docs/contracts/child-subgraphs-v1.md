@@ -39,6 +39,11 @@ one explicit `ChildInput` for each verified assignment and may receive only the 
 content hashes and artifact IDs named for that assignment. Unknown context hashes fail before
 child creation. Legacy S1 contexts without an S2 bundle receive no context entries.
 
+S3-01 requires a manifest-verified S2 bundle for every Knowledge import. It prepares exactly one
+`K1` professional child, selects only the requested immutable source artifacts, intersects the
+task and registered Knowledge tool allowlists, marks the future ingestion path as mutating, and
+still performs zero child executions at the entry boundary.
+
 ## Child state machine
 
 One prepared child records:

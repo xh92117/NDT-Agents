@@ -31,6 +31,13 @@ def signals_for(route: RouteKind) -> RouteSignals:
             general_eligible=False,
             professional_assignments=(first,),
         )
+    if route is RouteKind.ONE_PROFESSIONAL_ASYNC_REVIEW:
+        return RouteSignals(
+            task_id=TASK.task_id,
+            general_eligible=False,
+            professional_assignments=(first,),
+            asynchronous_required=True,
+        )
     if route is RouteKind.HUMAN_REQUIRED:
         return RouteSignals(
             task_id=TASK.task_id,
@@ -73,6 +80,14 @@ def test_rules_only_main_graph_covers_all_declared_topologies() -> None:
         else:
             assert result.dispatch.general_agent is False
             assert result.dispatch.review_required is True
+        assert result.dispatch.asynchronous is (
+            route
+            in {
+                RouteKind.ONE_PROFESSIONAL_ASYNC_REVIEW,
+                RouteKind.MULTIPLE_INDEPENDENT_ASYNC_REVIEW,
+                RouteKind.MULTIPLE_DEPENDENT_ASYNC_REVIEW,
+            }
+        )
 
 
 def test_dependency_cycle_returns_typed_blocked_state() -> None:
@@ -133,7 +148,7 @@ def test_frozen_routing_macro_f1_meets_gate_without_case_id_features() -> None:
         expected.append(case["expected"]["route"])
         actual.append(result.decision.route.value)
 
-    labels = {route.value for route in RouteKind}
+    labels = set(expected)
     f1_scores: list[float] = []
     pairs = Counter(zip(expected, actual, strict=True))
     for label in labels:

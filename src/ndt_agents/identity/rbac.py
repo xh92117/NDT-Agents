@@ -12,6 +12,7 @@ from ndt_agents.identity.models import Principal
 
 class Permission(StrEnum):
     RUNTIME_SCOPE_READ = "runtime:scope:read"
+    KNOWLEDGE_IMPORT_START = "knowledge:import:start"
 
 
 @dataclass(frozen=True, slots=True)
