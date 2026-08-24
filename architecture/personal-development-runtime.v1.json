@@ -1,0 +1,139 @@
+{
+  "candidate_version": "1.0.0",
+  "decision_source": {
+    "actor": "CODEX_ENGINEERING_AGENT",
+    "recorded_on": "2026-08-24",
+    "source": "USER_AUTHORIZED_S0_05_CONTINUATION",
+    "state": "ENGINEERING_RECOMMENDATION_NOT_INDEPENDENT_APPROVAL"
+  },
+  "governance_path": "security/personal-project-governance.v1.json",
+  "governance_sha256": "c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083",
+  "observed_host": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "docker_client_version": "29.7.2",
+    "docker_engine": "UNAVAILABLE",
+    "logical_cores": 12,
+    "memory_gib": 15.64,
+    "nvidia_driver_version": "595.95",
+    "nvidia_gpu": "NVIDIA GeForce RTX 2050",
+    "nvidia_vram_mib": 4096,
+    "observation_method": "WINDOWS_CIM_DOCKER_VERSION_NVIDIA_SMI",
+    "observed_on": "2026-08-24",
+    "operating_system": "WINDOWS_11_HOME_64_BIT",
+    "python_version": "3.12.13",
+    "workspace_volume_free_gib": 204.63
+  },
+  "profile_assessment": {
+    "CORE_REPOSITORY_DEVELOPMENT": "PASS",
+    "DEV-CPU-1": "NOT_MET_MEMORY_BELOW_32_GIB",
+    "LOCAL-LLM-1": "NOT_SIZED_MODEL_AND_BENCHMARK_UNFROZEN",
+    "MINERU_CPU_PIPELINE": "NOT_VALIDATED_ON_THIS_HOST"
+  },
+  "provider_candidates": {
+    "china_region_hosted": {
+      "credentials_requested": false,
+      "required_non_secret_metadata": [
+        "PROVIDER_AND_MODEL_NAME",
+        "OFFICIAL_API_DOCUMENTATION_URL",
+        "API_PROTOCOL_AND_BASE_URL_CLASS",
+        "MAINLAND_CHINA_PROCESSING_AND_STORAGE_TERMS",
+        "RETENTION_AND_TRAINING_POLICY",
+        "COMMERCIAL_USE_AND_EXIT_TERMS"
+      ],
+      "status": "AWAITING_NON_SECRET_PROVIDER_METADATA"
+    },
+    "deterministic_fake": {
+      "data_classes": [
+        "PUBLIC",
+        "SYNTHETIC"
+      ],
+      "physical_network_calls": 0,
+      "status": "SELECTED_OFFLINE"
+    },
+    "local_vllm": {
+      "required_before_use": [
+        "FROZEN_MODEL_AND_WEIGHT_HASHES",
+        "LICENSE_AND_PROVENANCE_REVIEW",
+        "QUANTIZATION_CONTEXT_AND_CONCURRENCY_PROFILE",
+        "GPU_MEMORY_AND_THROUGHPUT_BENCHMARK"
+      ],
+      "status": "DEFERRED_MODEL_AND_HARDWARE_UNFROZEN"
+    },
+    "openai_responses": {
+      "access_checked_on": "2026-08-24",
+      "credentials_requested": false,
+      "current_jurisdiction_listed": false,
+      "official_model_guidance_url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "official_responses_reference_url": "https://developers.openai.com/api/reference/cli/resources/responses/methods/create",
+      "official_supported_countries_url": "https://developers.openai.com/api/docs/supported-countries",
+      "prototype_model": "gpt-5.6-terra",
+      "required_request_controls_if_eligible_later": [
+        "STORE_FALSE",
+        "PRODUCT_SIDE_BUDGET_AND_AUDIT",
+        "PUBLIC_OR_SYNTHETIC_DATA_ONLY_UNTIL_APPROVAL"
+      ],
+      "status": "BLOCKED_UNSUPPORTED_CURRENT_JURISDICTION"
+    }
+  },
+  "provider_smoke": {
+    "deterministic_fake": {
+      "checks": {
+        "credential_redaction": "PASS",
+        "function_call_strict_args": "PASS",
+        "metadata_complete": "PASS",
+        "output_token_limit": "PASS",
+        "retention_none": "PASS",
+        "structured_output_schema": "PASS",
+        "timeout_limit": "PASS",
+        "typed_failures": "PASS"
+      },
+      "metadata": {
+        "endpoint_class": "OFFLINE",
+        "model_snapshot": "fake-v1",
+        "provider": "deterministic-fake",
+        "region": "LOCAL",
+        "retention_mode": "NONE"
+      },
+      "network_calls": 0,
+      "result": "PASS",
+      "typed_failure_states": [
+        "CANCELLED",
+        "INCOMPLETE",
+        "RATE_LIMITED",
+        "REFUSED",
+        "TIMED_OUT"
+      ]
+    },
+    "hosted_provider": "NOT_RUN_BLOCKED_UNSUPPORTED_CURRENT_JURISDICTION",
+    "local_provider": "NOT_RUN_MODEL_AND_HARDWARE_UNFROZEN"
+  },
+  "restrictions": {
+    "commercial_release": "BLOCKED",
+    "confidential_or_restricted_data": "BLOCKED",
+    "hosted_model_call": "BLOCKED",
+    "local_llm_inference": "BLOCKED",
+    "production_deployment": "BLOCKED"
+  },
+  "risk_effect": {
+    "R-003": "OPEN",
+    "R-005": "OPEN",
+    "R-007": "OPEN",
+    "R-010": "OPEN"
+  },
+  "scope": {
+    "allowed_data_classes": [
+      "PUBLIC",
+      "SYNTHETIC"
+    ],
+    "jurisdiction": "CN_MAINLAND",
+    "project_stage": "PERSONAL_PRE_COMMERCIAL"
+  },
+  "selected_runtime": {
+    "application_execution": "WINDOWS_HOST_PYTHON_3_12",
+    "container_target": "LINUX_DOCKER_COMPOSE_DEFERRED",
+    "model_route": "DETERMINISTIC_FAKE_ONLY",
+    "network_model_calls": "DISABLED",
+    "production_eligible": false
+  },
+  "state": "PROVISIONAL_PERSONAL_DEVELOPMENT_ONLY"
+}

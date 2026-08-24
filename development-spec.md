@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.28
+**Specification version:** 1.29
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -104,6 +104,13 @@ jurisdiction and accept baseline values as engineering targets. That record does
 independent Security, Legal, Operations, or Quality approval roles. It cannot authorize production
 deployment, production customer data, a formal compliance claim, or commercial release. The
 jurisdiction, targets, authority, and applicable obligations require review before commercialization.
+
+The personal S0-05 runtime candidate uses the observed owner workstation for Python 3.12 repository
+development and the deterministic fake model for public or synthetic data only. Physical hosted
+model calls are disabled because the provisional current jurisdiction is not on the candidate
+provider's official supported-country list. Local LLM inference remains disabled until the exact
+model, weights, license, quantization, context, concurrency, and hardware benchmark are frozen.
+This offline route is not production hardware or provider approval.
 
 The S1 API bootstrap uses an application factory that performs no external I/O. Its immutable
 environment settings use an explicit `NDT_` allowlist. Unknown or unsafe values fail startup with a

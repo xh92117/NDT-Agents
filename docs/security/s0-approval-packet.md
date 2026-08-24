@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Packet version | `1.1.0` |
+| Packet version | `1.2.0` |
 | Task | `S0-08` with required `S0-10` baseline input |
 | State | `PENDING_ACCOUNTABLE_REVIEW` |
 | Prepared from | `main` commit `0b3e9a88694135cbccd15324496a6c65da8bf818` plus the review branch |
@@ -21,6 +21,7 @@ requires a new packet and review.
 |---|---|---|
 | [security baseline](./security-baseline.md) machine source | `1.0.0` | `90315dd61e1c378addf6d6e20186de75ef865a8b0782df0c97fde7c20b774bed` |
 | [personal-project governance](../../security/personal-project-governance.v1.json) | `1.0.0` | `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` |
+| [personal-development runtime candidate](../../architecture/personal-development-runtime.v1.json) | `1.0.0` | `adad384a90661d5a9e29d492a810520fc738cc99848494343a408b49b0ad879f` |
 | [CycloneDX SBOM](../../sbom/cyclonedx.v1.json) | `1` / CycloneDX `1.6` | `c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd` |
 | [official license evidence](../../security/license-evidence.v1.json) | `1.0.0` | `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` |
 | [pending license decisions](../../security/license-decisions.v1.json) | `1.1.0` | `38c1cffa96f14174fdeea30b8221639f2040c231f057ee100571f1b58c5dcb18` |
@@ -92,7 +93,7 @@ decisions rather than engineering facts:
 | accepted-task durability SLO | 99.9 percent per calendar month, accepted only as an engineering target | Operations and Quality Owners |
 | core task RPO/RTO | 15 minutes / 4 hours, accepted only as an engineering target | Operations Owner |
 | noncritical analytics RTO | 24 hours, accepted only as an engineering target | Operations Owner |
-| reference measurement environment | not selected under S0-05 | Architecture and Operations Owners |
+| reference measurement environment | `PERSONAL-DEV-1` for offline deterministic development only; production environment remains unselected | Architecture and Operations Owners |
 | baseline acceptance and residual risk | no residual critical risk accepted | Security and Quality Owners |
 
 R-007 also requires named human actors and evidence that each actor has authority for the role.

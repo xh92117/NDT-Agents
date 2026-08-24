@@ -42,6 +42,7 @@ def test_workflow_runs_all_s0_quality_controls() -> None:
         "uv run mypy",
         "uv run pip-audit",
         "actions/upload-artifact@",
+        "architecture/personal-development-runtime.v1.json",
         "security/personal-project-governance.v1.json",
         "security/license-evidence.v1.json",
     ):
@@ -73,6 +74,7 @@ def test_generated_text_artifacts_are_utf8_lf() -> None:
         *sorted((ROOT / "fixtures" / "v1").rglob("*.md")),
         *sorted((ROOT / "fixtures" / "v1").rglob("*.txt")),
         ROOT / "sbom" / "cyclonedx.v1.json",
+        ROOT / "architecture" / "personal-development-runtime.v1.json",
         ROOT / "security" / "personal-project-governance.v1.json",
         ROOT / "security" / "license-evidence.v1.json",
         ROOT / "security" / "license-decisions.v1.json",
