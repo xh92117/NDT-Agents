@@ -1,6 +1,6 @@
 # Codex Development Rules
 
-**Version:** 1.25  
+**Version:** 1.26
 **Updated:** 2026-08-24  
 **Scope:** the entire repository
 
@@ -65,6 +65,15 @@ Do not begin a task whose required dependency is incomplete unless the work is a
 - Change the task to `DONE` only when its output exists, its tests pass, and its documentation is synchronized.
 
 Never mark a phase complete until its `TG-xx` gate passes.
+
+### 3.4 Protected repository workflow
+
+- `main` is protected on GitHub. Create a `codex/*` branch and merge through a pull request.
+- The strict `quality` status check must pass against the latest `main` before merge.
+- The protection applies to administrators, requires linear history and resolved conversations,
+  and prohibits force pushes and branch deletion.
+- The required approving-review count is zero because this is currently a single-owner repository
+  and GitHub does not allow self-approval. This does not waive task review, test, or evidence rules.
 
 ## 4. Repository documentation rules
 

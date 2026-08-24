@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.25  
+**Version:** 1.26
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -691,10 +691,11 @@ Rollback a candidate when:
 
 ### 11.1 Current gate status
 
-The S0 engineering baseline now has an immutable private GitHub commit and passing remote CI
-evidence. TG-00 remains blocked because the required human approvals, licensed standards,
-authorized real-device samples, expert gold answers, and production provider decision do not yet
-exist. Synthetic build evidence is not promoted to phase-gate evidence for those missing inputs.
+The S0 engineering baseline now has an immutable GitHub commit, passing remote CI evidence, and a
+protected public `main` branch. TG-00 remains blocked because the required human approvals,
+licensed standards, authorized real-device samples, expert gold answers, and production provider
+decision do not yet exist. Synthetic build evidence is not promoted to phase-gate evidence for
+those missing inputs.
 
 | Gate | Current state | Blocking groups | Next scheduled time |
 |---|---|---|---|
@@ -744,6 +745,8 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S0-08-REMOTE-20260824-01 | 2026-08-24 | S0-08 / commit `2670546bd27d14216e8b67658c256bc848978c63` / tree `309bdfa0f3099065cd6313bae6c7e1b6a3def63a` | remote CI smoke: locked sync, controlled generation, drift rejection, `DOC`, tests, Ruff, strict mypy, dependency audit, evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `FAIL` | [run 32684912860](https://github.com/xh92117/NDT-Agents/actions/runs/32684912860) and [durable analysis](./evidence/s0/s0-08-remote-ci-20260824.md); setup, locked sync, and all generators completed; drift rejection detected platform-dependent Office ZIP metadata before later steps ran | D-002; force canonical ZIP creator system and permissions, regenerate, run local TASK, and rerun remote CI | Codex |
 | S0-08-REMOTE-20260824-02 | 2026-08-24 | S0-08 / commit `c7432b485da7e34bcfef6bc3e23f673a95b80f65` / tree `c1248d21b5e5f933a1cc35fc35f6a68e117a37fe` | remote CI smoke: locked sync, controlled generation, drift rejection, `DOC`, tests, Ruff, strict mypy, dependency audit, evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `FAIL` | [run 32685410756](https://github.com/xh92117/NDT-Agents/actions/runs/32685410756) and [durable analysis](./evidence/s0/s0-08-remote-ci-20260824.md); canonical Office ZIP output produced zero drift, while the 24 Pillow-encoded PNG fixtures and their catalog hashes and sizes differed before later steps ran | D-002; replace provider-dependent PNG encoding with a deterministic project-owned encoder, regenerate, run local TASK, and rerun remote CI | Codex |
 | S0-08-REMOTE-20260824-03 | 2026-08-24 | S0-08 / commit `d15c4a448d25222e667339831edf91b7bc8a7916` / tree `e0eb0aad0ee7090c2b155ed59f6426f760e664b3` | remote CI smoke: locked sync, controlled generation, drift rejection, `DOC`, 220 tests, Ruff, strict mypy, dependency audit, evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `PASS` | [run 32685686560](https://github.com/xh92117/NDT-Agents/actions/runs/32685686560) and [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); all workflow steps passed in 52 seconds; artifact `s0-baseline-d15c4a448d25222e667339831edf91b7bc8a7916`, ID `9505578701`, 24,959 bytes, digest `a7a360e545066272d552d1cae25d7c83f512af061053b86f7620b36b2ce36145`, expires 2026-09-23 | D-002 closed; R-005 and R-007 approvals and the R-013 repository-protection decision remain external blockers | Codex |
+| S0-08-PROTECTION-20260824-01 | 2026-08-24 | S0-08 / `main` at `8d27c42d70cad030c8c430d4a98b42e8a0633860` | repository governance configuration and API readback | GitHub public repository / owner-authorized visibility | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); `main` requires pull requests, strict `quality`, administrator enforcement, linear history, and resolved conversations; force pushes and deletion are disabled; approving-review count is zero for the single-owner repository | R-013 closed; R-005 and R-007 remain external blockers | Codex |
+| S0-08-PROTECTION-LOCAL-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-branch-protection` / controlled documents 1.26 | `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); DOC 1.26, all 220 tests, Ruff lint, Ruff format over 74 files, and strict mypy over 74 source files passed | R-005 and R-007 remain external blockers | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
