@@ -8,7 +8,9 @@ import json
 import mimetypes
 import os
 import re
+import struct
 import zipfile
+import zlib
 from collections.abc import Callable
 from datetime import UTC, datetime
 from pathlib import Path
@@ -30,6 +32,7 @@ FIXED_TIME = datetime(2026, 8, 21, 12, 0, 0, tzinfo=UTC)
 FIXED_ZIP_TIME = (2026, 8, 21, 12, 0, 0)
 CANONICAL_ZIP_CREATE_SYSTEM = 3
 CANONICAL_ZIP_EXTERNAL_ATTR = 0o600 << 16
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 TENANT_ID = "00000000-0000-4000-8000-000000000001"
 PROJECT_ID = "00000000-0000-4000-8000-000000000002"
 
@@ -89,6 +92,46 @@ def normalize_zip(content: bytes) -> bytes:
             item.external_attr = CANONICAL_ZIP_EXTERNAL_ATTR
             target.writestr(item, data)
     return output.getvalue()
+
+
+def png_chunk(chunk_type: bytes, content: bytes) -> bytes:
+    checksum = zlib.crc32(chunk_type + content) & 0xFFFFFFFF
+    return struct.pack(">I", len(content)) + chunk_type + content + struct.pack(">I", checksum)
+
+
+def stored_zlib_stream(content: bytes) -> bytes:
+    """Return a zlib stream using only deterministic uncompressed DEFLATE blocks."""
+
+    output = bytearray(b"\x78\x01")
+    for offset in range(0, len(content), 65535):
+        block = content[offset : offset + 65535]
+        final = offset + len(block) == len(content)
+        output.append(1 if final else 0)
+        output.extend(struct.pack("<HH", len(block), len(block) ^ 0xFFFF))
+        output.extend(block)
+    output.extend(struct.pack(">I", zlib.adler32(content) & 0xFFFFFFFF))
+    return bytes(output)
+
+
+def deterministic_png(image: Image.Image) -> bytes:
+    monochrome = image.convert("1", dither=Image.Dither.NONE)
+    width, height = monochrome.size
+    row_size = (width + 7) // 8
+    pixels = monochrome.tobytes()
+    if len(pixels) != row_size * height:
+        raise ValueError("unexpected packed monochrome image size")
+    scanlines = b"".join(
+        b"\x00" + pixels[offset : offset + row_size] for offset in range(0, len(pixels), row_size)
+    )
+    header = struct.pack(">IIBBBBB", width, height, 1, 0, 0, 0, 0)
+    return b"".join(
+        (
+            PNG_SIGNATURE,
+            png_chunk(b"IHDR", header),
+            png_chunk(b"IDAT", stored_zlib_stream(scanlines)),
+            png_chunk(b"IEND", b""),
+        )
+    )
 
 
 def document_name(kind: str, index: int, suffix: str) -> str:
@@ -198,7 +241,7 @@ def create_txt(path: Path, index: int) -> None:
 
 
 def create_png_scan(path: Path, index: int) -> None:
-    scan_image(index).save(path, format="PNG", optimize=False)
+    write_bytes_if_changed(path, deterministic_png(scan_image(index)))
 
 
 def media_type(path: Path) -> str:

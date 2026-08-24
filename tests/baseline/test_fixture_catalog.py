@@ -9,9 +9,12 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from PIL import Image
+
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG: dict[str, Any] = json.loads((ROOT / "fixtures" / "v1" / "catalog.json").read_text("utf-8"))
 OFFICE_SUFFIXES = {".docx", ".pptx", ".xlsx"}
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
 
 def test_fixture_counts_and_balance() -> None:
@@ -81,6 +84,24 @@ def test_office_fixtures_use_canonical_zip_metadata() -> None:
         assert all(member.create_system == 3 for member in members)
         assert all(member.external_attr == 0o600 << 16 for member in members)
         assert all(member.date_time == (2026, 8, 21, 12, 0, 0) for member in members)
+
+
+def test_png_fixtures_use_deterministic_monochrome_encoding() -> None:
+    png_paths = [
+        ROOT / item["path"] for item in CATALOG["documents"] if Path(item["path"]).suffix == ".png"
+    ]
+    assert len(png_paths) == 24
+    for path in png_paths:
+        content = path.read_bytes()
+        assert content.startswith(PNG_SIGNATURE)
+        assert content[12:16] == b"IHDR"
+        assert content[24:29] == bytes((1, 0, 0, 0, 0))
+        idat_position = content.index(b"IDAT")
+        assert content[idat_position + 4 : idat_position + 6] == b"\x78\x01"
+        with Image.open(path) as image:
+            image.load()
+            assert image.mode == "1"
+            assert image.size == (900, 1200)
 
 
 def test_rights_deidentification_and_training_exclusion() -> None:
