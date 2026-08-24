@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.31
+**Specification version:** 1.32
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -522,6 +522,14 @@ The model never submits an unrestricted `bash -c` string. Commands use an allowl
 Writes use a temporary file and atomic rename. Edits create a new version and diff. Original uploads, source inspection data, published knowledge, and formal reports are immutable.
 
 The atomic rename is an internal same-root commit step of the safe wrapper. It validates source and destination paths, ownership, expected hashes, and overwrite policy, and is not exposed to the model as a general `mv` or move action.
+
+The S3-02 implementation registers `file.list`, `file.search`, `file.read`, `file.write`,
+`file.edit`, `file.rollback`, and `file.execute` through the shared Tool Registry. Read operations
+use exact hashed executables, fixed flags, argument arrays, a UTF-8 locale, literal relative paths,
+and bounded captured output. Safe write denies overwrite. Safe edit and rollback require exact
+content hashes, preserve a prior working-copy version, and commit through an internal same-root
+atomic replace. An execute request selects only an application-published command template and
+bounded authorized paths; it cannot select an executable, flags, shell, or network destination.
 
 ### 12.1 Chinese paths and text encoding
 

@@ -2,8 +2,9 @@
 
 ## Scope
 
-S1-12 provides the smallest shared registry and invocation boundary needed by later tool adapters.
-It does not implement Bash, Function Calling, Web Search, MCP, instruments, or model adapters.
+S1-12 provides the shared registry and invocation boundary used by later tool adapters. S3-02 now
+registers the first controlled Bash/local-file adapter family through this boundary. Function
+Calling, Web Search, MCP, instruments, and physical model adapters remain later tasks.
 
 ## Publication
 
@@ -29,7 +30,9 @@ The gateway performs these checks before an adapter call:
 The adapter returns a V1 `ToolResult`. The gateway validates its call, task, run, scope, tool,
 version, input hash, idempotency key, status, output hash, and declared output schema before the
 result enters agent context. Timeouts and contract failures are typed and never disguised as valid
-tool output. Each decision records a correlated hash-only S1-10 `TOOL` audit event.
+tool output. An internally generated timeout validates identity, hash, and size but does not pretend
+to satisfy a successful adapter output schema. Each decision records a correlated hash-only S1-10
+`TOOL` audit event.
 
 ## Security and recovery limits
 
