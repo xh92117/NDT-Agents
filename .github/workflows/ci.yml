@@ -69,6 +69,7 @@ jobs:
             fixtures/v1/catalog.json
             benchmarks/v1/manifest.json
             sbom/cyclonedx.v1.json
+            security/license-evidence.v1.json
             security/license-decisions.v1.json
           if-no-files-found: error
           retention-days: 30

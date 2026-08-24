@@ -15,6 +15,7 @@ LOCK_PATH = ROOT / "uv.lock"
 PROJECT_PATH = ROOT / "pyproject.toml"
 SBOM_PATH = ROOT / "sbom" / "cyclonedx.v1.json"
 DECISION_PATH = ROOT / "security" / "license-decisions.v1.json"
+LICENSE_EVIDENCE_PATH = ROOT / "security" / "license-evidence.v1.json"
 
 
 def dependency_name(specifier: str) -> str:
@@ -32,6 +33,25 @@ def write_json(path: Path, value: Any) -> None:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def license_evidence_by_purl(expected_sbom_hash: str) -> dict[str, dict[str, Any]]:
+    evidence: dict[str, Any] = json.loads(LICENSE_EVIDENCE_PATH.read_text("utf-8"))
+    if evidence.get("sbom_sha256") != expected_sbom_hash:
+        raise ValueError("license evidence is not bound to the generated SBOM")
+    components = evidence.get("components")
+    if not isinstance(components, list):
+        raise ValueError("license evidence components must be a list")
+    by_purl: dict[str, dict[str, Any]] = {}
+    for value in components:
+        if not isinstance(value, dict):
+            raise ValueError("license evidence component must be an object")
+        component = dict(value)
+        purl = component.get("purl")
+        if not isinstance(purl, str) or not purl or purl in by_purl:
+            raise ValueError("license evidence purls must be unique non-empty strings")
+        by_purl[purl] = component
+    return by_purl
 
 
 def component_for(
@@ -109,26 +129,55 @@ def main() -> None:
     }
     write_json(SBOM_PATH, sbom)
 
+    sbom_hash = sha256(SBOM_PATH)
+    evidence_by_purl = license_evidence_by_purl(sbom_hash)
+    component_purls = {str(component["purl"]) for component in components}
+    if set(evidence_by_purl) != component_purls:
+        raise ValueError("license evidence must cover the exact generated SBOM component set")
+
+    license_components: list[dict[str, Any]] = []
+    for component in components:
+        purl = str(component["purl"])
+        evidence = evidence_by_purl[purl]
+        expression = evidence.get("license_expression")
+        evidence_state = evidence.get("evidence_state")
+        source_url = evidence.get("source_url")
+        scope = component["properties"][0]["value"]
+        if expression is not None and not isinstance(expression, str):
+            raise ValueError(f"invalid license expression for {purl}")
+        if not isinstance(evidence_state, str) or not isinstance(source_url, str):
+            raise ValueError(f"incomplete license evidence for {purl}")
+        if (
+            evidence.get("name") != component["name"]
+            or evidence.get("version") != component["version"]
+            or evidence.get("scope") != scope
+        ):
+            raise ValueError(f"license evidence identity or scope mismatch for {purl}")
+        license_components.append(
+            {
+                "decision": "PENDING",
+                "declared_license": expression or evidence_state,
+                "license_evidence_state": evidence_state,
+                "license_source_url": source_url,
+                "name": component["name"],
+                "purl": purl,
+                "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+                "scope": scope,
+                "version": component["version"],
+            }
+        )
+
     decisions = {
         "approval": {
             "required_roles": ["LEGAL_OWNER", "SECURITY_OWNER"],
             "state": "PENDING_HUMAN_REVIEW",
         },
-        "components": [
-            {
-                "decision": "PENDING",
-                "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
-                "name": component["name"],
-                "purl": component["purl"],
-                "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
-                "scope": component["properties"][0]["value"],
-                "version": component["version"],
-            }
-            for component in components
-        ],
-        "inventory_version": "1.0.0",
+        "components": license_components,
+        "inventory_version": "1.1.0",
+        "license_evidence_path": LICENSE_EVIDENCE_PATH.relative_to(ROOT).as_posix(),
+        "license_evidence_sha256": sha256(LICENSE_EVIDENCE_PATH),
         "sbom_path": SBOM_PATH.relative_to(ROOT).as_posix(),
-        "sbom_sha256": sha256(SBOM_PATH),
+        "sbom_sha256": sbom_hash,
     }
     write_json(DECISION_PATH, decisions)
 
