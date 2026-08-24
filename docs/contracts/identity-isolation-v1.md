@@ -45,8 +45,9 @@ RBAC and route permissions are separate immutable versioned policies. Each prote
 must map to one permission. An unregistered route is denied even when the credential and role are
 otherwise valid. A role grants only its explicit permission set. Unknown roles grant nothing.
 
-The initial permission is `runtime:scope:read`. Business permissions are added with their owning
-tasks and tests; a wildcard permission is not defined.
+The initial permission is `runtime:scope:read`. S3-01 adds the narrow
+`knowledge:import:start` permission for `POST /v1/knowledge/imports`. Business permissions are
+added with their owning tasks and tests; a wildcard permission is not defined.
 
 ## Cache authorization scope
 

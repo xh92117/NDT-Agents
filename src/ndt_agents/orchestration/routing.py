@@ -47,10 +47,18 @@ class RulesFirstRouter:
         if len(assignments) == 1:
             return RouteDecision(
                 task_id=signals.task_id,
-                route=RouteKind.ONE_PROFESSIONAL_SYNC_REVIEW,
-                rule_id="route.professional.single.v1",
+                route=(
+                    RouteKind.ONE_PROFESSIONAL_ASYNC_REVIEW
+                    if signals.asynchronous_required
+                    else RouteKind.ONE_PROFESSIONAL_SYNC_REVIEW
+                ),
+                rule_id=(
+                    "route.professional.single-async.v1"
+                    if signals.asynchronous_required
+                    else "route.professional.single.v1"
+                ),
                 target_agents=targets,
-                asynchronous=False,
+                asynchronous=signals.asynchronous_required,
                 review_required=True,
                 human_required=False,
             )

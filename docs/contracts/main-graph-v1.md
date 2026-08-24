@@ -8,7 +8,8 @@
 
 The Main Graph receives a V1 `TaskContext` and explicit V1 `RouteSignals`. Route signals state
 whether the task is general, list at most four minimal professional assignments and their
-dependencies, and state whether a qualified human is required. They do not contain an expected
+dependencies, state whether a qualified human is required, and may require asynchronous execution
+for one professional task class such as `K1`. They do not contain an expected
 route label, benchmark case identifier, split, model answer, tool output, or private child state.
 
 Untrusted dictionaries enter through `MainGraph.run_payload`. Strict validation failure returns a
@@ -22,9 +23,11 @@ invariant failure also return typed terminal results with a required next action
 1. explicit general eligibility routes to the General Agent synchronously;
 2. explicit human requirement routes one or more responsible professionals, review, and a human
    checkpoint;
-3. one professional routes synchronously and requires review;
-4. multiple professionals with no dependencies route asynchronously as independent work;
-5. multiple professionals with dependencies route asynchronously in dependency order.
+3. one professional routes synchronously and requires review unless an explicit bounded task
+   contract requires asynchronous execution;
+4. one professional with that explicit requirement routes asynchronously and requires review;
+5. multiple professionals with no dependencies route asynchronously as independent work;
+6. multiple professionals with dependencies route asynchronously in dependency order.
 
 Dependencies must refer to declared assignments and form a directed acyclic graph. The router starts
 the minimum explicitly declared professional set. No LLM or provider is called in V1 routing. A

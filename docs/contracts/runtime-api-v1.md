@@ -75,7 +75,19 @@ the same versioned schema.
 Every response sets `Cache-Control: no-store` and `X-Content-Type-Options: nosniff`. API docs and
 OpenAPI are disabled by default.
 
+## Knowledge import entry
+
+S3-01 may inject a `KnowledgeEntryGraph` into the application factory only when an
+`IdentityRuntime` is also installed. This registers `POST /v1/knowledge/imports`. The route derives
+scope from authenticated middleware, requires the explicit `knowledge:import:start` permission,
+accepts only task ID, request ID, and one to fifty source-artifact IDs, and returns HTTP 202 only
+after the Main Graph has prepared one asynchronous reviewed Knowledge dispatch. The response
+contains safe entry metadata only; child context, scratch namespace, task goal, and source content
+are not returned. An unregistered route remains default-denied and a typed non-ready result returns
+HTTP 409.
+
 ## Deferred boundaries
 
-Storage readiness, OIDC, tenant/project authorization, rate limits, TLS, encryption, audit storage,
-and approval controls belong to S1-02 through S1-13. This scaffold does not claim those controls.
+Storage readiness, rate limits, live TLS, production audit storage, and production approval
+integration remain deferred. The S3-01 route reuses the isolated OIDC, tenant/project authorization,
+Main Graph, child context, and approval contracts; it does not execute parsing or publish knowledge.

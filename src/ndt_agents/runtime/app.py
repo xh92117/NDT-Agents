@@ -15,6 +15,8 @@ from starlette.exceptions import HTTPException as StarletteHttpException
 from ndt_agents.contracts.v1 import TenantScope
 from ndt_agents.identity.middleware import IdentityRuntime, ScopeAuthorizationMiddleware
 from ndt_agents.identity.models import ScopeResponse
+from ndt_agents.knowledge.entry import KnowledgeEntryGraph
+from ndt_agents.knowledge.models import KnowledgeEntryResponse, KnowledgeUiStartRequest
 from ndt_agents.models.config import load_model_runtime_configuration
 from ndt_agents.runtime.config import AppSettings
 from ndt_agents.runtime.logging import configure_logging
@@ -42,11 +44,14 @@ def create_app(
     configure_logs: bool = True,
     readiness_probes: tuple[DependencyProbe, ...] = (),
     identity: IdentityRuntime | None = None,
+    knowledge_entry: KnowledgeEntryGraph | None = None,
     model_environment: Mapping[str, str] | None = None,
 ) -> FastAPI:
     """Build an application without contacting storage, model providers, or external services."""
 
     active_settings = settings or AppSettings.from_environment()
+    if knowledge_entry is not None and identity is None:
+        raise ValueError("Knowledge UI entry requires the authenticated identity runtime.")
     model_runtime = None
     if active_settings.model_config_path is not None:
         model_runtime = load_model_runtime_configuration(
@@ -133,6 +138,25 @@ def create_app(
                 rbac_policy_version=identity.rbac.policy_version,
                 route_policy_version=identity.routes.policy_version,
             )
+
+    if knowledge_entry is not None:
+
+        @app.post(
+            "/v1/knowledge/imports",
+            response_model=KnowledgeEntryResponse,
+            status_code=202,
+            tags=["knowledge"],
+        )
+        async def start_knowledge_import(
+            payload: KnowledgeUiStartRequest,
+            request: Request,
+            response: Response,
+        ) -> KnowledgeEntryResponse:
+            scope = cast(TenantScope, request.state.scope)
+            result = knowledge_entry.start_ui(scope=scope, request=payload)
+            if result.status != "DISPATCH_READY":
+                response.status_code = 409
+            return knowledge_entry.response(result)
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(request: Request, _error: RequestValidationError) -> JSONResponse:
