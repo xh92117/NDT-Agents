@@ -69,6 +69,7 @@ jobs:
             fixtures/v1/catalog.json
             benchmarks/v1/manifest.json
             sbom/cyclonedx.v1.json
+            architecture/personal-development-runtime.v1.json
             security/personal-project-governance.v1.json
             security/license-evidence.v1.json
             security/license-decisions.v1.json

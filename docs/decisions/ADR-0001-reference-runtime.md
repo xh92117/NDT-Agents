@@ -25,6 +25,14 @@ Current official documentation supports the following observations:
   exposes structured output, custom function calls, built-in tools, MCP tools, parallel calls,
   response state, and explicit output/tool-call limits. These capabilities are optional adapter
   features; the product's own contracts, budgets, authorization, and audit remain authoritative.
+- Current [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model)
+  identifies `gpt-5.6-terra` as the balance-of-intelligence-and-cost candidate and recommends the
+  Responses API for reasoning, tool-calling, and multi-turn workflows. This is product guidance,
+  not evidence of account, region, contract, pricing, quota, or project eligibility.
+- The official [OpenAI API supported-country list](https://developers.openai.com/api/docs/supported-countries)
+  warns that access outside listed countries or territories may cause suspension. Mainland China
+  was not listed when checked on 2026-08-24, so direct OpenAI API use from the provisional current
+  jurisdiction is ineligible and no credential may be requested or used.
 - Official [OpenAI data-control documentation](https://developers.openai.com/api/docs/guides/your-data)
   states that default Responses application state is retained for at least 30 days when stored,
   `store` is forced false under Zero Data Retention, and background mode temporarily persists data.
@@ -79,9 +87,10 @@ Keep production selection open behind `ModelPort`.
 
 | Candidate | Intended use | Required safeguards | Current decision |
 |---|---|---|---|
-| OpenAI Responses API | hosted reasoning and multimodal candidate | `store=false` by default; tenant-specific provider policy; ZDR/residency review; product-side budgets and audit; exact model snapshots | approved for adapter prototype with synthetic data only |
+| China-region hosted provider offered by the owner | potential personal prototype route using an eligible Mainland China endpoint | provider/model name, official API documentation, protocol, processing/storage region, retention/training terms, commercial terms, exact model snapshot, and full `PROVIDER-SMOKE` before any key use | `AWAITING_NON_SECRET_PROVIDER_METADATA`; no credential requested |
+| OpenAI Responses API | hosted reasoning and multimodal candidate; `gpt-5.6-terra` is the current prototype candidate if a supported jurisdiction is later established | supported jurisdiction and account; `store=false`; tenant-specific provider policy; ZDR/residency review; product-side budgets and audit; exact model snapshots | `BLOCKED_UNSUPPORTED_CURRENT_JURISDICTION`; no credential requested |
 | vLLM OpenAI-compatible server | local or private-cloud candidate | pinned server and model weights; structured-output conformance; GPU sizing benchmark; license and provenance review | approved for interface smoke-test design only |
-| deterministic fake model | CI, fault, schema, and budget tests | seeded outputs; no network | selected for S0 and default CI |
+| deterministic fake model | personal development, CI, fault, schema, and budget tests | seeded outputs; public or synthetic data only; no network | `DETERMINISTIC_FAKE_ONLY` selected for the current personal-development route |
 
 No automatic fallback may move confidential or restricted data from a local provider to a hosted
 provider. Provider selection is a policy decision made before context assembly. The adapter must
@@ -111,6 +120,7 @@ a new ADR.
 
 | Profile | Minimum proposal | Purpose and limits |
 |---|---|---|
+| PERSONAL-DEV-1 | observed Windows 11 host, Intel i7-1355U, 12 logical cores, 15.64 GB RAM, 204.63 GB workspace-volume free space, NVIDIA RTX 2050 with 4 GB VRAM | current owner workstation; core repository development and deterministic tests only; does not meet DEV-CPU-1 memory or any local-LLM sizing claim |
 | DEV-CPU-1 | x86-64, 8 logical cores, 32 GB RAM, 100 GB free SSD, Windows 11 or Linux | API/contracts, deterministic agents, unit tests, MinerU CPU-pipeline samples; not a latency benchmark |
 | CI-CPU-1 | Linux x86-64, 4 vCPU, 16 GB RAM, 40 GB ephemeral SSD | deterministic tests only; no local LLM or full parser corpus |
 | PARSER-GPU-1 | Linux, 16 CPU cores, 64 GB RAM, 1 TB NVMe, NVIDIA GPU with at least 16 GB VRAM | proposed MinerU/VLM evaluation margin above documented minima; must be benchmarked before purchase |
@@ -121,7 +131,25 @@ Local model hardware is calculated from a frozen benchmark: model weights plus K
 context and concurrency, runtime overhead, 20 percent safety margin, target P95 time-to-first-token,
 and sustained tokens per second. A generic GPU purchase before that benchmark is rejected.
 
-### 6. Development and production separation
+### 6. Personal pre-commercial runtime candidate
+
+The machine-readable candidate is
+`architecture/personal-development-runtime.v1.json`. It binds the existing personal governance
+record, observed host, provider feasibility, restrictions, and deterministic smoke result.
+
+- Run Python 3.12 application and repository work directly on `PERSONAL-DEV-1`.
+- Use `DETERMINISTIC_FAKE_ONLY` with zero physical model-network calls and public or synthetic data.
+- Keep the owner-offered China-region hosted route pending until its non-secret provider, model,
+  protocol, regional-processing, retention, training, and commercial metadata is reviewed. Receive
+  any later key only through an approved local secret reference, never chat or repository content.
+- Keep Linux Docker Compose as a deferred container target. The Docker 29.7.2 client is installed,
+  but its engine was unavailable during observation and no Compose candidate exists yet.
+- Do not run OpenAI Responses from the current provisional Mainland China jurisdiction.
+- Do not run a local LLM on this host until an exact model, weights, license, quantization, context,
+  concurrency target, and hardware benchmark are frozen.
+- Do not represent the current host, fake provider, or candidate file as a production selection.
+
+### 7. Development and production separation
 
 - S0 and CI use the deterministic fake model and synthetic or authorized fixtures.
 - Hosted prototypes use synthetic data until Security and Legal approve the provider contract,
@@ -153,6 +181,12 @@ Every provider candidate must pass the same synthetic suite before selection:
 7. produce no provider credential, chain-of-thought, or cross-tenant data in logs;
 8. meet quality, latency, and cost thresholds on the frozen S0-07 benchmark.
 
+`PROVIDER-SMOKE` currently passes only for the deterministic fake. The reusable offline harness is
+`tools/provider_smoke.py`; it validates strict input/output, strict synthetic function arguments,
+token and timeout limits, typed failures, complete non-secret metadata, no retention, and zero
+network calls. Hosted and local candidates remain `NOT_RUN` with the typed blockers above. A live
+smoke run is forbidden until the route is eligible, versioned, licensed, credentialed, and approved.
+
 ## Rejected alternatives
 
 - A provider SDK used directly throughout domain code: rejected because it blocks portability and
@@ -178,4 +212,5 @@ This ADR becomes `ACCEPTED` only when:
 - staffing, procurement lead time, and the critical path are approved.
 
 Until then, S0-05 remains blocked and production model/provider selection remains unresolved under
-R-003, R-005, and R-007.
+R-003, R-005, R-007, and R-010. The personal runtime candidate enables only isolated offline
+development; it does not close those risks.

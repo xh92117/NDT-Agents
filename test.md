@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.28
+**Version:** 1.29
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -81,7 +81,7 @@ Each group is defined in Section 8. A phase is complete only when every assigned
 
 | Gate | Development phase | What must pass | When to run |
 |---|---|---|---|
-| `TG-00` | S0 requirements and baseline | `DOC`, `SCHEMA`, `DATASET`, `SEC-BASELINE` | after S0-01 through S0-10 and before S1 starts |
+| `TG-00` | S0 requirements and baseline | `DOC`, `SCHEMA`, `DATASET`, `SEC-BASELINE`, `PROVIDER-SMOKE` | after S0-01 through S0-10 and before S1 starts |
 | `TG-01` | S1 lightweight runtime | `UNIT-CORE`, `INT-ORCH`, `SEC-TENANT`, `RES-CHECKPOINT`, `BUDGET`, `OBS-AUDIT`, `SEC-PLATFORM`, `UNIT-TOOLREG`, `INT-APPROVAL` | after S1-01 through S1-13 and before S2 starts |
 | `TG-02` | S2 context, memory, and cache | `UNIT-CONTEXT`, `EVAL-COMPRESSION`, `INT-MEMORY`, `SEC-CACHE`, `INT-DATA-LIFECYCLE` | after S2-01 through S2-09 and before S3 starts |
 | `TG-03` | S3 files and knowledge | `INT-MINERU`, `INT-OCR`, `INT-KNOWLEDGE`, `INT-BASH`, `EVAL-RETRIEVAL`, `SEC-BASH` | after S3-01 through S3-09 and before S4 starts |
@@ -97,7 +97,7 @@ This table determines the minimum `TASK` profile. Add more groups when a change 
 |---|---|
 | S0-01 to S0-03 | `DOC`, deterministic role, ontology, data-model, and cross-reference consistency checks |
 | S0-04 | `SCHEMA`, `UNIT-CORE` contract tests |
-| S0-05 | `DOC`, provider smoke test |
+| S0-05 | `DOC`, `PROVIDER-SMOKE` |
 | S0-06 to S0-07 | `DATASET`, rights and de-identification checks |
 | S0-08 | `DOC`, `SEC-BASELINE`, SBOM and license scan, CI smoke test |
 | S0-09 | `DOC` |
@@ -665,6 +665,29 @@ Acceptance: audit completeness = 100 percent for the declared required set; trac
 percent; hash-chain and append-only integrity = 100 percent; cross-scope reads and writes = 0; raw
 secret or unrestricted business-content fields stored = 0.
 
+### 8.39 `PROVIDER-SMOKE` - Model route and provider feasibility
+
+For every selected or candidate model route, validate strict request and structured-output schemas,
+allowlisted synthetic function arguments, output-token and timeout limits, typed cancellation,
+timeout, refusal, incomplete, and rate-limit states, exact provider/model/endpoint/region/retention
+metadata, credential redaction, and the applicable data and jurisdiction policy. Record physical
+network calls separately from logical actions.
+
+The personal-development offline route must make zero network calls, accept only public or
+synthetic data, and cannot claim production eligibility. A hosted candidate cannot run when the
+current jurisdiction is outside the provider's official supported list, and a local candidate
+cannot run until the exact model, weights, license, quantization, context, concurrency, and hardware
+benchmark are frozen. Blocked candidates require a typed reason and next action; do not request or
+store a credential for an ineligible route.
+
+Run after model, provider, endpoint, region, retention, deployment, or reference-hardware changes;
+before S0-05 completion; at `TG-00`; and in `RELEASE` for the exact release candidate.
+
+Acceptance: every selected route passes all applicable checks; schema and unknown-field rejection
+are deterministic; secrets in evidence or logs = 0; unauthorized data transfer = 0; unsupported or
+unsized routes make zero physical calls and remain blocked; provider, model snapshot, region,
+retention, latency, usage, and result evidence are complete for every physical call.
+
 ## 9. Test environment and evidence
 
 Required environments are:
@@ -766,6 +789,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S0-08-PROTECTION-LOCAL-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-branch-protection` / controlled documents 1.26 | `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [durable evidence](./evidence/s0/s0-08-remote-ci-20260824.md); DOC 1.26, all 220 tests, Ruff lint, Ruff format over 74 files, and strict mypy over 74 source files passed | R-005 and R-007 remain external blockers | Codex |
 | S0-08-APPROVAL-READINESS-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-approval-readiness` / license evidence `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / official PyPI snapshot / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 87 of 87 components captured, 56 SPDX expressions, 30 legacy records, one missing metadata record, 20 targeted checks and all 226 tests passed; four generators, DOC 1.27, Ruff, format over 76 files, strict mypy over 76 source files, and dependency audit passed | R-005 legal/security text review and component decisions; R-007 accountable identity, jurisdiction, retention, SLO, RPO/RTO, and environment decisions remain external blockers | Codex |
 | S0-08-PERSONAL-GOVERNANCE-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-personal-governance` / governance record `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 25 targeted checks and all 231 tests passed; four generators had zero drift; DOC 1.28, Ruff, format over 77 files, strict mypy over 77 source files, and dependency audit passed after one bounded UTF-8 environment retry | personal confirmation is non-approval; all four independent roles remain unassigned; production, customer-data, formal-compliance, and commercial paths remain blocked; R-005 and R-007 stay open | Codex |
+| S0-05-PERSONAL-RUNTIME-20260824-01 | 2026-08-24 | S0-05 / `codex/s0-05-personal-runtime` / runtime candidate `adad384a90661d5a9e29d492a810520fc738cc99848494343a408b49b0ad879f` | `TASK`, `PROVIDER-SMOKE`, `QUICK`, `DOC`, dependency audit | local Windows / `PERSONAL-DEV-1` / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S0-05 personal runtime evidence](./evidence/s0/s0-05-personal-runtime-20260824.md); offline fake passed strict contracts, limits, typed failures, metadata, retention, redaction, and zero-network checks; 27 targeted and all 239 tests passed; four generators had zero drift; DOC 1.29, Ruff, format over 79 files, strict mypy over 79 source files, and dependency audit passed | live China-region provider awaits non-secret metadata and later secret reference; direct OpenAI is jurisdiction-blocked; local model/hardware is unfrozen; R-003, R-005, R-007, R-010 | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
