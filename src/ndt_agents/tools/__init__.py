@@ -1,5 +1,12 @@
 """Shared tool registration and invocation boundary."""
 
+from ndt_agents.tools.file_gateway import (
+    ControlledFileGateway,
+    ExecutableIdentity,
+    ExecutionTemplate,
+    FileGatewayError,
+    FileRootPolicy,
+)
 from ndt_agents.tools.registry import (
     DefinitionOrigin,
     IdempotencyPolicy,
@@ -14,7 +21,12 @@ from ndt_agents.tools.registry import (
 )
 
 __all__ = [
+    "ControlledFileGateway",
     "DefinitionOrigin",
+    "ExecutableIdentity",
+    "ExecutionTemplate",
+    "FileGatewayError",
+    "FileRootPolicy",
     "IdempotencyPolicy",
     "NetworkPolicy",
     "SideEffectClass",

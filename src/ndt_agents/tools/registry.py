@@ -293,7 +293,7 @@ class ToolRegistry:
                 context,
                 definition,
                 "tool.execute",
-                result.status.value,
+                result.error_code or result.status.value,
                 outcome,
                 input_sha256,
                 result.output_sha256 or canonical_sha256({}),
@@ -385,7 +385,8 @@ class ToolRegistry:
         )
         if output_bytes > invocation.definition.max_output_bytes:
             self._deny("TOOL_OUTPUT_TOO_LARGE", "The ToolResult exceeds its byte budget.")
-        Draft202012Validator(invocation.definition.output_schema).validate(result.output)
+        if result.status is not ToolStatus.TIMEOUT:
+            Draft202012Validator(invocation.definition.output_schema).validate(result.output)
 
     def _timeout_result(self, invocation: ToolInvocation, started: float) -> ToolResult:
         output: dict[str, Any] = {}
