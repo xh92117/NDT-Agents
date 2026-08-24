@@ -1,5 +1,5 @@
 {
-  "candidate_version": "1.0.0",
+  "candidate_version": "1.1.0",
   "decision_source": {
     "actor": "CODEX_ENGINEERING_AGENT",
     "recorded_on": "2026-08-24",
@@ -31,16 +31,29 @@
   },
   "provider_candidates": {
     "china_region_hosted": {
+      "catalog_path": "config/model-providers/deepseek-v4.v1.json",
+      "catalog_sha256": "7eb570adb12b029a4995b77e39813a534a89109fe92e2f13ef09f1a344f01fef",
       "credentials_requested": false,
-      "required_non_secret_metadata": [
-        "PROVIDER_AND_MODEL_NAME",
-        "OFFICIAL_API_DOCUMENTATION_URL",
-        "API_PROTOCOL_AND_BASE_URL_CLASS",
+      "default_model_candidate": "deepseek-v4-pro",
+      "fallback_model_candidate": "deepseek-v4-flash",
+      "model_ids": [
+        "deepseek-v4-pro",
+        "deepseek-v4-flash",
+        "deepseek-v4-flash-vision-exp"
+      ],
+      "official_api_documentation_url": "https://api-docs.deepseek.com/api/create-chat-completion/",
+      "protocol": "OPENAI_CHAT_COMPLETIONS",
+      "provider": "deepseek",
+      "provider_base_url": "https://api.deepseek.com",
+      "required_before_live_call": [
         "MAINLAND_CHINA_PROCESSING_AND_STORAGE_TERMS",
         "RETENTION_AND_TRAINING_POLICY",
-        "COMMERCIAL_USE_AND_EXIT_TERMS"
+        "COMMERCIAL_USE_AND_EXIT_TERMS",
+        "SCOPED_SECRET_REFERENCE",
+        "HOSTED_PROVIDER_SMOKE_APPROVAL"
       ],
-      "status": "AWAITING_NON_SECRET_PROVIDER_METADATA"
+      "secret_reference_status": "NOT_PROVISIONED",
+      "status": "CATALOGED_POLICY_REVIEW_AND_SECRET_PENDING"
     },
     "deterministic_fake": {
       "data_classes": [
@@ -104,7 +117,7 @@
         "TIMED_OUT"
       ]
     },
-    "hosted_provider": "NOT_RUN_BLOCKED_UNSUPPORTED_CURRENT_JURISDICTION",
+    "hosted_provider": "NOT_RUN_POLICY_REVIEW_AND_SECRET_PENDING",
     "local_provider": "NOT_RUN_MODEL_AND_HARDWARE_UNFROZEN"
   },
   "restrictions": {

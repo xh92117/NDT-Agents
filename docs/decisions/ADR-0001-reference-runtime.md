@@ -38,6 +38,13 @@ Current official documentation supports the following observations:
   `store` is forced false under Zero Data Retention, and background mode temporarily persists data.
   Therefore hosted-provider retention and regional terms must be approved before confidential data
   is enabled.
+- Official [DeepSeek API documentation](https://api-docs.deepseek.com/guides/function_calling/)
+  identifies the OpenAI-compatible base URL `https://api.deepseek.com` and the current
+  `deepseek-v4-pro`, `deepseek-v4-flash`, and `deepseek-v4-flash-vision-exp` model IDs. The
+  [Chat Completions reference](https://api-docs.deepseek.com/api/create-chat-completion/) and
+  [model-list reference](https://api-docs.deepseek.com/api/list-models/) define the current
+  non-secret protocol metadata. These pages do not by themselves approve processing region,
+  retention, training use, commercial terms, quota, or project eligibility.
 - [vLLM structured outputs](https://docs.vllm.ai/en/stable/features/structured_outputs/) provide an
   OpenAI-compatible local-serving option with JSON Schema constraints, but compatibility is an
   adapter concern and requires per-model conformance tests.
@@ -87,7 +94,7 @@ Keep production selection open behind `ModelPort`.
 
 | Candidate | Intended use | Required safeguards | Current decision |
 |---|---|---|---|
-| China-region hosted provider offered by the owner | potential personal prototype route using an eligible Mainland China endpoint | provider/model name, official API documentation, protocol, processing/storage region, retention/training terms, commercial terms, exact model snapshot, and full `PROVIDER-SMOKE` before any key use | `AWAITING_NON_SECRET_PROVIDER_METADATA`; no credential requested |
+| DeepSeek V4 hosted API offered by the owner | potential personal prototype route; provisional default `deepseek-v4-pro`, configurable fallback `deepseek-v4-flash` | verified processing/storage region, retention/training terms, commercial terms, scoped secret reference, S5-01 inference gateway, and full `PROVIDER-SMOKE` before a physical call | non-secret catalog and OpenAI-compatible endpoint metadata recorded; `CATALOGED_POLICY_REVIEW_AND_SECRET_PENDING`; no credential requested |
 | OpenAI Responses API | hosted reasoning and multimodal candidate; `gpt-5.6-terra` is the current prototype candidate if a supported jurisdiction is later established | supported jurisdiction and account; `store=false`; tenant-specific provider policy; ZDR/residency review; product-side budgets and audit; exact model snapshots | `BLOCKED_UNSUPPORTED_CURRENT_JURISDICTION`; no credential requested |
 | vLLM OpenAI-compatible server | local or private-cloud candidate | pinned server and model weights; structured-output conformance; GPU sizing benchmark; license and provenance review | approved for interface smoke-test design only |
 | deterministic fake model | personal development, CI, fault, schema, and budget tests | seeded outputs; public or synthetic data only; no network | `DETERMINISTIC_FAKE_ONLY` selected for the current personal-development route |
@@ -139,9 +146,9 @@ record, observed host, provider feasibility, restrictions, and deterministic smo
 
 - Run Python 3.12 application and repository work directly on `PERSONAL-DEV-1`.
 - Use `DETERMINISTIC_FAKE_ONLY` with zero physical model-network calls and public or synthetic data.
-- Keep the owner-offered China-region hosted route pending until its non-secret provider, model,
-  protocol, regional-processing, retention, training, and commercial metadata is reviewed. Receive
-  any later key only through an approved local secret reference, never chat or repository content.
+- Keep the cataloged DeepSeek V4 hosted route pending until regional-processing, retention,
+  training, and commercial metadata is reviewed and the S5-01 inference gateway exists. Receive any
+  later key only through an approved local secret reference, never chat or repository content.
 - Keep Linux Docker Compose as a deferred container target. The Docker 29.7.2 client is installed,
   but its engine was unavailable during observation and no Compose candidate exists yet.
 - Do not run OpenAI Responses from the current provisional Mainland China jurisdiction.
@@ -181,7 +188,9 @@ Every provider candidate must pass the same synthetic suite before selection:
 7. produce no provider credential, chain-of-thought, or cross-tenant data in logs;
 8. meet quality, latency, and cost thresholds on the frozen S0-07 benchmark.
 
-`PROVIDER-SMOKE` currently passes only for the deterministic fake. The reusable offline harness is
+`PROVIDER-SMOKE` currently passes only for the deterministic fake. DeepSeek V4 catalog and route
+authorization tests are configuration-only and make zero provider calls; they are not a live
+provider smoke. The reusable offline harness is
 `tools/provider_smoke.py`; it validates strict input/output, strict synthetic function arguments,
 token and timeout limits, typed failures, complete non-secret metadata, no retention, and zero
 network calls. Hosted and local candidates remain `NOT_RUN` with the typed blockers above. A live

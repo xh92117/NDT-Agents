@@ -21,7 +21,8 @@ requires a new packet and review.
 |---|---|---|
 | [security baseline](./security-baseline.md) machine source | `1.0.0` | `90315dd61e1c378addf6d6e20186de75ef865a8b0782df0c97fde7c20b774bed` |
 | [personal-project governance](../../security/personal-project-governance.v1.json) | `1.0.0` | `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` |
-| [personal-development runtime candidate](../../architecture/personal-development-runtime.v1.json) | `1.0.0` | `adad384a90661d5a9e29d492a810520fc738cc99848494343a408b49b0ad879f` |
+| [personal-development runtime candidate](../../architecture/personal-development-runtime.v1.json) | `1.1.0` | `d77fc516704d4d0dd5e91e61de5432e6cf800bded956b8aec6b1b78cbadb22bb` |
+| [DeepSeek V4 non-secret catalog](../../config/model-providers/deepseek-v4.v1.json) | `1.0.0` | `7eb570adb12b029a4995b77e39813a534a89109fe92e2f13ef09f1a344f01fef` |
 | [CycloneDX SBOM](../../sbom/cyclonedx.v1.json) | `1` / CycloneDX `1.6` | `c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd` |
 | [official license evidence](../../security/license-evidence.v1.json) | `1.0.0` | `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` |
 | [pending license decisions](../../security/license-decisions.v1.json) | `1.1.0` | `38c1cffa96f14174fdeea30b8221639f2040c231f057ee100571f1b58c5dcb18` |

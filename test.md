@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.29
+**Version:** 1.30
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -70,6 +70,7 @@ If a profile exceeds its duration target, it may be split into parallel CI jobs,
 | Database migration or tenant policy | `SCHEMA`, `SEC-TENANT`, `SEC-CACHE`, migration and rollback tests | run on an anonymized production-like copy |
 | MCP server or instrument adapter | `INT-MCP`, `INT-INSTRUMENT`, `SEC-TOOLS`, `RES-ALL` | run disconnected and malformed-response cases |
 | Web Search provider or citation policy | `INT-WEB`, `EVAL-QA`, `EVAL-TOKEN` | run cached and uncached cases |
+| Model provider catalog, binding, endpoint, capability, or selection policy | `UNIT-MODELREG`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT` | run before publishing the registry snapshot or enabling a binding |
 | Client API or event contract | `SCHEMA`, `E2E` | run against Web, desktop, and PWA contract clients |
 | Dependency or operating-system image | `QUICK`, full unit suite, dependency scan | run `NIGHTLY` before promotion |
 | Threat model, data classification, encryption, secret, retention, SLO, SBOM, or license policy | `SEC-BASELINE`, affected security and lifecycle groups | run before approving the policy or dependent architecture decision |
@@ -86,7 +87,7 @@ Each group is defined in Section 8. A phase is complete only when every assigned
 | `TG-02` | S2 context, memory, and cache | `UNIT-CONTEXT`, `EVAL-COMPRESSION`, `INT-MEMORY`, `SEC-CACHE`, `INT-DATA-LIFECYCLE` | after S2-01 through S2-09 and before S3 starts |
 | `TG-03` | S3 files and knowledge | `INT-MINERU`, `INT-OCR`, `INT-KNOWLEDGE`, `INT-BASH`, `EVAL-RETRIEVAL`, `SEC-BASH` | after S3-01 through S3-09 and before S4 starts |
 | `TG-04` | S4 professional capabilities | `EVAL-QA`, `EVAL-PLAN`, `EVAL-REPORT`, `INT-REVIEW` | after S4-01 through S4-07 and before S5 starts |
-| `TG-05` | S5 tools and instruments | `INT-FUNCTION`, `INT-WEB`, `INT-MCP`, `INT-INSTRUMENT`, `SEC-TOOLS` | after S5-01 through S5-08 and before S6 starts |
+| `TG-05` | S5 tools and instruments | `UNIT-MODELREG`, `INT-FUNCTION`, `INT-WEB`, `INT-MCP`, `INT-INSTRUMENT`, `SEC-TOOLS` | after S5-01 through S5-08 and before S6 starts |
 | `TG-06` | S6 clients and release | complete `RELEASE`, including `E2E`, `SEC-ALL`, `PERF`, `RES-ALL`, `EVAL-TOKEN`, migration, rollback, signing, release-smoke, and candidate-hash checks | after S6-01 through S6-09 and before S6-10 publication |
 
 ## 6. Development task to test mapping
@@ -132,7 +133,8 @@ This table determines the minimum `TASK` profile. Add more groups when a change 
 | S5-01 to S5-02 | `UNIT-TOOLREG`, `INT-FUNCTION`, `SEC-TOOLS` |
 | S5-03 | `INT-WEB`, `EVAL-QA`, `EVAL-TOKEN` |
 | S5-04 | `INT-MCP`, `SEC-TOOLS`, `RES-ALL` |
-| S5-05 to S5-08 | `INT-INSTRUMENT`, `SEC-TOOLS`, method golden tests |
+| S5-05 to S5-06 and S5-08 | `INT-INSTRUMENT`, `SEC-TOOLS`, method golden tests |
+| S5-07 | `UNIT-MODELREG`, `INT-INSTRUMENT`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT` model events |
 | S6-01 to S6-03 | `E2E`, client contract and accessibility tests |
 | S6-04 to S6-05 | `SEC-ALL`, `RES-ALL` |
 | S6-06 to S6-07 | `PERF`, `EVAL-TOKEN` |
@@ -688,6 +690,22 @@ are deterministic; secrets in evidence or logs = 0; unauthorized data transfer =
 unsized routes make zero physical calls and remain blocked; provider, model snapshot, region,
 retention, latency, usage, and result evidence are complete for every physical call.
 
+### 8.40 `UNIT-MODELREG` - Model API configuration registry
+
+Test strict provider, endpoint, model, compliance, binding, selection, and resolved-route contracts;
+deterministic publication hashes; duplicate and untrusted-definition rejection; exact environment,
+tenant, project, permission, network, data-class, capability, and token-limit authorization; disabled
+and production-ineligible routes; secret-reference-only serialization; typed recovery actions; and
+hash-only MODEL audit events for allow and deny decisions.
+
+Run after any provider, model, endpoint, capability, secret-binding, fallback, or selection-policy
+change; before a registry snapshot or binding is enabled; in `PR`; and at `TG-05` and `RELEASE`.
+
+Acceptance: unknown fields and stale registry hashes are rejected deterministically; plaintext
+secrets stored or serialized = 0; cross-scope routes = 0; unauthorized or production-ineligible
+routes = 0; every resolution decision has one correlated MODEL audit event; registry hashes are
+stable for identical content; and configuration-only tests make zero physical provider calls.
+
 ## 9. Test environment and evidence
 
 Required environments are:
@@ -790,6 +808,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S0-08-APPROVAL-READINESS-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-approval-readiness` / license evidence `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / official PyPI snapshot / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 87 of 87 components captured, 56 SPDX expressions, 30 legacy records, one missing metadata record, 20 targeted checks and all 226 tests passed; four generators, DOC 1.27, Ruff, format over 76 files, strict mypy over 76 source files, and dependency audit passed | R-005 legal/security text review and component decisions; R-007 accountable identity, jurisdiction, retention, SLO, RPO/RTO, and environment decisions remain external blockers | Codex |
 | S0-08-PERSONAL-GOVERNANCE-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-personal-governance` / governance record `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 25 targeted checks and all 231 tests passed; four generators had zero drift; DOC 1.28, Ruff, format over 77 files, strict mypy over 77 source files, and dependency audit passed after one bounded UTF-8 environment retry | personal confirmation is non-approval; all four independent roles remain unassigned; production, customer-data, formal-compliance, and commercial paths remain blocked; R-005 and R-007 stay open | Codex |
 | S0-05-PERSONAL-RUNTIME-20260824-01 | 2026-08-24 | S0-05 / `codex/s0-05-personal-runtime` / runtime candidate `adad384a90661d5a9e29d492a810520fc738cc99848494343a408b49b0ad879f` | `TASK`, `PROVIDER-SMOKE`, `QUICK`, `DOC`, dependency audit | local Windows / `PERSONAL-DEV-1` / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S0-05 personal runtime evidence](./evidence/s0/s0-05-personal-runtime-20260824.md); offline fake passed strict contracts, limits, typed failures, metadata, retention, redaction, and zero-network checks; 27 targeted and all 239 tests passed; four generators had zero drift; DOC 1.29, Ruff, format over 79 files, strict mypy over 79 source files, and dependency audit passed | live China-region provider awaits non-secret metadata and later secret reference; direct OpenAI is jurisdiction-blocked; local model/hardware is unfrozen; R-003, R-005, R-007, R-010 | Codex |
+| S5-07-API-MANAGEMENT-20260824-01 | 2026-08-24 | S5-07 isolated control plane / `codex/s5-07-api-management` / configuration `689e4cf225d8ca4730e21a71479775d1266194d61223840461927b284d44d16a` | `TASK`, `UNIT-MODELREG`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT`, `QUICK`, `DOC`, dependency audit | local Windows / configuration-only DeepSeek candidate / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S5-07 durable evidence](./evidence/s5/s5-07-api-management-20260824.md); 14 dedicated and all 253 tests passed; deterministic registry, multiple bindings, reference-only secrets, scope/data/capability/budget denials, hash-only MODEL audit, zero physical calls, four generators, Ruff, format over 82 files, strict mypy over 82 source files, DOC 1.30, and dependency audit passed | S5-01, S5-06, hosted policy review, scoped secret provider, live smoke, and production approval remain blocked; S5-07 is not DONE | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
