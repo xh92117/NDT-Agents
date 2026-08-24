@@ -1,6 +1,6 @@
 # Codex Development Rules
 
-**Version:** 1.22  
+**Version:** 1.23  
 **Updated:** 2026-08-24  
 **Scope:** the entire repository
 

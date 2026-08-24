@@ -807,7 +807,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-001.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "2c9c8ad5daf033787b558dd29e4ca5f5d4cbe90316e4273e25fc8f6727caf8de",
+      "sha256": "d7f6cf63e392cdbbae845f087b4bac71f596a133548ac66b6c680bbe895b30d9",
       "size_bytes": 36854,
       "training_use": "PROHIBITED"
     },
@@ -824,7 +824,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-002.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "b766db2cec63c58d6d488af24a7ba2320f2adc5826ebf684413de45c2921ef12",
+      "sha256": "d3a44a3c99a7a107cdfd0df75905fe49106d9b1227843e1ac7327d8dbb1d9269",
       "size_bytes": 36853,
       "training_use": "PROHIBITED"
     },
@@ -841,7 +841,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-003.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "2c45249f298868ea33ef19f24fabaa1189857a0b1b92be42a9d6253fbdf53266",
+      "sha256": "929e2e5364bba14de3b267efc7740dd4a9eb81ad683ae8317335b1e7c06b77c4",
       "size_bytes": 36853,
       "training_use": "PROHIBITED"
     },
@@ -858,7 +858,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-004.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "03c4e22e1465bc9214d9ef58a3f516481c50ad2b7428d689465eeef78e9ca74b",
+      "sha256": "eeca1a856f7eeec63194ab54fb85d9266404810f968469160559b176a18d477e",
       "size_bytes": 36891,
       "training_use": "PROHIBITED"
     },
@@ -875,7 +875,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-005.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "b57b88f97130807b60d9c29aa8a2a7f2c053e58183f500e86b17e2c72f37845c",
+      "sha256": "9a9b2149ff4a57cdb02b76c0bf6f32ef7ac90d147a919df229bc3fcf771202b9",
       "size_bytes": 36855,
       "training_use": "PROHIBITED"
     },
@@ -892,7 +892,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-cn-docx-006.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "9f862cd784a85eec6f3b452c1a01a5e1c668da835a48f920f3a6f582f31c8b89",
+      "sha256": "c0ce211c253206f05be119ab0056212585bf7f277a42559b52f3b77cc37a29f3",
       "size_bytes": 36853,
       "training_use": "PROHIBITED"
     },
@@ -909,7 +909,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-007.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "1da3d8bcf43602810bc39e687ba68b144dcfc55955b431e335e6e020622fa967",
+      "sha256": "509a3285011fb744ad3ff186f47b6f0770e314d738b58118658e92bb5e2a8f59",
       "size_bytes": 36853,
       "training_use": "PROHIBITED"
     },
@@ -926,7 +926,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-008.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "56c2998ae14bcc5bc9f585fb653e00b8d490e22c01110df6bb965a4197fa99d5",
+      "sha256": "eb39af8093de3d2a91c175ead8db13be88f08dffe045d62deb42b34f4ef18095",
       "size_bytes": 36890,
       "training_use": "PROHIBITED"
     },
@@ -943,7 +943,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-009.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "faff32c567cf9faf578e412e171267b5545270f2e9c2a87c01d15a329b926657",
+      "sha256": "662627331050244b5966c4c86e41b69f85b91c5164bb7b61937e593a46793777",
       "size_bytes": 36853,
       "training_use": "PROHIBITED"
     },
@@ -960,7 +960,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-010.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "56645c15095cef7a801adf9dad1e525b140ee1bce55da0e7fb1a577894cd8a22",
+      "sha256": "778b391ceb1bc18c9f7f59be578d09518313e767253221fda2fce920a6f214f3",
       "size_bytes": 36854,
       "training_use": "PROHIBITED"
     },
@@ -977,7 +977,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-011.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "61b77710fe8b6c82fc953febb8f3a1049a740df108583b4e860e09ea1fe60040",
+      "sha256": "2850b7b90b0499d9978bbe580c0c62e6c63927263453341e59e08118a924f567",
       "size_bytes": 36856,
       "training_use": "PROHIBITED"
     },
@@ -994,7 +994,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-cn-docx-012.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "75cfbdf8e72e3c6d58ea1cd6efa74562d5d31839eff4b1e16bea20fff4d92a1d",
+      "sha256": "735777faaba70da964fa9381e7c63f90cbd837477734084f39cabf43346dde85",
       "size_bytes": 36892,
       "training_use": "PROHIBITED"
     },
@@ -1011,7 +1011,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-013.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "6016f7f95de57bd4bc2fe18dbd707b80e2c60154c3d366c97297016c4d8a534c",
+      "sha256": "1575cbf8d8c3e405994ff1bc8a78bc6ff8a8c0946ccc75e75c881c8b4cd07d3c",
       "size_bytes": 36855,
       "training_use": "PROHIBITED"
     },
@@ -1028,7 +1028,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-014.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "1e4b397b10d9375a604884b16150e449f647e1285c23884733d2a7aa61f0a7cf",
+      "sha256": "65618cec358eea8afac3d43fd84b2c132a857cb7e1b56f7bea57136ff20568db",
       "size_bytes": 36855,
       "training_use": "PROHIBITED"
     },
@@ -1045,7 +1045,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-015.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "d586e41932715a275834d1fd671b6cc4206bf8be1825eb2d8a688470aadf12a2",
+      "sha256": "b9914298bda6ba20575df96e50c031df778faf16987b51037403d1f4714629eb",
       "size_bytes": 36857,
       "training_use": "PROHIBITED"
     },
@@ -1062,7 +1062,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-016.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "39ce1a064498299bb9bc765720568d6205e888acdc49b48e84379942c406c492",
+      "sha256": "0b4a82aa6e6d965e069eca2840dd0511d8d8aa78d21f1e32feadc87b1c144d79",
       "size_bytes": 36893,
       "training_use": "PROHIBITED"
     },
@@ -1079,7 +1079,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-017.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "dd6753aa41ceef8573e98d3a8370b136da2106df7bbeb62e8d36c6d700b6be4e",
+      "sha256": "a7407624415b7d386b49c6a6bee7a0ba0d8a2a3da82dada80b69f1def4e0507e",
       "size_bytes": 36855,
       "training_use": "PROHIBITED"
     },
@@ -1096,7 +1096,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-cn-docx-018.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "dcd507b824348f36b62aadd9b7eaed659db2ca22cbd85e3773f5a8df18017124",
+      "sha256": "ea35cc7d3e0fcd3435ae6f774c4b344136588af38192104ef22be4c809ce2daa",
       "size_bytes": 36854,
       "training_use": "PROHIBITED"
     },
@@ -1113,7 +1113,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-019.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3acdc2a30fbb0b86db46480b385c60b99e7304cadebb32df8825d3771c918872",
+      "sha256": "8a8bca9667df24aa3da1868603fc54c5395b0fec2d65807d1cb222fe795addfe",
       "size_bytes": 36855,
       "training_use": "PROHIBITED"
     },
@@ -1130,7 +1130,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-020.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3e7962fb803a83a14becb4834234cf3b59ef31e1980d063ee866287c10d63bdb",
+      "sha256": "cc8a409f7225a3d63d3c946993fe79f06fe31e2001eced1df4ba93ad39e23c6c",
       "size_bytes": 36892,
       "training_use": "PROHIBITED"
     },
@@ -1147,7 +1147,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-021.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "6126467adc2372fc61a9eefabd4b718fb03729f5d046c0986b63850a78e83bee",
+      "sha256": "bfe033185a7f2232f4426713b83d6dd304688db166381d530fbc927cbcb66955",
       "size_bytes": 36856,
       "training_use": "PROHIBITED"
     },
@@ -1164,7 +1164,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-022.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "e2a99994f1f4125d5c817e07fda5cbd3df82ad95eb970346021f522ce90a2f90",
+      "sha256": "44e728faf928535fb1a8d3393e377cf4da74a0932a1ca7b4c8b772c354c98f47",
       "size_bytes": 36854,
       "training_use": "PROHIBITED"
     },
@@ -1181,7 +1181,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-docx-023.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "25bd0b58fd53610967296be9573af00ebfbae59c24576bcdaa29f3dfb0190af4",
+      "sha256": "29024718ff6ac62d5044dc5a6bd78c6964fa59105c68fee8e8b0ab933355346b",
       "size_bytes": 36855,
       "training_use": "PROHIBITED"
     },
@@ -1198,7 +1198,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "path": "fixtures/v1/documents/docx/case-cn-docx-024.docx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3c9887b6cf392e2be6e7fd543c58eba414be30d96a1c19fd9a09bf9d95fa3da7",
+      "sha256": "4fcd5dac9626a8ee36de74b63a54deba5cba3f39326a3b1e1ba17bccbabe402e",
       "size_bytes": 36893,
       "training_use": "PROHIBITED"
     },
@@ -1214,7 +1214,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-001.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "e4512c202d4c4c854b1ed92f70daa4862e25e72ce173ce7922f79d8d5f291fc4",
+      "sha256": "7e82d8535d22aa50131e2d8e4da9d7acb144f04330fdd945b28b6e81312dc4bf",
       "size_bytes": 4993,
       "training_use": "PROHIBITED"
     },
@@ -1230,7 +1230,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-002.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "5165580ad651773a11a7a8fbb303dbc3f79aedae7d1985785ea3a9db89854e9d",
+      "sha256": "cdd58569a321d8681d8c81a6f3acd7c792daecc14c83e8b86f763391db7afb52",
       "size_bytes": 4993,
       "training_use": "PROHIBITED"
     },
@@ -1246,7 +1246,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-003.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "d57f1f7cc78f48aaa75e9acdcab502aa42a051512177adabd173050a7fa30f54",
+      "sha256": "85e83cf3a302430a43283ae6d8d1f5cfc3583802f430ad41749fc74bad07c6c3",
       "size_bytes": 4994,
       "training_use": "PROHIBITED"
     },
@@ -1262,7 +1262,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-004.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "f75f5d4e240f60658811836592d79b4ac95457a8b6d961a384fc673430800a85",
+      "sha256": "1723e397fb366b53868d8a6de2e55cb30eb97be805ac26a932b64f9709c5a319",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1278,7 +1278,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-005.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "7986ee861c6864dfd229866ca310997510f17aea3a3b2cee55294ec00d6bcc37",
+      "sha256": "712c58413e7e8c5d8f191fcf7eee86e3d1d985ce623d127fb74e6d8f814ac315",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1294,7 +1294,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-006.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "c4f0e7eacbaefeede1b006ff6b60c8bd0891be15daaa006e9296e193ac40fb65",
+      "sha256": "97388f019d3428e30607a6ace255622ca7370bd2db8e2c647d388e2604790d18",
       "size_bytes": 4994,
       "training_use": "PROHIBITED"
     },
@@ -1310,7 +1310,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-007.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3a460141f30d7291cacbb719957adbb9a3719fe7c5729183c4475c9f00ac48f8",
+      "sha256": "0b3cec7b29946e07b2b58619d978c1cee98fe1db2b39678004c934e6168197b7",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1326,7 +1326,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-008.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3621100b6371af48a147fdf0c02c1adead5fdc9d5a6c48a1325a2bb62880aa20",
+      "sha256": "3efa452c192240826db71b47676752c8747b47aeab6cc91275e097635a8faed3",
       "size_bytes": 4994,
       "training_use": "PROHIBITED"
     },
@@ -1342,7 +1342,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-009.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "b807ce0074f814f710db5f3712d4aed1d5bffb8be88f2891a455022f704fcee3",
+      "sha256": "ff8f17a23feafff099227418284c1a3c2814c005a017e03b74b998c8c96fcdde",
       "size_bytes": 4996,
       "training_use": "PROHIBITED"
     },
@@ -1358,7 +1358,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-010.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "7d67b859dcbe738a27f7738c1348a5b300b1cad6f0aafb3c77dfcde53a0f0515",
+      "sha256": "44f606f7c3d6448def6bca34db25c9ffd5ab400de4d0e63b7af582605b246df3",
       "size_bytes": 4992,
       "training_use": "PROHIBITED"
     },
@@ -1374,7 +1374,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-011.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "80331336af8705a333b90b43a6958f527c1ea7c3eda6195e1271565712b00ef6",
+      "sha256": "5f6f8d07ba04fcd0396ab41180e9e1eb007fd69a4a53c2b70194b92e9ce7b0fd",
       "size_bytes": 4994,
       "training_use": "PROHIBITED"
     },
@@ -1390,7 +1390,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-012.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "55125e2a729d1a2d0546ea1de45abcf5cde4ce2f8955b93273d6a646473609cd",
+      "sha256": "5fc168505f43070ed6602fdd351ee00128ef51d53d1af1c8465b5b0e3a54c597",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1406,7 +1406,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-013.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "c1d9be8dc8fc4158ae2dcd09622d1254dcdc2b8c99d2422d5b4f36dca5093b0f",
+      "sha256": "19eb5ffbde09a15d15e3ff3cfd758da9bb5897519772d560fb047f0cb5e0f6dd",
       "size_bytes": 4994,
       "training_use": "PROHIBITED"
     },
@@ -1422,7 +1422,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-014.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "f16c0e5b6581be979e5cdd2c6ac00dd88577e19b0205d804ced224dfe86985b0",
+      "sha256": "98efcee0ceeb3b5c3439f7a0583ce2d267bf9d0282796abf7d3cfd9e1690d2b3",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1438,7 +1438,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-015.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "492be455c83401b9a8ffbb199f6419c37398735fe9845de04f205dfc31646b4b",
+      "sha256": "eec2a29ec339d924850d873d21e3307b8a28502f90cb0e50971a2b93ec86fe2e",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1454,7 +1454,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-016.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "a4520c4fa26184f7565eaaf3693d3add095c2491f5bcaca26117f9b1903e652e",
+      "sha256": "64e633939c3be86dab136c6669f7e2c7ed719b7b2e2a79a1a49cdc38b4b431cf",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1470,7 +1470,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-017.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "2027529cca4ba71eb2d6563fc6e598e4d23c565dc10a9e23cbe8a131c474718f",
+      "sha256": "a4b70122420e7b9d93c21098280a4bd6b5d711b3652be646e67d509c8d076424",
       "size_bytes": 4996,
       "training_use": "PROHIBITED"
     },
@@ -1486,7 +1486,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-018.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "b06043e0ecad3e8973783ae897bb809e38bec7bf9035c5dd1addfb6463b494b7",
+      "sha256": "7502c7078906015db64a12d23512aa58b296671059d5d720ae145d0ffe9e3f36",
       "size_bytes": 4996,
       "training_use": "PROHIBITED"
     },
@@ -1502,7 +1502,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-019.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "d39d5873bde6bf71960c9db605c746b9f9dc09a7aee61ee91e1a875328f613dc",
+      "sha256": "7a9e92794ee2295631a1de815ff9a5c1758f0c65c01065232a0569556bf1a4bf",
       "size_bytes": 4996,
       "training_use": "PROHIBITED"
     },
@@ -1518,7 +1518,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-020.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "2fdc8173447951f5f1a81017598ce7a83a923431543753d53e9e0cbe15e86d1b",
+      "sha256": "f1cf2cc3c6b3b19038ef6be16d2b4f25b365059a35a3a83d0abfee9f421eb26d",
       "size_bytes": 4993,
       "training_use": "PROHIBITED"
     },
@@ -1534,7 +1534,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-021.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "98171ac3fc1d98ce4b9718441ef21dc44fc04009f0eca8011dbc316b1372cfcb",
+      "sha256": "afe61d56b5dc3810a1c8d7e2af1a37cd657ed230314d4b3c54ddd344e43eaa79",
       "size_bytes": 4994,
       "training_use": "PROHIBITED"
     },
@@ -1550,7 +1550,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-022.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "ac52fea3a9fefb46b80c519020bf7382057ccda95cde40257e71d163f1d19dc5",
+      "sha256": "dfd1b706f8f52fa56666bfc6fa60f285ac61f62c492b639dc859c005a0694e04",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1566,7 +1566,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-xlsx-023.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "877f05f3daee259c3629a489ad969f221d7452fb55af2a7889f5215bb6bcf3f4",
+      "sha256": "2ebe8199ff4e6e0b41ba94d7be0628545260703a6f12281d72b7bfb22e4d53ae",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1582,7 +1582,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-024.xlsx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "d003554f217e352ba76f9635461a64c2afc77abd2486e790d06501a3be252797",
+      "sha256": "2dea79853392e8ca1947fefab24812f42f368d9583e4b2a14c536611d47b32a5",
       "size_bytes": 4995,
       "training_use": "PROHIBITED"
     },
@@ -1598,7 +1598,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-001.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "5f296a45d4f3718645faf5ddcd3dbaeb287f4a4ef7541558e0b665a9a182c7d3",
+      "sha256": "4f9e3c0634520496389cd64eeb47e9010cc48cd2217cfe65a4f7727ee4ed4c4a",
       "size_bytes": 28318,
       "training_use": "PROHIBITED"
     },
@@ -1614,7 +1614,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-002.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "9225c350bbc63b1fd8da039f5e0551101ad3250879bd8224076c8d2612b44d53",
+      "sha256": "ded4bbb72309849b5bf873cbb031c39749ab20e594ae9412b3a3627e6defda37",
       "size_bytes": 28317,
       "training_use": "PROHIBITED"
     },
@@ -1630,7 +1630,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-003.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "55c8f9302be9952876c6073130ddf465b74915fbebf54e94ad378d7ef53a7675",
+      "sha256": "baafc08606cb803f7b22c57bb0b38a521f1b740b3ff0491bebeee5636866792f",
       "size_bytes": 28318,
       "training_use": "PROHIBITED"
     },
@@ -1646,7 +1646,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-004.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "5f0c53f9f0e411f6689dcaf7d49e665813158577e5aebc0a271904f95d6da602",
+      "sha256": "038db9c3d7a92c299b3e37680db5175a6a7597c8e644c2d64b9232edad9615f3",
       "size_bytes": 28319,
       "training_use": "PROHIBITED"
     },
@@ -1662,7 +1662,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-005.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "e151c8f99d213337d9cf3b660ccff79ceab32b04c32d76a680f113a71d4317da",
+      "sha256": "34ee5aadbdead5b01923c1175c0cfc129569081e27a6a8bfca45cb7854f58de6",
       "size_bytes": 28319,
       "training_use": "PROHIBITED"
     },
@@ -1678,7 +1678,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-cn-pptx-006.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "453979ecad9531bcab0da9d33aefbe23ee8fe96323f935ebcbc7aff2cfd58d26",
+      "sha256": "727af1e106a2b5d9546bec2c77774abc23dfb9d97d24a9887226be51b9615a2b",
       "size_bytes": 28318,
       "training_use": "PROHIBITED"
     },
@@ -1694,7 +1694,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-007.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "5b45217b5706f3f24ddb69f80223b2af7eca78b002413bc0bc0e61d9ed0a50bf",
+      "sha256": "e001d3fecfa567166285464e073aa0912c96419f69738a23d762ca4c04f201c4",
       "size_bytes": 28319,
       "training_use": "PROHIBITED"
     },
@@ -1710,7 +1710,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-008.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "473944294909b85fe02a37577fdeb6aa225ef36314caa328f64df7c894796571",
+      "sha256": "f631ce4b24326ec0f11a35f251d95141f95ec712407c5914aa3447dd652ac8d5",
       "size_bytes": 28318,
       "training_use": "PROHIBITED"
     },
@@ -1726,7 +1726,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-009.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "64e6ed3ea6ebb599cda842f7331536524218d982174cff32d4e3c8f5164137ee",
+      "sha256": "052f78151a436b88913b59320fdef3fba302612427514ce0d4997c395c4585da",
       "size_bytes": 28319,
       "training_use": "PROHIBITED"
     },
@@ -1742,7 +1742,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-010.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "94e452cc00a25d702bb39e7f94132072148b38903fcc1cec891ae2fea3955de1",
+      "sha256": "f8995eab0ce511ce409c0f522a9001ef5d0b2912d35b526f9a88825b7a5a4fc8",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1758,7 +1758,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-011.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "9f4c1575438367992b933987baf7981fe9b10f5b291ad4f66fb2e6c00920a399",
+      "sha256": "a15a7837f811fa418322e038cb36c0f84bcb05cc772d0939a66cca4193e47007",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1774,7 +1774,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-cn-pptx-012.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "5407103337b66ca8a927e57a4cb97528a828286d191b0af68981ea12dea62842",
+      "sha256": "1adca602c328b6cc34a09f9209cbf65e60750ed938ec9bb1a519e77291245e06",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1790,7 +1790,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-013.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "75550402adf0ecba72fc1d21772a1c2b28801e85371a6d7a1fff2a44c2acf1e7",
+      "sha256": "c3da7705bcb893e0304398e7569d4015c8271304772da767888c503753448f39",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1806,7 +1806,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-014.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "737950278d094cf2f889b2ef71fb90509029cd91da96b1f505b01c7f3c311dd5",
+      "sha256": "44f52658574a782360ddb57887b7a72322548ef8d062289db850b64358d10069",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1822,7 +1822,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-015.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "42f2eb49e0b4561b78a854693b4c04ae55c8b65f9f033fc64ab5e14e236633e8",
+      "sha256": "9cb6560b404aa98358cdd3ff88f526899c4e53e9f9f289cfe76e53a9e4e74bfa",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1838,7 +1838,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-016.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "64b47649826a5fa757b1a6e9f9a64fd3dd28e47086fdad30abfaa51770509edc",
+      "sha256": "0dcdbacd15444b48ea14863b433ec77b6fb2fecad27fe917404461123b2e48c0",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1854,7 +1854,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-017.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3324651a2dd315a25d3053cdb179b604c217e1b2c360d0cb7de630d2c23fb7d1",
+      "sha256": "7487e82efc3bcea378e2b87ca0a55506b6cb2065b3cde14e9a22cc109149d707",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1870,7 +1870,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-cn-pptx-018.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "be68ae9d5b3dd00b6a21b09e931736b5b7331548547ecf7c6500b17b746c52c8",
+      "sha256": "044174d2a6a3a687bf02a754b56725332f2885787514fec6f6283b8691d58d04",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1886,7 +1886,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-019.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "ce38fdaee40dd83deefd7fa2d0543f037e7529002aa02ca1745d98332d725b0f",
+      "sha256": "9b6daa7bf6a9fc17124840d5be3848d2f6c09ede8146d107895fb64e297750c9",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1902,7 +1902,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-020.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "71df4833560361984636ff0c6b05c4d403edccb149933910866ebbf112ae2d30",
+      "sha256": "5ed580fa3502f71dc1b73a62e9b7bf3d9b5ee52bb51ed984e87d6d10945963da",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1918,7 +1918,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-021.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "3f4d532c8f749c1a9447cc3570c8f9e111e3c52743de0b3279a9066ea2300109",
+      "sha256": "407404d5cb294aa7f5b4b1694f762e3634634286fb662b3d02208cb59ae578ef",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1934,7 +1934,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-022.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "25e9cb4189b8224811f3809c8bce7c37adb98e2d6e1914315ec3e2d5637071cd",
+      "sha256": "59cf1a7a4d598975774e058514112dc53d3fee96471b1f406eebad6ab3ffe593",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1950,7 +1950,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-pptx-023.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "a7b9476eba501dfb73c2f2bbd3d68bec031ea5c7858025ba016eedad6f2c6127",
+      "sha256": "262e7215bc074ce76d7306e83ffbd5ece04f425af183cf9f7124652d3607ae0e",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },
@@ -1966,7 +1966,7 @@
       "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
       "path": "fixtures/v1/documents/pptx/case-cn-pptx-024.pptx",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "961461a02879c1d98afbf9c7ff931aae49b748f7295db199259e8aac34ffac0b",
+      "sha256": "4a546de40876d730b7746bad695cdedf27d3788fc68ecd1f39072efcf12a0807",
       "size_bytes": 28321,
       "training_use": "PROHIBITED"
     },

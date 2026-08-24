@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import zipfile
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG: dict[str, Any] = json.loads((ROOT / "fixtures" / "v1" / "catalog.json").read_text("utf-8"))
+OFFICE_SUFFIXES = {".docx", ".pptx", ".xlsx"}
 
 
 def test_fixture_counts_and_balance() -> None:
@@ -60,6 +62,25 @@ def test_fixture_tree_contains_no_uncataloged_files() -> None:
         if path.is_file() and path != fixture_root / "catalog.json"
     }
     assert actual == cataloged
+
+
+def test_office_fixtures_use_canonical_zip_metadata() -> None:
+    office_paths = [
+        ROOT / item["path"]
+        for item in CATALOG["documents"]
+        if Path(item["path"]).suffix in OFFICE_SUFFIXES
+    ]
+    assert len(office_paths) == 72
+    for path in office_paths:
+        with zipfile.ZipFile(path) as package:
+            members = package.infolist()
+        assert members
+        assert [member.filename for member in members] == sorted(
+            member.filename for member in members
+        )
+        assert all(member.create_system == 3 for member in members)
+        assert all(member.external_attr == 0o600 << 16 for member in members)
+        assert all(member.date_time == (2026, 8, 21, 12, 0, 0) for member in members)
 
 
 def test_rights_deidentification_and_training_exclusion() -> None:

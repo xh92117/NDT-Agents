@@ -6,6 +6,7 @@ import hashlib
 import io
 import json
 import mimetypes
+import os
 import re
 import zipfile
 from collections.abc import Callable
@@ -27,6 +28,8 @@ RAW_ROOT = FIXTURE_ROOT / "raw-inspection"
 TEMPLATE_ROOT = FIXTURE_ROOT / "templates"
 FIXED_TIME = datetime(2026, 8, 21, 12, 0, 0, tzinfo=UTC)
 FIXED_ZIP_TIME = (2026, 8, 21, 12, 0, 0)
+CANONICAL_ZIP_CREATE_SYSTEM = 3
+CANONICAL_ZIP_EXTERNAL_ATTR = 0o600 << 16
 TENANT_ID = "00000000-0000-4000-8000-000000000001"
 PROJECT_ID = "00000000-0000-4000-8000-000000000002"
 
@@ -53,10 +56,23 @@ def write_json(path: Path, value: Any) -> None:
     )
 
 
-def normalize_zip(path: Path) -> None:
-    """Remove library-specific timestamps from generated Office ZIP containers."""
+def write_bytes_if_changed(path: Path, content: bytes) -> None:
+    """Publish deterministic bytes through one same-directory working file."""
 
-    with zipfile.ZipFile(path, "r") as source:
+    if path.is_file() and path.read_bytes() == content:
+        return
+    working_path = path.with_name(f".{path.name}.tmp")
+    try:
+        working_path.write_bytes(content)
+        os.replace(working_path, path)
+    finally:
+        working_path.unlink(missing_ok=True)
+
+
+def normalize_zip(content: bytes) -> bytes:
+    """Return an Office ZIP container with canonical metadata and ordering."""
+
+    with zipfile.ZipFile(io.BytesIO(content), "r") as source:
         members = [(item, source.read(item.filename)) for item in source.infolist()]
     output = io.BytesIO()
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as target:
@@ -69,10 +85,10 @@ def normalize_zip(path: Path) -> None:
                 )
             item = zipfile.ZipInfo(original.filename, FIXED_ZIP_TIME)
             item.compress_type = zipfile.ZIP_DEFLATED
-            item.external_attr = original.external_attr
-            item.create_system = original.create_system
+            item.create_system = CANONICAL_ZIP_CREATE_SYSTEM
+            item.external_attr = CANONICAL_ZIP_EXTERNAL_ATTR
             target.writestr(item, data)
-    path.write_bytes(output.getvalue())
+    return output.getvalue()
 
 
 def document_name(kind: str, index: int, suffix: str) -> str:
@@ -124,8 +140,9 @@ def create_docx(path: Path, index: int) -> None:
     table.cell(1, 0).text = "A-01"
     table.cell(1, 1).text = "12.5"
     table.cell(1, 2).text = "mm"
-    document.save(str(path))
-    normalize_zip(path)
+    output = io.BytesIO()
+    document.save(output)
+    write_bytes_if_changed(path, normalize_zip(output.getvalue()))
 
 
 def create_xlsx(path: Path, index: int) -> None:
@@ -141,8 +158,9 @@ def create_xlsx(path: Path, index: int) -> None:
     workbook.properties.title = f"Synthetic NDT XLSX {index}"
     workbook.properties.created = FIXED_TIME.replace(tzinfo=None)
     workbook.properties.modified = FIXED_TIME.replace(tzinfo=None)
-    workbook.save(path)
-    normalize_zip(path)
+    output = io.BytesIO()
+    workbook.save(output)
+    write_bytes_if_changed(path, normalize_zip(output.getvalue()))
 
 
 def create_pptx(path: Path, index: int) -> None:
@@ -155,8 +173,9 @@ def create_pptx(path: Path, index: int) -> None:
     slide.placeholders[
         1
     ].text = "Bridge / ultrasonic\nObservation A-01: 12.5 mm\nSynthetic, review required"
-    presentation.save(str(path))
-    normalize_zip(path)
+    output = io.BytesIO()
+    presentation.save(output)
+    write_bytes_if_changed(path, normalize_zip(output.getvalue()))
 
 
 def create_md(path: Path, index: int) -> None:
