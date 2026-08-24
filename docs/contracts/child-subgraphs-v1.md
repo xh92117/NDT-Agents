@@ -24,6 +24,7 @@ only:
 - parent task ID, unique run ID, assignment ID, child kind, and registered agent type;
 - tenant, project, user, roles, and permission version;
 - child goal and child success criteria;
+- selected S2 context entries with exact source, trust, classification, and content hashes;
 - selected authorized artifact references and declared dependency assignment IDs;
 - explicit read-only or mutating side-effect classification for scheduler policy;
 - the intersection of requested, parent-authorized, and agent-authorized tools;
@@ -31,10 +32,12 @@ only:
 - one private `scratch://tenant/project/task/run` namespace;
 - a SHA-256 manifest of the exact child context.
 
-The context has no parent `dependency_data`, raw conversation history, user delivery capability, or
-other child namespace. General work may receive the simple parent goal and its authorized artifacts.
-Professional work requires exactly one explicit `ChildInput` for each verified assignment and may
-receive only the artifact IDs selected for that assignment.
+The context has no raw parent `dependency_data`, rejected context candidates, grant list, raw
+conversation history, user delivery capability, or other child namespace. A General child receives
+all entries from a strict manifest-verified S2 selected bundle. Professional work requires exactly
+one explicit `ChildInput` for each verified assignment and may receive only the selected context
+content hashes and artifact IDs named for that assignment. Unknown context hashes fail before
+child creation. Legacy S1 contexts without an S2 bundle receive no context entries.
 
 ## Child state machine
 

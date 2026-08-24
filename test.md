@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.32
+**Version:** 1.35
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -322,6 +322,18 @@ Acceptance: checkpoint recovery = 100 percent, zero repeated committed side effe
 
 Test relevance selection, permission filtering, deduplication, source labeling, protected fields, size estimation, and deterministic assembly.
 
+For S2-01, `tests/context/test_context_assembly.py` must cover exact tenant, project, user
+visibility, permission-version, role, permission, classification, artifact, and tool denial;
+source- and trust-labeled lossless deduplication; protected overflow; stable authorization-bound
+manifests; bounded candidate input; General-child handoff; explicit professional-entry selection;
+and manifest and selected-content tamper rejection. Its C0 baseline verifies lossless selection
+only. For S2-02, `tests/context/test_context_compression.py` must cover the C0/C1/C2/C3 pressure
+boundaries; zero semantic calls for C0/C1; recoverable log references; exact raw-event integrity,
+ordering, task, and tenant scope; six recent C2 turns; protected raw-event retention; representative
+token reduction; the two-call semantic limit; exact semantic source attestation; C2/C3 output
+limits; non-reducing candidate rejection; C3 checkpoint presence and scope; and summary-on-summary
+rejection. Field-level comparison and fallback remain S2-03 work.
+
 Run after context, permission, retrieval, or prompt changes; in `PR`; and at `TG-02`.
 
 Acceptance: 100 percent permission filtering and protected-field retention; deterministic input produces a stable context manifest.
@@ -330,6 +342,18 @@ Acceptance: 100 percent permission filtering and protected-field retention; dete
 
 Compare each compression level with uncompressed baselines. Measure retained constraints, numbers, units, citations, decisions, unresolved issues, quality, and token reduction. Include automatic rollback to a less aggressive level.
 
+S2-02 tests the deterministic level policy, raw-event and checkpoint preconditions, adapter
+boundary, semantic-call and output limits, protected raw-event retention, and representative C2
+token reduction. C2/C3 output is deliberately validation-required and not execution-ready. The
+full benchmark retention, quality comparison, C3 median, unsafe-output rejection, and automatic
+fallback acceptance remain blocked on S2-03.
+
+For S2-03, `tests/context/test_context_validation.py` must verify exact task, scope, raw-manifest,
+and one-time source coverage; 100 percent critical retention; the 98 percent confirmed
+non-critical threshold; measured quality degradation no greater than three points; hash-bound
+execution readiness; missing-quality rejection; C2-to-C1 and C3-to-C2-to-C1 fallback from raw
+events; and enforcement of the existing two-semantic-call limit.
+
 Run after compression model, prompt, threshold, or context format changes; nightly sample; and at `TG-02`.
 
 Acceptance: 100 percent critical-field retention; confirmed non-critical fact retention >= 98 percent; answer-quality degradation <= 3 percentage points; median token reduction >= 50 percent for C2 and C3 cases; unsafe compression always rejected or rolled back.
@@ -337,6 +361,23 @@ Acceptance: 100 percent critical-field retention; confirmed non-critical fact re
 ### 8.11 `INT-MEMORY` - Distillation and restore
 
 Test runtime, session, user, project, and audit memory; candidate creation; conflict handling; deduplication; confidence; TTL; snapshot creation; direct-click restore; intent-based restore; preview; confirmation; cancel; branch restore; and version compatibility.
+
+For S2-04, `tests/memory/test_memory_store.py` must verify all five distinct scopes, exact user and
+project visibility, permission-version rejection, explicit project sharing, read/write and
+candidate permissions, classification clearance, approval state, TTL, content integrity,
+immutable IDs, protected audit records, and the forced-RLS reversible memory migration.
+
+For S2-05, `tests/memory/test_distillation.py` must verify every trigger, recent and protected raw
+retention, exact source attestation, the 800-token digest limit, the 30-project-fact limit, distinct
+fact/inference/preference candidates, stable IDs, provenance, confidence, expiry, sensitive and
+durable candidate state, pre-persistence deduplication, and explicit no-overwrite conflicts.
+
+For S2-06, `tests/memory/test_restore.py` must verify immutable snapshot integrity, direct preview,
+intent candidate limits, the 0.90 confidence and 0.12 margin thresholds, ambiguous selection,
+exact scope and permission version, compatibility and artifact checks, 6,000/20/10/6 injection
+limits, preview tamper rejection, confirm/cancel idempotency, conflicting terminal decisions, and
+branch-only restore with no current-state overwrite. Migration tests must cover forced RLS and
+append-only snapshot and decision tables.
 
 Run after memory, distillation, snapshot, intent, or restore changes; nightly; and at `TG-02`.
 
@@ -353,6 +394,19 @@ one. Test TTL, invalidation, collisions, poisoning, and authorization changes.
 Run after any cache, identity, model, prompt, Skill, tool, or knowledge version change; nightly sample; and at `TG-02`.
 
 Acceptance: zero cross-scope hits, zero stale authorized result after revocation, and cache-hit output semantically equivalent to uncached output.
+
+For S2-07, `tests/cache/test_cache_service.py` must cover all five cache classes, class TTLs,
+expiry, value integrity, provenance, version staleness, current-information bypass, hit/miss/stale/
+bypass/saved-token metrics, invalidation, collision poisoning, explicit refresh, secret and
+authorization-decision denial, unsafe side effects, pure-tool restriction, and G0/P1 plus 0.95
+semantic restrictions. Migration tests must cover the scoped forced-RLS cache table.
+
+For S2-08, `tests/cache/test_cache_keys.py` must prove deterministic normalization and order
+independence plus distinct keys for tenant, project, user, roles, permission, RBAC, request,
+parameters, task, class, model, prompt, Skill, graph, route, tool, adapter, knowledge corpus,
+knowledge document, schema, parser, context policy, and extra dimensions. It must test control and
+unknown-field rejection, complete-version stale rejection, revocation, and zero cross-user,
+cross-project, or cross-tenant hits even when an external digest is reused.
 
 ### 8.13 `INT-MINERU` - Primary document parsing
 
@@ -641,6 +695,14 @@ Acceptance: 100 percent mandatory checkpoints block until a valid decision; unau
 
 Test scope-aware retention, user and project export, deletion request, legal hold, backup expiry, cache and index invalidation, artifact tombstones, cryptographic erasure, restore restrictions, immutable audit retention, cancellation, partial failure, and cross-tenant denial.
 
+For S2-09, the local deterministic subset verifies 1 through 3650 day retention bounds, ordinary
+and audit defaults, content and export-manifest hashes, exact scope and classification checks,
+retention denial, hash-bound normal and forced deletion approvals, idempotent tombstones, legal-hold
+application and release, object-unique-key cryptographic erasure, key-provider failure, permission
+denial, forced-RLS lifecycle tables, append-only event DDL, and migration rollback. Live backup
+expiry, cache/index invalidation, distributed partial failure, and immutable audit integration must
+remain explicit blockers when the full group is assessed without approved services.
+
 Run after memory, storage, artifact, backup, cache, index, retention, export, deletion, or legal-hold changes; nightly sample; at `TG-02`; and in `RELEASE`.
 
 Acceptance: 100 percent eligible data is exported or deleted within the approved policy; held or immutable evidence is not destroyed; deleted data cannot be restored or retrieved outside the documented retention exception; cross-scope lifecycle action = 0; every action and denial is audited.
@@ -765,7 +827,7 @@ those missing inputs.
 |---|---|---|---|
 | `TG-00` | `BLOCKED` | `DATASET` rights/real-data/expert-gold approval; `SEC-BASELINE` human approval; provider smoke; legal license decisions | after R-001, R-003, R-005, and R-007 to R-009 close |
 | `TG-01` | `BLOCKED` | local assigned-group and immutable baseline CI tests pass, but `SEC-TENANT`, `RES-CHECKPOINT`, `OBS-AUDIT`, `SEC-PLATFORM`, and `INT-APPROVAL` still require approved live-service probes; exact approved-candidate revalidation and accountable security and license approval are missing | after R-005, R-007, and R-010 close and the approved candidate is available |
-| `TG-02` | `NOT_RUN` | all assigned groups | after S2-01 through S2-09 |
+| `TG-02` | `BLOCKED` | local automated assigned groups pass; immutable CI, approved live PostgreSQL and external services, full compression benchmark, backup expiry, cache/index invalidation, and accountable baseline approvals are missing | after external prerequisites are available and the exact candidate is revalidated |
 | `TG-03` | `NOT_RUN` | all assigned groups | after S3-01 through S3-09 |
 | `TG-04` | `NOT_RUN` | all assigned groups | after S4-01 through S4-07 |
 | `TG-05` | `NOT_RUN` | all assigned groups | after S5-01 through S5-08 |
@@ -818,6 +880,16 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S5-07-CONFIG-BOOTSTRAP-20260824-01 | 2026-08-24 | S5-07 isolated startup bootstrap / `codex/s5-07-model-config-bootstrap` / runtime candidate `3259b8d6297fbea93e409ad8f20a2d401331ff8ea2dd83c8ddcafd033101da7f` | `TASK`, `UNIT-MODELREG`, `UNIT-CORE` startup, `SEC-PLATFORM`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT`, `QUICK`, `DOC`, dependency and SBOM checks | local Windows / strict YAML plus local read-only environment source / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S5-07 bootstrap evidence](./evidence/s5/s5-07-config-bootstrap-20260824.md); 19 dedicated configuration tests, 63 affected-boundary tests, and all 272 tests passed; four generators had zero drift; Ruff, format over 85 files, strict mypy over 85 source files, DOC 1.31, and dependency audit passed | physical inference, S5-01, S5-06, hosted policy review, live smoke, production managed secrets, and production approval remain blocked; S5-07 is not DONE | Codex |
 | S3-02-BASH-GATEWAY-LOCAL-20260824-01 | 2026-08-24 | S3-02 / `codex/s3-02-bash-file-gateway` / controlled Bash file gateway 1.0.0 | `TASK`, `INT-BASH`, `SEC-BASH`, `UNIT-TOOLREG`, `SEC-TOOLS`, `BUDGET`, `OBS-AUDIT`, `QUICK`, `DOC`, dependency audit | local Windows / Git for Windows fixed executables / CPython 3.12.13 / uv 0.11.20 | `BLOCKED` | [S3-02 durable evidence](./evidence/s3/s3-02-bash-gateway-20260824.md); 25 dedicated tests passed and the control-character filename test skipped because the Windows file system did not create that name; 297 complete tests passed with the same one skip; four generators had zero drift; Ruff, format over 87 files, strict mypy over 87 source files, DOC 1.32, and dependency audit passed | GitHub Ubuntu must pass all 26 dedicated tests and protected quality before S3-02 becomes DONE | Codex |
 | S3-02-BASH-GATEWAY-20260824-01 | 2026-08-24 | S3-02 / commit `e0998ad475a345e77d3e9058f43b817f6c4052d5` / controlled Bash file gateway 1.0.0 | PR `TASK`, `INT-BASH`, `SEC-BASH`, `UNIT-TOOLREG`, `SEC-TOOLS`, `BUDGET`, `OBS-AUDIT`, `QUICK`, `DOC`, dependency audit | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `PASS` | [run 32699999214](https://github.com/xh92117/NDT-Agents/actions/runs/32699999214) and [durable evidence](./evidence/s3/s3-02-bash-gateway-20260824.md); all 298 tests passed with zero skip, including the NUL-delimited control-character filename denial; controlled generation had zero drift; DOC 1.32, Ruff, strict mypy, dependency audit, and evidence upload passed | TG-03 remains separate; S5-01 is now unblocked by S3-02 | Codex |
+| S2-01-TASK-20260824-01 | 2026-08-24 | S2-01 / configuration `aef038c1d1c7e4465874a6cc9b3dc4b306027032b66e49b7ba5bd222e54918d2` / no immutable build | `TASK`, `UNIT-CONTEXT`, C0 `EVAL-COMPRESSION`, `SEC-TENANT`, affected `INT-ORCH`, `QUICK`, `DOC`, deterministic generation | local Windows / deterministic candidates and injected child registry / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S2-01 durable evidence](./evidence/s2/s2-01-context-assembly-20260824.md); 14 dedicated context tests and all 311 complete tests passed with one known Windows file-name skip; exact scope, permission, classification, provenance, lossless deduplication, protected overflow, stable manifests, bounded input, minimal child handoff, tamper rejection, four generators, Ruff, format over 91 files, strict mypy over 91 files, DOC 1.33, and diff checks passed | TG-01 remains blocked; S2-02 and S2-03 own lossy compression and field-level fallback; TG-02 not run; immutable PR CI pending | Codex |
+| S2-02-TASK-20260824-01 | 2026-08-24 | S2-02 / configuration `ccca013612e6eef612e82ca92e5d84c4508429e5f8638da3942aef0123804ca7` / no immutable build | `TASK`, `UNIT-CONTEXT`, partial `EVAL-COMPRESSION`, `RES-CHECKPOINT`, `SEC-TENANT`, `QUICK`, `DOC`, deterministic generation | local Windows / deterministic fake semantic adapter and V1 checkpoint contract / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S2-02 durable evidence](./evidence/s2/s2-02-context-compression-20260824.md); 22 dedicated compression tests and all 334 collected tests completed with one known Windows file-name skip; C0-C3 boundaries, zero-call C0/C1, protected and recent-turn retention, representative C2 reduction, C3 checkpoint and scope, source attestation, semantic budgets, typed failures, four generators, Ruff, format over 94 files, strict mypy over 94 files, DOC 1.34, diff checks, and graph refresh passed | S2-03 field-level retention, full benchmark quality and C3 median, unsafe-candidate fallback, TG-02, immutable PR CI, and blocked TG-01 dependencies remain pending | Codex |
+| S2-03-TASK-20260824-01 | 2026-08-24 | S2-03 / local S2 candidate / no immutable build | `TASK`, `UNIT-CONTEXT`, local `EVAL-COMPRESSION`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic validation and semantic fakes / CPython 3.12.13 | `PASS` | [S2-03 evidence](./evidence/s2/s2-03-context-validation-20260824.md); seven dedicated validation tests and final 413-test regression passed with one platform skip | full frozen quality benchmark and immutable CI remain TG-02 blockers | Codex |
+| S2-04-TASK-20260824-01 | 2026-08-24 | S2-04 / local S2 candidate / no immutable build | `TASK`, `INT-MEMORY`, `SEC-TENANT`, migration rollback, `QUICK`, `DOC` | local Windows / in-memory repository and offline PostgreSQL DDL / CPython 3.12.13 | `PASS` | [S2-04 evidence](./evidence/s2/s2-04-memory-store-20260824.md); seven dedicated memory tests and final 413-test regression passed with one platform skip | live PostgreSQL and immutable CI remain TG-02 blockers | Codex |
+| S2-05-TASK-20260824-01 | 2026-08-24 | S2-05 / local S2 candidate / no immutable build | `TASK`, `INT-MEMORY`, `UNIT-CONTEXT`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic distillation adapter / CPython 3.12.13 | `PASS` | [S2-05 evidence](./evidence/s2/s2-05-memory-distillation-20260824.md); six dedicated distillation tests and final 413-test regression passed with one platform skip | production model evaluation and immutable CI remain TG-02 blockers | Codex |
+| S2-06-TASK-20260824-01 | 2026-08-24 | S2-06 / local S2 candidate / no immutable build | `TASK`, `INT-MEMORY`, `RES-CHECKPOINT`, `SEC-TENANT`, migration rollback, `QUICK`, `DOC` | local Windows / deterministic snapshots and branch restore / CPython 3.12.13 | `PASS` | [S2-06 evidence](./evidence/s2/s2-06-memory-restore-20260824.md); nine dedicated restore tests and final 413-test regression passed with one platform skip | frozen false-trigger corpus, live PostgreSQL, and immutable CI remain TG-02 blockers | Codex |
+| S2-07-TASK-20260824-01 | 2026-08-24 | S2-07 / local S2 candidate / no immutable build | `TASK`, `SEC-CACHE`, `INT-MEMORY`, `SEC-TENANT`, migration rollback, `QUICK`, `DOC` | local Windows / deterministic cache clock and repository / CPython 3.12.13 | `PASS` | [S2-07 evidence](./evidence/s2/s2-07-cache-service-20260824.md); 16 dedicated cache tests and final 413-test regression passed with one platform skip | live cache service and immutable CI remain TG-02 blockers | Codex |
+| S2-08-TASK-20260824-01 | 2026-08-24 | S2-08 / local S2 candidate / no immutable build | `TASK`, `SEC-CACHE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic canonical keys / CPython 3.12.13 | `PASS` | [S2-08 evidence](./evidence/s2/s2-08-cache-keys-20260824.md); 24 dedicated key tests and final 413-test regression passed with one platform skip | live revocation propagation and immutable CI remain TG-02 blockers | Codex |
+| S2-09-TASK-20260824-01 | 2026-08-24 | S2-09 / local S2 candidate / no immutable build | `TASK`, local `INT-DATA-LIFECYCLE`, `SEC-TENANT`, `SEC-PLATFORM`, migration rollback, `QUICK`, `DOC` | local Windows / in-memory lifecycle and key revoker / offline PostgreSQL DDL / CPython 3.12.13 | `PASS` | [S2-09 evidence](./evidence/s2/s2-09-data-lifecycle-20260824.md); ten dedicated lifecycle cases, affected storage tests, and final 413-test regression passed with one platform skip | live backup expiry, cache/index invalidation, PostgreSQL, key provider, and immutable CI remain TG-02 blockers | Codex |
+| TG-02-LOCAL-20260824-01 | 2026-08-24 | S2 local candidate / configuration `fa5721f2fc51a7d26d9c6ab93878d70f9bdfecd2f570c50c3e0c2e4b0e4f33df` / no immutable build | `PHASE_GATE` local automated subset: `UNIT-CONTEXT`, `EVAL-COMPRESSION`, `INT-MEMORY`, `SEC-CACHE`, `INT-DATA-LIFECYCLE`, affected security, storage, migration, `QUICK`, `DOC`, deterministic generation, dependency audit | local Windows / deterministic adapters and offline PostgreSQL DDL / CPython 3.12.13 / uv 0.11.20 | `BLOCKED` | [TG-02 local assessment](./evidence/s2/tg-02-local-assessment-20260824.md); all 413 tests completed with one platform skip; four generators had zero drift; DOC 1.35, Ruff, format over 113 files, strict mypy, dependency audit, and diff checks passed; S2-01 through S2-09 are DONE | no immutable candidate or CI; approved live services, full frozen compression benchmark, backup expiry, cache/index invalidation, and accountable security, retention, and license approvals are unavailable | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
