@@ -1,0 +1,49 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "00000000-0000-4000-8000-000000000006",
+      "artifact_version": "1",
+      "classification": "INTERNAL",
+      "immutable": true,
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "scope": {
+        "permission_version": "perm-1",
+        "project_id": "00000000-0000-4000-8000-000000000002",
+        "role_codes": [
+          "NDT_ENGINEER"
+        ],
+        "schema_version": "1.0.0",
+        "tenant_id": "00000000-0000-4000-8000-000000000001",
+        "user_id": "00000000-0000-4000-8000-000000000003"
+      },
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "size_bytes": 128,
+      "uri": "artifact://tenant/project/example"
+    }
+  ],
+  "completed_at": "2026-08-21T12:00:00Z",
+  "confidence": 0.8,
+  "evidence": [
+    {
+      "artifact_id": "00000000-0000-4000-8000-000000000006",
+      "citation_id": "00000000-0000-4000-8000-000000000007",
+      "claim_id": "claim-1",
+      "locator": "5.2.1",
+      "locator_type": "CLAUSE",
+      "schema_version": "1.0.0",
+      "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "failure_code": null,
+  "issues": [],
+  "retryable": false,
+  "run_id": "00000000-0000-4000-8000-000000000005",
+  "schema_version": "1.0.0",
+  "status": "SUCCESS",
+  "structured_data": {
+    "synthetic": true
+  },
+  "summary": "Synthetic result produced.",
+  "task_id": "00000000-0000-4000-8000-000000000004"
+}

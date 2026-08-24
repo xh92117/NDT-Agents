@@ -1,0 +1,57 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "00000000-0000-4000-8000-000000000006",
+      "artifact_version": "1",
+      "classification": "INTERNAL",
+      "immutable": true,
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "scope": {
+        "permission_version": "perm-1",
+        "project_id": "00000000-0000-4000-8000-000000000002",
+        "role_codes": [
+          "NDT_ENGINEER"
+        ],
+        "schema_version": "1.0.0",
+        "tenant_id": "00000000-0000-4000-8000-000000000001",
+        "user_id": "00000000-0000-4000-8000-000000000003"
+      },
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "size_bytes": 128,
+      "uri": "artifact://tenant/project/example"
+    }
+  ],
+  "call_id": "00000000-0000-4000-8000-000000000008",
+  "completed_at": "2026-08-21T12:00:00Z",
+  "duration_ms": 10,
+  "encoding": "utf-8",
+  "error_code": null,
+  "exit_code": 0,
+  "idempotency_key": null,
+  "input_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "output": {
+    "synthetic": true
+  },
+  "output_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "retryable": false,
+  "run_id": "00000000-0000-4000-8000-000000000005",
+  "schema_version": "1.0.0",
+  "scope": {
+    "permission_version": "perm-1",
+    "project_id": "00000000-0000-4000-8000-000000000002",
+    "role_codes": [
+      "NDT_ENGINEER"
+    ],
+    "schema_version": "1.0.0",
+    "tenant_id": "00000000-0000-4000-8000-000000000001",
+    "user_id": "00000000-0000-4000-8000-000000000003"
+  },
+  "status": "SUCCESS",
+  "stderr": "",
+  "stdout": "",
+  "task_id": "00000000-0000-4000-8000-000000000004",
+  "tool_name": "artifact.read",
+  "tool_version": "1.0.0",
+  "truncated": false
+}

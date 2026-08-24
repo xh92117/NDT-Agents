@@ -1,0 +1,42 @@
+{
+  "checkpoint_id": "00000000-0000-4000-8000-000000000009",
+  "committed_side_effect_ids": [],
+  "created_at": "2026-08-21T12:00:00Z",
+  "graph_version": "main-graph-1",
+  "schema_version": "1.0.0",
+  "scope": {
+    "permission_version": "perm-1",
+    "project_id": "00000000-0000-4000-8000-000000000002",
+    "role_codes": [
+      "NDT_ENGINEER"
+    ],
+    "schema_version": "1.0.0",
+    "tenant_id": "00000000-0000-4000-8000-000000000001",
+    "user_id": "00000000-0000-4000-8000-000000000003"
+  },
+  "sequence": 1,
+  "state_artifact": {
+    "artifact_id": "00000000-0000-4000-8000-000000000006",
+    "artifact_version": "1",
+    "classification": "INTERNAL",
+    "immutable": true,
+    "media_type": "application/json",
+    "schema_version": "1.0.0",
+    "scope": {
+      "permission_version": "perm-1",
+      "project_id": "00000000-0000-4000-8000-000000000002",
+      "role_codes": [
+        "NDT_ENGINEER"
+      ],
+      "schema_version": "1.0.0",
+      "tenant_id": "00000000-0000-4000-8000-000000000001",
+      "user_id": "00000000-0000-4000-8000-000000000003"
+    },
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "size_bytes": 128,
+    "uri": "artifact://tenant/project/example"
+  },
+  "state_schema_version": "1.0.0",
+  "state_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "task_id": "00000000-0000-4000-8000-000000000004"
+}

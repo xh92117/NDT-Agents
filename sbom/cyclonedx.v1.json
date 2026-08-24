@@ -1,0 +1,2207 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:pypi/alembic@1.19.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e0fca0518118c78acc493e31bcb5402f190057aaf6df8b5b95ce94c4789cf648"
+        }
+      ],
+      "name": "alembic",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/alembic@1.19.1",
+      "type": "library",
+      "version": "1.19.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/annotated-doc@0.0.5",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c7e58ce09192557605d8bbd92836d7e1d520ac9580096042c0bfd197efacf1bb"
+        }
+      ],
+      "name": "annotated-doc",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/annotated-doc@0.0.5",
+      "type": "library",
+      "version": "0.0.5"
+    },
+    {
+      "bom-ref": "pkg:pypi/annotated-types@0.8.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "13b2beaad985e05e2d6407ee4c4f35590b11f8d693a258a561055cac8f64cab7"
+        }
+      ],
+      "name": "annotated-types",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/annotated-types@0.8.0",
+      "type": "library",
+      "version": "0.8.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/anyio@4.14.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f"
+        }
+      ],
+      "name": "anyio",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/anyio@4.14.2",
+      "type": "library",
+      "version": "4.14.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/ast-serialize@0.8.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6c37c43e4004dfb42d321ddedc569dc17ff4259296f3af577c9ea46a809bc010"
+        }
+      ],
+      "name": "ast-serialize",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/ast-serialize@0.8.0",
+      "type": "library",
+      "version": "0.8.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/asyncpg@0.31.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c989386c83940bfbd787180f2b1519415e2d3d6277a70d9d0f0145ac73500735"
+        }
+      ],
+      "name": "asyncpg",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/asyncpg@0.31.0",
+      "type": "library",
+      "version": "0.31.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/attrs@26.1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32"
+        }
+      ],
+      "name": "attrs",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/attrs@26.1.0",
+      "type": "library",
+      "version": "26.1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/boolean-py@5.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "60cbc4bad079753721d32649545505362c754e121570ada4658b852a3a318d95"
+        }
+      ],
+      "name": "boolean-py",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/boolean-py@5.0",
+      "type": "library",
+      "version": "5.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/cachecontrol@0.14.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e6220afafa4c22a47dd0badb319f84475d79108100d04e26e8542ef7d3ab05a1"
+        }
+      ],
+      "name": "cachecontrol",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/cachecontrol@0.14.4",
+      "type": "library",
+      "version": "0.14.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/certifi@2026.7.22",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"
+        }
+      ],
+      "name": "certifi",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/certifi@2026.7.22",
+      "type": "library",
+      "version": "2026.7.22"
+    },
+    {
+      "bom-ref": "pkg:pypi/cffi@2.1.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be"
+        }
+      ],
+      "name": "cffi",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/cffi@2.1.1",
+      "type": "library",
+      "version": "2.1.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/charset-normalizer@3.5.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6117b84ea48435e5356dc737f5121485c30920ba43375fa7b434fd753df0eac3"
+        }
+      ],
+      "name": "charset-normalizer",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/charset-normalizer@3.5.1",
+      "type": "library",
+      "version": "3.5.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/click@8.4.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9a6cea6e60b17ebe0a44c5cc636d94f09bd66142c1cd7d8b4cd731c4917a15f6"
+        }
+      ],
+      "name": "click",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/click@8.4.2",
+      "type": "library",
+      "version": "8.4.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/colorama@0.4.6",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
+        }
+      ],
+      "name": "colorama",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "pkg:pypi/cryptography@50.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "eeac2acb5a20ed25e0ad6d1df9891a520b78b404266b6d11778f25d5d691a6c9"
+        }
+      ],
+      "name": "cryptography",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/cryptography@50.0.0",
+      "type": "library",
+      "version": "50.0.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/cyclonedx-python-lib@11.12.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "16767c4039de90c04e9f03348f8f0ed4b8ff842eaa7eefcad3a95685f970dacf"
+        }
+      ],
+      "name": "cyclonedx-python-lib",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/cyclonedx-python-lib@11.12.0",
+      "type": "library",
+      "version": "11.12.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/defusedxml@0.7.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69"
+        }
+      ],
+      "name": "defusedxml",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/defusedxml@0.7.1",
+      "type": "library",
+      "version": "0.7.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/et-xmlfile@2.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "dab3f4764309081ce75662649be815c4c9081e88f0837825f90fd28317d4da54"
+        }
+      ],
+      "name": "et-xmlfile",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/et-xmlfile@2.0.0",
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/fastapi@0.141.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e8822fc40db1e1858054d7a949a888695bc9bdce70139178e33bd2871a453ca1"
+        }
+      ],
+      "name": "fastapi",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/fastapi@0.141.1",
+      "type": "library",
+      "version": "0.141.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/filelock@3.32.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0ffa185a3540854c95caa7fa76b76cb219d907415e2c5dc9af25fd970563487f"
+        }
+      ],
+      "name": "filelock",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/filelock@3.32.3",
+      "type": "library",
+      "version": "3.32.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/greenlet@3.5.5",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "adb4bae02e91a8e863e48b177e4014bdcac8a6b5e047ea1df687a61534b85e6c"
+        }
+      ],
+      "name": "greenlet",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/greenlet@3.5.5",
+      "type": "library",
+      "version": "3.5.5"
+    },
+    {
+      "bom-ref": "pkg:pypi/h11@0.16.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1"
+        }
+      ],
+      "name": "h11",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/h11@0.16.0",
+      "type": "library",
+      "version": "0.16.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/httpcore2@2.12.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9293522bba0aa7c4c8e9e3f040c16575bd8868e155a77fa30c7a9085a5eae648"
+        }
+      ],
+      "name": "httpcore2",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/httpcore2@2.12.0",
+      "type": "library",
+      "version": "2.12.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/httpx2-jsfetch@1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "70a0e3eabfef7cce5ad9c629f7d01ca05e418f586646f4ddf14782e4c1454c60"
+        }
+      ],
+      "name": "httpx2-jsfetch",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/httpx2-jsfetch@1.0",
+      "type": "library",
+      "version": "1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/httpx2@2.12.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7631fe9887a8a2275f4a2540e053aa670fcc50742864a9ae7c66e609fdcf12cf"
+        }
+      ],
+      "name": "httpx2",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/httpx2@2.12.0",
+      "type": "library",
+      "version": "2.12.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/idna@3.19",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15"
+        }
+      ],
+      "name": "idna",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/idna@3.19",
+      "type": "library",
+      "version": "3.19"
+    },
+    {
+      "bom-ref": "pkg:pypi/iniconfig@2.3.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c76315c77db068650d49c5b56314774a7804df16fee4402c1f19d6d15d8c4730"
+        }
+      ],
+      "name": "iniconfig",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/iniconfig@2.3.0",
+      "type": "library",
+      "version": "2.3.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/jsonschema-specifications@2025.9.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d"
+        }
+      ],
+      "name": "jsonschema-specifications",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/jsonschema-specifications@2025.9.1",
+      "type": "library",
+      "version": "2025.9.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/jsonschema@4.26.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0c26707e2efad8aa1bfc5b7ce170f3fccc2e4918ff85989ba9ffa9facb2be326"
+        }
+      ],
+      "name": "jsonschema",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/jsonschema@4.26.0",
+      "type": "library",
+      "version": "4.26.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/librt@0.15.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4e66cbe84437497d951b799d3e1551291b6fb3d643820a7014b3655d57a59162"
+        }
+      ],
+      "name": "librt",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/librt@0.15.0",
+      "type": "library",
+      "version": "0.15.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/license-expression@30.4.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "73448f0aacd8d0808895bdc4b2c8e01a8d67646e4188f887375398c761f340fd"
+        }
+      ],
+      "name": "license-expression",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/license-expression@30.4.4",
+      "type": "library",
+      "version": "30.4.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/lxml@6.1.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1055241852f2b02068af4a625a5d32c087db193c12251928af2562ecd2239f18"
+        }
+      ],
+      "name": "lxml",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/lxml@6.1.2",
+      "type": "library",
+      "version": "6.1.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/mako@1.4.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d7904710b662996425a21627710c4777c45053146942cf8a7aebf757c92b8c27"
+        }
+      ],
+      "name": "mako",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/mako@1.4.1",
+      "type": "library",
+      "version": "1.4.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/markdown-it-py@4.2.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49"
+        }
+      ],
+      "name": "markdown-it-py",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/markdown-it-py@4.2.0",
+      "type": "library",
+      "version": "4.2.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/markupsafe@3.0.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698"
+        }
+      ],
+      "name": "markupsafe",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/markupsafe@3.0.3",
+      "type": "library",
+      "version": "3.0.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/mdurl@0.1.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
+        }
+      ],
+      "name": "mdurl",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/mdurl@0.1.2",
+      "type": "library",
+      "version": "0.1.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/msgpack@1.2.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "04c721c2c7448767e9e3f2520a475663d8ee0f09c31890f6d2bd70fd636a9647"
+        }
+      ],
+      "name": "msgpack",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/msgpack@1.2.1",
+      "type": "library",
+      "version": "1.2.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/mypy-extensions@1.1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "52e68efc3284861e772bbcd66823fde5ae21fd2fdb51c62a211403730b916558"
+        }
+      ],
+      "name": "mypy-extensions",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/mypy-extensions@1.1.0",
+      "type": "library",
+      "version": "1.1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/mypy@2.3.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "47c1b1207258513a9d93495f69c8be9de73916186f0e52703e8c461b7a623419"
+        }
+      ],
+      "name": "mypy",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/mypy@2.3.1",
+      "type": "library",
+      "version": "2.3.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/openpyxl@3.1.5",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "cf0e3cf56142039133628b5acffe8ef0c12bc902d2aadd3e0fe5878dc08d1050"
+        }
+      ],
+      "name": "openpyxl",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/openpyxl@3.1.5",
+      "type": "library",
+      "version": "3.1.5"
+    },
+    {
+      "bom-ref": "pkg:pypi/opentelemetry-api@1.44.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "67647e5e9566edcf421166fdf022b3537f818635daa852b289e34604dc6fb33a"
+        }
+      ],
+      "name": "opentelemetry-api",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/opentelemetry-api@1.44.0",
+      "type": "library",
+      "version": "1.44.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/opentelemetry-sdk@1.44.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "cebe7f65dc12f26ead75c6064de12fd2a9052e5060c0272d402cfa203aae123b"
+        }
+      ],
+      "name": "opentelemetry-sdk",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/opentelemetry-sdk@1.44.0",
+      "type": "library",
+      "version": "1.44.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/opentelemetry-semantic-conventions@0.65b0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f9b2b81e9d5b64f11bc952075e7e9c7fb0aab075c7fd1c46d597f1b919852d60"
+        }
+      ],
+      "name": "opentelemetry-semantic-conventions",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/opentelemetry-semantic-conventions@0.65b0",
+      "type": "library",
+      "version": "0.65b0"
+    },
+    {
+      "bom-ref": "pkg:pypi/packageurl-python@0.17.6",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1252ce3a102372ca6f86eb968e16f9014c4ba511c5c37d95a7f023e2ca6e5c25"
+        }
+      ],
+      "name": "packageurl-python",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/packageurl-python@0.17.6",
+      "type": "library",
+      "version": "0.17.6"
+    },
+    {
+      "bom-ref": "pkg:pypi/packaging@26.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79"
+        }
+      ],
+      "name": "packaging",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/packaging@26.3",
+      "type": "library",
+      "version": "26.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/pathspec@1.1.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "17db5ecd524104a120e173814c90367a96a98d07c45b2e10c2f3919fff91bf5a"
+        }
+      ],
+      "name": "pathspec",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pathspec@1.1.1",
+      "type": "library",
+      "version": "1.1.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/pgvector@0.5.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "07a9dcf735696879406983afc6eba9a787cef7c0cf6c367ca1a5779f036dee74"
+        }
+      ],
+      "name": "pgvector",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pgvector@0.5.0",
+      "type": "library",
+      "version": "0.5.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pillow@12.3.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce"
+        }
+      ],
+      "name": "pillow",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pillow@12.3.0",
+      "type": "library",
+      "version": "12.3.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pip-api@0.0.34",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9b75e958f14c5a2614bae415f2adf7eeb54d50a2cfbe7e24fd4826471bac3625"
+        }
+      ],
+      "name": "pip-api",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pip-api@0.0.34",
+      "type": "library",
+      "version": "0.0.34"
+    },
+    {
+      "bom-ref": "pkg:pypi/pip-audit@2.10.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1eb4565d19ebe5d48996f4b770b4d2b32887e12cb12cfa637f1a064011b55ffc"
+        }
+      ],
+      "name": "pip-audit",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pip-audit@2.10.1",
+      "type": "library",
+      "version": "2.10.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/pip-requirements-parser@32.0.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b4fa3a7a0be38243123cf9d1f3518da10c51bdb165a2b2985566247f9155a7d3"
+        }
+      ],
+      "name": "pip-requirements-parser",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pip-requirements-parser@32.0.1",
+      "type": "library",
+      "version": "32.0.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/pip@26.2.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f6ad667e89a1fe78046c8f13232b247200f5258d7828f3f7883d660878e0813f"
+        }
+      ],
+      "name": "pip",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pip@26.2.1",
+      "type": "library",
+      "version": "26.2.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/platformdirs@4.11.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "66a73d38a849810252df809a3d8bcbda8e26f6c189920e7535ad608a48dbb5ab"
+        }
+      ],
+      "name": "platformdirs",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/platformdirs@4.11.3",
+      "type": "library",
+      "version": "4.11.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/pluggy@1.6.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3"
+        }
+      ],
+      "name": "pluggy",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pluggy@1.6.0",
+      "type": "library",
+      "version": "1.6.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/py-serializable@2.1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9d5db56154a867a9b897c0163b33a793c804c80cee984116d02d49e4578fc103"
+        }
+      ],
+      "name": "py-serializable",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/py-serializable@2.1.0",
+      "type": "library",
+      "version": "2.1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pycparser@3.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29"
+        }
+      ],
+      "name": "pycparser",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pycparser@3.0",
+      "type": "library",
+      "version": "3.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pydantic-core@2.46.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "62f875393d7f270851f20523dd2e29f082bcc82292d66db2b64ea71f64b6e1c1"
+        }
+      ],
+      "name": "pydantic-core",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pydantic-core@2.46.4",
+      "type": "library",
+      "version": "2.46.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/pydantic@2.13.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c40756b57adaa8b1efeeced5c196f3f3b7c435f90e84ea7f443901bec8099ef6"
+        }
+      ],
+      "name": "pydantic",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pydantic@2.13.4",
+      "type": "library",
+      "version": "2.13.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/pygments@2.21.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "610ca751c9bc2492b38eb9a38a7fbc93edbbb2d7182edaf34e66ae493dee5c8c"
+        }
+      ],
+      "name": "pygments",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pygments@2.21.0",
+      "type": "library",
+      "version": "2.21.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pyjwt@2.13.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "41571c89ca91598c79e8ef18a2d07367d4810fbbd6f637794879baf1b7703423"
+        }
+      ],
+      "name": "pyjwt",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pyjwt@2.13.0",
+      "type": "library",
+      "version": "2.13.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/pyparsing@3.3.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"
+        }
+      ],
+      "name": "pyparsing",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/pyparsing@3.3.2",
+      "type": "library",
+      "version": "3.3.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/pytest@9.1.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1088fbde8f2b49d95a549a195707afa7a76a3ce9bcadc26b6d71f0ffda5fe313"
+        }
+      ],
+      "name": "pytest",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pytest@9.1.1",
+      "type": "library",
+      "version": "9.1.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/python-docx@1.2.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7bc9d7b7d8a69c9c02ca09216118c86552704edc23bac179283f2e38f86220ce"
+        }
+      ],
+      "name": "python-docx",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/python-docx@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/python-pptx@1.0.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "479a8af0eaf0f0d76b6f00b0887732874ad2e3188230315290cd1f9dd9cc7095"
+        }
+      ],
+      "name": "python-pptx",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/python-pptx@1.0.2",
+      "type": "library",
+      "version": "1.0.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/pyyaml@6.0.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
+        }
+      ],
+      "name": "pyyaml",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/pyyaml@6.0.3",
+      "type": "library",
+      "version": "6.0.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/redis@8.1.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6e1a19beef9225c83efd689c7e6b7da2d5215b1f42cd13b7fc3714d0a09c7b25"
+        }
+      ],
+      "name": "redis",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/redis@8.1.0",
+      "type": "library",
+      "version": "8.1.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/referencing@0.37.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "44aefc3142c5b842538163acb373e24cce6632bd54bdb01b21ad5863489f50d8"
+        }
+      ],
+      "name": "referencing",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/referencing@0.37.0",
+      "type": "library",
+      "version": "0.37.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/reportlab@5.0.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ebd13154be1c8515e665de70bd2d303ae9ddc3ef47e44afd5116441ca0283a26"
+        }
+      ],
+      "name": "reportlab",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/reportlab@5.0.1",
+      "type": "library",
+      "version": "5.0.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/requests@2.34.2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f288924cae4e29463698d6d60bc6a4da69c89185ad1e0bcc4104f584e960b9ed"
+        }
+      ],
+      "name": "requests",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/requests@2.34.2",
+      "type": "library",
+      "version": "2.34.2"
+    },
+    {
+      "bom-ref": "pkg:pypi/rich@15.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36"
+        }
+      ],
+      "name": "rich",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/rich@15.0.0",
+      "type": "library",
+      "version": "15.0.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/rpds-py@2026.6.3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1cebd1337c242e4ec2293e541f712b2da849b29f48f0c293684b71c0632625d4"
+        }
+      ],
+      "name": "rpds-py",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/rpds-py@2026.6.3",
+      "type": "library",
+      "version": "2026.6.3"
+    },
+    {
+      "bom-ref": "pkg:pypi/ruff@0.16.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "13171aa9d9af2240ee3504e639de73122c67e74036de5ba2e1d01422cd17e3dc"
+        }
+      ],
+      "name": "ruff",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/ruff@0.16.4",
+      "type": "library",
+      "version": "0.16.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/sortedcontainers@2.4.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "25caa5a06cc30b6b83d11423433f65d1f9d76c4c6a0c90e3379eaa43b9bfdb88"
+        }
+      ],
+      "name": "sortedcontainers",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/sortedcontainers@2.4.0",
+      "type": "library",
+      "version": "2.4.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/sqlalchemy@2.0.52",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5e2d46356ac2ccb7d268ab6c2319ac6a2b42f1b8d5fd8bd3d46855cd82abee97"
+        }
+      ],
+      "name": "sqlalchemy",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/sqlalchemy@2.0.52",
+      "type": "library",
+      "version": "2.0.52"
+    },
+    {
+      "bom-ref": "pkg:pypi/starlette@1.6.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d4e3ac5e546444960c710297a3c9fc3f7ebae1b7e963f3d36173b49da535be9b"
+        }
+      ],
+      "name": "starlette",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/starlette@1.6.0",
+      "type": "library",
+      "version": "1.6.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/tomli-w@1.2.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "2dd14fac5a47c27be9cd4c976af5a12d87fb1f0b4512f81d69cce3b35ae25021"
+        }
+      ],
+      "name": "tomli-w",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/tomli-w@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/tomli@2.4.1",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7c7e1a961a0b2f2472c1ac5b69affa0ae1132c39adcb67aba98568702b9cc23f"
+        }
+      ],
+      "name": "tomli",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/tomli@2.4.1",
+      "type": "library",
+      "version": "2.4.1"
+    },
+    {
+      "bom-ref": "pkg:pypi/truststore@0.10.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9d91bd436463ad5e4ee4aba766628dd6cd7010cf3e2461756b3303710eebc301"
+        }
+      ],
+      "name": "truststore",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/truststore@0.10.4",
+      "type": "library",
+      "version": "0.10.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/types-jsonschema@4.26.0.20260518",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e1dd53dc97a64f5eccdd6fa9839666e09bb500a8ebba2db6fdaf1789faea81a6"
+        }
+      ],
+      "name": "types-jsonschema",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/types-jsonschema@4.26.0.20260518",
+      "type": "library",
+      "version": "4.26.0.20260518"
+    },
+    {
+      "bom-ref": "pkg:pypi/types-openpyxl@3.1.5.20260807",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1a0a42b125f8023d3ae83cc057e379d301a87f45e60b6160917824fef28ab015"
+        }
+      ],
+      "name": "types-openpyxl",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/types-openpyxl@3.1.5.20260807",
+      "type": "library",
+      "version": "3.1.5.20260807"
+    },
+    {
+      "bom-ref": "pkg:pypi/types-pyyaml@6.0.12.20260815",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "28764110c9cf35846e733da32d8d734df7473c5dde9ef67c3b7332ec0e819858"
+        }
+      ],
+      "name": "types-pyyaml",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/types-pyyaml@6.0.12.20260815",
+      "type": "library",
+      "version": "6.0.12.20260815"
+    },
+    {
+      "bom-ref": "pkg:pypi/types-reportlab@4.5.1.20260807",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "879b1dccd85daf6ec15bfa9c293a2ab0190a73666d0f7df54fb512b3b6c1c7b5"
+        }
+      ],
+      "name": "types-reportlab",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/types-reportlab@4.5.1.20260807",
+      "type": "library",
+      "version": "4.5.1.20260807"
+    },
+    {
+      "bom-ref": "pkg:pypi/typing-extensions@4.16.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
+        }
+      ],
+      "name": "typing-extensions",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/typing-extensions@4.16.0",
+      "type": "library",
+      "version": "4.16.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/typing-inspection@0.4.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "547274fa6b0a561ccf549cc9524b999a578e737d015d8709d021f9d0d13bea47"
+        }
+      ],
+      "name": "typing-inspection",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/typing-inspection@0.4.4",
+      "type": "library",
+      "version": "0.4.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/urllib3@2.7.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c"
+        }
+      ],
+      "name": "urllib3",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/urllib3@2.7.0",
+      "type": "library",
+      "version": "2.7.0"
+    },
+    {
+      "bom-ref": "pkg:pypi/uvicorn@0.52.4",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "73acfee47a0b133c5de13d219492d62d8a31e935f4fe6e41a232451a15379f86"
+        }
+      ],
+      "name": "uvicorn",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "RUNTIME_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/uvicorn@0.52.4",
+      "type": "library",
+      "version": "0.52.4"
+    },
+    {
+      "bom-ref": "pkg:pypi/xlsxwriter@3.2.9",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "254b1c37a368c444eac6e2f867405cc9e461b0ed97a3233b2ac1e574efb4140c"
+        }
+      ],
+      "name": "xlsxwriter",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "TRANSITIVE"
+        }
+      ],
+      "purl": "pkg:pypi/xlsxwriter@3.2.9",
+      "type": "library",
+      "version": "3.2.9"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "pkg:pypi/ndt-agents@0.1.0",
+      "name": "ndt-agents",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "ndt:uv-lock-sha256",
+        "value": "fdba41c6834c6b3cb44ac844966ee65fd5c93f9008383eac8039b63cf304a908"
+      }
+    ],
+    "timestamp": "2026-08-21T12:00:00Z",
+    "tools": {
+      "components": [
+        {
+          "name": "tools/generate_sbom.py",
+          "type": "application",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  },
+  "serialNumber": "urn:uuid:bd28244f-077b-551b-9ec0-f4ef887704c8",
+  "specVersion": "1.6",
+  "version": 1
+}

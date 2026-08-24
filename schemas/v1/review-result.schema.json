@@ -1,0 +1,147 @@
+{
+  "$defs": {
+    "Issue": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_path": {
+          "anyOf": [
+            {
+              "maxLength": 1024,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Affected Path"
+        },
+        "code": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "next_action": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Action"
+        },
+        "severity": {
+          "enum": [
+            "INFO",
+            "WARNING",
+            "ERROR",
+            "CRITICAL"
+          ],
+          "title": "Severity",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Issue",
+      "type": "object"
+    },
+    "ReviewDecision": {
+      "enum": [
+        "PASS",
+        "REVISE",
+        "CONFLICT",
+        "HUMAN_REQUIRED",
+        "FAILED"
+      ],
+      "title": "ReviewDecision",
+      "type": "string"
+    }
+  },
+  "$id": "https://schemas.ndt-agents.local/v1/review-result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "completed_at": {
+      "format": "date-time",
+      "title": "Completed At",
+      "type": "string"
+    },
+    "correction_count": {
+      "maximum": 2,
+      "minimum": 0,
+      "title": "Correction Count",
+      "type": "integer"
+    },
+    "decision": {
+      "$ref": "#/$defs/ReviewDecision"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Issue"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "review_id": {
+      "format": "uuid",
+      "title": "Review Id",
+      "type": "string"
+    },
+    "reviewer_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Reviewer Version",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target_run_id": {
+      "format": "uuid",
+      "title": "Target Run Id",
+      "type": "string"
+    },
+    "target_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Target Sha256",
+      "type": "string"
+    },
+    "task_id": {
+      "format": "uuid",
+      "title": "Task Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "review_id",
+    "task_id",
+    "target_run_id",
+    "target_sha256",
+    "reviewer_version",
+    "decision",
+    "findings",
+    "correction_count",
+    "completed_at"
+  ],
+  "title": "ReviewResult",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

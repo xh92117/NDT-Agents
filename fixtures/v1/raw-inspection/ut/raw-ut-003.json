@@ -1,0 +1,25 @@
+{
+  "classification": "INTERNAL",
+  "device": {
+    "calibration_id": "SYNTHETIC-CALIBRATION-V1",
+    "device_id": "SYNTHETIC-DEVICE",
+    "mode": "SIMULATED"
+  },
+  "location": {
+    "component_id": "SYNTHETIC-COMPONENT-001",
+    "station": 3
+  },
+  "measurement": {
+    "name": "waveform_amplitude",
+    "unit": "method_defined",
+    "value": 50.96
+  },
+  "method_code": "UT",
+  "method_name": "ultrasonic",
+  "project_id": "00000000-0000-4000-8000-000000000002",
+  "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+  "sample_id": "RAW-UT-003",
+  "schema_version": "1.0.0",
+  "tenant_id": "00000000-0000-4000-8000-000000000001",
+  "training_use": "PROHIBITED"
+}

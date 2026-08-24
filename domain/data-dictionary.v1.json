@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "dictionary_id": "inspection-business-data-model",
+  "common_fields": [
+    "schema_version",
+    "created_at",
+    "created_by"
+  ],
+  "entities": [
+    {"name": "tenant", "scope": ["tenant_id"], "mutability": "VERSIONED", "key_fields": ["tenant_id", "code", "status", "policy_version"]},
+    {"name": "user", "scope": [], "mutability": "VERSIONED", "key_fields": ["user_id", "issuer", "subject", "status"]},
+    {"name": "membership", "scope": ["tenant_id"], "mutability": "VERSIONED", "key_fields": ["user_id", "project_id", "role_code", "permission_version", "valid_from", "valid_to"]},
+    {"name": "project", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["code", "status", "region", "policy_version"]},
+    {"name": "structure", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["structure_id", "class_code", "ontology_version"]},
+    {"name": "component", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["component_id", "structure_id", "parent_component_id", "role_code"]},
+    {"name": "inspection_location", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["location_id", "component_id", "geometry", "coordinate_reference"]},
+    {"name": "task", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["task_id", "task_class", "status", "budget_policy_version", "context_manifest_hash"]},
+    {"name": "subtask_run", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["run_id", "task_id", "agent_type", "agent_version", "context_hash", "status"]},
+    {"name": "checkpoint", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["checkpoint_id", "task_id", "sequence", "graph_version", "state_artifact_id"]},
+    {"name": "review_run", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["review_id", "target_id", "target_hash", "decision", "correction_count"]},
+    {"name": "approval", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["approval_id", "action", "target_type", "target_version", "target_hash", "actor_id", "outcome", "expires_at"]},
+    {"name": "tool_definition", "scope": [], "mutability": "VERSIONED", "key_fields": ["name", "version", "side_effect_class", "input_schema", "output_schema", "status"]},
+    {"name": "tool_call", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["call_id", "task_id", "run_id", "tool_name", "tool_version", "idempotency_key", "input_hash", "output_hash"]},
+    {"name": "artifact", "scope": ["tenant_id", "project_id"], "mutability": "IMMUTABLE_OR_VERSIONED", "key_fields": ["artifact_id", "uri", "media_type", "size_bytes", "content_hash", "classification", "retention_policy"]},
+    {"name": "raw_dataset", "scope": ["tenant_id", "project_id"], "mutability": "IMMUTABLE", "key_fields": ["dataset_id", "method_code", "instrument_id", "calibration_id", "operator_id", "manifest_hash"]},
+    {"name": "processing_run", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["processing_run_id", "dataset_id", "adapter_version", "parser_version", "model_version", "parameters_hash", "status"]},
+    {"name": "observation", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["observation_id", "processing_run_id", "location_id", "type_code", "value", "unit_code", "evidence_hash"]},
+    {"name": "defect_hypothesis", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["hypothesis_id", "damage_family", "confidence", "limitations", "supersedes_id"]},
+    {"name": "assessment", "scope": ["tenant_id", "project_id"], "mutability": "VERSIONED", "key_fields": ["assessment_id", "criteria_version", "severity", "urgency", "report_eligible", "review_state"]},
+    {"name": "report", "scope": ["tenant_id", "project_id"], "mutability": "IMMUTABLE_REVISION", "key_fields": ["report_id", "type", "revision", "status", "artifact_hash", "approval_id", "supersedes_id"]},
+    {"name": "memory_event", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["memory_event_id", "scope_type", "source_id", "content_hash", "confidence", "approval_state"]},
+    {"name": "memory_snapshot", "scope": ["tenant_id", "project_id"], "mutability": "APPEND_ONLY", "key_fields": ["snapshot_id", "task_id", "parent_snapshot_id", "graph_version", "manifest_hash"]},
+    {"name": "knowledge_source", "scope": ["tenant_id"], "mutability": "VERSIONED", "key_fields": ["source_id", "project_id", "rights_status", "classification", "source_hash", "status"]},
+    {"name": "knowledge_version", "scope": ["tenant_id"], "mutability": "IMMUTABLE_VERSION", "key_fields": ["knowledge_version_id", "source_id", "project_id", "parser_chain_version", "content_hash", "status", "approval_id"]},
+    {"name": "knowledge_chunk", "scope": ["tenant_id"], "mutability": "IMMUTABLE_VERSION", "key_fields": ["chunk_id", "knowledge_version_id", "project_id", "source_location", "content_hash", "embedding_version", "index_version"]},
+    {"name": "audit_event", "scope": ["tenant_id"], "mutability": "IMMUTABLE", "key_fields": ["audit_event_id", "project_id", "actor_id", "action", "target", "policy_decision", "input_hash", "output_hash", "occurred_at", "outcome"]},
+    {"name": "cache_entry", "scope": ["tenant_id", "project_id"], "mutability": "REPLACEABLE", "key_fields": ["cache_class", "cache_key_hash", "scope_manifest_hash", "version_manifest_hash", "expires_at", "validation_state"]}
+  ],
+  "required_traceability": [
+    "report.approval",
+    "report.assessment",
+    "assessment.defect_hypothesis",
+    "defect_hypothesis.observation",
+    "observation.processing_run",
+    "processing_run.raw_dataset",
+    "raw_dataset.artifact",
+    "raw_dataset.instrument",
+    "raw_dataset.calibration",
+    "assessment.standard_clause"
+  ]
+}

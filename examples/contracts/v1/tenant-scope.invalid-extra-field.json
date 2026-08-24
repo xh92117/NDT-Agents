@@ -1,0 +1,11 @@
+{
+  "permission_version": "perm-1",
+  "project_id": "00000000-0000-4000-8000-000000000002",
+  "role_codes": [
+    "NDT_ENGINEER"
+  ],
+  "schema_version": "1.0.0",
+  "tenant_id": "00000000-0000-4000-8000-000000000001",
+  "unexpected_field": "must be rejected",
+  "user_id": "00000000-0000-4000-8000-000000000003"
+}

@@ -1,0 +1,90 @@
+{
+  "contracts": [
+    {
+      "contract": "tenant-scope",
+      "invalid_example": "examples/contracts/v1/tenant-scope.invalid-extra-field.json",
+      "schema": "schemas/v1/tenant-scope.schema.json",
+      "schema_sha256": "b88f9ef6ff319f783302e4bb7e89599d8ff7e45c93b9a5c9331ed08f4327cd01",
+      "valid_example": "examples/contracts/v1/tenant-scope.valid.json"
+    },
+    {
+      "contract": "budget-policy",
+      "invalid_example": "examples/contracts/v1/budget-policy.invalid-extra-field.json",
+      "schema": "schemas/v1/budget-policy.schema.json",
+      "schema_sha256": "7f866b5dcb19ac40fdd6760293a84367f5e88a778c3b52711e0fc38595a7bc40",
+      "valid_example": "examples/contracts/v1/budget-policy.valid.json"
+    },
+    {
+      "contract": "artifact",
+      "invalid_example": "examples/contracts/v1/artifact.invalid-extra-field.json",
+      "schema": "schemas/v1/artifact.schema.json",
+      "schema_sha256": "8037f0850ff5be6f13e1feee1963b543a2504b8cadbbdd70d93234a977e7d353",
+      "valid_example": "examples/contracts/v1/artifact.valid.json"
+    },
+    {
+      "contract": "citation",
+      "invalid_example": "examples/contracts/v1/citation.invalid-extra-field.json",
+      "schema": "schemas/v1/citation.schema.json",
+      "schema_sha256": "011d9ce00107d7a0d1b6f09a92095cc17febc1ed357b5a285ab1b3d3ab6758b1",
+      "valid_example": "examples/contracts/v1/citation.valid.json"
+    },
+    {
+      "contract": "task-context",
+      "invalid_example": "examples/contracts/v1/task-context.invalid-extra-field.json",
+      "schema": "schemas/v1/task-context.schema.json",
+      "schema_sha256": "835955d0a7f134823046ffafc25471b0eaa5586b0e7fdd4a69ef4b3c5313931e",
+      "valid_example": "examples/contracts/v1/task-context.valid.json"
+    },
+    {
+      "contract": "agent-result",
+      "invalid_example": "examples/contracts/v1/agent-result.invalid-extra-field.json",
+      "schema": "schemas/v1/agent-result.schema.json",
+      "schema_sha256": "9d0c2f5482d7265935da01a1e60fb89323ea64b4af13c5fa38674ac8e2a2c9c8",
+      "valid_example": "examples/contracts/v1/agent-result.valid.json"
+    },
+    {
+      "contract": "tool-result",
+      "invalid_example": "examples/contracts/v1/tool-result.invalid-extra-field.json",
+      "schema": "schemas/v1/tool-result.schema.json",
+      "schema_sha256": "0b46197ad39d326001f6bed821f93498ab18bc5ce2d62c2d018a2dda1990b140",
+      "valid_example": "examples/contracts/v1/tool-result.valid.json"
+    },
+    {
+      "contract": "checkpoint",
+      "invalid_example": "examples/contracts/v1/checkpoint.invalid-extra-field.json",
+      "schema": "schemas/v1/checkpoint.schema.json",
+      "schema_sha256": "4270dd63f5e794febc574ac2ab38a86b5247f26b9ebd574c8985701cabc88060",
+      "valid_example": "examples/contracts/v1/checkpoint.valid.json"
+    },
+    {
+      "contract": "memory-record",
+      "invalid_example": "examples/contracts/v1/memory-record.invalid-extra-field.json",
+      "schema": "schemas/v1/memory-record.schema.json",
+      "schema_sha256": "3a61b3e984d2eccbf3602222762e2eb22b2ae1af8fdc9edab938e106811c38c3",
+      "valid_example": "examples/contracts/v1/memory-record.valid.json"
+    },
+    {
+      "contract": "cache-entry",
+      "invalid_example": "examples/contracts/v1/cache-entry.invalid-extra-field.json",
+      "schema": "schemas/v1/cache-entry.schema.json",
+      "schema_sha256": "2d4eb5c6012f98ac9fc1f8b6d0e3e53ae0d2bea24c2d428b42087fad073cedac",
+      "valid_example": "examples/contracts/v1/cache-entry.valid.json"
+    },
+    {
+      "contract": "review-result",
+      "invalid_example": "examples/contracts/v1/review-result.invalid-extra-field.json",
+      "schema": "schemas/v1/review-result.schema.json",
+      "schema_sha256": "f7c82f37b482b3d81cf85675ed5de40a24587ca6516a80a6496a5de7e181a936",
+      "valid_example": "examples/contracts/v1/review-result.valid.json"
+    },
+    {
+      "contract": "approval-record",
+      "invalid_example": "examples/contracts/v1/approval-record.invalid-extra-field.json",
+      "schema": "schemas/v1/approval-record.schema.json",
+      "schema_sha256": "21b02b2174a69c6029547734e139cd9ee3dc620d4ec21ec298cada23c972b2e2",
+      "valid_example": "examples/contracts/v1/approval-record.valid.json"
+    }
+  ],
+  "generated_by": "tools/generate_schemas.py",
+  "manifest_version": "1.0.0"
+}

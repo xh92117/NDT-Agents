@@ -1,0 +1,6 @@
+Synthetic inspection note 21
+Structure=bridge
+Method=ultrasonic
+Location=A-01
+Value=12.5
+Unit=mm

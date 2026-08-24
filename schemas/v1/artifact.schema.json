@@ -1,0 +1,131 @@
+{
+  "$defs": {
+    "DataClassification": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ],
+      "title": "DataClassification",
+      "type": "string"
+    },
+    "TenantScope": {
+      "additionalProperties": false,
+      "properties": {
+        "permission_version": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Permission Version",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "role_codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Role Codes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "tenant_id": {
+          "format": "uuid",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "user_id": {
+          "format": "uuid",
+          "title": "User Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "project_id",
+        "user_id",
+        "role_codes",
+        "permission_version"
+      ],
+      "title": "TenantScope",
+      "type": "object"
+    }
+  },
+  "$id": "https://schemas.ndt-agents.local/v1/artifact.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "format": "uuid",
+      "title": "Artifact Id",
+      "type": "string"
+    },
+    "artifact_version": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Artifact Version",
+      "type": "string"
+    },
+    "classification": {
+      "$ref": "#/$defs/DataClassification"
+    },
+    "immutable": {
+      "title": "Immutable",
+      "type": "boolean"
+    },
+    "media_type": {
+      "maxLength": 255,
+      "minLength": 1,
+      "title": "Media Type",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/TenantScope"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "size_bytes": {
+      "minimum": 0,
+      "title": "Size Bytes",
+      "type": "integer"
+    },
+    "uri": {
+      "maxLength": 2048,
+      "minLength": 1,
+      "title": "Uri",
+      "type": "string"
+    }
+  },
+  "required": [
+    "artifact_id",
+    "scope",
+    "artifact_version",
+    "uri",
+    "media_type",
+    "size_bytes",
+    "sha256",
+    "classification",
+    "immutable"
+  ],
+  "title": "ArtifactRef",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

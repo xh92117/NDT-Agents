@@ -1,0 +1,317 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "format": "uuid",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_version": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Artifact Version",
+          "type": "string"
+        },
+        "classification": {
+          "$ref": "#/$defs/DataClassification"
+        },
+        "immutable": {
+          "title": "Immutable",
+          "type": "boolean"
+        },
+        "media_type": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Media Type",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/TenantScope"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        },
+        "uri": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "title": "Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "scope",
+        "artifact_version",
+        "uri",
+        "media_type",
+        "size_bytes",
+        "sha256",
+        "classification",
+        "immutable"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "DataClassification": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ],
+      "title": "DataClassification",
+      "type": "string"
+    },
+    "TenantScope": {
+      "additionalProperties": false,
+      "properties": {
+        "permission_version": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Permission Version",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "role_codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Role Codes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "tenant_id": {
+          "format": "uuid",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "user_id": {
+          "format": "uuid",
+          "title": "User Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "project_id",
+        "user_id",
+        "role_codes",
+        "permission_version"
+      ],
+      "title": "TenantScope",
+      "type": "object"
+    },
+    "ToolStatus": {
+      "enum": [
+        "SUCCESS",
+        "PARTIAL_SUCCESS",
+        "FAILED",
+        "BLOCKED",
+        "DENIED",
+        "TIMEOUT",
+        "CANCELLED"
+      ],
+      "title": "ToolStatus",
+      "type": "string"
+    }
+  },
+  "$id": "https://schemas.ndt-agents.local/v1/tool-result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "call_id": {
+      "format": "uuid",
+      "title": "Call Id",
+      "type": "string"
+    },
+    "completed_at": {
+      "format": "date-time",
+      "title": "Completed At",
+      "type": "string"
+    },
+    "duration_ms": {
+      "minimum": 0,
+      "title": "Duration Ms",
+      "type": "integer"
+    },
+    "encoding": {
+      "anyOf": [
+        {
+          "maxLength": 64,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Encoding"
+    },
+    "error_code": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error Code"
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Exit Code"
+    },
+    "idempotency_key": {
+      "anyOf": [
+        {
+          "maxLength": 256,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Idempotency Key"
+    },
+    "input_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Input Sha256",
+      "type": "string"
+    },
+    "output": {
+      "additionalProperties": true,
+      "title": "Output",
+      "type": "object"
+    },
+    "output_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Output Sha256"
+    },
+    "retryable": {
+      "title": "Retryable",
+      "type": "boolean"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/TenantScope"
+    },
+    "status": {
+      "$ref": "#/$defs/ToolStatus"
+    },
+    "stderr": {
+      "maxLength": 200000,
+      "title": "Stderr",
+      "type": "string"
+    },
+    "stdout": {
+      "maxLength": 200000,
+      "title": "Stdout",
+      "type": "string"
+    },
+    "task_id": {
+      "format": "uuid",
+      "title": "Task Id",
+      "type": "string"
+    },
+    "tool_name": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Tool Name",
+      "type": "string"
+    },
+    "tool_version": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Tool Version",
+      "type": "string"
+    },
+    "truncated": {
+      "title": "Truncated",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "call_id",
+    "task_id",
+    "run_id",
+    "scope",
+    "tool_name",
+    "tool_version",
+    "status",
+    "output",
+    "stdout",
+    "stderr",
+    "truncated",
+    "artifacts",
+    "input_sha256",
+    "retryable",
+    "duration_ms",
+    "completed_at"
+  ],
+  "title": "ToolResult",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

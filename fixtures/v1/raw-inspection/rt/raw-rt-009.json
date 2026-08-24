@@ -1,0 +1,25 @@
+{
+  "classification": "INTERNAL",
+  "device": {
+    "calibration_id": "SYNTHETIC-CALIBRATION-V1",
+    "device_id": "SYNTHETIC-DEVICE",
+    "mode": "SIMULATED"
+  },
+  "location": {
+    "component_id": "SYNTHETIC-COMPONENT-001",
+    "station": 9
+  },
+  "measurement": {
+    "name": "rebound_index",
+    "unit": "method_defined",
+    "value": 37.44
+  },
+  "method_code": "RT",
+  "method_name": "rebound_testing",
+  "project_id": "00000000-0000-4000-8000-000000000002",
+  "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+  "sample_id": "RAW-RT-009",
+  "schema_version": "1.0.0",
+  "tenant_id": "00000000-0000-4000-8000-000000000001",
+  "training_use": "PROHIBITED"
+}

@@ -1,0 +1,166 @@
+{
+  "$defs": {
+    "ApprovalOutcome": {
+      "enum": [
+        "APPROVED",
+        "REJECTED",
+        "CHANGES_REQUESTED",
+        "EXPIRED",
+        "CANCELLED"
+      ],
+      "title": "ApprovalOutcome",
+      "type": "string"
+    },
+    "TenantScope": {
+      "additionalProperties": false,
+      "properties": {
+        "permission_version": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Permission Version",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "role_codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Role Codes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "tenant_id": {
+          "format": "uuid",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "user_id": {
+          "format": "uuid",
+          "title": "User Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "project_id",
+        "user_id",
+        "role_codes",
+        "permission_version"
+      ],
+      "title": "TenantScope",
+      "type": "object"
+    }
+  },
+  "$id": "https://schemas.ndt-agents.local/v1/approval-record.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Action",
+      "type": "string"
+    },
+    "actor_id": {
+      "format": "uuid",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "approval_id": {
+      "format": "uuid",
+      "title": "Approval Id",
+      "type": "string"
+    },
+    "decided_at": {
+      "format": "date-time",
+      "title": "Decided At",
+      "type": "string"
+    },
+    "expires_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Expires At"
+    },
+    "outcome": {
+      "$ref": "#/$defs/ApprovalOutcome"
+    },
+    "policy_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "reason": {
+      "maxLength": 4000,
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/TenantScope"
+    },
+    "target_id": {
+      "format": "uuid",
+      "title": "Target Id",
+      "type": "string"
+    },
+    "target_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Target Sha256",
+      "type": "string"
+    },
+    "target_type": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Target Type",
+      "type": "string"
+    },
+    "target_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Target Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "approval_id",
+    "scope",
+    "action",
+    "target_type",
+    "target_id",
+    "target_version",
+    "target_sha256",
+    "policy_version",
+    "actor_id",
+    "outcome",
+    "reason",
+    "decided_at",
+    "expires_at"
+  ],
+  "title": "ApprovalRecord",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

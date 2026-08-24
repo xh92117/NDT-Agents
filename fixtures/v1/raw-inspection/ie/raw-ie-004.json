@@ -1,0 +1,25 @@
+{
+  "classification": "INTERNAL",
+  "device": {
+    "calibration_id": "SYNTHETIC-CALIBRATION-V1",
+    "device_id": "SYNTHETIC-DEVICE",
+    "mode": "SIMULATED"
+  },
+  "location": {
+    "component_id": "SYNTHETIC-COMPONENT-001",
+    "station": 4
+  },
+  "measurement": {
+    "name": "peak_frequency_hz",
+    "unit": "method_defined",
+    "value": 4059.0
+  },
+  "method_code": "IE",
+  "method_name": "impact_echo",
+  "project_id": "00000000-0000-4000-8000-000000000002",
+  "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+  "sample_id": "RAW-IE-004",
+  "schema_version": "1.0.0",
+  "tenant_id": "00000000-0000-4000-8000-000000000001",
+  "training_use": "PROHIBITED"
+}

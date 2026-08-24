@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "ontology_id": "civil-infrastructure-ndt",
+  "structure_classes": [
+    "ROAD",
+    "BRIDGE",
+    "TUNNEL",
+    "HYDRAULIC_STRUCTURE",
+    "MUNICIPAL_BUILDING",
+    "ENERGY_INFRASTRUCTURE_BUILDING"
+  ],
+  "component_roles": [
+    "FOUNDATION",
+    "SUBSTRUCTURE",
+    "SUPERSTRUCTURE",
+    "DECK_OR_SLAB",
+    "WALL_OR_LINING",
+    "BEAM_OR_GIRDER",
+    "COLUMN_OR_PIER",
+    "JOINT_OR_BEARING",
+    "CABLE_OR_TENDON",
+    "PAVEMENT_OR_SURFACE",
+    "PIPE_OR_CONDUIT",
+    "EQUIPMENT_SUPPORT",
+    "OTHER"
+  ],
+  "material_classes": [
+    "PLAIN_CONCRETE",
+    "REINFORCED_CONCRETE",
+    "STRUCTURAL_STEEL",
+    "CONCRETE_FILLED_STEEL_TUBE",
+    "OTHER_VERSIONED_MATERIAL"
+  ],
+  "inspection_methods": [
+    {"code": "UT", "name": "ultrasonic testing"},
+    {"code": "GPR", "name": "ground-penetrating radar"},
+    {"code": "IE", "name": "impact echo"},
+    {"code": "RT", "name": "rebound testing"},
+    {"code": "AE", "name": "acoustic emission"},
+    {"code": "MV", "name": "machine vision"}
+  ],
+  "damage_families": [
+    "CRACKING",
+    "VOID_OR_DELAMINATION",
+    "CORROSION_RELATED",
+    "SECTION_LOSS",
+    "DEFORMATION_OR_DISPLACEMENT",
+    "MOISTURE_OR_LEAKAGE",
+    "MATERIAL_DEGRADATION",
+    "BOND_OR_INTERFACE",
+    "FATIGUE_OR_FRACTURE",
+    "CONSTRUCTION_ANOMALY",
+    "UNKNOWN"
+  ],
+  "evidence_layers": [
+    "INDICATION",
+    "OBSERVATION",
+    "DEFECT_HYPOTHESIS",
+    "CONDITION_ASSESSMENT"
+  ],
+  "required_scope": {
+    "project_objects": ["tenant_id", "project_id"],
+    "component_objects": ["tenant_id", "project_id", "structure_id", "component_id"]
+  },
+  "invariants": [
+    "SCOPE_MATCH",
+    "ACYCLIC_COMPONENT_TREE",
+    "REGISTERED_UNIT_DIMENSION",
+    "FORMAL_CONCLUSION_REVIEWED",
+    "VALID_CALIBRATION_FOR_FORMAL_USE",
+    "OBSERVATION_HAS_PROVENANCE",
+    "CONFLICTS_REMAIN_EXPLICIT",
+    "WITHDRAWN_KNOWLEDGE_NOT_APPLICABLE"
+  ]
+}

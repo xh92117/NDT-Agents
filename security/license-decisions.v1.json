@@ -1,0 +1,797 @@
+{
+  "approval": {
+    "required_roles": [
+      "LEGAL_OWNER",
+      "SECURITY_OWNER"
+    ],
+    "state": "PENDING_HUMAN_REVIEW"
+  },
+  "components": [
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "alembic",
+      "purl": "pkg:pypi/alembic@1.19.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "1.19.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "annotated-doc",
+      "purl": "pkg:pypi/annotated-doc@0.0.5",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.0.5"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "annotated-types",
+      "purl": "pkg:pypi/annotated-types@0.8.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.8.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "anyio",
+      "purl": "pkg:pypi/anyio@4.14.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "4.14.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "ast-serialize",
+      "purl": "pkg:pypi/ast-serialize@0.8.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.8.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "asyncpg",
+      "purl": "pkg:pypi/asyncpg@0.31.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "0.31.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "attrs",
+      "purl": "pkg:pypi/attrs@26.1.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "26.1.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "boolean-py",
+      "purl": "pkg:pypi/boolean-py@5.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "5.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "cachecontrol",
+      "purl": "pkg:pypi/cachecontrol@0.14.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.14.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2026.7.22",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2026.7.22"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "cffi",
+      "purl": "pkg:pypi/cffi@2.1.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.1.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "charset-normalizer",
+      "purl": "pkg:pypi/charset-normalizer@3.5.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.5.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "click",
+      "purl": "pkg:pypi/click@8.4.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "8.4.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.4.6"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "cryptography",
+      "purl": "pkg:pypi/cryptography@50.0.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "50.0.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "cyclonedx-python-lib",
+      "purl": "pkg:pypi/cyclonedx-python-lib@11.12.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "11.12.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "defusedxml",
+      "purl": "pkg:pypi/defusedxml@0.7.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.7.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "et-xmlfile",
+      "purl": "pkg:pypi/et-xmlfile@2.0.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.0.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "fastapi",
+      "purl": "pkg:pypi/fastapi@0.141.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "0.141.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "filelock",
+      "purl": "pkg:pypi/filelock@3.32.3",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.32.3"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "greenlet",
+      "purl": "pkg:pypi/greenlet@3.5.5",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.5.5"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "h11",
+      "purl": "pkg:pypi/h11@0.16.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.16.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "httpcore2",
+      "purl": "pkg:pypi/httpcore2@2.12.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.12.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "httpx2-jsfetch",
+      "purl": "pkg:pypi/httpx2-jsfetch@1.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "httpx2",
+      "purl": "pkg:pypi/httpx2@2.12.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "2.12.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.19",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.19"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "iniconfig",
+      "purl": "pkg:pypi/iniconfig@2.3.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.3.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "jsonschema-specifications",
+      "purl": "pkg:pypi/jsonschema-specifications@2025.9.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2025.9.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "jsonschema",
+      "purl": "pkg:pypi/jsonschema@4.26.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "4.26.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "librt",
+      "purl": "pkg:pypi/librt@0.15.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.15.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "license-expression",
+      "purl": "pkg:pypi/license-expression@30.4.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "30.4.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "lxml",
+      "purl": "pkg:pypi/lxml@6.1.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "6.1.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "mako",
+      "purl": "pkg:pypi/mako@1.4.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.4.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "markdown-it-py",
+      "purl": "pkg:pypi/markdown-it-py@4.2.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "4.2.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "markupsafe",
+      "purl": "pkg:pypi/markupsafe@3.0.3",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.0.3"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "mdurl",
+      "purl": "pkg:pypi/mdurl@0.1.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.1.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "msgpack",
+      "purl": "pkg:pypi/msgpack@1.2.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.2.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "mypy-extensions",
+      "purl": "pkg:pypi/mypy-extensions@1.1.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.1.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "mypy",
+      "purl": "pkg:pypi/mypy@2.3.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "2.3.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "openpyxl",
+      "purl": "pkg:pypi/openpyxl@3.1.5",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "3.1.5"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "opentelemetry-api",
+      "purl": "pkg:pypi/opentelemetry-api@1.44.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "1.44.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "opentelemetry-sdk",
+      "purl": "pkg:pypi/opentelemetry-sdk@1.44.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "1.44.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "opentelemetry-semantic-conventions",
+      "purl": "pkg:pypi/opentelemetry-semantic-conventions@0.65b0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.65b0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "packageurl-python",
+      "purl": "pkg:pypi/packageurl-python@0.17.6",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.17.6"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "packaging",
+      "purl": "pkg:pypi/packaging@26.3",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "26.3"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pathspec",
+      "purl": "pkg:pypi/pathspec@1.1.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.1.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pgvector",
+      "purl": "pkg:pypi/pgvector@0.5.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "0.5.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pillow",
+      "purl": "pkg:pypi/pillow@12.3.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "12.3.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pip-api",
+      "purl": "pkg:pypi/pip-api@0.0.34",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.0.34"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pip-audit",
+      "purl": "pkg:pypi/pip-audit@2.10.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "2.10.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pip-requirements-parser",
+      "purl": "pkg:pypi/pip-requirements-parser@32.0.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "32.0.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pip",
+      "purl": "pkg:pypi/pip@26.2.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "26.2.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "platformdirs",
+      "purl": "pkg:pypi/platformdirs@4.11.3",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "4.11.3"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pluggy",
+      "purl": "pkg:pypi/pluggy@1.6.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.6.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "py-serializable",
+      "purl": "pkg:pypi/py-serializable@2.1.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.1.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pycparser",
+      "purl": "pkg:pypi/pycparser@3.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pydantic-core",
+      "purl": "pkg:pypi/pydantic-core@2.46.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.46.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pydantic",
+      "purl": "pkg:pypi/pydantic@2.13.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "2.13.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pygments",
+      "purl": "pkg:pypi/pygments@2.21.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.21.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pyjwt",
+      "purl": "pkg:pypi/pyjwt@2.13.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "2.13.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pyparsing",
+      "purl": "pkg:pypi/pyparsing@3.3.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.3.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pytest",
+      "purl": "pkg:pypi/pytest@9.1.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "9.1.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "python-docx",
+      "purl": "pkg:pypi/python-docx@1.2.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "1.2.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "python-pptx",
+      "purl": "pkg:pypi/python-pptx@1.0.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "1.0.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "pyyaml",
+      "purl": "pkg:pypi/pyyaml@6.0.3",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "6.0.3"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "redis",
+      "purl": "pkg:pypi/redis@8.1.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "8.1.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "referencing",
+      "purl": "pkg:pypi/referencing@0.37.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.37.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "reportlab",
+      "purl": "pkg:pypi/reportlab@5.0.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "5.0.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "requests",
+      "purl": "pkg:pypi/requests@2.34.2",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.34.2"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "rich",
+      "purl": "pkg:pypi/rich@15.0.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "15.0.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "rpds-py",
+      "purl": "pkg:pypi/rpds-py@2026.6.3",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2026.6.3"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "ruff",
+      "purl": "pkg:pypi/ruff@0.16.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "0.16.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "sortedcontainers",
+      "purl": "pkg:pypi/sortedcontainers@2.4.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.4.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "sqlalchemy",
+      "purl": "pkg:pypi/sqlalchemy@2.0.52",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "2.0.52"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "starlette",
+      "purl": "pkg:pypi/starlette@1.6.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.6.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "tomli-w",
+      "purl": "pkg:pypi/tomli-w@1.2.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "1.2.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "tomli",
+      "purl": "pkg:pypi/tomli@2.4.1",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.4.1"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "truststore",
+      "purl": "pkg:pypi/truststore@0.10.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.10.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "types-jsonschema",
+      "purl": "pkg:pypi/types-jsonschema@4.26.0.20260518",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "4.26.0.20260518"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "types-openpyxl",
+      "purl": "pkg:pypi/types-openpyxl@3.1.5.20260807",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "3.1.5.20260807"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "types-pyyaml",
+      "purl": "pkg:pypi/types-pyyaml@6.0.12.20260815",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "6.0.12.20260815"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "types-reportlab",
+      "purl": "pkg:pypi/types-reportlab@4.5.1.20260807",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "4.5.1.20260807"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "typing-extensions",
+      "purl": "pkg:pypi/typing-extensions@4.16.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "4.16.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "typing-inspection",
+      "purl": "pkg:pypi/typing-inspection@0.4.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "0.4.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@2.7.0",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "2.7.0"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "uvicorn",
+      "purl": "pkg:pypi/uvicorn@0.52.4",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "RUNTIME_DIRECT",
+      "version": "0.52.4"
+    },
+    {
+      "decision": "PENDING",
+      "declared_license": "UNKNOWN_PENDING_METADATA_AND_TEXT_REVIEW",
+      "name": "xlsxwriter",
+      "purl": "pkg:pypi/xlsxwriter@3.2.9",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "TRANSITIVE",
+      "version": "3.2.9"
+    }
+  ],
+  "inventory_version": "1.0.0",
+  "sbom_path": "sbom/cyclonedx.v1.json",
+  "sbom_sha256": "c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd"
+}

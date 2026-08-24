@@ -1,0 +1,26 @@
+{
+  "action": "PUBLISH_KNOWLEDGE",
+  "actor_id": "00000000-0000-4000-8000-000000000003",
+  "approval_id": "00000000-0000-4000-8000-000000000013",
+  "decided_at": "2026-08-21T12:00:00Z",
+  "expires_at": null,
+  "outcome": "APPROVED",
+  "policy_version": "approval-1",
+  "reason": "Synthetic contract example.",
+  "schema_version": "1.0.0",
+  "scope": {
+    "permission_version": "perm-1",
+    "project_id": "00000000-0000-4000-8000-000000000002",
+    "role_codes": [
+      "NDT_ENGINEER"
+    ],
+    "schema_version": "1.0.0",
+    "tenant_id": "00000000-0000-4000-8000-000000000001",
+    "user_id": "00000000-0000-4000-8000-000000000003"
+  },
+  "target_id": "00000000-0000-4000-8000-000000000006",
+  "target_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "target_type": "KNOWLEDGE_VERSION",
+  "target_version": "1",
+  "unexpected_field": "must be rejected"
+}

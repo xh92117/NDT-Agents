@@ -1,0 +1,45 @@
+{
+  "correction_rounds": {
+    "active": 1,
+    "default": 1,
+    "hard": 2
+  },
+  "graph_steps": {
+    "active": 1,
+    "default": 1,
+    "hard": 2
+  },
+  "llm_calls": {
+    "active": 1,
+    "default": 1,
+    "hard": 2
+  },
+  "policy_id": "budget-p1-v1",
+  "professional_concurrency": {
+    "active": 1,
+    "default": 1,
+    "hard": 1
+  },
+  "review_rounds": {
+    "active": 1,
+    "default": 1,
+    "hard": 2
+  },
+  "schema_version": "1.0.0",
+  "task_class": "P1",
+  "tool_calls": {
+    "active": 1,
+    "default": 1,
+    "hard": 2
+  },
+  "total_tokens": {
+    "active": 10000,
+    "default": 10000,
+    "hard": 20000
+  },
+  "wall_time_ms": {
+    "active": 120000,
+    "default": 120000,
+    "hard": 300000
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "approval": {
+    "required_roles": [
+      "SECURITY_OWNER",
+      "LEGAL_OWNER",
+      "OPERATIONS_OWNER",
+      "QUALITY_OWNER"
+    ],
+    "state": "PROPOSED_FOR_HUMAN_APPROVAL"
+  },
+  "assets": [
+    "IDENTITY_AND_PERMISSION_CLAIMS",
+    "TENANT_DATA",
+    "RAW_INSPECTION_DATA",
+    "LICENSED_KNOWLEDGE",
+    "PROMPTS_AND_SKILLS",
+    "CREDENTIALS_AND_KEYS",
+    "TOOL_POLICIES",
+    "APPROVALS",
+    "AUDIT_EVENTS",
+    "CHECKPOINTS",
+    "PUBLISHED_ARTIFACTS",
+    "SBOMS_AND_RELEASE_SIGNATURES"
+  ],
+  "baseline_version": "1.0.0",
+  "classifications": [
+    {
+      "code": "PUBLIC",
+      "encryption_at_rest": "INTEGRITY_PROTECTED",
+      "prompt_allowed": true
+    },
+    {
+      "code": "INTERNAL",
+      "encryption_at_rest": "AES_256_OR_APPROVED_EQUIVALENT",
+      "prompt_allowed": true
+    },
+    {
+      "code": "CONFIDENTIAL",
+      "encryption_at_rest": "AES_256_OR_APPROVED_EQUIVALENT",
+      "prompt_allowed": "POLICY_AND_PROVIDER_DEPENDENT"
+    },
+    {
+      "code": "RESTRICTED",
+      "encryption_at_rest": "DEDICATED_SECRET_OR_RESTRICTED_EVIDENCE_STORE",
+      "prompt_allowed": false
+    }
+  ],
+  "controls": [
+    {
+      "control_id": "SEC-ID-001",
+      "implementation_tasks": ["S1-03"],
+      "owner": "SECURITY_OWNER",
+      "tests": ["SEC-TENANT"],
+      "title": "OIDC, deny-by-default RBAC, explicit scope, and RLS"
+    },
+    {
+      "control_id": "SEC-KEY-001",
+      "implementation_tasks": ["S1-11"],
+      "owner": "SECURITY_OWNER",
+      "tests": ["SEC-PLATFORM"],
+      "title": "TLS, encryption at rest, managed secrets, rotation, and revocation"
+    },
+    {
+      "control_id": "SEC-AUD-001",
+      "implementation_tasks": ["S1-10"],
+      "owner": "AUDIT_OWNER",
+      "tests": ["SEC-ALL"],
+      "title": "Immutable scoped audit evidence"
+    },
+    {
+      "control_id": "SEC-APP-001",
+      "implementation_tasks": ["S1-13"],
+      "owner": "QUALITY_OWNER",
+      "tests": ["INT-APPROVAL", "SEC-PLATFORM"],
+      "title": "Authenticated, replay-safe approval bound to target version and hash"
+    },
+    {
+      "control_id": "SEC-TOOL-001",
+      "implementation_tasks": ["S1-12", "S3-02", "S5-01"],
+      "owner": "TOOL_OWNER",
+      "tests": ["UNIT-TOOLREG", "SEC-BASH", "SEC-TOOLS"],
+      "title": "Allowlisted typed tools with policy, budget, and audit enforcement"
+    },
+    {
+      "control_id": "SEC-LIFE-001",
+      "implementation_tasks": ["S2-09"],
+      "owner": "DATA_GOVERNANCE_OWNER",
+      "tests": ["INT-DATA-LIFECYCLE"],
+      "title": "Export, retention, legal hold, deletion, and cryptographic erasure"
+    },
+    {
+      "control_id": "SEC-SUP-001",
+      "implementation_tasks": ["S0-08", "S5-07"],
+      "owner": "SUPPLY_CHAIN_OWNER",
+      "tests": ["SEC-BASELINE", "SEC-ALL"],
+      "title": "Pinned dependencies, SBOM, provenance, scanning, and license decision"
+    },
+    {
+      "control_id": "SEC-BUD-001",
+      "implementation_tasks": ["S1-08"],
+      "owner": "OPERATIONS_OWNER",
+      "tests": ["BUDGET", "RES-ALL"],
+      "title": "Hard execution budgets, cancellation, and no-progress detection"
+    }
+  ],
+  "encryption": {
+    "at_rest": "AES_256_OR_APPROVED_MANAGED_SERVICE_EQUIVALENT",
+    "in_transit": "TLS_1_2_MINIMUM_TLS_1_3_PREFERRED",
+    "key_material_in_prompts_or_logs": false,
+    "short_lived_credentials": true
+  },
+  "recovery": {
+    "noncritical_analytics_rto_minutes": 1440,
+    "task_state_rpo_minutes": 15,
+    "task_service_rto_minutes": 240,
+    "zero_loss_after_acknowledgement": ["APPROVAL", "PUBLICATION"]
+  },
+  "retention": [
+    {"data": "TRANSIENT_TASK_SCRATCH", "days": 30, "state": "PROPOSED"},
+    {"data": "DETERMINISTIC_CACHE", "days": 1, "state": "PROPOSED_MAXIMUM"},
+    {"data": "OPERATIONAL_TELEMETRY_HOT", "days": 90, "state": "PROPOSED"},
+    {"data": "OPERATIONAL_TELEMETRY_ARCHIVE", "days": 365, "state": "PROPOSED"},
+    {"data": "SECURITY_AND_APPROVAL_AUDIT", "days": 2557, "state": "PENDING_JURISDICTION_REVIEW"},
+    {"data": "PROJECT_EVIDENCE_AND_REPORTS", "days": null, "state": "ORGANIZATION_DEFINED_NO_AUTO_DELETE"},
+    {"data": "ROLLING_BACKUP", "days": 35, "state": "PROPOSED"}
+  ],
+  "slos": [
+    {
+      "code": "API_AVAILABILITY",
+      "formula": "successful_eligible_api_minutes / eligible_api_minutes",
+      "objective": 0.995,
+      "window": "CALENDAR_MONTH"
+    },
+    {
+      "code": "ACCEPTED_TASK_DURABILITY",
+      "formula": "recoverable_accepted_tasks / accepted_tasks",
+      "objective": 0.999,
+      "window": "CALENDAR_MONTH"
+    },
+    {
+      "code": "INTERACTIVE_ACK_P95_SECONDS",
+      "formula": "p95(typed_acknowledgement_time - accepted_request_time)",
+      "objective_max": 2.0,
+      "window": "FIVE_MINUTE_BUCKETS"
+    },
+    {
+      "code": "UNAUTHORIZED_SUCCESSFUL_ACTIONS",
+      "formula": "count(unauthorized_successful_actions)",
+      "objective_max": 0,
+      "window": "ALL_PROBES"
+    },
+    {
+      "code": "AUDIT_COMPLETENESS",
+      "formula": "complete_required_audit_events / required_audit_events",
+      "objective": 1.0,
+      "window": "CALENDAR_MONTH"
+    },
+    {
+      "code": "CRITICAL_EVIDENCE_INTEGRITY",
+      "formula": "verified_sampled_critical_artifacts / sampled_critical_artifacts",
+      "objective": 1.0,
+      "window": "RELEASE_AND_MONTHLY_SAMPLE"
+    }
+  ],
+  "supply_chain": {
+    "approval_roles": ["LEGAL_OWNER", "SECURITY_OWNER"],
+    "block_unknown_or_incompatible_license": true,
+    "required_inventory": ["CODE", "CONTAINER", "MODEL", "PARSER", "OCR", "MODEL_WEIGHT"],
+    "sbom_formats": ["CYCLONEDX", "SPDX"]
+  },
+  "trust_boundaries": [
+    "TB-01_API_AND_IDENTITY_EDGE",
+    "TB-02_TENANT_SCOPED_MAIN_AGENT",
+    "TB-03_ISOLATED_CHILD_AGENT",
+    "TB-04_POLICY_ENFORCED_TOOL_REGISTRY",
+    "TB-05_LOCAL_PROCESS_AND_INSTRUMENT",
+    "TB-06_EXTERNAL_MODEL_WEB_MCP_API",
+    "TB-07_SQL_VECTOR_CACHE_QUEUE_OBJECT_BACKUP",
+    "TB-08_APPROVAL_AND_IMMUTABLE_AUDIT",
+    "TB-09_BUILD_MODEL_AND_RELEASE_SUPPLY_CHAIN"
+  ]
+}

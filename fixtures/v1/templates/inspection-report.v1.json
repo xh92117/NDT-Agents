@@ -1,0 +1,14 @@
+{
+  "required_sections": [
+    "scope",
+    "source_data",
+    "method_and_equipment",
+    "observations",
+    "findings",
+    "limitations",
+    "citations",
+    "review_and_approval"
+  ],
+  "schema_version": "1.0.0",
+  "template_id": "TPL-INSPECTION-REPORT-V1"
+}

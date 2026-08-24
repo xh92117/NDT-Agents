@@ -1,0 +1,170 @@
+"""Build minimal immutable child contexts from verified dispatch plans."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from uuid import UUID, uuid4
+
+from ndt_agents.contracts.v1 import ArtifactRef, TaskContext
+from ndt_agents.orchestration.child_models import (
+    AgentDefinition,
+    ChildAgentKind,
+    ChildInput,
+    ChildSideEffectClass,
+    ChildTaskContext,
+)
+from ndt_agents.orchestration.models import DispatchPlan
+from ndt_agents.orchestration.registry import AgentRegistry, AgentRegistryError
+
+
+def child_context_manifest_sha256(context: ChildTaskContext) -> str:
+    """Hash the complete child context except its self-referential manifest field."""
+
+    payload = context.model_dump(mode="json", exclude={"context_manifest_sha256"})
+    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+class ChildContextFactory:
+    """Filter parent state into one private context per registered child."""
+
+    def __init__(self, registry: AgentRegistry) -> None:
+        self._registry = registry
+
+    def prepare(
+        self,
+        task: TaskContext,
+        dispatch: DispatchPlan,
+        *,
+        professional_inputs: tuple[ChildInput, ...] = (),
+    ) -> tuple[ChildTaskContext, ...]:
+        if dispatch.task_id != task.task_id:
+            raise AgentRegistryError(
+                code="CHILD_TASK_MISMATCH",
+                message="The dispatch does not belong to the active parent task.",
+                next_action="Prepare child contexts from the active verified dispatch.",
+            )
+        if dispatch.general_agent:
+            if dispatch.professional_assignments or professional_inputs:
+                raise AgentRegistryError(
+                    code="CHILD_INPUT_MISMATCH",
+                    message="General dispatch cannot contain professional inputs.",
+                    next_action="Use only the General child for a general dispatch.",
+                )
+            definition = self._registry.require("general", ChildAgentKind.GENERAL)
+            child_input = ChildInput(
+                assignment_id="general",
+                goal=task.goal,
+                success_criteria=task.success_criteria,
+                artifact_ids=tuple(artifact.artifact_id for artifact in task.artifacts),
+                requested_tools=task.allowed_tools,
+                side_effect_class=ChildSideEffectClass.READ_ONLY,
+            )
+            return (
+                self._build(
+                    task=task,
+                    definition=definition,
+                    child_input=child_input,
+                    dependencies=(),
+                ),
+            )
+
+        if not dispatch.professional_assignments or not dispatch.review_required:
+            raise AgentRegistryError(
+                code="CHILD_DISPATCH_INVALID",
+                message="Professional dispatch requires assignments and review.",
+                next_action="Use a verified Main Graph professional dispatch.",
+            )
+
+        assignments = {item.assignment_id: item for item in dispatch.professional_assignments}
+        inputs = {item.assignment_id: item for item in professional_inputs}
+        if set(assignments) != set(inputs) or len(inputs) != len(professional_inputs):
+            raise AgentRegistryError(
+                code="CHILD_INPUT_MISMATCH",
+                message="Professional inputs must match the verified assignments exactly.",
+                next_action="Provide one minimal input for every professional assignment.",
+            )
+        contexts = []
+        for assignment in dispatch.professional_assignments:
+            definition = self._registry.require(assignment.agent_type, ChildAgentKind.PROFESSIONAL)
+            contexts.append(
+                self._build(
+                    task=task,
+                    definition=definition,
+                    child_input=inputs[assignment.assignment_id],
+                    dependencies=assignment.depends_on,
+                )
+            )
+        return tuple(contexts)
+
+    @staticmethod
+    def _select_artifacts(
+        task: TaskContext, artifact_ids: tuple[UUID, ...]
+    ) -> tuple[ArtifactRef, ...]:
+        requested = set(artifact_ids)
+        available = {artifact.artifact_id: artifact for artifact in task.artifacts}
+        if not requested <= set(available):
+            raise AgentRegistryError(
+                code="CHILD_ARTIFACT_DENIED",
+                message="A requested child artifact is not in the authorized parent context.",
+                next_action="Use only authorized parent artifact references.",
+            )
+        if any(
+            available[artifact_id].scope.tenant_id != task.scope.tenant_id
+            or available[artifact_id].scope.project_id != task.scope.project_id
+            for artifact_id in artifact_ids
+        ):
+            raise AgentRegistryError(
+                code="CHILD_ARTIFACT_SCOPE_DENIED",
+                message="A requested child artifact is outside the parent scope.",
+                next_action="Use only artifacts in the active tenant and project.",
+            )
+        return tuple(available[artifact_id] for artifact_id in artifact_ids)
+
+    def _build(
+        self,
+        *,
+        task: TaskContext,
+        definition: AgentDefinition,
+        child_input: ChildInput,
+        dependencies: tuple[str, ...],
+    ) -> ChildTaskContext:
+        run_id = uuid4()
+        allowed = tuple(
+            sorted(
+                set(child_input.requested_tools)
+                & set(task.allowed_tools)
+                & set(definition.allowed_tools)
+            )
+        )
+        placeholder = ChildTaskContext(
+            parent_task_id=task.task_id,
+            run_id=run_id,
+            assignment_id=child_input.assignment_id,
+            kind=definition.kind,
+            agent_type=definition.agent_type,
+            scope=task.scope,
+            task_class=task.task_class,
+            goal=child_input.goal,
+            success_criteria=child_input.success_criteria,
+            risk_level=task.risk_level,
+            artifacts=self._select_artifacts(task, child_input.artifact_ids),
+            dependency_assignment_ids=dependencies,
+            side_effect_class=child_input.side_effect_class,
+            allowed_tools=allowed,
+            skill_version=definition.skill_version,
+            prompt_version=definition.prompt_version,
+            model_version=definition.model_version,
+            knowledge_versions=task.knowledge_versions,
+            budget=task.budget,
+            output_schema_id=task.output_schema_id,
+            review_checklist=task.review_checklist,
+            scratch_namespace=(
+                f"scratch://{task.scope.tenant_id}/{task.scope.project_id}/{task.task_id}/{run_id}"
+            ),
+            context_manifest_sha256="0" * 64,
+        )
+        return placeholder.model_copy(
+            update={"context_manifest_sha256": child_context_manifest_sha256(placeholder)}
+        )

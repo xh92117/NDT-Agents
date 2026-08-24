@@ -1,0 +1,4076 @@
+{
+  "catalog_version": "1.0.0",
+  "created_at": "2026-08-21T12:00:00+00:00",
+  "documents": [
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-001",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-001.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "cc2d9a0b30733b08d598c719d1834b6e14276a7fae342a6ce9c88cbdd772354a",
+      "size_bytes": 1509,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-002",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-002.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d17f427735d681566f0f154a863befc679f8d66ecb03b21844a05ff9e603cec8",
+      "size_bytes": 1509,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-003",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-003.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3140859c799fbd54455ae70d9fb6fa610afd625ef9288c10b70f8cad60c81178",
+      "size_bytes": 1511,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-004",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-004.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "cfb4acdd1591936ea1ad85057d4b87c8f272d012616bb97b7d39c8d532686e3b",
+      "size_bytes": 1509,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-005",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-005.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d4e0e662e662bdc123f4520859df51779f90f4f92791abbc0da6aa6cd553a58a",
+      "size_bytes": 1511,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-006",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-cn-pdf-text-006.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "67ddc503165df57553a24f3e2004b8ac2a0130886a179f512608749627882dbb",
+      "size_bytes": 1509,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-007",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-007.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ce899ea271213894b8f7c89711ef59c4647530e5fc03450b47191d3e4f4f8081",
+      "size_bytes": 1509,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-008",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-008.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "92a78ff5cc9fadb932b2823265ad469991bc32de6c31212034c8e4b98f190c55",
+      "size_bytes": 1511,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-009",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-009.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e489d81cb2086224e6db75d23a1df6edb6a762ca533d8212c6b6db572d46dde3",
+      "size_bytes": 1511,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-010",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-010.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "83d9fa038072b536fd09b897d9a008c3f1f120e9f0c88a8e3e7d3520e202a67f",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-011",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-011.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b557ffde4f8240b0bfe7d3ac4723deb8827a1f232b04d152514d2fcac0b1e03f",
+      "size_bytes": 1510,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-012",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-cn-pdf-text-012.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ece3e1c543ca601e306427d4ff6ef274cc0b41fef35a8c36465aed51bad885fd",
+      "size_bytes": 1510,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-013",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-013.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "62f926a0f3841e0ef033950ad67171645d3d8bdd4a0d67988d894ceeda255f9f",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-014",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-014.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ea6af1a030879012c21b9543a4c3c28fede76f5d28e65d55d9e6d0d68ed3d216",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-015",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-015.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "36014033002d94823753d127e06cf9ef8afdb075e27bd4348dc1a6b6aad58d63",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-016",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-016.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c687caf67a4cd80b8f74fe8927835c2449f1ede62291eeba3c908c86d441d602",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-017",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-017.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c3a776f7e68562049c5aa18936fcbadb396252ce4efaef505b0fa14b629da076",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-018",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-cn-pdf-text-018.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "eacf90df5adfd93402e8c4dd3a2cce98f26d3da79ac1763fd74663f0c199a737",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-019",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-019.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "08acba65b0d3b032fd44ae26d9234edffca8399ffe59ca57a2da1a3eaf85385d",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-020",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-020.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "16346fc45f696ddb36a729fe2e1589f3ba62a16ef8a2cdd6afd97902875dcd94",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-021",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-021.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "8fa6e59a827e44c15749e76181e32d2a4a2e48a92cb8e6a7a2e873c1df0594b2",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-022",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-022.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "da597b2351a1527670f909ebc745374a113ee118dbcb257c8264716cc82b5344",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-023",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-pdf-text-023.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "79f7f4b7879a1d692f8fa8469bc3c33813c67d68409e3a78b92e4d1bf31c90a1",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-TEXT-024",
+      "fixture_type": "pdf-text",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-text/case-cn-pdf-text-024.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3999c1ec87442daaa72744b435cde5911a0f0572ec36e177046867382dcf886e",
+      "size_bytes": 1512,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-001",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-001.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5dc2c5b277e5b46ae4531a7e34ce1778a3b8872ba1215532191459a331955122",
+      "size_bytes": 6245,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-002",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-002.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b7169cd7909402e9a55ce16248b3c8e290dc847257f48fff49e619a7480ed1c4",
+      "size_bytes": 6324,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-003",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-003.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "93eab1dcf86fe74e07fbd35778011131cd2aaecdfe0d1b7b435b230538fe90a0",
+      "size_bytes": 6351,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-004",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-004.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "77ae8a83c171218dda10cfaf1b4a49cca5cd4ff1cc0d77a6a8afda8f16628a82",
+      "size_bytes": 6290,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-005",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-005.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3cff228369e162198f60b5f9f89e52f0dce10f0d56506ba909ab611d2eb22075",
+      "size_bytes": 6327,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-006",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-cn-pdf-scan-006.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e392b9d73ca068cff6d2d63ded957fbf6059c476efe9fd1d43774f6fe2bd2bf2",
+      "size_bytes": 6352,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-007",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-007.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "622a21bbb8be11288bcc164d89af524377a90844a617812f04ea81f8b4674818",
+      "size_bytes": 6294,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-008",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-008.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5fe27849f0f3b9777a6ec766c1d82a4ef64f8801a33c15704d1a240470b683f4",
+      "size_bytes": 6360,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-009",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-009.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "cda657d42cb555a3f8871df7deebc3c61b8feb731d09278f087d4b393b6b1967",
+      "size_bytes": 6354,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-010",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-010.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "84f4ab439b1d39e707763c141f5ad7ebd707711e2e77bf21b16d25a8fda11391",
+      "size_bytes": 6239,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-011",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-011.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6f8ff5eaad5f2a156ffa572845e26f65d255e8771a8f2ee21549a93fb40e1b5f",
+      "size_bytes": 6244,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-012",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-cn-pdf-scan-012.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "344a310b6acf9ccfb9d14f8f3e2b8a779d85fc69d614bebd8358f7277c36f705",
+      "size_bytes": 6350,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-013",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-013.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6c608900cfcad7843145f732b9bea4b6c81cce98c859d74968da86b010c8e331",
+      "size_bytes": 6377,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-014",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-014.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "de76e5f6979b2eb3d08671230de5f3a9f4cf4c014fd7455d1d4f03dc9111065e",
+      "size_bytes": 6315,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-015",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-015.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1b9b979bc8f8bc79ad59654d42b3d511ce948235998dc2bc0a6c1877639feacc",
+      "size_bytes": 6359,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-016",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-016.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2d7786b24521f93bf450c0fb528fd3f92da5b112834de60b1513a0f6bf944703",
+      "size_bytes": 6393,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-017",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-017.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "70269cb6c48560c97d41d0ce192b96d271000ec899cc0c3148c5f80fb0c9c80f",
+      "size_bytes": 6331,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-018",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-cn-pdf-scan-018.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "738df328e902920307b1cdc156dd2d3163e8123072616163122a794681d3dad7",
+      "size_bytes": 6400,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-019",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-019.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a9d9504183640513ab8c0fe7541ebdac95f96f12ab203363c0f9f74015bcba9b",
+      "size_bytes": 6370,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-020",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-020.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "19a5cd0630fd5db278153fc151769c9b821cb8486c3ede904b01b42c4b7c41d8",
+      "size_bytes": 6312,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-021",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-021.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5ab8c0493ab68a087f76c5a84667bd5430e2162a297fb1b9827adb08aa603bd6",
+      "size_bytes": 6343,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-022",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-022.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "0e11ab99e49fffd66c6f95a98b0082a77414d0baf706959ee8e0528ec8310b59",
+      "size_bytes": 6312,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-023",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-pdf-scan-023.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2b3dc4c3aa54a65123f03372480f6b7c037fa7f4df52415cfb922cd8ebff6c2a",
+      "size_bytes": 6460,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image",
+        "table"
+      ],
+      "fixture_id": "DOC-PDF-SCAN-024",
+      "fixture_type": "pdf-scan",
+      "media_type": "application/pdf",
+      "path": "fixtures/v1/documents/pdf-scan/case-cn-pdf-scan-024.pdf",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "63ce2866be191a47cb8679ec6acc67676603c0821eaa7e349b0e360cce4ceb65",
+      "size_bytes": 6398,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-001",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-001.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2c9c8ad5daf033787b558dd29e4ca5f5d4cbe90316e4273e25fc8f6727caf8de",
+      "size_bytes": 36854,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-002",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-002.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b766db2cec63c58d6d488af24a7ba2320f2adc5826ebf684413de45c2921ef12",
+      "size_bytes": 36853,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-003",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-003.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2c45249f298868ea33ef19f24fabaa1189857a0b1b92be42a9d6253fbdf53266",
+      "size_bytes": 36853,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-004",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-004.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "03c4e22e1465bc9214d9ef58a3f516481c50ad2b7428d689465eeef78e9ca74b",
+      "size_bytes": 36891,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-005",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-005.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b57b88f97130807b60d9c29aa8a2a7f2c053e58183f500e86b17e2c72f37845c",
+      "size_bytes": 36855,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-006",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-cn-docx-006.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9f862cd784a85eec6f3b452c1a01a5e1c668da835a48f920f3a6f582f31c8b89",
+      "size_bytes": 36853,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-007",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-007.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1da3d8bcf43602810bc39e687ba68b144dcfc55955b431e335e6e020622fa967",
+      "size_bytes": 36853,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-008",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-008.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "56c2998ae14bcc5bc9f585fb653e00b8d490e22c01110df6bb965a4197fa99d5",
+      "size_bytes": 36890,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-009",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-009.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "faff32c567cf9faf578e412e171267b5545270f2e9c2a87c01d15a329b926657",
+      "size_bytes": 36853,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-010",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-010.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "56645c15095cef7a801adf9dad1e525b140ee1bce55da0e7fb1a577894cd8a22",
+      "size_bytes": 36854,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-011",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-011.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "61b77710fe8b6c82fc953febb8f3a1049a740df108583b4e860e09ea1fe60040",
+      "size_bytes": 36856,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-012",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-cn-docx-012.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "75cfbdf8e72e3c6d58ea1cd6efa74562d5d31839eff4b1e16bea20fff4d92a1d",
+      "size_bytes": 36892,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-013",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-013.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6016f7f95de57bd4bc2fe18dbd707b80e2c60154c3d366c97297016c4d8a534c",
+      "size_bytes": 36855,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-014",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-014.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1e4b397b10d9375a604884b16150e449f647e1285c23884733d2a7aa61f0a7cf",
+      "size_bytes": 36855,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-015",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-015.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d586e41932715a275834d1fd671b6cc4206bf8be1825eb2d8a688470aadf12a2",
+      "size_bytes": 36857,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-016",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-016.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "39ce1a064498299bb9bc765720568d6205e888acdc49b48e84379942c406c492",
+      "size_bytes": 36893,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-017",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-017.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "dd6753aa41ceef8573e98d3a8370b136da2106df7bbeb62e8d36c6d700b6be4e",
+      "size_bytes": 36855,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-018",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-cn-docx-018.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "dcd507b824348f36b62aadd9b7eaed659db2ca22cbd85e3773f5a8df18017124",
+      "size_bytes": 36854,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-019",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-019.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3acdc2a30fbb0b86db46480b385c60b99e7304cadebb32df8825d3771c918872",
+      "size_bytes": 36855,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-020",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-020.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3e7962fb803a83a14becb4834234cf3b59ef31e1980d063ee866287c10d63bdb",
+      "size_bytes": 36892,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-021",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-021.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6126467adc2372fc61a9eefabd4b718fb03729f5d046c0986b63850a78e83bee",
+      "size_bytes": 36856,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-022",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-022.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e2a99994f1f4125d5c817e07fda5cbd3df82ad95eb970346021f522ce90a2f90",
+      "size_bytes": 36854,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-023",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-docx-023.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "25bd0b58fd53610967296be9573af00ebfbae59c24576bcdaa29f3dfb0190af4",
+      "size_bytes": 36855,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-DOCX-024",
+      "fixture_type": "docx",
+      "media_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "fixtures/v1/documents/docx/case-cn-docx-024.docx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3c9887b6cf392e2be6e7fd543c58eba414be30d96a1c19fd9a09bf9d95fa3da7",
+      "size_bytes": 36893,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-001",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-001.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e4512c202d4c4c854b1ed92f70daa4862e25e72ce173ce7922f79d8d5f291fc4",
+      "size_bytes": 4993,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-002",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-002.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5165580ad651773a11a7a8fbb303dbc3f79aedae7d1985785ea3a9db89854e9d",
+      "size_bytes": 4993,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-003",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-003.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d57f1f7cc78f48aaa75e9acdcab502aa42a051512177adabd173050a7fa30f54",
+      "size_bytes": 4994,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-004",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-004.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f75f5d4e240f60658811836592d79b4ac95457a8b6d961a384fc673430800a85",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-005",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-005.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "7986ee861c6864dfd229866ca310997510f17aea3a3b2cee55294ec00d6bcc37",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-006",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-006.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c4f0e7eacbaefeede1b006ff6b60c8bd0891be15daaa006e9296e193ac40fb65",
+      "size_bytes": 4994,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-007",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-007.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3a460141f30d7291cacbb719957adbb9a3719fe7c5729183c4475c9f00ac48f8",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-008",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-008.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3621100b6371af48a147fdf0c02c1adead5fdc9d5a6c48a1325a2bb62880aa20",
+      "size_bytes": 4994,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-009",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-009.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b807ce0074f814f710db5f3712d4aed1d5bffb8be88f2891a455022f704fcee3",
+      "size_bytes": 4996,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-010",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-010.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "7d67b859dcbe738a27f7738c1348a5b300b1cad6f0aafb3c77dfcde53a0f0515",
+      "size_bytes": 4992,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-011",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-011.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "80331336af8705a333b90b43a6958f527c1ea7c3eda6195e1271565712b00ef6",
+      "size_bytes": 4994,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-012",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-012.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "55125e2a729d1a2d0546ea1de45abcf5cde4ce2f8955b93273d6a646473609cd",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-013",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-013.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c1d9be8dc8fc4158ae2dcd09622d1254dcdc2b8c99d2422d5b4f36dca5093b0f",
+      "size_bytes": 4994,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-014",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-014.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f16c0e5b6581be979e5cdd2c6ac00dd88577e19b0205d804ced224dfe86985b0",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-015",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-015.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "492be455c83401b9a8ffbb199f6419c37398735fe9845de04f205dfc31646b4b",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-016",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-016.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a4520c4fa26184f7565eaaf3693d3add095c2491f5bcaca26117f9b1903e652e",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-017",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-017.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2027529cca4ba71eb2d6563fc6e598e4d23c565dc10a9e23cbe8a131c474718f",
+      "size_bytes": 4996,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-018",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-018.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b06043e0ecad3e8973783ae897bb809e38bec7bf9035c5dd1addfb6463b494b7",
+      "size_bytes": 4996,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-019",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-019.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d39d5873bde6bf71960c9db605c746b9f9dc09a7aee61ee91e1a875328f613dc",
+      "size_bytes": 4996,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-020",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-020.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2fdc8173447951f5f1a81017598ce7a83a923431543753d53e9e0cbe15e86d1b",
+      "size_bytes": 4993,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-021",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-021.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "98171ac3fc1d98ce4b9718441ef21dc44fc04009f0eca8011dbc316b1372cfcb",
+      "size_bytes": 4994,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-022",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-022.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ac52fea3a9fefb46b80c519020bf7382057ccda95cde40257e71d163f1d19dc5",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-023",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-xlsx-023.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "877f05f3daee259c3629a489ad969f221d7452fb55af2a7889f5215bb6bcf3f4",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "table",
+        "formula"
+      ],
+      "fixture_id": "DOC-XLSX-024",
+      "fixture_type": "xlsx",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "path": "fixtures/v1/documents/xlsx/case-cn-xlsx-024.xlsx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d003554f217e352ba76f9635461a64c2afc77abd2486e790d06501a3be252797",
+      "size_bytes": 4995,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-001",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-001.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5f296a45d4f3718645faf5ddcd3dbaeb287f4a4ef7541558e0b665a9a182c7d3",
+      "size_bytes": 28318,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-002",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-002.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9225c350bbc63b1fd8da039f5e0551101ad3250879bd8224076c8d2612b44d53",
+      "size_bytes": 28317,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-003",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-003.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "55c8f9302be9952876c6073130ddf465b74915fbebf54e94ad378d7ef53a7675",
+      "size_bytes": 28318,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-004",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-004.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5f0c53f9f0e411f6689dcaf7d49e665813158577e5aebc0a271904f95d6da602",
+      "size_bytes": 28319,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-005",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-005.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e151c8f99d213337d9cf3b660ccff79ceab32b04c32d76a680f113a71d4317da",
+      "size_bytes": 28319,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-006",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-cn-pptx-006.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "453979ecad9531bcab0da9d33aefbe23ee8fe96323f935ebcbc7aff2cfd58d26",
+      "size_bytes": 28318,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-007",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-007.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5b45217b5706f3f24ddb69f80223b2af7eca78b002413bc0bc0e61d9ed0a50bf",
+      "size_bytes": 28319,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-008",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-008.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "473944294909b85fe02a37577fdeb6aa225ef36314caa328f64df7c894796571",
+      "size_bytes": 28318,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-009",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-009.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "64e6ed3ea6ebb599cda842f7331536524218d982174cff32d4e3c8f5164137ee",
+      "size_bytes": 28319,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-010",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-010.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "94e452cc00a25d702bb39e7f94132072148b38903fcc1cec891ae2fea3955de1",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-011",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-011.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9f4c1575438367992b933987baf7981fe9b10f5b291ad4f66fb2e6c00920a399",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-012",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-cn-pptx-012.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5407103337b66ca8a927e57a4cb97528a828286d191b0af68981ea12dea62842",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-013",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-013.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "75550402adf0ecba72fc1d21772a1c2b28801e85371a6d7a1fff2a44c2acf1e7",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-014",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-014.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "737950278d094cf2f889b2ef71fb90509029cd91da96b1f505b01c7f3c311dd5",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-015",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-015.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "42f2eb49e0b4561b78a854693b4c04ae55c8b65f9f033fc64ab5e14e236633e8",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-016",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-016.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "64b47649826a5fa757b1a6e9f9a64fd3dd28e47086fdad30abfaa51770509edc",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-017",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-017.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3324651a2dd315a25d3053cdb179b604c217e1b2c360d0cb7de630d2c23fb7d1",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-018",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-cn-pptx-018.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "be68ae9d5b3dd00b6a21b09e931736b5b7331548547ecf7c6500b17b746c52c8",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-019",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-019.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ce38fdaee40dd83deefd7fa2d0543f037e7529002aa02ca1745d98332d725b0f",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-020",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-020.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "71df4833560361984636ff0c6b05c4d403edccb149933910866ebbf112ae2d30",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-021",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-021.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3f4d532c8f749c1a9447cc3570c8f9e111e3c52743de0b3279a9066ea2300109",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-022",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-022.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "25e9cb4189b8224811f3809c8bce7c37adb98e2d6e1914315ec3e2d5637071cd",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-023",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-pptx-023.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a7b9476eba501dfb73c2f2bbd3d68bec031ea5c7858025ba016eedad6f2c6127",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "layout"
+      ],
+      "fixture_id": "DOC-PPTX-024",
+      "fixture_type": "pptx",
+      "media_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "path": "fixtures/v1/documents/pptx/case-cn-pptx-024.pptx",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "961461a02879c1d98afbf9c7ff931aae49b748f7295db199259e8aac34ffac0b",
+      "size_bytes": 28321,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-001",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-001.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b8b0f5e1c300269df2c389754020c2de64322d36f8b267d6819a017baad07f64",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-002",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-002.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "003d8472378a84420c513f37445ee18a88779c7408827fb097907d1b9054cd64",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-003",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-003.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1cbf635b134fb3453b6dac2e4d28abf1ca08df738340733616f57b38e557b83e",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-004",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-004.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "708db322dc722f6b96d3c940a3da67802851a38e6d464aba055ffd89cc593c01",
+      "size_bytes": 229,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-005",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-005.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "92cacef0d4d6ea8806bb8287b48a910b0d5bccb5f925cb44053ec83e63ae6aaf",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-006",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-cn-markdown-006.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f9401afac89f7eecef78a6c733f17089c9469a339627f68c71427b0c2e0add3a",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-007",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-007.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "025f48e86599c79910c49ba2f438b88e2c302f11689db5b801d145db9622f013",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-008",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-008.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "04b77e0665d6ea302671f0795f4e5d1e997e5cbc17ea74f2a5c132e7e803e4c0",
+      "size_bytes": 229,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-009",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-009.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "853ab13feccb363a836f1690a608005798e881e941da463a4cfa3789547f8677",
+      "size_bytes": 163,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-010",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-010.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6d891557f4fd55fdfd1a07babfea001c489747ccabef84945df8be2756c05394",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-011",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-011.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "114c3eb1a3f4e8a3bf3c3ad19daa68aae23075bcb9814d96eb83cd0072bdd8ec",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-012",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-cn-markdown-012.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2dfd94b26ba85976fd402b28e73e46edbf6bc9149310fe3ed988866d91b5f8bc",
+      "size_bytes": 230,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-013",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-013.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f1ce64ddd1a7421ea281e065f56b1787f065da85369bfa55be06c4c3132bc215",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-014",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-014.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f25fe394dc53037a7b56a80462b2c16925997a1d32667f545ccf4dddd3a48d08",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-015",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-015.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "50a162a99827f7d36e10fb7cc1c1d2d26bdcb0a0748690d40d35d0ee532ed522",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-016",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-016.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f051e488a1ac2508f1eac6ddc65d7c99e5b21f807e97e3cbc2004ce568ae47ee",
+      "size_bytes": 230,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-017",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-017.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "587f100ea2d2f91a546e0d2f60de33d9f2b49bd1e3061d614f77a499d1ec2e08",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-018",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-cn-markdown-018.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ff50bdda4e87a100bd2a8d8a84f821b036820db68b5a83cfde9087bc19dc01d7",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-019",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-019.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "cfe8392b53f94add5ffd41cc4a57e4d18e4472fe662b4e39815e677ea448d5ea",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-020",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-020.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "405da695034d076d7b8203541239ebd1810a33fbacbc4c424ba5cb4fd9a47505",
+      "size_bytes": 230,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-021",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-021.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a9ffda12ba064c53f25d4bca693228dababdcb0c3ba893606acce1f10b0a5f3d",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-022",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-022.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "044b3e43a4dca492ca663a45194169827b5752da2213cffda58c38938ce0c420",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-023",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-markdown-023.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "bbc523372d20db1621753671011a935da407ab34ef856032bdcbaa5ed54f8d39",
+      "size_bytes": 164,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text",
+        "table",
+        "unicode"
+      ],
+      "fixture_id": "DOC-MARKDOWN-024",
+      "fixture_type": "markdown",
+      "media_type": "text/markdown",
+      "path": "fixtures/v1/documents/markdown/case-cn-markdown-024.md",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "314610c36a6876a3968b612ae1695f119af8501062590ae3b21e6c092f2ac4cd",
+      "size_bytes": 230,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-001",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-001.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "dcf93662f3b1fa98abdcbce89490d1d005058f1ab1a0e4a978a9a82980be51b4",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-002",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-002.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f261a7fd9ced68b72d09933110e8cd5a3cf0bab0cfb7346fe5ba4b3d443c08e6",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-003",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-003.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c8faaf1bf544b7139a294d11b97e3a5cfd7a9c21d27b385d75cd43f304c5592a",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-004",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-004.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "09beee6166fa8b4fbeb872c429f2ceced6dbecec247141b034cb056b70bb21d7",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-005",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-005.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "163908f45a51a9e0b1253de448d1808811f696d45ae5f0dc5cca32e129694822",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-006",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-cn-text-006.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "4cc2fbd8145ca43626c46adc026ddb83d6fd6bd6b646627fe59c95f12f35ca28",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-007",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-007.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "0feebd09da797c078fabb4ecdb587e560a567bd4339a6e791c36724ca0d6ebef",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-008",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-008.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "51eec88913445d7916a4187211ddb336db7a7f01d20fb78ef6ae4f4d7dd323bd",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-009",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-009.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e08db2b7bed86e7cf92f03679bf539ef9efe2d0c21f01fed5b853edac1334fcd",
+      "size_bytes": 96,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-010",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-010.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "bd3fd9dd1cd026cf15e1e9d412dedae1436cdd823fc62e24371fe248034ad875",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-011",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-011.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e8d6f53a3f473d63e8dfe2ce8af0522cade557dee5a91af69dcba6c2d5e2ea41",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-012",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-cn-text-012.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "f5e55d867a5a5d51c3936de982d1a5d488416e65b67c8872af9dbd389b8a6567",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-013",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-013.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "93be0bc36d74f7e66ec527ef9eabd7347f8bd9d7b5fd5ae8dc1ca5e1587cb422",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-014",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-014.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "952c64c085ddf7070d1769504e4753e04be198a21c0bef15cece5d2f88bdcc44",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-015",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-015.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "86ebd1c169d3351c85cd9490f5ebf40329cb7b50727f6d4d17bfe0b748f4f184",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-016",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-016.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "065de03ab20c24bb11a4183d16f869d5f7f9d2d20bddcf35bd76d8c1ef254efe",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-017",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-017.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b11e8e8537fbc2610580c506b639db12476de04327970295e76a0f2efafff583",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-018",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-cn-text-018.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "77bc97dbed5ad47b9194d5681d1883766ff0c0c71f1da4b41fd8583c7701e2af",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-019",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-019.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d0ae09877c1e91279d984cd7a717926ff483553a83f7772a7c487fa47d9f9b41",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-020",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-020.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "161b150627a8c7ecf8fbd399708644ecbe39cf946a4cfa3bc28b082910ea3778",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-021",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-021.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6ba4832e3533be238f2c18bb2ec78c16234d73d3ec35cb7838d595bf698974e7",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-022",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-022.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "759529733afb958271e59be0ab3b40f23b417cb6473dc9df60f502fbe08ee14a",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-023",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-text-023.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e48e478af5076a37c56466fa6613d861af0c2a25b674b9a00b1062cf4c5d7b0e",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "text"
+      ],
+      "fixture_id": "DOC-TEXT-024",
+      "fixture_type": "text",
+      "media_type": "text/plain",
+      "path": "fixtures/v1/documents/text/case-cn-text-024.txt",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a172b607212ea4a7b06c139da043cecb8a8f2b428224dfc05619d12bceb4b987",
+      "size_bytes": 97,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-001",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-001.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "128d5a0d513e3c8113e4da963917f51ba728cdb8a180b634291d6aff36dd6424",
+      "size_bytes": 9563,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-002",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-002.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9ad63ca1c135ca247e99a8008bad5e8ef5961ec5349b0411a856e7decafa952d",
+      "size_bytes": 9615,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-003",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-003.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "45517f3e634243c1250d7cc7180372bd4e0fffcdd8691ca82a05622f78776c68",
+      "size_bytes": 9613,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-004",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-004.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "841d669337512ab8b2da4aa8fab5fce063351c460ed5af72e2b36690b03c02ed",
+      "size_bytes": 9642,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-005",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-005.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1e9aba996a67fb38db00019e7c232446d9f8845101658175764f1d50804eecff",
+      "size_bytes": 9593,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-006",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-cn-png-scan-006.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "40997cd539bfe8ef3cd06104a217ceb0d8a42ba7d8b487d4362d6adce5f23404",
+      "size_bytes": 9609,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-007",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-007.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "dec87eed3eb1c4d192c64bbeda988cf89ee62b1e3991caf4e815655239f36b1d",
+      "size_bytes": 9636,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-008",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-008.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d7831506201961e3536dadfb687ab16ee4fa0bede58277da8fe57d0e345311b5",
+      "size_bytes": 9612,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-009",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-009.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "8e46f722c352002494f91250e3984b8218ac7d7e049d25b6b4465f1e6356d12a",
+      "size_bytes": 9609,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-010",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-010.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "fb3e1f1388b2647bcf517ebc45e874ea543802e6aae4fc99ba4677b1f1df9557",
+      "size_bytes": 9570,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-011",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-011.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "87067c63d4ce909ef2f6fca4747780e757efe828ad2d193623886055ae9fc1c7",
+      "size_bytes": 9509,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-012",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-cn-png-scan-012.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2549f9b6a1b0292d1687ea6ef50e6301ecf01e4dfc378585f46a19f99c6b731b",
+      "size_bytes": 9641,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-013",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-013.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e036c0c2cece8674d21b8b19ffaaaa913370ed0631d2347465f1734d19be0168",
+      "size_bytes": 9641,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-014",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-014.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "4fd4a59c06459c5a5c54c55b1f0433a9a71ac97d5dee713831117f60ef0b75cb",
+      "size_bytes": 9605,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-015",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-015.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "696d58475018731a05f05a2077964a9985c02e819e7829fc74d9a82e2167fcfe",
+      "size_bytes": 9621,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-016",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-016.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "58b6fbf391d6e0964c2d6d9aefa40987d536841fd8d4730f6b6af90f47321480",
+      "size_bytes": 9638,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-017",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-017.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "199f3aa416681947a25affd27417aa18473e3ca87eaedc9bd06b84e344fc8740",
+      "size_bytes": 9656,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-018",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-cn-png-scan-018.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2909935c1a8014a5d18ae3ef19e3471683e0770ecda302be27a43ac83896358b",
+      "size_bytes": 9641,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-019",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-019.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "432662ab492f6a0ff0dc669e48c87bb657af943fe3f30424554693002af52af5",
+      "size_bytes": 9638,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-020",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-020.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d2f4821f11359c707f6d0e3f6ba4a4f25373fa7ffae6808054d3033fe6910d2b",
+      "size_bytes": 9603,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-021",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-021.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "bff056e1a29e20c7f6d0349c3cf13447a4baff09bafdabd0e6653534f581bb9a",
+      "size_bytes": 9636,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-022",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-022.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c22f82ed19bcb0dbf09a8d75f3d985b60f6ff56d32a891975add331a4b875480",
+      "size_bytes": 9621,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-023",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-png-scan-023.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "03ec31924feb60b1ab2c954919ec78833bfd48a31b020a3eaea54247cdd663e1",
+      "size_bytes": 9767,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "scan",
+        "image"
+      ],
+      "fixture_id": "DOC-PNG-SCAN-024",
+      "fixture_type": "png-scan",
+      "media_type": "image/png",
+      "path": "fixtures/v1/documents/png-scan/case-cn-png-scan-024.png",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "0aa8cb5dd7b64b3bfa6803eb4e3d7d44e0576c266e350d5bd8e6bff09b653ff0",
+      "size_bytes": 9706,
+      "training_use": "PROHIBITED"
+    }
+  ],
+  "external_sources": [],
+  "known_gaps": [
+    {
+      "gap_id": "GAP-STANDARDS-RIGHTS",
+      "required_action": "Legal and Knowledge Owners approve a standards rights register.",
+      "state": "BLOCKING"
+    },
+    {
+      "gap_id": "GAP-REAL-DEVICE-DATA",
+      "required_action": "Domain and Data Owners provide de-identified authorized samples.",
+      "state": "BLOCKING"
+    }
+  ],
+  "raw_inspection_samples": [
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-001",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-001.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "c52710f745377893fdf17a2c912a562969458ff53a2c337875a6c601d185a72e",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-002",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-002.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5dd2bc3613888f0acb4183d81ee1bd5b7dc691f0b5ffdf31d470ab84a6e13005",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-003",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-003.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "8e4ec6f0b640fb4535f73b4385e593cf51f3f6f874cecf82283b28f2cdd813b2",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-004",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-004.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1a5633bd579f68b8d143bfbd186bdd902cb4b6758a006d86ba639ff521d5858d",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-005",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-005.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "04c1854fda4a4f9fcb77bc05781d1062cc8107313c03431ca4d46ee18b380327",
+      "size_bytes": 660,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-006",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-006.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a919e8730af0a01472e9c8b81cb49bf9175a14c9add9cfda68fa95854e495f42",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-007",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-007.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "38ce290b8c0d9b0ba0e57fcf483d73df4929a300f6a49b736fc9e6d3e457ebaa",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-008",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-008.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "0a73ee3606cda781213fe15bce10c07337a5c3f17b0ecc1ec7adf84884b34e46",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-009",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-009.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "4f20103f16fc40de845c8ffe0b41620b732d6e4c54fd413daa55c29f13d5cab3",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "UT"
+      ],
+      "fixture_id": "RAW-UT-010",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ut/raw-ut-010.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6a3dd81917beb57ad939d8517bd34692c20fa8d52f2400b23f19e7acbd99d616",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-001",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-001.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9d2aa6f81b386d797f35814d008f2c2f2acbbab241e354b757b8f7698817a625",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-002",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-002.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "31b4ccf91225cb17436144a37d23cdc29b091a2e9d03e92db6f050881f03336e",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-003",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-003.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "8af4a34f0dd82cb8076daae3b6eafb91d81271edcee0dbc0f9d3045849a3521f",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-004",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-004.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "0cb695b8589b71972277088d6e887a7ced89ba779aa05ceedd516b1059b8d02e",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-005",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-005.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d739ab3efc066081f04f4fb763feec2d737f3ff8efb990b7815bd4b8c295c1c6",
+      "size_bytes": 672,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-006",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-006.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "94655f10c2935ebb65807f7013c622ed892b852cf53a1c16ba4f6c0ff679ad18",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-007",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-007.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1af9c1496363d7407a20eeea10b946a72f00f16db993efc19f56869b51573298",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-008",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-008.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e6269ed5f8c787d485a60afa102c35b57c94ad1b9ed2d0ca16085362698c0d90",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-009",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-009.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9e5ecc8cf801b22627da792278339b82cec798480971e98890f718591e838024",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "GPR"
+      ],
+      "fixture_id": "RAW-GPR-010",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/gpr/raw-gpr-010.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "45180f2083fda60ab55d7c3d4dfd3f7fd7e59ca57dd65dbfffa418781a98f918",
+      "size_bytes": 673,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-001",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-001.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "9ffc074bb67b717eae893a0d1879fd905ed24cf394ad36bcb7916e1e4ee3cab5",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-002",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-002.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "005e512db8bba28eb5d366c20e634d481627d928a9838b2a369ffa28acd95ef3",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-003",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-003.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "872ed9f9bc38ced35b57cc8c220a51e42ecc71f42c4f65903090b53844874a89",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-004",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-004.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2ccf63a28438713f9d499bb664a77230de5934e018198e4ccda6fb26682ea43a",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-005",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-005.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "6b8691590809e8b60224df44675ebe0eb46707604fe7429b497f37ffa8798cc8",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-006",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-006.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "e2f7a5a9cf14035a3d4d06622e4a367674841029b3d54cf528686f39c448efe6",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-007",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-007.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "00f2b46ee62646db6f8625d1e1def6261bca09d8d7f04ef9bd92d206bc37836f",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-008",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-008.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "151e37ac38175f2df043f15f2a4bf6a02d2257462b5772bd6d119f2159a4eb97",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-009",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-009.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "58b292cf077935f4ea193d5a5cc6423d1e16188eea38c06f98b09304b924be9a",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "IE"
+      ],
+      "fixture_id": "RAW-IE-010",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ie/raw-ie-010.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1dd7021e33b4a418f564a60d1d9922e1727d4fba342f7285b7460c02703de948",
+      "size_bytes": 663,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-001",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-001.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "afcc9f7c4141066783149cf4a6e5ea5c5ecf66d6b5166c693e3d48de9785790c",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-002",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-002.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "cbe2ef9b718997b63818cb9e7593bbfa6df66a7e22ff062c8e1ff6c0c5fd4326",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-003",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-003.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "40ae81736d04f24c310d8fd8aaa674c435e87beb89c910c567dc991761112d4b",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-004",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-004.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a59ae92b533f9f13c4205027b1d40bf135db5024d6773d18c1d098d7151af190",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-005",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-005.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "1ab92b544e09385674c808571f7c0efbb1793ec28e48a9127dd09af14b1bbe48",
+      "size_bytes": 660,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-006",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-006.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "092782fd907259d930991094dba8221de652918c7531aaf9b2374db22e3c6717",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-007",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-007.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "bceec70bff103965feb2b259911207d57a527ec99ce7517d3f9120be4317c432",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-008",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-008.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "413c27efc38dfb19c9db26b04d074139a59c985d91bd05c96b5d7cb68d53e1f6",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-009",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-009.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "def6970cf8760459bb06bbf4cf981cb89e6b81be31ce253f4c3f03e5bd4942d0",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "RT"
+      ],
+      "fixture_id": "RAW-RT-010",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/rt/raw-rt-010.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b9397807b6bb2830b1658b131ca90ce3d7932c489191012ad6833c8f778d4892",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-001",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-001.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "71e3b96872766d9089afaf37c4b059c5648b3763acb21b54871b4221b9cd67ea",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-002",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-002.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "8997d82a71886a393af35a7eefa5999c47e4536ac260f39cc701c5d42d333190",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-003",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-003.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "dfe847a554fd95fb42ec823abee47410f1d9bdf7e26b8bee6eb3e4b2ebe5f3b6",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-004",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-004.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "746ac25cbd1e208c7670210e4dea531bb11c46dc444bf728d1e60a4a14dcf1ae",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-005",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-005.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "932e10882c6923687fcdf742bc67c2d5374f67915b917846074562aea0c37f96",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-006",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-006.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "3e21593150931abb2e248ab42ccd077a51d17c41fa75e89a2e59a6eff552bbc4",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-007",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-007.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "2a4a4b4e25dc178128ba1e38599da506ff88ab7f3723f254797fb939d56005e9",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-008",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-008.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "b75aff0ee8c1f99a160a9df3eeedd07443781f6798bb92b7b3bd90c33d74f2f0",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-009",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-009.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d9615c4a191bfd2741523d826aa2d927eaf3d23234e00ca2b41229c582c729ff",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "AE"
+      ],
+      "fixture_id": "RAW-AE-010",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/ae/raw-ae-010.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "cdb0fd15e8071de1bcb705382493a74f2a799b4629faa5e2fb802e260997f833",
+      "size_bytes": 662,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-001",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-001.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "413749d7f0b1df43d24db7117d4f83faebaec08f621435b0577bf6e22d8e3d7a",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-002",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-002.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "eee5c3dc2d7c0d305d265e7d86ad47ad36a48b2a018b82926f673159e859d6f0",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-003",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-003.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "d1888645f9a213d866c127decc9bb6e6f9cc34573f78d4c0a5abd30265ee6b62",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-004",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-004.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "75f4135e6ea2286071553c980a9e18c9890a8c4812f36d6db3a1fdb68b1826ef",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-005",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-005.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "da42ce69854b3a1f1f247fd7ea4c8efc02254cc467560cd0c1be28a0c4cd37ae",
+      "size_bytes": 659,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-006",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-006.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "a0e49b5cb2cf2cd9cff699409b0f22a5b7d78e5f6435c2a100bd1a6af2540c17",
+      "size_bytes": 661,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-007",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-007.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "8eca2084d3ccd411d5a1bce4623549522fc7421c628c93c8609ef4a59e1e168d",
+      "size_bytes": 675,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-008",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-008.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "026f7334961f43163170f6eeba0401c40f9b926dbb37dcdfe9bbe71e88cad9e8",
+      "size_bytes": 675,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-009",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-009.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "dea49b9aea0da4c52f455b577d8ba6767542a7202defdfa031761037283d7446",
+      "size_bytes": 675,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "MV"
+      ],
+      "fixture_id": "RAW-MV-010",
+      "fixture_type": "raw-inspection",
+      "media_type": "application/json",
+      "path": "fixtures/v1/raw-inspection/mv/raw-mv-010.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "5f3c405c8223d50ddc671b19bbdc16c90bdc1fa0a2910232b1a777a0a50efe0c",
+      "size_bytes": 676,
+      "training_use": "PROHIBITED"
+    }
+  ],
+  "rights_statement": "Project-generated synthetic fixtures; not licensed standards or real inspection evidence.",
+  "state": "PARTIAL_SYNTHETIC_BASELINE",
+  "templates": [
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "inspection-plan"
+      ],
+      "fixture_id": "TPL-INSPECTION-PLAN-V1",
+      "fixture_type": "template",
+      "media_type": "application/json",
+      "path": "fixtures/v1/templates/inspection-plan.v1.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "7b473b62a2d83458bab3d9fae1381c134dc32f794d678ccfe9e241d685575691",
+      "size_bytes": 291,
+      "training_use": "PROHIBITED"
+    },
+    {
+      "classification": "INTERNAL",
+      "deidentification": "SYNTHETIC_NO_PERSONAL_DATA",
+      "features": [
+        "inspection-report"
+      ],
+      "fixture_id": "TPL-INSPECTION-REPORT-V1",
+      "fixture_type": "template",
+      "media_type": "application/json",
+      "path": "fixtures/v1/templates/inspection-report.v1.json",
+      "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+      "sha256": "ddaa3f4c032c68e6c184d840b728171d8fa0f2e2065a0896515cb98bc3873b41",
+      "size_bytes": 265,
+      "training_use": "PROHIBITED"
+    }
+  ],
+  "training_use": "PROHIBITED"
+}

@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "Limit": {
+      "additionalProperties": false,
+      "properties": {
+        "active": {
+          "minimum": 0,
+          "title": "Active",
+          "type": "integer"
+        },
+        "default": {
+          "minimum": 0,
+          "title": "Default",
+          "type": "integer"
+        },
+        "hard": {
+          "minimum": 0,
+          "title": "Hard",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "default",
+        "active",
+        "hard"
+      ],
+      "title": "Limit",
+      "type": "object"
+    }
+  },
+  "$id": "https://schemas.ndt-agents.local/v1/budget-policy.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "correction_rounds": {
+      "$ref": "#/$defs/Limit"
+    },
+    "graph_steps": {
+      "$ref": "#/$defs/Limit"
+    },
+    "llm_calls": {
+      "$ref": "#/$defs/Limit"
+    },
+    "policy_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "professional_concurrency": {
+      "$ref": "#/$defs/Limit"
+    },
+    "review_rounds": {
+      "$ref": "#/$defs/Limit"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "task_class": {
+      "enum": [
+        "G0",
+        "P1",
+        "P2",
+        "P3",
+        "K1"
+      ],
+      "title": "Task Class",
+      "type": "string"
+    },
+    "tool_calls": {
+      "$ref": "#/$defs/Limit"
+    },
+    "total_tokens": {
+      "$ref": "#/$defs/Limit"
+    },
+    "wall_time_ms": {
+      "$ref": "#/$defs/Limit"
+    }
+  },
+  "required": [
+    "policy_id",
+    "task_class",
+    "graph_steps",
+    "llm_calls",
+    "tool_calls",
+    "total_tokens",
+    "wall_time_ms",
+    "professional_concurrency",
+    "review_rounds",
+    "correction_rounds"
+  ],
+  "title": "BudgetPolicy",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

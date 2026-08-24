@@ -1,0 +1,96 @@
+{
+  "benchmark_version": "1.0.0",
+  "datasets": [
+    {
+      "case_count": 1000,
+      "dataset": "routing",
+      "path": "benchmarks/v1/routing.jsonl",
+      "sha256": "91a7aa41332519260bba862082ece93b43d14f1eba2519762cc88e25730acfc9",
+      "splits": {
+        "CALIBRATION": 200,
+        "DEVELOPMENT_EVAL": 300,
+        "FROZEN_TEST": 500
+      }
+    },
+    {
+      "case_count": 288,
+      "dataset": "technical-qa",
+      "path": "benchmarks/v1/technical-qa.jsonl",
+      "sha256": "185733bdb71593b34bf28845bfafab7c3a41baf4d3b06c7c9721ddde0060c6b3",
+      "splits": {
+        "CALIBRATION": 57,
+        "DEVELOPMENT_EVAL": 87,
+        "FROZEN_TEST": 144
+      }
+    },
+    {
+      "case_count": 60,
+      "dataset": "inspection-plan",
+      "path": "benchmarks/v1/inspection-plan.jsonl",
+      "sha256": "f13a8289de3f84dc5059ce47c3ead73cc008e4e0f43e3af1c23e99a17aaf6902",
+      "splits": {
+        "CALIBRATION": 12,
+        "DEVELOPMENT_EVAL": 18,
+        "FROZEN_TEST": 30
+      }
+    },
+    {
+      "case_count": 40,
+      "dataset": "report",
+      "path": "benchmarks/v1/report.jsonl",
+      "sha256": "c68899dd2bbe0142f5f9c47d739ae6fac0d6a04eed6f675012b64d297ed55f65",
+      "splits": {
+        "CALIBRATION": 8,
+        "DEVELOPMENT_EVAL": 12,
+        "FROZEN_TEST": 20
+      }
+    },
+    {
+      "case_count": 200,
+      "dataset": "compression-restore",
+      "path": "benchmarks/v1/compression-restore.jsonl",
+      "sha256": "49d0bf95de88771b7ae336fa5910f05668f105265c690d6879a9bb1cc626ca16",
+      "splits": {
+        "CALIBRATION": 40,
+        "DEVELOPMENT_EVAL": 60,
+        "FROZEN_TEST": 100
+      }
+    },
+    {
+      "case_count": 300,
+      "dataset": "bash-encoding",
+      "path": "benchmarks/v1/bash-encoding.jsonl",
+      "sha256": "c89af73e542b04b1d7642e63c0490875386414bc9ebc48ca5c595a5c375d54d8",
+      "splits": {
+        "CALIBRATION": 60,
+        "DEVELOPMENT_EVAL": 90,
+        "FROZEN_TEST": 150
+      }
+    },
+    {
+      "case_count": 120,
+      "dataset": "fault",
+      "path": "benchmarks/v1/fault.jsonl",
+      "sha256": "933e76d81c1c1b632ba5da1fbf8eee5a63df20f131af21fdf711433c672b75e6",
+      "splits": {
+        "CALIBRATION": 24,
+        "DEVELOPMENT_EVAL": 36,
+        "FROZEN_TEST": 60
+      }
+    },
+    {
+      "case_count": 1000,
+      "dataset": "tenant-isolation",
+      "path": "benchmarks/v1/tenant-isolation.jsonl",
+      "sha256": "688509a3a9ae3c68505f7d7c7b6dece21102f05048fb1657e817f9c746b259ab",
+      "splits": {
+        "CALIBRATION": 200,
+        "DEVELOPMENT_EVAL": 300,
+        "FROZEN_TEST": 500
+      }
+    }
+  ],
+  "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
+  "state": "PENDING_EXPERT_ADJUDICATION_AND_REAL_DATA",
+  "training_use": "PROHIBITED"
+}

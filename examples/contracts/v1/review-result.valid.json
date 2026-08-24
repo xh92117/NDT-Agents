@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-08-21T12:00:00Z",
+  "correction_count": 0,
+  "decision": "PASS",
+  "findings": [],
+  "review_id": "00000000-0000-4000-8000-000000000012",
+  "reviewer_version": "review-1",
+  "schema_version": "1.0.0",
+  "target_run_id": "00000000-0000-4000-8000-000000000005",
+  "target_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "task_id": "00000000-0000-4000-8000-000000000004"
+}

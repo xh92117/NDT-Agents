@@ -1,0 +1,13 @@
+{
+  "required_sections": [
+    "scope",
+    "structure_and_component",
+    "applicable_basis",
+    "method_and_coverage",
+    "equipment_and_calibration",
+    "acceptance_and_review",
+    "safety_and_limitations"
+  ],
+  "schema_version": "1.0.0",
+  "template_id": "TPL-INSPECTION-PLAN-V1"
+}

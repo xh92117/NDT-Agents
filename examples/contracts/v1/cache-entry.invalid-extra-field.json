@@ -1,0 +1,46 @@
+{
+  "cache_class": "EXACT",
+  "cache_entry_id": "00000000-0000-4000-8000-000000000011",
+  "cache_key_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "created_at": "2026-08-21T12:00:00Z",
+  "expires_at": "2026-08-21T13:00:00Z",
+  "permission_version": "perm-1",
+  "schema_version": "1.0.0",
+  "scope": {
+    "permission_version": "perm-1",
+    "project_id": "00000000-0000-4000-8000-000000000002",
+    "role_codes": [
+      "NDT_ENGINEER"
+    ],
+    "schema_version": "1.0.0",
+    "tenant_id": "00000000-0000-4000-8000-000000000001",
+    "user_id": "00000000-0000-4000-8000-000000000003"
+  },
+  "unexpected_field": "must be rejected",
+  "validation_state": "VALID",
+  "value_artifact": {
+    "artifact_id": "00000000-0000-4000-8000-000000000006",
+    "artifact_version": "1",
+    "classification": "INTERNAL",
+    "immutable": true,
+    "media_type": "application/json",
+    "schema_version": "1.0.0",
+    "scope": {
+      "permission_version": "perm-1",
+      "project_id": "00000000-0000-4000-8000-000000000002",
+      "role_codes": [
+        "NDT_ENGINEER"
+      ],
+      "schema_version": "1.0.0",
+      "tenant_id": "00000000-0000-4000-8000-000000000001",
+      "user_id": "00000000-0000-4000-8000-000000000003"
+    },
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "size_bytes": 128,
+    "uri": "artifact://tenant/project/example"
+  },
+  "version_manifest": {
+    "model": "reference",
+    "prompt": "1.0.0"
+  }
+}

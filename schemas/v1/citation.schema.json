@@ -1,0 +1,64 @@
+{
+  "$id": "https://schemas.ndt-agents.local/v1/citation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "format": "uuid",
+      "title": "Artifact Id",
+      "type": "string"
+    },
+    "citation_id": {
+      "format": "uuid",
+      "title": "Citation Id",
+      "type": "string"
+    },
+    "claim_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "locator": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Locator",
+      "type": "string"
+    },
+    "locator_type": {
+      "enum": [
+        "PAGE",
+        "SECTION",
+        "CLAUSE",
+        "TABLE",
+        "FIGURE",
+        "CELL",
+        "LINE"
+      ],
+      "title": "Locator Type",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "citation_id",
+    "artifact_id",
+    "source_sha256",
+    "locator_type",
+    "locator",
+    "claim_id"
+  ],
+  "title": "CitationRef",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

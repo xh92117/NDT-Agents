@@ -1,0 +1,52 @@
+{
+  "$id": "https://schemas.ndt-agents.local/v1/tenant-scope.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "permission_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Permission Version",
+      "type": "string"
+    },
+    "project_id": {
+      "format": "uuid",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "role_codes": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Role Codes",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "tenant_id": {
+      "format": "uuid",
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "user_id": {
+      "format": "uuid",
+      "title": "User Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "tenant_id",
+    "project_id",
+    "user_id",
+    "role_codes",
+    "permission_version"
+  ],
+  "title": "TenantScope",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}
