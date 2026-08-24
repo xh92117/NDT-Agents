@@ -2,7 +2,7 @@
 
 **Run ID:** `S3-02-BASH-GATEWAY-20260824-01`
 
-**Status:** `PASS_LOCAL_REMOTE_LINUX_PENDING`
+**Status:** `PASS`
 
 **Branch:** `codex/s3-02-bash-file-gateway`
 
@@ -41,8 +41,14 @@ background launch, package installation, or network access.
 - all four controlled generators reran with zero working-diff drift;
 - `PYTHONUTF8=1 uv run pip-audit --local --progress-spinner off`: no known vulnerabilities.
 
-## Pending completion condition
+## Remote Linux result
 
-GitHub Ubuntu must execute all 26 dedicated tests, including the NUL-delimited control-character
-filename denial, and the complete protected `quality` job. Until that evidence exists, the task
-record remains IN_PROGRESS and this local execution is BLOCKED only on the platform-specific case.
+- PR head commit: `e0998ad475a345e77d3e9058f43b817f6c4052d5`;
+- GitHub Actions run: [32699999214](https://github.com/xh92117/NDT-Agents/actions/runs/32699999214);
+- environment: Ubuntu 24.04, CPython 3.12.14, uv 0.11.20;
+- result: all 298 tests passed in 18.41 seconds with zero skip, including the NUL-delimited
+  control-character filename denial;
+- controlled generation produced zero drift; DOC 1.32, Ruff, strict mypy, dependency audit, and
+  evidence upload passed;
+- S3-02 acceptance is complete. TG-03 remains a separate phase gate and S5-01 remains the next
+  dependent task.
