@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "deepseek-v4",
+  "catalog_version": "1.0.0",
+  "checked_on": "2026-08-24",
+  "providers": [
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "deepseek",
+      "version": "1.0.0",
+      "display_name": "DeepSeek",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://api.deepseek.com",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.deepseek.credential",
+      "allowed_data_classes": [
+        "PUBLIC",
+        "SYNTHETIC"
+      ],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-24",
+      "official_sources": [
+        "https://api-docs.deepseek.com/guides/function_calling/",
+        "https://api-docs.deepseek.com/api/create-chat-completion/",
+        "https://api-docs.deepseek.com/api/list-models/",
+        "https://api-docs.deepseek.com/quick_start/pricing/"
+      ]
+    }
+  ],
+  "models": [
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "deepseek",
+      "provider_version": "1.0.0",
+      "model_id": "deepseek-v4-pro",
+      "model_snapshot": "DeepSeek-V4-Pro-0813",
+      "lifecycle": "STABLE",
+      "protocols": [
+        "OPENAI_CHAT_COMPLETIONS"
+      ],
+      "capabilities": [
+        "TEXT_INPUT",
+        "TEXT_OUTPUT",
+        "TOOL_CALLING",
+        "JSON_OUTPUT",
+        "REASONING",
+        "STREAMING"
+      ],
+      "context_window_tokens": 1000000,
+      "max_output_tokens": 393216,
+      "metadata_checked_on": "2026-08-24",
+      "official_sources": [
+        "https://api-docs.deepseek.com/guides/function_calling/",
+        "https://api-docs.deepseek.com/quick_start/pricing/"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "deepseek",
+      "provider_version": "1.0.0",
+      "model_id": "deepseek-v4-flash",
+      "model_snapshot": "DeepSeek-V4-Flash-0731",
+      "lifecycle": "STABLE",
+      "protocols": [
+        "OPENAI_CHAT_COMPLETIONS"
+      ],
+      "capabilities": [
+        "TEXT_INPUT",
+        "TEXT_OUTPUT",
+        "TOOL_CALLING",
+        "JSON_OUTPUT",
+        "REASONING",
+        "STREAMING"
+      ],
+      "context_window_tokens": 1000000,
+      "max_output_tokens": 393216,
+      "metadata_checked_on": "2026-08-24",
+      "official_sources": [
+        "https://api-docs.deepseek.com/guides/function_calling/",
+        "https://api-docs.deepseek.com/quick_start/pricing/"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "deepseek",
+      "provider_version": "1.0.0",
+      "model_id": "deepseek-v4-flash-vision-exp",
+      "model_snapshot": "deepseek-v4-flash-vision-exp",
+      "lifecycle": "EXPERIMENTAL",
+      "protocols": [
+        "OPENAI_CHAT_COMPLETIONS"
+      ],
+      "capabilities": [
+        "TEXT_INPUT",
+        "TEXT_OUTPUT",
+        "VISION_INPUT",
+        "TOOL_CALLING",
+        "JSON_OUTPUT",
+        "REASONING",
+        "STREAMING"
+      ],
+      "context_window_tokens": 1000000,
+      "max_output_tokens": 393216,
+      "metadata_checked_on": "2026-08-24",
+      "official_sources": [
+        "https://api-docs.deepseek.com/guides/function_calling/",
+        "https://api-docs.deepseek.com/quick_start/pricing/"
+      ]
+    }
+  ]
+}

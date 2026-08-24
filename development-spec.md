@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.29
+**Specification version:** 1.30
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -584,6 +584,18 @@ source file or instrument task
 Canonical data includes structure, component, area, point, channel, sample rate, unit, coordinates, time, acquisition settings, instrument, calibration, operator, source hash, and parser version.
 
 The model registry stores model version, valid structures and materials, input/output schema, training and validation scope, thresholds, runtime, resources, and report eligibility.
+
+The isolated S5-07 API-management control plane separates immutable provider and model catalog
+metadata from tenant/project provider bindings. A binding contains only a scoped S1-11
+`SecretSelector`; plaintext API keys are never accepted by catalog, binding, resolution, audit, or
+serialized evidence contracts. Resolution validates the expected registry hash, environment,
+tenant, project, permission version, model capabilities, data classification, network policy,
+bounded timeout, attempt, concurrency, input-token, and output-token limits before returning a
+reference-only route. Provider compliance metadata records the verification state of processing
+region, retention, training use, and commercial terms. Unverified hosted providers cannot be
+enabled for production or confidential/restricted data. The initial DeepSeek V4 catalog is a
+non-secret personal-development candidate; it does not perform inference, resolve a secret, or
+satisfy the unfinished S5-01 and S5-06 dependencies.
 
 ## 15. Multi-tenancy, security, and audit
 

@@ -70,6 +70,7 @@ jobs:
             benchmarks/v1/manifest.json
             sbom/cyclonedx.v1.json
             architecture/personal-development-runtime.v1.json
+            config/model-providers/deepseek-v4.v1.json
             security/personal-project-governance.v1.json
             security/license-evidence.v1.json
             security/license-decisions.v1.json

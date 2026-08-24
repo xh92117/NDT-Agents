@@ -17,6 +17,7 @@ blocked by the approvals and external evidence recorded in `plan.md`.
 | `docs` | governance, domain, security, decision, contract, and test-data records |
 | `fixtures/v1` | synthetic parser, template, and raw-inspection fixtures |
 | `benchmarks/v1` | synthetic evaluation JSONL sets and frozen manifest |
+| `config/model-providers` | non-secret provider and model catalogs |
 | `security` | machine-readable security and license decision baselines |
 | `sbom` | generated CycloneDX inventory |
 | `tools` | deterministic generators and repository checks |
@@ -24,6 +25,8 @@ blocked by the approvals and external evidence recorded in `plan.md`.
 
 The runtime API contract is documented in
 [`docs/contracts/runtime-api-v1.md`](./docs/contracts/runtime-api-v1.md).
+The provider-neutral multi-API catalog and binding contract is documented in
+[`docs/contracts/model-api-registry-v1.md`](./docs/contracts/model-api-registry-v1.md).
 Storage ports and local adapter boundaries are documented in
 [`docs/contracts/storage-ports-v1.md`](./docs/contracts/storage-ports-v1.md).
 The isolated OIDC, RBAC, request-scope, and PostgreSQL RLS contract is documented in
