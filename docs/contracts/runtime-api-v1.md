@@ -7,7 +7,8 @@
 ## Application factory
 
 `ndt_agents.runtime.app.create_app` builds the FastAPI application without contacting a database,
-cache, object store, model provider, or external network. The factory accepts an immutable
+cache, object store, model provider, or external network. It may perform bounded local reads of an
+explicit model YAML, catalog JSON, and local/CI environment file. The factory accepts an immutable
 `AppSettings` value. When no value is supplied, it reads only the supported `NDT_` environment
 keys. Unknown keys, invalid values, and unsafe production settings fail with a stable
 `ConfigurationError.code` and do not echo the rejected value.
@@ -22,8 +23,13 @@ keys. Unknown keys, invalid values, and unsafe production settings fail with a s
 | `NDT_HOST` | bind host | `127.0.0.1` | 1 to 255 characters |
 | `NDT_PORT` | bind port | `8000` | 1 to 65535 |
 | `NDT_EXPOSE_API_DOCS` | API docs | `false` | forbidden in production |
+| `NDT_MODEL_CONFIG` | model YAML path | unset | explicit UTF-8 YAML path |
+| `NDT_MODEL_ENV_FILE` | local secret file path | unset | requires model config; forbidden in production |
 
 The package version is the service version and cannot be overridden by an environment value.
+Model configuration is opt-in: when unset, startup behavior remains provider-neutral. When set,
+the application attaches the typed result to `app.state.model_runtime`; it never places secret
+values in settings, health output, logs, or serialized status.
 
 ## Health resources
 
@@ -31,9 +37,10 @@ The package version is the service version and cannot be overridden by an enviro
 `process`.
 
 `GET /health/ready` returns HTTP 200 after the application scaffold initializes. Its check name is
-`application`. Injected dependency probes extend readiness without making liveness depend on an
-external service. A failed dependency makes readiness return HTTP 503, overall `FAIL`, and the
-typed probe error code.
+`application`. A successfully selected model bootstrap adds a non-secret `model_configuration`
+PASS check. Invalid configuration fails startup instead of publishing a false-ready application.
+Injected dependency probes extend readiness without making liveness depend on an external service.
+A failed dependency makes readiness return HTTP 503, overall `FAIL`, and the typed probe error code.
 
 Both resources return a strict `HealthResponse`:
 

@@ -1619,7 +1619,7 @@
       "properties": [
         {
           "name": "ndt:dependency-scope",
-          "value": "DEVELOPMENT_DIRECT"
+          "value": "RUNTIME_DIRECT"
         }
       ],
       "purl": "pkg:pypi/pyyaml@6.0.3",
@@ -2187,7 +2187,7 @@
     "properties": [
       {
         "name": "ndt:uv-lock-sha256",
-        "value": "fdba41c6834c6b3cb44ac844966ee65fd5c93f9008383eac8039b63cf304a908"
+        "value": "2c3267c7de70a602067c9e86bdc2842ae01733a51b4641a15e554e2c17765966"
       }
     ],
     "timestamp": "2026-08-21T12:00:00Z",
@@ -2201,7 +2201,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:bd28244f-077b-551b-9ec0-f4ef887704c8",
+  "serialNumber": "urn:uuid:5828ecc5-ce8c-5834-879d-dd3053d3cd8d",
   "specVersion": "1.6",
   "version": 1
 }

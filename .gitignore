@@ -12,6 +12,8 @@ dist/
 .env
 .env.*
 !.env.example
+config/runtime/*.local.yaml
+!config/runtime/*.example.yaml
 .idea/
 .vscode/
 Thumbs.db

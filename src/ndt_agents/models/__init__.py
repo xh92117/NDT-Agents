@@ -1,5 +1,11 @@
 """Provider-neutral model API catalog, binding, and route resolution."""
 
+from ndt_agents.models.config import (
+    ConfiguredModelRuntime,
+    ModelConfigurationError,
+    ModelRuntimeStatus,
+    load_model_runtime_configuration,
+)
 from ndt_agents.models.registry import (
     ApiProtocol,
     BindingState,
@@ -27,19 +33,23 @@ __all__ = [
     "BindingState",
     "CatalogOrigin",
     "CredentialScheme",
+    "ConfiguredModelRuntime",
     "ModelApiRegistry",
     "ModelCapability",
     "ModelCatalogManifest",
     "ModelDataClass",
     "ModelDefinition",
     "ModelLifecycle",
+    "ModelConfigurationError",
     "ModelRegistryError",
     "ModelResolutionContext",
     "ModelSelectionRequest",
+    "ModelRuntimeStatus",
     "PolicyVerification",
     "ProviderBinding",
     "ProviderDefinition",
     "ProviderEndpoint",
     "ResolvedModelRoute",
     "SelectionSource",
+    "load_model_runtime_configuration",
 ]

@@ -11,8 +11,10 @@ S1-11 adds one small provider-neutral boundary for secret references, transport 
 encryption, key lifecycle, and security audit hooks. It does not select or emulate a production
 vault, HSM, KMS, certificate authority, or cloud encryption service.
 
-Local and CI tests use deterministic in-memory secret and key providers. They are test doubles and
-cannot be enabled as production providers. Production selection remains blocked by the unapproved
+Local and CI tests use deterministic in-memory secret and key providers. Model startup may also use
+the read-only `EnvironmentSecretProvider`, which accepts only explicitly allowlisted variable names
+and exact scoped selectors. These adapters cannot be enabled as production providers. Production
+selection remains blocked by the unapproved
 S0-10 baseline and the provider, license, endpoint, certificate, region, and operations decisions in
 `plan.md`.
 
@@ -32,6 +34,13 @@ Rules:
 - revocation never falls back to an environment variable, embedded value, file, or prior lease;
 - lease duration is bounded and a lease is revalidated before use;
 - audit input and output hashes cover reference and decision metadata, never secret bytes.
+
+The environment adapter is limited to local and CI. It snapshots only explicitly referenced
+non-empty values, wraps each value as `SecretStr`, reveals it only for the exact current
+`SecretRef`, and provides no rotate or revoke mutation. Changing a value requires an external
+environment update, an incremented configured version, and process restart. Process variables take
+precedence over an explicitly selected ignored local environment file. There is no implicit dotenv
+discovery or fallback after a missing, stale, or wrong-scope request.
 
 ## 3. Transport policy
 

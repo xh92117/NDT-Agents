@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.30
+**Version:** 1.31
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -70,7 +70,7 @@ If a profile exceeds its duration target, it may be split into parallel CI jobs,
 | Database migration or tenant policy | `SCHEMA`, `SEC-TENANT`, `SEC-CACHE`, migration and rollback tests | run on an anonymized production-like copy |
 | MCP server or instrument adapter | `INT-MCP`, `INT-INSTRUMENT`, `SEC-TOOLS`, `RES-ALL` | run disconnected and malformed-response cases |
 | Web Search provider or citation policy | `INT-WEB`, `EVAL-QA`, `EVAL-TOKEN` | run cached and uncached cases |
-| Model provider catalog, binding, endpoint, capability, or selection policy | `UNIT-MODELREG`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT` | run before publishing the registry snapshot or enabling a binding |
+| Model provider catalog, binding, endpoint, capability, selection policy, YAML bootstrap, or secret source | `UNIT-MODELREG`, `UNIT-CORE` startup, `SEC-PLATFORM`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT` | run before publishing the registry snapshot, enabling a binding, or changing startup configuration |
 | Client API or event contract | `SCHEMA`, `E2E` | run against Web, desktop, and PWA contract clients |
 | Dependency or operating-system image | `QUICK`, full unit suite, dependency scan | run `NIGHTLY` before promotion |
 | Threat model, data classification, encryption, secret, retention, SLO, SBOM, or license policy | `SEC-BASELINE`, affected security and lifecycle groups | run before approving the policy or dependent architecture decision |
@@ -698,6 +698,12 @@ tenant, project, permission, network, data-class, capability, and token-limit au
 and production-ineligible routes; secret-reference-only serialization; typed recovery actions; and
 hash-only MODEL audit events for allow and deny decisions.
 
+Also test bounded UTF-8 YAML and environment-file parsing, safe relative catalog resolution,
+unknown fields and YAML tags, duplicate environment variables, process-environment precedence,
+enabled-versus-disabled missing-secret behavior, exact secret selector assembly, read-only local
+secret resolution, configuration hashes that exclude secret values, application-state attachment,
+non-secret readiness, zero-network startup, and stable non-disclosing failures.
+
 Run after any provider, model, endpoint, capability, secret-binding, fallback, or selection-policy
 change; before a registry snapshot or binding is enabled; in `PR`; and at `TG-05` and `RELEASE`.
 
@@ -809,6 +815,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S0-08-PERSONAL-GOVERNANCE-20260824-01 | 2026-08-24 | S0-08 / `codex/s0-08-personal-governance` / governance record `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` | `TASK`, `SEC-BASELINE`, SBOM/license, `QUICK`, `DOC`, dependency audit | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [approval-readiness evidence](./evidence/s0/s0-08-approval-readiness-20260824.md); 25 targeted checks and all 231 tests passed; four generators had zero drift; DOC 1.28, Ruff, format over 77 files, strict mypy over 77 source files, and dependency audit passed after one bounded UTF-8 environment retry | personal confirmation is non-approval; all four independent roles remain unassigned; production, customer-data, formal-compliance, and commercial paths remain blocked; R-005 and R-007 stay open | Codex |
 | S0-05-PERSONAL-RUNTIME-20260824-01 | 2026-08-24 | S0-05 / `codex/s0-05-personal-runtime` / runtime candidate `adad384a90661d5a9e29d492a810520fc738cc99848494343a408b49b0ad879f` | `TASK`, `PROVIDER-SMOKE`, `QUICK`, `DOC`, dependency audit | local Windows / `PERSONAL-DEV-1` / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S0-05 personal runtime evidence](./evidence/s0/s0-05-personal-runtime-20260824.md); offline fake passed strict contracts, limits, typed failures, metadata, retention, redaction, and zero-network checks; 27 targeted and all 239 tests passed; four generators had zero drift; DOC 1.29, Ruff, format over 79 files, strict mypy over 79 source files, and dependency audit passed | live China-region provider awaits non-secret metadata and later secret reference; direct OpenAI is jurisdiction-blocked; local model/hardware is unfrozen; R-003, R-005, R-007, R-010 | Codex |
 | S5-07-API-MANAGEMENT-20260824-01 | 2026-08-24 | S5-07 isolated control plane / `codex/s5-07-api-management` / configuration `689e4cf225d8ca4730e21a71479775d1266194d61223840461927b284d44d16a` | `TASK`, `UNIT-MODELREG`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT`, `QUICK`, `DOC`, dependency audit | local Windows / configuration-only DeepSeek candidate / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S5-07 durable evidence](./evidence/s5/s5-07-api-management-20260824.md); 14 dedicated and all 253 tests passed; deterministic registry, multiple bindings, reference-only secrets, scope/data/capability/budget denials, hash-only MODEL audit, zero physical calls, four generators, Ruff, format over 82 files, strict mypy over 82 source files, DOC 1.30, and dependency audit passed | S5-01, S5-06, hosted policy review, scoped secret provider, live smoke, and production approval remain blocked; S5-07 is not DONE | Codex |
+| S5-07-CONFIG-BOOTSTRAP-20260824-01 | 2026-08-24 | S5-07 isolated startup bootstrap / `codex/s5-07-model-config-bootstrap` / runtime candidate `3259b8d6297fbea93e409ad8f20a2d401331ff8ea2dd83c8ddcafd033101da7f` | `TASK`, `UNIT-MODELREG`, `UNIT-CORE` startup, `SEC-PLATFORM`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT`, `QUICK`, `DOC`, dependency and SBOM checks | local Windows / strict YAML plus local read-only environment source / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S5-07 bootstrap evidence](./evidence/s5/s5-07-config-bootstrap-20260824.md); 19 dedicated configuration tests, 63 affected-boundary tests, and all 272 tests passed; four generators had zero drift; Ruff, format over 85 files, strict mypy over 85 source files, DOC 1.31, and dependency audit passed | physical inference, S5-01, S5-06, hosted policy review, live smoke, production managed secrets, and production approval remain blocked; S5-07 is not DONE | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 

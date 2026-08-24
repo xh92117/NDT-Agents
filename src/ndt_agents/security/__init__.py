@@ -2,6 +2,7 @@
 
 from ndt_agents.security.audit import AuditSecurityHook, SecurityAuditHook
 from ndt_agents.security.crypto import EnvelopeEncryptionService, InMemoryKeyProvider
+from ndt_agents.security.environment import EnvironmentSecretBinding, EnvironmentSecretProvider
 from ndt_agents.security.models import (
     EncryptedEnvelope,
     KeyRef,
@@ -21,6 +22,8 @@ __all__ = (
     "AuditSecurityHook",
     "EncryptedEnvelope",
     "EnvelopeEncryptionService",
+    "EnvironmentSecretBinding",
+    "EnvironmentSecretProvider",
     "InMemoryKeyProvider",
     "InMemorySecretProvider",
     "KeyRef",

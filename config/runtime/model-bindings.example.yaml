@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+config_version: 1.0.0
+catalogs:
+  - ../model-providers/deepseek-v4.v1.json
+bindings:
+  - binding_id: personal-deepseek
+    version: 1.0.0
+    provider_id: deepseek
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids:
+      - deepseek-v4-pro
+      - deepseek-v4-flash
+    default_model_id: deepseek-v4-pro
+    fallback_model_ids:
+      - deepseek-v4-flash
+    allowed_data_classes:
+      - PUBLIC
+      - SYNTHETIC
+    required_permission: model.invoke.deepseek
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 120000
+    max_output_tokens: 60000
+    secret:
+      source: ENVIRONMENT
+      variable: DEEPSEEK_API_KEY
+      version: local-v1
+      secret_id: deepseek-api-key
+      purpose: model.deepseek.credential

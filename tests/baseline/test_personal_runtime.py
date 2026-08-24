@@ -34,7 +34,7 @@ def smoke_tool() -> dict[str, Any]:
 
 def test_runtime_candidate_is_bound_to_personal_governance() -> None:
     runtime = load_json(RUNTIME_PATH)
-    assert runtime["candidate_version"] == "1.1.0"
+    assert runtime["candidate_version"] == "1.2.0"
     assert runtime["state"] == "PROVISIONAL_PERSONAL_DEVELOPMENT_ONLY"
     assert runtime["governance_path"] == "security/personal-project-governance.v1.json"
     assert runtime["governance_sha256"] == sha256(GOVERNANCE_PATH)
@@ -77,12 +77,20 @@ def test_hosted_and_local_model_candidates_remain_blocked() -> None:
     candidates = load_json(RUNTIME_PATH)["provider_candidates"]
     assert candidates["deterministic_fake"]["status"] == "SELECTED_OFFLINE"
     china_region = candidates["china_region_hosted"]
-    assert china_region["status"] == "CATALOGED_POLICY_REVIEW_AND_SECRET_PENDING"
+    assert china_region["status"] == (
+        "CATALOGED_BOOTSTRAP_IMPLEMENTED_POLICY_REVIEW_AND_SECRET_PENDING"
+    )
     assert china_region["credentials_requested"] is False
     assert china_region["provider"] == "deepseek"
     assert china_region["default_model_candidate"] == "deepseek-v4-pro"
     assert china_region["fallback_model_candidate"] == "deepseek-v4-flash"
     assert china_region["secret_reference_status"] == "NOT_PROVISIONED"
+    assert (
+        china_region["startup_bootstrap_status"] == "IMPLEMENTED_REFERENCE_ONLY_ZERO_NETWORK_CALLS"
+    )
+    assert china_region["configuration_example_path"] == (
+        "config/runtime/model-bindings.example.yaml"
+    )
     catalog_path = ROOT / china_region["catalog_path"]
     assert china_region["catalog_sha256"] == sha256(catalog_path)
     assert "RETENTION_AND_TRAINING_POLICY" in china_region["required_before_live_call"]
