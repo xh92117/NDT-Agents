@@ -1,0 +1,66 @@
+{
+  "decision_source": {
+    "actor_identity": "UNVERIFIED_CURRENT_PROJECT_OWNER",
+    "actor_role": "PROJECT_OWNER",
+    "recorded_on": "2026-08-24",
+    "source": "USER_CONFIRMATION_IN_CODEX_TASK"
+  },
+  "engineering_targets": {
+    "baseline_sha256": "90315dd61e1c378addf6d6e20186de75ef865a8b0782df0c97fde7c20b774bed",
+    "baseline_version": "1.0.0",
+    "project_evidence_and_reports": "NO_AUTO_DELETE_UNTIL_COMMERCIAL_REVIEW",
+    "recovery_minutes": {
+      "core_task_rpo": 15,
+      "core_task_rto": 240,
+      "noncritical_analytics_rto": 1440
+    },
+    "retention_days": {
+      "operational_telemetry_archive": 365,
+      "operational_telemetry_hot": 90,
+      "rolling_backup": 35,
+      "security_and_approval_audit": 2557
+    },
+    "slos": {
+      "accepted_task_durability": 0.999,
+      "api_availability": 0.995
+    },
+    "state": "ACCEPTED_AS_PROVISIONAL_ENGINEERING_TARGETS"
+  },
+  "governance_mode": "SOLE_PROJECT_OWNER",
+  "governance_version": "1.0.0",
+  "independent_approval_state": "NOT_SATISFIED",
+  "independent_review_roles": [
+    {
+      "role": "LEGAL_OWNER",
+      "state": "UNASSIGNED"
+    },
+    {
+      "role": "OPERATIONS_OWNER",
+      "state": "UNASSIGNED"
+    },
+    {
+      "role": "QUALITY_OWNER",
+      "state": "UNASSIGNED"
+    },
+    {
+      "role": "SECURITY_OWNER",
+      "state": "UNASSIGNED"
+    }
+  ],
+  "jurisdiction": {
+    "code": "CN_MAINLAND",
+    "commercialization_review_required": true,
+    "state": "PROVISIONAL_PENDING_COMMERCIAL_REVIEW"
+  },
+  "project_stage": "PERSONAL_PRE_COMMERCIAL",
+  "restrictions": {
+    "commercial_release": "BLOCKED",
+    "formal_compliance_claim": "BLOCKED",
+    "production_customer_data": "BLOCKED",
+    "production_deployment": "BLOCKED"
+  },
+  "risk_effect": {
+    "R-005": "OPEN",
+    "R-007": "OPEN"
+  }
+}

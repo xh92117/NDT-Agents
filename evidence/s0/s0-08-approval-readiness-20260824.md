@@ -4,7 +4,9 @@
 
 - Task: S0-08
 - Branch: `codex/s0-08-approval-readiness`
+- Governance update branch: `codex/s0-08-personal-governance`
 - Base commit: `9dca6edc1b08ab8e5b83b3bf50fb026ae27b542b`
+- Governance update base commit: `0b3e9a88694135cbccd15324496a6c65da8bf818`
 - Risks: R-005 and R-007
 - State: engineering evidence captured; accountable human decisions remain pending
 
@@ -34,6 +36,7 @@ or legacy metadata.
 | Artifact | SHA-256 |
 |---|---|
 | `security/security-baseline.v1.json` | `90315dd61e1c378addf6d6e20186de75ef865a8b0782df0c97fde7c20b774bed` |
+| `security/personal-project-governance.v1.json` | `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` |
 | `sbom/cyclonedx.v1.json` | `c1d7f986437cc1c30efbe857a6a7d920ef9f9f0de2edacbb263a8d4d13d44ebd` |
 | `security/license-evidence.v1.json` | `640e0aa63c0893d67d50ccf1e6b42172d1aae87348133aa01cedafe83386b00e` |
 | `security/license-decisions.v1.json` | `38c1cffa96f14174fdeea30b8221639f2040c231f057ee100571f1b58c5dcb18` |
@@ -61,6 +64,32 @@ security review, component decisions, notice obligations, and replacement paths.
 because jurisdiction, retention, project-evidence lifetime, SLO, RPO/RTO, reference environment,
 actor identity, and role authority are not yet approved. No automated result in this evidence can
 close either risk.
+
+## Personal-project provisional decision
+
+On 2026-08-24, the current repository owner confirmed that this is a personal project, selected
+Mainland China provisionally, required review before commercialization, and accepted the current
+retention, SLO, RPO, and RTO values only as engineering targets. The exact decision is recorded in
+`security/personal-project-governance.v1.json` with SHA-256
+`c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083`.
+
+The actor identity is not independently verified, all four independent review roles remain
+unassigned, and the record explicitly keeps R-005 and R-007 open. It blocks production deployment,
+production customer data, formal compliance claims, and commercial release. It is evidence of the
+owner's provisional engineering direction, not legal, security, operations, or quality approval.
+
+## Personal-governance validation
+
+The targeted profile ran the personal-governance, license-evidence, security-baseline, SBOM, and CI
+workflow tests; all 25 tests passed. The complete TASK profile then ran all four controlled
+generators with zero tracked drift and all 231 tests passed. Ruff passed, all 77 files were already
+formatted, strict mypy reported no issues in 77 source files, and DOC 1.28 passed for four ASCII
+controlled documents and seven gates.
+
+The first local dependency-audit launch inherited the Windows console encoding and failed while
+decoding the Chinese workspace path before the audit began. The bounded retry set
+`PYTHONUTF8=1`; the audit then completed and found no known vulnerabilities. This encoding retry
+changed no source, dependency, or generated artifact.
 
 ## Complete local TASK validation
 

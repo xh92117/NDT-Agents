@@ -16,6 +16,7 @@ SBOM_PATH = ROOT / "sbom" / "cyclonedx.v1.json"
 DECISIONS_PATH = ROOT / "security" / "license-decisions.v1.json"
 LOCK_PATH = ROOT / "uv.lock"
 BASELINE_PATH = ROOT / "security" / "security-baseline.v1.json"
+GOVERNANCE_PATH = ROOT / "security" / "personal-project-governance.v1.json"
 PACKET_PATH = ROOT / "docs" / "security" / "s0-approval-packet.md"
 TOOL = runpy.run_path(str(ROOT / "tools" / "refresh_license_evidence.py"))
 classify_evidence_state = cast(
@@ -124,7 +125,14 @@ def test_all_direct_dependencies_have_at_least_declared_or_legacy_metadata() -> 
 
 def test_approval_packet_binds_every_exact_review_target() -> None:
     packet = PACKET_PATH.read_text("utf-8")
-    for path in (BASELINE_PATH, SBOM_PATH, EVIDENCE_PATH, DECISIONS_PATH, LOCK_PATH):
+    for path in (
+        BASELINE_PATH,
+        GOVERNANCE_PATH,
+        SBOM_PATH,
+        EVIDENCE_PATH,
+        DECISIONS_PATH,
+        LOCK_PATH,
+    ):
         assert sha256(path) in packet, path.relative_to(ROOT)
     assert "PENDING_ACCOUNTABLE_REVIEW" in packet
     assert "APPROVED | CHANGES_REQUESTED | REJECTED" in packet
