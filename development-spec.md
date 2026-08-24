@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.23  
+**Specification version:** 1.24  
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
