@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.43
+**Specification version:** 1.44
 **Date:** 2026-08-25
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -647,6 +647,12 @@ publication record from preserved prior snapshots rather than erasing history. C
 publication, approval, review, diff, state-transition, and operation hashes remain recoverable.
 Idempotent replay returns the same result, while stale base, stale hash, wrong action, cross-scope,
 unreviewed, rejected, expired, or reused approval evidence fails before mutation.
+
+The complete S3 local reference implementation passes its automated synthetic and offline test
+profile. This does not satisfy TG-03: real pinned MinerU and independent OCR, licensed standards,
+accountable rights and publication approvals, an approved production embedding and frozen corpus,
+live PostgreSQL/full-text/vector/object-store atomicity and recovery, a zero-skip Linux path corpus,
+and protected immutable CI evidence remain mandatory external evidence.
 
 MinerU references:
 
