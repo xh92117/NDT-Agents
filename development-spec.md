@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.36
+**Specification version:** 1.37
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -536,6 +536,16 @@ one asynchronous `K1` professional dispatch through the Main Graph, requires ind
 keeps Main at zero LLM and tool calls, and never grants the child a user-delivery channel. UI starts
 derive tenant, project, and user scope from authenticated middleware. Administrator jobs additionally
 require a current approval grant bound to the exact task and candidate hash.
+
+The S3-03 intake boundary reads one exact relative source through an application-owned adapter to
+the S3-02 root and path policy. It streams the immutable original into a SHA-256 digest, determines
+MIME from bounded signature bytes before considering the suffix, checks container entry names and
+compression ratios without extraction, and records declared and detected MIME separately. Text
+encoding detection checks BOM first, then strict UTF-8, then configured GB18030, GBK, and UTF-16
+candidates. An ambiguous or invalid encoding, MIME mismatch, unsafe container, unsupported type,
+scope mismatch, mutable source, or size-limit violation returns a typed manual-review or rejection
+state without changing the source. Accepted text is normalized to UTF-8 without BOM while retaining
+the source hash, normalized hash, exact path, detected encoding, confidence, and conversion log.
 
 Supported first-release inputs:
 

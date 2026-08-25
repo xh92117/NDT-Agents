@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.36
+**Version:** 1.37
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -458,6 +458,13 @@ Run after any Bash tool, command allowlist, path, locale, encoding, read, write,
 
 Acceptance: 100 percent round-trip equality for valid samples; zero garbled Chinese output; zero silent lossy conversion; zero unintended file modification during read/search tests.
 
+For S3-03, `tests/knowledge/test_intake.py` must cover signature-first MIME detection for every V1
+type, exact path and scope binding through the S3-02 root policy, streaming size and SHA-256,
+immutable-source enforcement, Office ZIP safety without extraction, declared MIME mismatch,
+executable and unsupported content denial, UTF-8 with and without BOM, GB18030, GBK, UTF-16LE and
+UTF-16BE, invalid and ambiguous bytes, UTF-8 normalization hashes and conversion logs, batch hard
+limits, duplicate source handling, symlink escape, and unchanged original bytes.
+
 ### 8.17 `SEC-BASH` - Bash sandbox and file safety
 
 Test rejection of:
@@ -898,6 +905,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S2-09-TASK-20260824-01 | 2026-08-24 | S2-09 / local S2 candidate / no immutable build | `TASK`, local `INT-DATA-LIFECYCLE`, `SEC-TENANT`, `SEC-PLATFORM`, migration rollback, `QUICK`, `DOC` | local Windows / in-memory lifecycle and key revoker / offline PostgreSQL DDL / CPython 3.12.13 | `PASS` | [S2-09 evidence](./evidence/s2/s2-09-data-lifecycle-20260824.md); ten dedicated lifecycle cases, affected storage tests, and final 413-test regression passed with one platform skip | live backup expiry, cache/index invalidation, PostgreSQL, key provider, and immutable CI remain TG-02 blockers | Codex |
 | TG-02-LOCAL-20260824-01 | 2026-08-24 | S2 local candidate / configuration `fa5721f2fc51a7d26d9c6ab93878d70f9bdfecd2f570c50c3e0c2e4b0e4f33df` / no immutable build | `PHASE_GATE` local automated subset: `UNIT-CONTEXT`, `EVAL-COMPRESSION`, `INT-MEMORY`, `SEC-CACHE`, `INT-DATA-LIFECYCLE`, affected security, storage, migration, `QUICK`, `DOC`, deterministic generation, dependency audit | local Windows / deterministic adapters and offline PostgreSQL DDL / CPython 3.12.13 / uv 0.11.20 | `BLOCKED` | [TG-02 local assessment](./evidence/s2/tg-02-local-assessment-20260824.md); all 413 tests completed with one platform skip; four generators had zero drift; DOC 1.35, Ruff, format over 113 files, strict mypy, dependency audit, and diff checks passed; S2-01 through S2-09 are DONE | no immutable candidate or CI; approved live services, full frozen compression benchmark, backup expiry, cache/index invalidation, and accountable security, retention, and license approvals are unavailable | Codex |
 | S3-01-TASK-20260824-01 | 2026-08-24 | S3-01 / configuration `7f8167408ff7c74366014b6ba6098aa016c17bb46ca23516a93b98144a8c45f2` / no immutable build | `TASK`, `INT-KNOWLEDGE`, `INT-ORCH`, `SEC-TENANT`, administrator `INT-APPROVAL`, affected runtime and identity, `QUICK`, `DOC`, deterministic generation, dependency audit | local Windows / deterministic in-memory task repository and existing Main Graph, child registry, context manifest, and approval contracts / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-01 durable evidence](./evidence/s3/s3-01-knowledge-entry-20260824.md); 34 dedicated and routing tests and 135 affected-boundary tests passed; all 423 collected tests completed with one known Windows file-name skip; exact entry, scope, approval, K1 budget, immutable artifacts, 50-file bound, isolated child, asynchronous review, default-deny UI, zero Main and child physical calls, Code Graph impact review, four zero-drift generators, Ruff, format over 225 files, strict mypy over 110 source files, DOC 1.36, dependency audit, and diff checks passed | no parsing, OCR, indexing, publication, live service, immutable PR CI, or TG-03 evidence; TG-02 remains blocked | Codex |
+| S3-03-TASK-20260825-01 | 2026-08-25 | S3-03 / configuration `a9d20ab1f77d21bb51fde28642ab1d3d69e64f0cc2498443f8666a4250e3e360` / no immutable build | `TASK`, `INT-BASH`, `SEC-BASH`, S3-03 `INT-KNOWLEDGE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / S3-02 root policy and deterministic source corpus / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-03 durable evidence](./evidence/s3/s3-03-secure-intake-20260825.md); 30 intake cases plus 26 inherited gateway cases completed with one platform skip; all 453 collected tests completed with one skip; original-byte invariance, streaming hash, MIME, Office safety, executable denial, strict UTF-8/GB18030/GBK/UTF-16, manual review, batch limits, duplicate handling, path and scope denial, Ruff, format over 228 files, strict mypy over 112 source files, DOC 1.37, and diff checks passed | no immutable PR CI or approved 2 GB production probe; TG-03 remains pending | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 

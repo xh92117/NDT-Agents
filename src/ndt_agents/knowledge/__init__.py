@@ -5,6 +5,13 @@ from ndt_agents.knowledge.entry import (
     KnowledgeEntryGraph,
     knowledge_entry_candidate_sha256,
 )
+from ndt_agents.knowledge.intake import (
+    EncodingHint,
+    IntakeRequest,
+    IntakeResult,
+    IntakeStatus,
+    KnowledgeIntakeService,
+)
 from ndt_agents.knowledge.models import (
     KnowledgeEntryResult,
     KnowledgeEntryTrigger,
@@ -15,10 +22,15 @@ from ndt_agents.knowledge.models import (
 
 __all__ = [
     "InMemoryKnowledgeTaskRepository",
+    "EncodingHint",
+    "IntakeRequest",
+    "IntakeResult",
+    "IntakeStatus",
     "KnowledgeEntryGraph",
     "KnowledgeEntryResult",
     "KnowledgeEntryTrigger",
     "KnowledgeIntent",
+    "KnowledgeIntakeService",
     "KnowledgeStartRequest",
     "KnowledgeUiStartRequest",
     "knowledge_entry_candidate_sha256",
