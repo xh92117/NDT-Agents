@@ -173,6 +173,13 @@ class FileRootPolicy:
     max_output_lines: int = 10_000
 
 
+@dataclass(frozen=True, slots=True)
+class SourceSnapshot:
+    content: bytes
+    size_bytes: int
+    sha256: str
+
+
 def _sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -357,6 +364,71 @@ class ControlledFileGateway:
                 "The invocation scope does not own the configured file root.",
                 next_action="Use the exact authorized tenant and project file root.",
             )
+
+    def read_source_bytes(
+        self,
+        scope: TenantScope,
+        relative_path: str,
+        *,
+        hard_limit_bytes: int,
+    ) -> SourceSnapshot:
+        """Read one immutable intake source through the gateway path and scope policy.
+
+        This application-owned adapter is not published as a model-callable tool. It exists for
+        binary signature inspection and hashing, which cannot safely pass through text context.
+        """
+
+        self._check_scope(scope)
+        if hard_limit_bytes <= 0:
+            raise FileGatewayError(
+                "FILE_INPUT_LIMIT_INVALID",
+                "The source read limit is invalid.",
+                next_action="Use the centrally configured positive intake limit.",
+            )
+        relative = Path(relative_path)
+        lexical_path = self._policy.root / relative
+        if lexical_path.is_symlink():
+            raise self._path_error()
+        path = self._path(relative_path, exists=True)
+        if not path.is_file():
+            raise FileGatewayError(
+                "FILE_SOURCE_NOT_REGULAR",
+                "The selected intake source is not a regular file.",
+                next_action="Select one immutable regular source file.",
+            )
+        before = path.stat()
+        if before.st_size > hard_limit_bytes:
+            raise FileGatewayError(
+                "FILE_INPUT_TOO_LARGE",
+                "The selected file exceeds the intake hard limit.",
+                next_action="Split the source or obtain an approved bounded exception.",
+            )
+        content = bytearray()
+        digest = hashlib.sha256()
+        total = 0
+        with path.open("rb") as stream:
+            while chunk := stream.read(1024 * 1024):
+                total += len(chunk)
+                if total > hard_limit_bytes:
+                    raise FileGatewayError(
+                        "FILE_INPUT_TOO_LARGE",
+                        "The selected file exceeds the intake hard limit.",
+                        next_action="Split the source or obtain an approved bounded exception.",
+                    )
+                digest.update(chunk)
+                content.extend(chunk)
+        after = path.stat()
+        if (
+            before.st_size != after.st_size
+            or before.st_mtime_ns != after.st_mtime_ns
+            or total != after.st_size
+        ):
+            raise FileGatewayError(
+                "FILE_SOURCE_CHANGED",
+                "The source changed during intake inspection.",
+                next_action="Freeze a new immutable artifact version and retry.",
+            )
+        return SourceSnapshot(content=bytes(content), size_bytes=total, sha256=digest.hexdigest())
 
     def _path(self, value: str, *, exists: bool, mutation: bool = False) -> Path:
         path_value = Path(value)
