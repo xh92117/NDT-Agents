@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.40
+**Specification version:** 1.41
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -606,6 +606,19 @@ values are bounded, sorted, and treated as data. Stable element, chunk, and docu
 the exact scope, source, version, locator, and content. Every element enters one or more bounded
 traceable chunks without losing a table, formula, figure, number, unit, or citation locator. No LLM,
 parser, OCR, retrieval, index, approval, or publication call occurs during normalization.
+
+The S3-07 indexer builds immutable candidate snapshots from canonical chunks using a versioned
+embedding port, exact scope, corpus and document versions, metadata, role requirements, status, and
+source locators. The local deterministic embedding implementation is a test and offline baseline;
+an external embedding binding remains a registered model call. Retrieval intersects exact tenant,
+project, user, roles, permission version, published status, and metadata before scoring. It computes
+bounded BM25-style full-text rank over Latin terms, numbers, Chinese characters, and Chinese
+bigrams, vector cosine rank, reciprocal-rank fusion, and a deterministic phrase/token/numeric
+rerank. Only published records may become hits. Each hit reconstructs the exact canonical chunk and
+returns source, document, parser, normalizer, corpus, index, element, page, locator, and content-hash
+evidence. Draft, superseded, withdrawn, stale-permission, unauthorized, or filter-mismatched records
+are never returned. Query and candidate counts are bounded and ranking is stable for identical
+inputs.
 
 MinerU references:
 
