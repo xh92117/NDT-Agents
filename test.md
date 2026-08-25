@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.37
+**Version:** 1.38
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -415,6 +415,13 @@ Test MinerU conversion to Markdown and structured output for born-digital and sc
 Run after MinerU, file intake, normalization, or container changes; complete corpus at `TG-03`.
 
 Acceptance: clean-file parse success >= 98 percent, scanned-PDF usable text >= 95 percent, table and formula scores meet the frozen baseline, and every extracted element is traceable to source and page.
+
+For S3-04, `tests/knowledge/test_mineru.py` must validate the exact pinned CLI argument array and
+zero-shell process port, same-scope accepted-intake binding, working-root isolation, bounded
+Markdown, `content_list.json`, and `middle.json`, strict duplicate-key rejection, backend and parser
+version binding, page and block traceability, coordinate and image-path safety, output hashes,
+zero-call Markdown/text passthrough, legacy Office conversion requirement, and typed timeout,
+process, missing-output, malformed-output, source-tamper, path-escape, and scope failures.
 
 ### 8.14 `INT-OCR` - Parser fallback chain
 
@@ -906,6 +913,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | TG-02-LOCAL-20260824-01 | 2026-08-24 | S2 local candidate / configuration `fa5721f2fc51a7d26d9c6ab93878d70f9bdfecd2f570c50c3e0c2e4b0e4f33df` / no immutable build | `PHASE_GATE` local automated subset: `UNIT-CONTEXT`, `EVAL-COMPRESSION`, `INT-MEMORY`, `SEC-CACHE`, `INT-DATA-LIFECYCLE`, affected security, storage, migration, `QUICK`, `DOC`, deterministic generation, dependency audit | local Windows / deterministic adapters and offline PostgreSQL DDL / CPython 3.12.13 / uv 0.11.20 | `BLOCKED` | [TG-02 local assessment](./evidence/s2/tg-02-local-assessment-20260824.md); all 413 tests completed with one platform skip; four generators had zero drift; DOC 1.35, Ruff, format over 113 files, strict mypy, dependency audit, and diff checks passed; S2-01 through S2-09 are DONE | no immutable candidate or CI; approved live services, full frozen compression benchmark, backup expiry, cache/index invalidation, and accountable security, retention, and license approvals are unavailable | Codex |
 | S3-01-TASK-20260824-01 | 2026-08-24 | S3-01 / configuration `7f8167408ff7c74366014b6ba6098aa016c17bb46ca23516a93b98144a8c45f2` / no immutable build | `TASK`, `INT-KNOWLEDGE`, `INT-ORCH`, `SEC-TENANT`, administrator `INT-APPROVAL`, affected runtime and identity, `QUICK`, `DOC`, deterministic generation, dependency audit | local Windows / deterministic in-memory task repository and existing Main Graph, child registry, context manifest, and approval contracts / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-01 durable evidence](./evidence/s3/s3-01-knowledge-entry-20260824.md); 34 dedicated and routing tests and 135 affected-boundary tests passed; all 423 collected tests completed with one known Windows file-name skip; exact entry, scope, approval, K1 budget, immutable artifacts, 50-file bound, isolated child, asynchronous review, default-deny UI, zero Main and child physical calls, Code Graph impact review, four zero-drift generators, Ruff, format over 225 files, strict mypy over 110 source files, DOC 1.36, dependency audit, and diff checks passed | no parsing, OCR, indexing, publication, live service, immutable PR CI, or TG-03 evidence; TG-02 remains blocked | Codex |
 | S3-03-TASK-20260825-01 | 2026-08-25 | S3-03 / configuration `a9d20ab1f77d21bb51fde28642ab1d3d69e64f0cc2498443f8666a4250e3e360` / no immutable build | `TASK`, `INT-BASH`, `SEC-BASH`, S3-03 `INT-KNOWLEDGE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / S3-02 root policy and deterministic source corpus / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-03 durable evidence](./evidence/s3/s3-03-secure-intake-20260825.md); 30 intake cases plus 26 inherited gateway cases completed with one platform skip; all 453 collected tests completed with one skip; original-byte invariance, streaming hash, MIME, Office safety, executable denial, strict UTF-8/GB18030/GBK/UTF-16, manual review, batch limits, duplicate handling, path and scope denial, Ruff, format over 228 files, strict mypy over 112 source files, DOC 1.37, and diff checks passed | no immutable PR CI or approved 2 GB production probe; TG-03 remains pending | Codex |
+| S3-04-TASK-20260825-01 | 2026-08-25 | S3-04 / configuration `93401f4e14a69387273627784655775a7dfee1d9d2b6a85d118460b7ee28a736` / no immutable build | `TASK`, `INT-MINERU`, S3-04 `INT-KNOWLEDGE`, `SEC-BASH`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic MinerU process fake and strict output corpus / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-04 durable evidence](./evidence/s3/s3-04-mineru-adapter-20260825.md); 14 dedicated cases and all 467 collected tests completed with one platform skip; pinned argument array, zero-shell process port, source re-attestation, run isolation, Markdown/content-list/middle JSON hashes, strict JSON, version, backend, pages, blocks, coordinates, paths, passthrough, conversion requirement, timeout and process failures, Ruff, format over 232 files, strict mypy over 114 source files, DOC 1.38, and diff checks passed | real MinerU executable/container and frozen clean/scanned corpus remain TG-03 evidence; no immutable PR CI | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
