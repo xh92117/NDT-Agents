@@ -1,7 +1,7 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.41
-**Date:** 2026-08-24  
+**Specification version:** 1.42
+**Date:** 2026-08-25
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)
@@ -619,6 +619,19 @@ returns source, document, parser, normalizer, corpus, index, element, page, loca
 evidence. Draft, superseded, withdrawn, stale-permission, unauthorized, or filter-mismatched records
 are never returned. Query and candidate counts are bounded and ranking is stable for identical
 inputs.
+
+The S3-08 standard catalog binds each indexed standard version to exact scope, type, identifier,
+edition, title, publication and effective dates, optional expiry, region set, lifecycle state,
+rights basis, rights evidence reference, role requirements, and explicit replacement links. Stable
+version IDs cover every correctness and authorization field. Date intervals must be ordered,
+regions and roles are canonical, duplicate versions are immutable, and replacement links must stay
+inside one scope and standard lineage and remain acyclic. Applicability is evaluated before
+retrieval scoring against exact scope, requested date, region, standard type, usable rights,
+lifecycle, roles, and supersession. Draft, replaced, withdrawn, expired, future-effective,
+unlicensed, prohibited, role-denied, wrong-region, wrong-type, cross-scope, unregistered, or
+superseded versions never enter the scoring repository. A restricted version may be used only with
+an accepted rights basis and all required roles. Every exclusion returns stable reason codes for
+audit; no policy path silently assumes rights or applicability.
 
 MinerU references:
 
