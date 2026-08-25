@@ -1,6 +1,6 @@
 # Codex Development Rules
 
-**Version:** 1.43
+**Version:** 1.44
 **Updated:** 2026-08-25
 **Scope:** the entire repository
 

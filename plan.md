@@ -1,11 +1,11 @@
 # Civil Infrastructure NDT Agent Platform Development Plan
 
-**Plan version:** 1.43
+**Plan version:** 1.44
 **Specification:** [development-spec.md](./development-spec.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)  
 **Duration:** 26 weeks, provisional until S0 resourcing and critical-path approval  
-**Current phase:** S3-01 through S3-09 are locally complete; TG-03 local assessment is next
+**Current phase:** S3-01 through S3-09 are locally complete; TG-03 is blocked on external evidence
 **Overall status:** BLOCKED
 
 ## 1. Plan rules
@@ -68,7 +68,7 @@ Per-task LLM-call hard limits: G0 = 4, P1 = 10, P2 = 32, P3 = 40, K1 = 12.
 | S0 | 1-2 | Requirements, models, fixtures, and CI baseline | BLOCKED | TG-00 |
 | S1 | 3-6 | Lightweight agent runtime | BLOCKED | TG-01 |
 | S2 | 7-9 | Context, memory, restore, cache, and data lifecycle | BLOCKED | TG-02 |
-| S3 | 10-13 | Bash files, encoding, MinerU, and knowledge lifecycle | IN_PROGRESS | TG-03 |
+| S3 | 10-13 | Bash files, encoding, MinerU, and knowledge lifecycle | BLOCKED | TG-03 |
 | S4 | 14-18 | Professional Skills and review workflows | TODO | TG-04 |
 | S5 | 19-22 | Tools, instruments, applications, and AI models | TODO | TG-05 |
 | S6 | 23-26 | Clients, hardening, calibration, pilot, and release | TODO | TG-06 |
@@ -225,6 +225,12 @@ Only selected or recently completed tasks appear here. Preserve completed record
 S3-01 proceeds as a provider-neutral continuation of the verified S1 Main Graph, child isolation,
 review, approval, and S2 TaskContext boundaries. It does not parse, OCR, index, publish, or approve
 knowledge and does not promote the blocked TG-02 or TG-03 gates.
+
+S3-01 through S3-09 are locally complete. `TG-03-LOCAL-20260825-01` passes the synthetic and offline
+automated subset at code commit `a500890`, but TG-03 remains blocked on real parser/OCR and licensed
+corpus thresholds, accountable approvals, live persistence/index atomicity and recovery, zero-skip
+Linux path safety, an approved production embedding, and protected immutable CI. See
+[the local TG-03 assessment](./evidence/s3/tg-03-local-assessment-20260825.md).
 
 S2-01 through S2-09 proceeded under the user's explicit instruction as isolated, provider-neutral
 development tasks while TG-01 remained blocked. All nine task deliverables and their local task

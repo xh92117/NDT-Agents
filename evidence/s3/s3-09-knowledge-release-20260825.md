@@ -66,3 +66,9 @@ The local repository and offline PostgreSQL DDL prove deterministic behavior but
 multi-session PostgreSQL/vector transaction. Licensed standard content, accountable human rights
 and publication approval, real MinerU/OCR, live index infrastructure, immutable CI, and the exact
 TG-03 candidate remain phase-gate requirements.
+
+Post-task Code Graph review produced follow-up hardening commit `a500890`: approval checkpoints now
+must match the complete release scope, duplicate candidate snapshot IDs fail validation, and the
+release event/publication primary keys include user and permission scope. The exact 18 affected
+tests and the complete 539-test collection passed; the local TG-03 assessment records this final
+code candidate separately from the original task configuration hash.
