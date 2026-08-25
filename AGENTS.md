@@ -1,7 +1,7 @@
 # Codex Development Rules
 
-**Version:** 1.41
-**Updated:** 2026-08-24  
+**Version:** 1.42
+**Updated:** 2026-08-25
 **Scope:** the entire repository
 
 ## 1. Purpose and authority

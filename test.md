@@ -1,7 +1,7 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.41
-**Updated:** 2026-08-24  
+**Version:** 1.42
+**Updated:** 2026-08-25
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
 **System specification:** [development-spec.md](./development-spec.md)
@@ -517,6 +517,16 @@ filtering, cross-user/project/tenant denial, draft/superseded/withdrawn exclusio
 isolation, stale index or corpus versions, and a frozen labeled corpus reporting all four acceptance
 metrics.
 
+For S3-08, `tests/knowledge/test_standards.py` must cover stable standard-version identity; strict
+date ordering; canonical regions and roles; immutable duplicate registration; same-scope and
+same-lineage replacement targets; replacement-cycle denial; exact tenant, project, user, roles,
+and permission-version isolation; current and authorized restricted states; draft, replaced, and
+withdrawn exclusion; future-effective and expired exclusion; exact region and GLOBAL matching;
+standard-type filters; usable public-domain, licensed, and owner-authorized rights; unknown,
+expired, or prohibited-rights denial; rights-evidence requirements; supersession; stable reason
+codes; mandatory `standard_version_id` snapshot binding; and proof that only applicable records
+enter the repository before hybrid scoring.
+
 ### 8.19 `EVAL-QA` - Technical answers
 
 Expert-score correctness, applicability, limits, uncertainty, evidence, citation validity, and safe escalation across the declared domain and six priority methods.
@@ -939,6 +949,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S3-05-TASK-20260825-01 | 2026-08-25 | S3-05 / configuration `7a4c22f9e1d9d4c63c92756dc1954d2c777bb4dfc623dc303613210fd81cfd94` / no immutable build | `TASK`, `INT-MINERU`, `INT-OCR`, S3-05 `INT-KNOWLEDGE`, `SEC-TENANT`, `BUDGET`, `QUICK`, `DOC` | local Windows / deterministic parser and independent OCR adapters / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-05 durable evidence](./evidence/s3/s3-05-parser-fallback-20260825.md); ten dedicated fallback cases plus 14 MinerU cases passed; all 477 collected tests completed with one skip; page, text, corruption, table and formula thresholds, drawing exclusion, one-shot MinerU OCR, independent OCR, failed-page merge, lineage, source/scope binding, malformed output, timeout, exhaustion and three-call cap, Ruff, format over 236 files, strict mypy over 116 source files, DOC 1.39, and diff checks passed | real OCR engines and frozen scanned corpus thresholds remain TG-03 evidence; no immutable PR CI | Codex |
 | S3-06-TASK-20260825-01 | 2026-08-25 | S3-06 / configuration `dd00e818ce04124338b58366ed655e0aafa48b67a58c2a790cec530c4326e1df` / no immutable build | `TASK`, `INT-MINERU`, `INT-OCR`, normalization regression, S3-06 `INT-KNOWLEDGE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic canonical normalizer / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-06 durable evidence](./evidence/s3/s3-06-normalization-20260825.md); eight dedicated cases plus ten fallback cases passed; all 485 collected tests completed with one skip; element coverage, heading and clause hierarchy, Chinese text, Markdown and HTML tables, formulas, figures, lists, code, auxiliary content, metadata, stable and change-sensitive hashes, exact locators, long lossless chunks, invalid input, Ruff, format over 240 files, strict mypy over 118 source files, DOC 1.40, and diff checks passed | frozen normalization corpus and immutable PR CI remain TG-03 evidence | Codex |
 | S3-07-TASK-20260825-01 | 2026-08-25 | S3-07 / configuration `44da1cac2561349fdd0e08e1e9d87d4f8cb01c8f79cf467c42fddd8ff8417905` / no immutable build | `TASK`, `EVAL-RETRIEVAL`, `SEC-TENANT`, S3-07 `INT-KNOWLEDGE`, `SEC-CACHE`, `QUICK`, `DOC` | local Windows / deterministic hash embedding and in-memory exact-scope index / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-07 durable evidence](./evidence/s3/s3-07-hybrid-retrieval-20260825.md); 17 dedicated cases and all 502 collected tests completed with one skip; exact pre-score authorization, version/status/role/metadata filters, Chinese/Latin/numeric tokens, bounded BM25/cosine/RRF/rerank, complete citations, stable ties, and frozen Recall@6, nDCG@10, citation correctness, and traceability of 1.00; Ruff, format over 244 files, strict mypy over 120 source files, DOC 1.41, and diff checks passed | licensed corpus, production embedding, live database/vector index, and immutable CI remain TG-03 evidence | Codex |
+| S3-08-TASK-20260825-01 | 2026-08-25 | S3-08 / configuration `d23e2f91828869b09803c3cfde2d34fd00bc0d20c79963a80d2dea04073c6af2` / no immutable build | `TASK`, S3-08 `EVAL-RETRIEVAL`, `SEC-TENANT`, `INT-KNOWLEDGE`, `QUICK`, `DOC` | local Windows / deterministic typed catalog and pre-score admission / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-08 durable evidence](./evidence/s3/s3-08-standard-applicability-20260825.md); 27 dedicated cases plus 17 inherited retrieval cases passed; all 529 collected tests completed with one skip; stable hash identity, date/region/role canonicalization, exact-scope and same-lineage acyclic replacement, current/restricted/rights/applicability decisions, explicit denial reasons, snapshot binding, and pre-score exclusion passed; Ruff, format over 248 files, strict mypy over 122 source files, DOC 1.42, and diff checks passed | licensed standard content, accountable rights decisions, live persistence/vector infrastructure, and immutable CI remain TG-03 evidence | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
