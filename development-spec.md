@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.42
+**Specification version:** 1.43
 **Date:** 2026-08-25
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -632,6 +632,21 @@ unlicensed, prohibited, role-denied, wrong-region, wrong-type, cross-scope, unre
 superseded versions never enter the scoring repository. A restricted version may be used only with
 an accepted rights basis and all required roles. Every exclusion returns stable reason codes for
 audit; no policy path silently assumes rights or applicability.
+
+The S3-09 release workflow creates a hash-bound candidate from one exact-scope set of draft index
+snapshots and the current base publication, computes document and chunk additions, updates, and
+removals, and preserves every immutable input. It transitions through `DRAFT`, `VALIDATING`, and
+`REVIEW_REQUIRED`; deterministic validation fails closed on scope, status, corpus/index versions,
+duplicate documents or chunks, missing citations, unregistered or unusable standard bindings, or
+stale base state. Publication requires an aggregation-ready S1-09 independent professional review
+whose reviewed result binds the exact candidate and validation hashes, followed by an S1-13
+`KNOWLEDGE` human approval and one exact resume grant. The repository atomically marks the prior
+publication and snapshots superseded and the candidate snapshots published. Withdraw and rollback
+are separate hash-bound operations requiring their own human approval; rollback creates a new
+publication record from preserved prior snapshots rather than erasing history. Candidate,
+publication, approval, review, diff, state-transition, and operation hashes remain recoverable.
+Idempotent replay returns the same result, while stale base, stale hash, wrong action, cross-scope,
+unreviewed, rejected, expired, or reused approval evidence fails before mutation.
 
 MinerU references:
 

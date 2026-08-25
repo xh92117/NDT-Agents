@@ -8,6 +8,7 @@ import math
 import re
 from collections import Counter
 from enum import StrEnum
+from threading import RLock
 from typing import Literal, Protocol, Self
 
 from pydantic import Field, model_validator
@@ -198,6 +199,7 @@ class HybridIndexer:
 class InMemoryKnowledgeIndex:
     def __init__(self) -> None:
         self._snapshots: dict[tuple[str, ...], IndexSnapshot] = {}
+        self._lock = RLock()
 
     @staticmethod
     def _key(snapshot: IndexSnapshot) -> tuple[str, ...]:
@@ -215,15 +217,27 @@ class InMemoryKnowledgeIndex:
         )
 
     def replace(self, snapshot: IndexSnapshot) -> None:
-        self._snapshots[self._key(snapshot)] = snapshot
+        self.replace_many((snapshot,))
+
+    def replace_many(self, snapshots: tuple[IndexSnapshot, ...]) -> None:
+        """Validate a complete batch before one in-memory reference swap."""
+
+        prepared = tuple((self._key(snapshot), snapshot) for snapshot in snapshots)
+        if len({key for key, _ in prepared}) != len(prepared):
+            raise ValueError("INDEX_ATOMIC_BATCH_DUPLICATE")
+        with self._lock:
+            updated = dict(self._snapshots)
+            updated.update(prepared)
+            self._snapshots = updated
 
     def list_for_scope(self, scope: TenantScope) -> tuple[IndexSnapshot, ...]:
-        return tuple(
-            sorted(
-                (item for item in self._snapshots.values() if item.scope == scope),
-                key=lambda item: item.snapshot_id,
+        with self._lock:
+            return tuple(
+                sorted(
+                    (item for item in self._snapshots.values() if item.scope == scope),
+                    key=lambda item: item.snapshot_id,
+                )
             )
-        )
 
 
 class RetrievalQuery(StrictModel):

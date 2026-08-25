@@ -121,6 +121,10 @@ def test_alembic_migration_compiles_upgrade_and_rollback_for_postgresql() -> Non
     assert "CREATE TABLE data_lifecycle_object" in upgrade_sql
     assert "CREATE TABLE data_legal_hold" in upgrade_sql
     assert "CREATE TABLE data_lifecycle_event" in upgrade_sql
+    assert "CREATE TABLE knowledge_release_event" in upgrade_sql
+    assert "CREATE TABLE knowledge_publication" in upgrade_sql
+    assert "CREATE TABLE knowledge_corpus_head" in upgrade_sql
+    assert "CREATE TRIGGER knowledge_release_event_append_only" in upgrade_sql
     assert "CREATE TRIGGER lifecycle_event_append_only" in upgrade_sql
     assert "CREATE TRIGGER review_recovery_append_only" in upgrade_sql
     assert "FORCE ROW LEVEL SECURITY" in upgrade_sql
@@ -144,6 +148,9 @@ def test_alembic_migration_compiles_upgrade_and_rollback_for_postgresql() -> Non
     assert "DROP TABLE data_lifecycle_object" in downgrade_sql
     assert "DROP TABLE data_legal_hold" in downgrade_sql
     assert "DROP TABLE data_lifecycle_event" in downgrade_sql
+    assert "DROP TABLE knowledge_release_event" in downgrade_sql
+    assert "DROP TABLE knowledge_publication" in downgrade_sql
+    assert "DROP TABLE knowledge_corpus_head" in downgrade_sql
 
 
 def test_connection_settings_are_immutable_strict_and_secret_safe() -> None:

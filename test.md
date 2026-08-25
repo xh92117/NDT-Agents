@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.42
+**Version:** 1.43
 **Updated:** 2026-08-25
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -527,6 +527,18 @@ expired, or prohibited-rights denial; rights-evidence requirements; supersession
 codes; mandatory `standard_version_id` snapshot binding; and proof that only applicable records
 enter the repository before hybrid scoring.
 
+For S3-09, `tests/knowledge/test_release.py` must cover immutable candidate and diff identity;
+idempotent create and conflict; exact-scope and stale-base rejection; deterministic validation and
+all failure classes; `DRAFT`, `VALIDATING`, `REVIEW_REQUIRED`, `PUBLISHED`, `SUPERSEDED`,
+`WITHDRAWN`, and `FAILED` transitions; an actual aggregation-ready S1-09 professional review bound
+to the candidate and validation hashes; non-pass, raw, stale, cross-scope, or mismatched review
+denial; S1-13 `KNOWLEDGE` checkpoint creation, self/role/scope/hash denial inherited from the
+approval suite, and exact resume; atomic first publication and incremental replacement; removed
+snapshot exclusion; distinct approved withdrawal; approved rollback as a new publication from
+preserved history; idempotent replay; stale current, wrong action, wrong hash, approval replay, and
+pre-commit fault denial with zero partial mutation; and retrieval visibility for only the current
+published snapshot set.
+
 ### 8.19 `EVAL-QA` - Technical answers
 
 Expert-score correctness, applicability, limits, uncertainty, evidence, citation validity, and safe escalation across the declared domain and six priority methods.
@@ -950,6 +962,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S3-06-TASK-20260825-01 | 2026-08-25 | S3-06 / configuration `dd00e818ce04124338b58366ed655e0aafa48b67a58c2a790cec530c4326e1df` / no immutable build | `TASK`, `INT-MINERU`, `INT-OCR`, normalization regression, S3-06 `INT-KNOWLEDGE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic canonical normalizer / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-06 durable evidence](./evidence/s3/s3-06-normalization-20260825.md); eight dedicated cases plus ten fallback cases passed; all 485 collected tests completed with one skip; element coverage, heading and clause hierarchy, Chinese text, Markdown and HTML tables, formulas, figures, lists, code, auxiliary content, metadata, stable and change-sensitive hashes, exact locators, long lossless chunks, invalid input, Ruff, format over 240 files, strict mypy over 118 source files, DOC 1.40, and diff checks passed | frozen normalization corpus and immutable PR CI remain TG-03 evidence | Codex |
 | S3-07-TASK-20260825-01 | 2026-08-25 | S3-07 / configuration `44da1cac2561349fdd0e08e1e9d87d4f8cb01c8f79cf467c42fddd8ff8417905` / no immutable build | `TASK`, `EVAL-RETRIEVAL`, `SEC-TENANT`, S3-07 `INT-KNOWLEDGE`, `SEC-CACHE`, `QUICK`, `DOC` | local Windows / deterministic hash embedding and in-memory exact-scope index / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-07 durable evidence](./evidence/s3/s3-07-hybrid-retrieval-20260825.md); 17 dedicated cases and all 502 collected tests completed with one skip; exact pre-score authorization, version/status/role/metadata filters, Chinese/Latin/numeric tokens, bounded BM25/cosine/RRF/rerank, complete citations, stable ties, and frozen Recall@6, nDCG@10, citation correctness, and traceability of 1.00; Ruff, format over 244 files, strict mypy over 120 source files, DOC 1.41, and diff checks passed | licensed corpus, production embedding, live database/vector index, and immutable CI remain TG-03 evidence | Codex |
 | S3-08-TASK-20260825-01 | 2026-08-25 | S3-08 / configuration `d23e2f91828869b09803c3cfde2d34fd00bc0d20c79963a80d2dea04073c6af2` / no immutable build | `TASK`, S3-08 `EVAL-RETRIEVAL`, `SEC-TENANT`, `INT-KNOWLEDGE`, `QUICK`, `DOC` | local Windows / deterministic typed catalog and pre-score admission / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-08 durable evidence](./evidence/s3/s3-08-standard-applicability-20260825.md); 27 dedicated cases plus 17 inherited retrieval cases passed; all 529 collected tests completed with one skip; stable hash identity, date/region/role canonicalization, exact-scope and same-lineage acyclic replacement, current/restricted/rights/applicability decisions, explicit denial reasons, snapshot binding, and pre-score exclusion passed; Ruff, format over 248 files, strict mypy over 122 source files, DOC 1.42, and diff checks passed | licensed standard content, accountable rights decisions, live persistence/vector infrastructure, and immutable CI remain TG-03 evidence | Codex |
+| S3-09-TASK-20260825-01 | 2026-08-25 | S3-09 / configuration `81182fe0b1b73aae51e3b6f5a97455e9e91066b0b90fd5291077a6aefee33de3` / no immutable build | `TASK`, `INT-KNOWLEDGE`, `INT-REVIEW`, `INT-APPROVAL`, `EVAL-RETRIEVAL`, `SEC-TENANT`, `RES-CHECKPOINT`, migration upgrade/rollback, `QUICK`, `DOC` | local Windows / actual S1-09 workflow, S1-13 approval, in-memory atomic repository, offline PostgreSQL DDL / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-09 durable evidence](./evidence/s3/s3-09-knowledge-release-20260825.md); ten end-to-end release cases, 96 affected-boundary cases, 18 storage/release cases, and all 539 collected tests completed with one skip; incremental diff, validation state, exact review binding, distinct human approvals, atomic publication and fault retry, supersession, withdrawal, rollback, history, forced RLS, append-only journal, Ruff, format over 253 files, strict mypy over 124 source files, DOC 1.43, and diff checks passed | live multi-session PostgreSQL/vector transaction, real services and corpus, accountable approvals, and immutable CI remain TG-03 evidence | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
