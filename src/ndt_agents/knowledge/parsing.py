@@ -107,15 +107,15 @@ class ParsedDocument(StrictModel):
     artifact_id: UUID
     source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     source_media_type: str = Field(min_length=1, max_length=255)
-    parser_name: Literal["mineru", "text-reader"]
+    parser_name: Literal["mineru", "text-reader", "independent-ocr", "fallback-merge"]
     parser_version: str = Field(min_length=1, max_length=128)
-    backend: Literal["pipeline", "text"]
-    method: Literal["txt", "ocr", "passthrough"]
+    backend: Literal["pipeline", "text", "independent-ocr", "mixed"]
+    method: Literal["txt", "ocr", "passthrough", "independent-ocr", "mixed"]
     markdown: str = Field(max_length=50_000_000)
     pages: tuple[ParsedPage, ...] = Field(min_length=1, max_length=_MAX_PAGES)
     blocks: tuple[ParsedBlock, ...] = Field(min_length=1, max_length=_MAX_BLOCKS)
     output_sha256: Mapping[str, str]
-    physical_tool_calls: int = Field(ge=0, le=1)
+    physical_tool_calls: int = Field(ge=0, le=3)
 
 
 class MinerUParseRequest(StrictModel):
