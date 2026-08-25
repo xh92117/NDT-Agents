@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.37
+**Specification version:** 1.38
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -574,6 +574,17 @@ source registration and license check
   -> authorized human approval
   -> publish, deprecate, or rollback
 ```
+
+The S3-04 MinerU adapter pins one application-owned executable identity, parser version, pipeline
+backend, Chinese language option, formula and table options, timeout, source root, and working output
+root. It invokes argument arrays only and never a shell. Current MinerU CLI fields are represented
+by an internal versioned command contract instead of being inferred from model output. The adapter
+accepts only an S3-03 `ACCEPTED` intake record bound to the same immutable artifact and source hash.
+It validates one Markdown file, one legacy content list, and one middle JSON file with bounded size,
+strict JSON, page, block type, coordinate, image-path, backend, and parser-version checks before
+returning a typed parse artifact. Markdown and plain text use a deterministic zero-tool passthrough;
+legacy Office compound files require a later registered conversion. Process failure, timeout,
+missing output, malformed JSON, path escape, source mismatch, or unsupported output fails explicitly.
 
 MinerU references:
 

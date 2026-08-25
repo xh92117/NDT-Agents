@@ -19,6 +19,15 @@ from ndt_agents.knowledge.models import (
     KnowledgeStartRequest,
     KnowledgeUiStartRequest,
 )
+from ndt_agents.knowledge.parsing import (
+    MinerUAdapter,
+    MinerUCliRunner,
+    MinerUMethod,
+    MinerUParseRequest,
+    ParsedDocument,
+    ParseResult,
+    ParseStatus,
+)
 
 __all__ = [
     "InMemoryKnowledgeTaskRepository",
@@ -31,6 +40,13 @@ __all__ = [
     "KnowledgeEntryTrigger",
     "KnowledgeIntent",
     "KnowledgeIntakeService",
+    "MinerUAdapter",
+    "MinerUCliRunner",
+    "MinerUMethod",
+    "MinerUParseRequest",
+    "ParseResult",
+    "ParseStatus",
+    "ParsedDocument",
     "KnowledgeStartRequest",
     "KnowledgeUiStartRequest",
     "knowledge_entry_candidate_sha256",

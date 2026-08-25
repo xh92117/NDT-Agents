@@ -430,6 +430,23 @@ class ControlledFileGateway:
             )
         return SourceSnapshot(content=bytes(content), size_bytes=total, sha256=digest.hexdigest())
 
+    def application_source_path(self, scope: TenantScope, relative_path: str) -> Path:
+        """Resolve one non-symlink source for an application-owned registered adapter."""
+
+        self._check_scope(scope)
+        relative = Path(relative_path)
+        lexical_path = self._policy.root / relative
+        if lexical_path.is_symlink():
+            raise self._path_error()
+        path = self._path(relative_path, exists=True)
+        if not path.is_file():
+            raise FileGatewayError(
+                "FILE_SOURCE_NOT_REGULAR",
+                "The selected adapter source is not a regular file.",
+                next_action="Select one immutable regular source file.",
+            )
+        return path
+
     def _path(self, value: str, *, exists: bool, mutation: bool = False) -> Path:
         path_value = Path(value)
         if path_value.is_absolute() or path_value.drive or any(ord(char) < 32 for char in value):
