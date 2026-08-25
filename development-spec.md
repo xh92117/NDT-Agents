@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.39
+**Specification version:** 1.40
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -595,6 +595,17 @@ next validated result and retains the earlier good pages with hash-bound merge l
 ready only after the merged or selected document passes the same deterministic gate. Exhausted,
 malformed, low-confidence, or failed fallback output enters manual review with every attempt,
 reason code, source hash, parser version, and call count preserved.
+
+The S3-06 normalizer accepts only a quality-passed S3-05 document and maps every parsed block
+exactly once into a canonical heading, clause, paragraph, table, formula, figure, list, code, or
+auxiliary element. It preserves page, coordinates, parser block order, source hash, section path,
+clause identifier, table cells or raw body, formula text, figure path, and exact content hashes.
+Heading state and clause recognition are deterministic and language-neutral for numeric clause
+identifiers. Markdown and simple HTML tables are parsed without executing markup. Metadata keys and
+values are bounded, sorted, and treated as data. Stable element, chunk, and document IDs derive from
+the exact scope, source, version, locator, and content. Every element enters one or more bounded
+traceable chunks without losing a table, formula, figure, number, unit, or citation locator. No LLM,
+parser, OCR, retrieval, index, approval, or publication call occurs during normalization.
 
 MinerU references:
 

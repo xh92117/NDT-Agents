@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.39
+**Version:** 1.40
 **Updated:** 2026-08-24  
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -436,6 +436,14 @@ independent OCR selection, page-level replacement and lineage, drawing-page excl
 meaningful-character, corrupted-character, table, and formula thresholds, source and scope binding,
 malformed independent output, adapter timeout or failure, all-stage quality failure, exact reason
 codes, preserved attempts, and the three-call hard limit with no repeated identical stage.
+
+For S3-06, `tests/knowledge/test_normalization.py` must cover every canonical element type, heading
+hierarchy, numeric clauses, Chinese text, Markdown and simple HTML tables, formulas, figures and
+safe assets, auxiliary content, bounded untrusted metadata, stable IDs and hashes, change
+sensitivity, deterministic chunking, long-element splitting without numeric or unit loss, complete
+source-block coverage, exact page and coordinate locators, non-ready and cross-scope denial,
+duplicate or non-contiguous block order, malformed tables, invalid metadata, and zero external
+calls.
 
 ### 8.15 `INT-KNOWLEDGE` - Knowledge lifecycle
 
@@ -921,6 +929,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 | S3-03-TASK-20260825-01 | 2026-08-25 | S3-03 / configuration `a9d20ab1f77d21bb51fde28642ab1d3d69e64f0cc2498443f8666a4250e3e360` / no immutable build | `TASK`, `INT-BASH`, `SEC-BASH`, S3-03 `INT-KNOWLEDGE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / S3-02 root policy and deterministic source corpus / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-03 durable evidence](./evidence/s3/s3-03-secure-intake-20260825.md); 30 intake cases plus 26 inherited gateway cases completed with one platform skip; all 453 collected tests completed with one skip; original-byte invariance, streaming hash, MIME, Office safety, executable denial, strict UTF-8/GB18030/GBK/UTF-16, manual review, batch limits, duplicate handling, path and scope denial, Ruff, format over 228 files, strict mypy over 112 source files, DOC 1.37, and diff checks passed | no immutable PR CI or approved 2 GB production probe; TG-03 remains pending | Codex |
 | S3-04-TASK-20260825-01 | 2026-08-25 | S3-04 / configuration `93401f4e14a69387273627784655775a7dfee1d9d2b6a85d118460b7ee28a736` / no immutable build | `TASK`, `INT-MINERU`, S3-04 `INT-KNOWLEDGE`, `SEC-BASH`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic MinerU process fake and strict output corpus / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-04 durable evidence](./evidence/s3/s3-04-mineru-adapter-20260825.md); 14 dedicated cases and all 467 collected tests completed with one platform skip; pinned argument array, zero-shell process port, source re-attestation, run isolation, Markdown/content-list/middle JSON hashes, strict JSON, version, backend, pages, blocks, coordinates, paths, passthrough, conversion requirement, timeout and process failures, Ruff, format over 232 files, strict mypy over 114 source files, DOC 1.38, and diff checks passed | real MinerU executable/container and frozen clean/scanned corpus remain TG-03 evidence; no immutable PR CI | Codex |
 | S3-05-TASK-20260825-01 | 2026-08-25 | S3-05 / configuration `7a4c22f9e1d9d4c63c92756dc1954d2c777bb4dfc623dc303613210fd81cfd94` / no immutable build | `TASK`, `INT-MINERU`, `INT-OCR`, S3-05 `INT-KNOWLEDGE`, `SEC-TENANT`, `BUDGET`, `QUICK`, `DOC` | local Windows / deterministic parser and independent OCR adapters / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-05 durable evidence](./evidence/s3/s3-05-parser-fallback-20260825.md); ten dedicated fallback cases plus 14 MinerU cases passed; all 477 collected tests completed with one skip; page, text, corruption, table and formula thresholds, drawing exclusion, one-shot MinerU OCR, independent OCR, failed-page merge, lineage, source/scope binding, malformed output, timeout, exhaustion and three-call cap, Ruff, format over 236 files, strict mypy over 116 source files, DOC 1.39, and diff checks passed | real OCR engines and frozen scanned corpus thresholds remain TG-03 evidence; no immutable PR CI | Codex |
+| S3-06-TASK-20260825-01 | 2026-08-25 | S3-06 / configuration `dd00e818ce04124338b58366ed655e0aafa48b67a58c2a790cec530c4326e1df` / no immutable build | `TASK`, `INT-MINERU`, `INT-OCR`, normalization regression, S3-06 `INT-KNOWLEDGE`, `SEC-TENANT`, `QUICK`, `DOC` | local Windows / deterministic canonical normalizer / CPython 3.12.13 / uv 0.11.20 | `PASS` | [S3-06 durable evidence](./evidence/s3/s3-06-normalization-20260825.md); eight dedicated cases plus ten fallback cases passed; all 485 collected tests completed with one skip; element coverage, heading and clause hierarchy, Chinese text, Markdown and HTML tables, formulas, figures, lists, code, auxiliary content, metadata, stable and change-sensitive hashes, exact locators, long lossless chunks, invalid input, Ruff, format over 240 files, strict mypy over 118 source files, DOC 1.40, and diff checks passed | frozen normalization corpus and immutable PR CI remain TG-03 evidence | Codex |
 
 `DOC-20260821-01` is preserved as a historical claim but is not valid gate evidence: it did not record a reproducible command, immutable build identifier, configuration hash, or durable evidence location.
 
