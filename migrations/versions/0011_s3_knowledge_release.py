@@ -51,7 +51,13 @@ def upgrade() -> None:
             "aggregate_type IN ('CANDIDATE','PUBLICATION','ACTION')",
             name="ck_knowledge_release_event_aggregate_type",
         ),
-        sa.PrimaryKeyConstraint("tenant_id", "project_id", "event_id"),
+        sa.PrimaryKeyConstraint(
+            "tenant_id",
+            "project_id",
+            "user_id",
+            "permission_version",
+            "event_id",
+        ),
         sa.UniqueConstraint(
             "tenant_id",
             "project_id",
@@ -81,7 +87,13 @@ def upgrade() -> None:
             "state IN ('PUBLISHED','SUPERSEDED','WITHDRAWN')",
             name="ck_knowledge_publication_state",
         ),
-        sa.PrimaryKeyConstraint("tenant_id", "project_id", "publication_id"),
+        sa.PrimaryKeyConstraint(
+            "tenant_id",
+            "project_id",
+            "user_id",
+            "permission_version",
+            "publication_id",
+        ),
     )
     op.create_index(
         "ix_knowledge_publication_corpus",

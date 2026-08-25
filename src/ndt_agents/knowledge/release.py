@@ -974,6 +974,9 @@ class KnowledgeReleaseService:
         if current_id != candidate.base_publication_id:
             codes.append("KNOWLEDGE_BASE_STALE")
         document_ids = [snapshot.document_id for snapshot in candidate.snapshots]
+        snapshot_ids = [snapshot.snapshot_id for snapshot in candidate.snapshots]
+        if len(set(snapshot_ids)) != len(snapshot_ids):
+            codes.append("KNOWLEDGE_SNAPSHOT_DUPLICATE")
         if len(set(document_ids)) != len(document_ids):
             codes.append("KNOWLEDGE_DOCUMENT_DUPLICATE")
         chunk_ids = [
@@ -1022,6 +1025,11 @@ class KnowledgeReleaseService:
     ) -> None:
         status = self._approvals.status(scope, approval_id)
         candidate = status.candidate
+        if candidate.scope != scope:
+            raise KnowledgeReleaseError(
+                "KNOWLEDGE_APPROVAL_SCOPE_INVALID",
+                "Use an approval checkpoint from the exact candidate scope.",
+            )
         if (
             candidate.kind is not ApprovalKind.KNOWLEDGE
             or candidate.action != action
