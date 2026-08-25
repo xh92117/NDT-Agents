@@ -48,6 +48,20 @@ from ndt_agents.knowledge.parsing import (
     ParseResult,
     ParseStatus,
 )
+from ndt_agents.knowledge.retrieval import (
+    DeterministicHashEmbedding,
+    HybridIndexer,
+    HybridRetrievalService,
+    IndexBuildRequest,
+    IndexSnapshot,
+    IndexStatus,
+    InMemoryKnowledgeIndex,
+    RetrievalCitation,
+    RetrievalHit,
+    RetrievalQuery,
+    RetrievalResult,
+    tokenize,
+)
 
 __all__ = [
     "InMemoryKnowledgeTaskRepository",
@@ -77,6 +91,17 @@ __all__ = [
     "NormalizationStatus",
     "ParseResult",
     "ParseStatus",
+    "DeterministicHashEmbedding",
+    "HybridIndexer",
+    "HybridRetrievalService",
+    "InMemoryKnowledgeIndex",
+    "IndexBuildRequest",
+    "IndexSnapshot",
+    "IndexStatus",
+    "RetrievalCitation",
+    "RetrievalHit",
+    "RetrievalQuery",
+    "RetrievalResult",
     "ParserFallbackPipeline",
     "ParserQualityGate",
     "ParsedDocument",
@@ -86,4 +111,5 @@ __all__ = [
     "KnowledgeStartRequest",
     "KnowledgeUiStartRequest",
     "knowledge_entry_candidate_sha256",
+    "tokenize",
 ]
