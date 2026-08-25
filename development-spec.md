@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.38
+**Specification version:** 1.39
 **Date:** 2026-08-24  
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -585,6 +585,16 @@ strict JSON, page, block type, coordinate, image-path, backend, and parser-versi
 returning a typed parse artifact. Markdown and plain text use a deterministic zero-tool passthrough;
 legacy Office compound files require a later registered conversion. Process failure, timeout,
 missing output, malformed JSON, path escape, source mismatch, or unsupported output fails explicitly.
+
+The S3-05 quality gate computes whole-document and per-page page coverage, meaningful-character,
+corrupted-character, expected-table, and expected-formula metrics. Drawing pages are explicitly
+classified and excluded from text-density failure. A primary quality failure starts exactly one
+MinerU OCR attempt; a remaining failure starts exactly one independently registered OCR adapter.
+No stage retries itself. When only selected pages fail, the pipeline replaces those pages from the
+next validated result and retains the earlier good pages with hash-bound merge lineage. A result is
+ready only after the merged or selected document passes the same deterministic gate. Exhausted,
+malformed, low-confidence, or failed fallback output enters manual review with every attempt,
+reason code, source hash, parser version, and call count preserved.
 
 MinerU references:
 

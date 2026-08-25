@@ -5,6 +5,16 @@ from ndt_agents.knowledge.entry import (
     KnowledgeEntryGraph,
     knowledge_entry_candidate_sha256,
 )
+from ndt_agents.knowledge.fallback import (
+    FallbackResult,
+    FallbackStage,
+    FallbackStatus,
+    IndependentOcrAdapter,
+    ParserFallbackPipeline,
+    ParserQualityGate,
+    QualityDecision,
+    QualityExpectation,
+)
 from ndt_agents.knowledge.intake import (
     EncodingHint,
     IntakeRequest,
@@ -32,9 +42,13 @@ from ndt_agents.knowledge.parsing import (
 __all__ = [
     "InMemoryKnowledgeTaskRepository",
     "EncodingHint",
+    "FallbackResult",
+    "FallbackStage",
+    "FallbackStatus",
     "IntakeRequest",
     "IntakeResult",
     "IntakeStatus",
+    "IndependentOcrAdapter",
     "KnowledgeEntryGraph",
     "KnowledgeEntryResult",
     "KnowledgeEntryTrigger",
@@ -46,7 +60,11 @@ __all__ = [
     "MinerUParseRequest",
     "ParseResult",
     "ParseStatus",
+    "ParserFallbackPipeline",
+    "ParserQualityGate",
     "ParsedDocument",
+    "QualityDecision",
+    "QualityExpectation",
     "KnowledgeStartRequest",
     "KnowledgeUiStartRequest",
     "knowledge_entry_candidate_sha256",
