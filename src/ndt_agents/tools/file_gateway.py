@@ -11,7 +11,7 @@ import time
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Literal
 from uuid import UUID
 
@@ -492,12 +492,21 @@ class ControlledFileGateway:
 
     def _path(self, value: str, *, exists: bool, mutation: bool = False) -> Path:
         path_value = Path(value)
-        if path_value.is_absolute() or path_value.drive or any(ord(char) < 32 for char in value):
+        posix_value = PurePosixPath(value)
+        windows_value = PureWindowsPath(value)
+        if (
+            path_value.is_absolute()
+            or path_value.drive
+            or posix_value.anchor
+            or windows_value.anchor
+            or any(ord(char) < 32 for char in value)
+        ):
             raise self._path_error()
         if any(char in _FORBIDDEN_PATH_CHARACTERS for char in value):
             raise self._path_error()
         relative = Path(value)
-        if _INTERNAL_VERSION_ROOT in relative.parts or any(part == ".." for part in relative.parts):
+        lexical_parts = (*posix_value.parts, *windows_value.parts)
+        if _INTERNAL_VERSION_ROOT in lexical_parts or any(part == ".." for part in lexical_parts):
             raise self._path_error()
         candidate = (self._policy.root / relative).resolve(strict=False)
         if not candidate.is_relative_to(self._policy.root):

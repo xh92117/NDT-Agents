@@ -315,7 +315,20 @@ def test_safe_write_denies_overwrite_and_internal_version_access(runtime: Runtim
 
 @pytest.mark.parametrize(
     "path",
-    ["../escape.txt", "bad\nname.txt", "*.txt", "name;touch.txt", "name|pipe.txt"],
+    [
+        "../escape.txt",
+        r"..\escape.txt",
+        "/escape.txt",
+        "C:/escape.txt",
+        r"C:\escape.txt",
+        "C:escape.txt",
+        r"\escape.txt",
+        r"\\server\share\escape.txt",
+        "bad\nname.txt",
+        "*.txt",
+        "name;touch.txt",
+        "name|pipe.txt",
+    ],
 )
 def test_malicious_paths_are_denied(runtime: Runtime, path: str) -> None:
     result = asyncio.run(runtime.invoke("file.read", {"path": path}))

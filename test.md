@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.65
+**Version:** 1.66
 **Updated:** 2026-08-26
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -474,6 +474,8 @@ The product runtime exposes controlled Bash-backed actions for local files. At m
 8. Exit code, stdout, stderr, command ID, encoding, path, actor, tenant, and timestamp are captured.
 9. Locale differences do not change the canonical UTF-8 result.
 10. NUL-delimited path handling prevents whitespace and newline splitting.
+11. POSIX absolute paths plus Windows drive-qualified, drive-relative, rooted, UNC, and traversal
+    forms are rejected by the same lexical policy on Windows and Linux before any existence check.
 
 Run after any Bash tool, command allowlist, path, locale, encoding, read, write, or edit change; in `PR`; full corpus at `TG-03` and `RELEASE`.
 
@@ -492,6 +494,7 @@ Test rejection of:
 
 - unrestricted `bash -c`, command substitution, arbitrary pipelines, and unregistered executables;
 - path traversal, symlink escape, absolute paths outside the allowed root, and tenant-root substitution;
+- host-foreign absolute, drive-relative, rooted, UNC, and traversal syntax regardless of worker OS;
 - unauthorized write, overwrite, delete, move, permission change, process launch, and network access;
 - direct edit of immutable raw input or published artifact;
 - option injection through filenames beginning with `-`;
@@ -1204,6 +1207,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 
 | Run ID | Date | Task/build | Profile or group | Environment | Result | Evidence | Defects | Reviewer |
 |---|---|---|---|---|---|---|---|---|
+| S3-02-CI-REPAIR-LOCAL-20260826-01 | 2026-08-26 | S3-02 cross-platform path repair / PR 8 / mutable follow-up workspace | direct path matrix, S3-03 intake reuse, `INT-BASH`, `SEC-BASH`, full regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [repair evidence](./evidence/s3/s3-02-cross-platform-path-repair-20260826.md); 62 focused and 1019 full-regression tests passed with one documented Windows skip; Ruff, format, strict mypy, DOC 1.66, and diff checks passed | first PR quality run 32919288909 reproduced `FILE_NOT_FOUND` for `C:/escape.txt` on Ubuntu; repaired immutable Linux rerun pending | Codex |
 | S5-01-CONVERGENCE-20260826-01 | 2026-08-26 | S5-01 approved convergence finding `CCR-20260826-001` / branch `codex/s6-clients` / mutable workspace | guard matrix, `UNIT-TOOLREG`, affected Adapter SDK and MCP validation, `SEC-TOOLS`, full regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / deterministic schema fixtures / CPython 3.12.13 | `PASS` | [schema-policy convergence evidence](./evidence/s5/s5-01-schema-policy-convergence-20260826.md); 10 pre-change guard, 115 related tool, and 1012 full-regression tests passed with one documented Windows skip; one authority and three direct callers remain; Ruff, format, strict mypy, DOC 1.65, and diff checks passed | approved finding closed; no public contract or behavior change; private-name external consumers remain unknown | Codex |
 | S6-01-REPAIR-20260826-01 | 2026-08-26 | S6-01 event atomicity repair / branch `codex/s6-clients` / mutable workspace | client race, E2E boundary, full local regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / in-memory repository with deterministic two-thread barrier / CPython 3.12.13 | `PASS` | [event atomicity repair evidence](./evidence/s6/s6-01-event-atomicity-repair-20260826.md); pre-repair reproduction committed the same sequence twice; repaired result commits once and rejects once; 9 client and 1003 full-regression tests passed with one documented Windows skip; Ruff, format, strict mypy, DOC 1.65, and diff checks passed | local `DEF-CLIENT-001` closed; durable multi-process transaction, fan-out, load, proxy, and immutable-CI evidence remain | Codex |
 | S6-10-REPAIR-20260826-01 | 2026-08-26 | S6-10 publication-authority repair / branch `codex/s6-clients` / mutable workspace | S6-09 and S6-10 focused tests, full local regression, Ruff, format, strict mypy, DOC, and diff checks; not publication or complete RELEASE | local Windows / static authority and key registries with generated attack fixtures / CPython 3.12.13 | `PASS` | [publication-authority repair evidence](./evidence/s6/s6-10-publication-authority-repair-20260826.md); 18 focused and 1002 full-regression tests passed with one documented Windows skip; missing, revoked, and substituted authority records were denied with zero publisher calls; Ruff, format, strict mypy, DOC 1.65, and diff checks passed | local `DEF-REL-002` closed; S6-10 remains blocked by durable authority/identity adapters, sealed candidate, TG-06 PASS, publisher, deployment, and live smoke | Codex |
