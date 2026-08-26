@@ -43,17 +43,17 @@ profile passed all five tests.
 | `uv run mypy` | PASS; 188 source files |
 | `uv run python tools/check_controlled_docs.py` | PASS; DOC 1.71, four ASCII controlled files, seven gates |
 | controlled artifact regeneration and `git diff --check` | PASS; no generated drift or whitespace error |
-| code graph update and status | PASS; 206 files, 3554 nodes, and 32320 edges on `codex/s6-02-tauri` |
+| code graph update and status | PASS; 210 files, 3575 nodes, and 32475 edges on commit `1d170440bd52`; JavaScript, Python, and Rust detected |
 | `npm run desktop:check` with the rustup bin path exposed to the inherited process | PASS; exact Rust, Cargo, rustup, Tauri, WebView2, and MSVC detected |
 | `npm run desktop:build` with the rustup bin path exposed to the inherited process | PASS; release no-bundle executable generated at `clients/desktop/src-tauri/target/release/ndt-agent-desktop.exe` |
 
 The initial release build completed in 7 minutes 28 seconds. The target directory is ignored
 and the executable is local build evidence only.
 
-The graph detected the new JavaScript and Python tests but reported only JavaScript and Python as
-parsed languages. Rust graph coverage is therefore unavailable in this environment; the Rust bridge,
-build manifest, generated permissions, and capability were reviewed directly and validated by Rust
-unit tests, strict Clippy, formatting, static security assertions, and the Tauri release build.
+The pre-commit MCP refresh initially missed staged Rust files. The required post-commit CLI refresh
+parsed Rust and bound the graph to commit `1d170440bd52`. The Rust bridge, build manifest, generated
+permissions, and capability were also reviewed directly and validated by Rust unit tests, strict
+Clippy, formatting, static security assertions, and the Tauri release build.
 
 ## Security result
 
