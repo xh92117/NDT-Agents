@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.67
+**Version:** 1.68
 **Updated:** 2026-08-26
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -741,6 +741,11 @@ operation, bytes, duration, and call count. Required device, calibration, or mod
 immutable same-scope artifacts, provider identity, output schema/hash, declared errors, and
 retryability must fail closed. Typed and generic provider failures perform no hidden retry.
 
+For S5-05 registration hashing, permute every set-valued permission, secret-purpose, and declared
+error input before draft construction and validated reconstruction. Equivalent members must produce
+one hash across repeated processes and worker operating systems; adding or removing a member must
+change the hash. Run the full S5-08 reference profile and invocation suite under protected Linux CI.
+
 For S5-06, round-trip one strict canonical manifest for each of UT, GPR, IE, RT, AE, and MV through
 the deterministic UTF-8 codec with exact field and manifest-hash equality. Include Chinese source
 names and metadata, spaces, a leading-dash name, registered coordinates, multiple contiguous
@@ -1207,6 +1212,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 
 | Run ID | Date | Task/build | Profile or group | Environment | Result | Evidence | Defects | Reviewer |
 |---|---|---|---|---|---|---|---|---|
+| S5-05-CI-REPAIR-LOCAL-20260826-01 | 2026-08-26 | S5-05 registration hash repair / PR 8 / mutable follow-up workspace | registration set permutation and semantic-change test, S5-08 reference adapters, `INT-INSTRUMENT`, `SEC-TOOLS`, full regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [repair evidence](./evidence/s5/s5-05-registration-hash-repair-20260826.md); 92 focused and 1020 full-regression tests passed with one documented Windows skip; Ruff, format, strict mypy, DOC 1.68, and diff checks passed | Ubuntu run 32919785241 exposed process-dependent set-array ordering after the same source passed run 32919640865; repaired immutable Linux rerun pending | Codex |
 | S3-02-CI-REPAIR-20260826-01 | 2026-08-26 | S3-02 cross-platform path repair / commit `3dab6601406cf66fd8b90dec9c7a8e0bf5ccf96b` / PR 8 | protected `quality`: controlled generation, DOC, full regression, Ruff, strict mypy, dependency audit, and evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `PASS` | [run 32919640865](https://github.com/xh92117/NDT-Agents/actions/runs/32919640865) and [repair evidence](./evidence/s3/s3-02-cross-platform-path-repair-20260826.md); 1020 tests passed with zero skip; DOC 1.66, Ruff, strict mypy over 187 source files, and dependency audit passed | first-run host-dependent path defect closed; no remaining S3-02 task defect | Codex |
 | S3-02-CI-REPAIR-LOCAL-20260826-01 | 2026-08-26 | S3-02 cross-platform path repair / PR 8 / mutable follow-up workspace | direct path matrix, S3-03 intake reuse, `INT-BASH`, `SEC-BASH`, full regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [repair evidence](./evidence/s3/s3-02-cross-platform-path-repair-20260826.md); 62 focused and 1019 full-regression tests passed with one documented Windows skip; Ruff, format, strict mypy, DOC 1.66, and diff checks passed | first PR quality run 32919288909 reproduced `FILE_NOT_FOUND` for `C:/escape.txt` on Ubuntu; repaired immutable Linux rerun pending | Codex |
 | S5-01-CONVERGENCE-20260826-01 | 2026-08-26 | S5-01 approved convergence finding `CCR-20260826-001` / branch `codex/s6-clients` / mutable workspace | guard matrix, `UNIT-TOOLREG`, affected Adapter SDK and MCP validation, `SEC-TOOLS`, full regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / deterministic schema fixtures / CPython 3.12.13 | `PASS` | [schema-policy convergence evidence](./evidence/s5/s5-01-schema-policy-convergence-20260826.md); 10 pre-change guard, 115 related tool, and 1012 full-regression tests passed with one documented Windows skip; one authority and three direct callers remain; Ruff, format, strict mypy, DOC 1.65, and diff checks passed | approved finding closed; no public contract or behavior change; private-name external consumers remain unknown | Codex |
