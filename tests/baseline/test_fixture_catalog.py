@@ -9,7 +9,13 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+import pytest
 from PIL import Image
+
+from ndt_agents.professional.planning import PLAN_REQUIRED_SECTIONS
+from ndt_agents.professional.reporting import REPORT_REQUIRED_SECTIONS
+from tools import generate_fixture_catalog
+from tools.generate_fixture_catalog import generate_templates
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG: dict[str, Any] = json.loads((ROOT / "fixtures" / "v1" / "catalog.json").read_text("utf-8"))
@@ -23,6 +29,21 @@ def test_fixture_counts_and_balance() -> None:
     assert len(CATALOG["templates"]) == 2
     method_counts = Counter(item["features"][0] for item in CATALOG["raw_inspection_samples"])
     assert method_counts == {"UT": 10, "GPR": 10, "IE": 10, "RT": 10, "AE": 10, "MV": 10}
+
+
+def test_template_generator_matches_professional_contracts(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(generate_fixture_catalog, "ROOT", tmp_path)
+    monkeypatch.setattr(generate_fixture_catalog, "TEMPLATE_ROOT", tmp_path)
+
+    records = generate_templates()
+    plan = json.loads((tmp_path / "inspection-plan.v1.json").read_text("utf-8"))
+    report = json.loads((tmp_path / "inspection-report.v1.json").read_text("utf-8"))
+
+    assert len(records) == 2
+    assert tuple(plan["required_sections"]) == PLAN_REQUIRED_SECTIONS
+    assert tuple(report["required_sections"]) == REPORT_REQUIRED_SECTIONS
 
 
 def test_document_format_and_feature_coverage() -> None:

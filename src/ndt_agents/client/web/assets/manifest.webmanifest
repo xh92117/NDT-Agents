@@ -1,0 +1,19 @@
+{
+  "id": "/workbench",
+  "name": "NDT Agent Workbench",
+  "short_name": "NDT Workbench",
+  "description": "Review-bound civil infrastructure NDT agent tasks.",
+  "start_url": "/workbench",
+  "scope": "/workbench",
+  "display": "standalone",
+  "background_color": "#f1f0ea",
+  "theme_color": "#173f37",
+  "icons": [
+    {
+      "src": "/workbench/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

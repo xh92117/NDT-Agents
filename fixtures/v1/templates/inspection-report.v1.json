@@ -1,13 +1,20 @@
 {
   "required_sections": [
+    "identity",
     "scope",
+    "plan_reference",
     "source_data",
-    "method_and_equipment",
+    "method_equipment_and_calibration",
     "observations",
+    "calculations_and_units",
+    "figures",
     "findings",
     "limitations",
     "citations",
-    "review_and_approval"
+    "conclusion_boundary",
+    "revision_history",
+    "review",
+    "approval"
   ],
   "schema_version": "1.0.0",
   "template_id": "TPL-INSPECTION-REPORT-V1"

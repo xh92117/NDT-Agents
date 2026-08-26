@@ -28,9 +28,14 @@ from ndt_agents.tools import (
     IdempotencyPolicy,
     NetworkPolicy,
     SideEffectClass,
+    ToolDataDestination,
+    ToolDataScope,
     ToolInvocationContext,
+    ToolKind,
+    ToolRecoveryPolicy,
     ToolRegistry,
     ToolRegistryError,
+    ToolTransport,
 )
 
 SCOPE = TenantScope(
@@ -105,6 +110,7 @@ class Runtime:
             expected_registry_version=self.registry.version,
             allowed_tools=frozenset(item.key for item in self.gateway.definitions),
             granted_permissions=permissions,
+            allowed_data_destinations=frozenset({ToolDataDestination.LOCAL}),
             allow_network=False,
         )
 
@@ -150,12 +156,19 @@ def test_definitions_are_fixed_scope_bound_and_network_free(runtime: Runtime) ->
         "file.execute",
     }
     assert all(item.network is NetworkPolicy.NONE for item in definitions.values())
+    assert all(item.kind is ToolKind.BASH for item in definitions.values())
+    assert all(item.transport is ToolTransport.BASH for item in definitions.values())
+    assert all(item.data_scope is ToolDataScope.TASK for item in definitions.values())
+    assert all(item.data_destination is ToolDataDestination.LOCAL for item in definitions.values())
     assert all(
         item.require_tenant_scope and item.require_project_scope for item in definitions.values()
     )
+    assert all(item.test_owner == "file-tool-runtime" for item in definitions.values())
     assert definitions["file.list"].max_concurrency == 3
+    assert definitions["file.list"].recovery_policy is ToolRecoveryPolicy.NO_RETRY
     assert definitions["file.write"].side_effect is SideEffectClass.REVERSIBLE
     assert definitions["file.write"].idempotency is IdempotencyPolicy.REQUIRED
+    assert definitions["file.write"].recovery_policy is ToolRecoveryPolicy.RECONCILE
 
 
 def test_list_preserves_chinese_spaces_brackets_and_leading_dash(runtime: Runtime) -> None:

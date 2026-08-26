@@ -24,11 +24,16 @@ from ndt_agents.tools import (
     IdempotencyPolicy,
     NetworkPolicy,
     SideEffectClass,
+    ToolDataDestination,
+    ToolDataScope,
     ToolDefinition,
     ToolInvocation,
     ToolInvocationContext,
+    ToolKind,
+    ToolRecoveryPolicy,
     ToolRegistry,
     ToolRegistryError,
+    ToolTransport,
 )
 from ndt_agents.tools.registry import canonical_sha256
 
@@ -54,6 +59,10 @@ def definition(
         name="fixture.echo",
         version=version,
         purpose="Return one validated fixture value.",
+        kind=ToolKind.INTERNAL,
+        transport=ToolTransport.INTERNAL,
+        data_scope=ToolDataScope.TASK,
+        data_destination=ToolDataDestination.LOCAL,
         side_effect=side_effect,
         input_schema={
             "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -70,7 +79,7 @@ def definition(
         },
         required_permissions=frozenset({"tool.echo"}),
         timeout_ms=timeout_ms,
-        max_attempts=2,
+        max_attempts=2 if side_effect is SideEffectClass.READ_ONLY else 1,
         max_concurrency=1 if side_effect is not SideEffectClass.READ_ONLY else 2,
         max_input_bytes=1000,
         max_output_bytes=1000,
@@ -84,7 +93,14 @@ def definition(
         if network is NetworkPolicy.RESTRICTED
         else frozenset(),
         network=network,
+        declared_error_codes=frozenset({"FIXTURE_FAILED"}),
+        recovery_policy=(
+            ToolRecoveryPolicy.RETRY_READ_ONLY
+            if side_effect is SideEffectClass.READ_ONLY
+            else ToolRecoveryPolicy.RECONCILE
+        ),
         audit_owner="tool-runtime",
+        test_owner="tool-runtime",
         test_groups=frozenset({"UNIT-TOOLREG"}),
     )
 
@@ -156,6 +172,7 @@ class Runtime:
             "allowed_tools": frozenset({self.tool.key}),
             "granted_permissions": frozenset({"tool.echo"}),
             "allowed_secret_purposes": frozenset({"echo.token"}),
+            "allowed_data_destinations": frozenset({ToolDataDestination.LOCAL}),
             "allow_network": True,
         }
         values.update(updates)

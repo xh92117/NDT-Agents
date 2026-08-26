@@ -2,9 +2,12 @@
 
 NDT Agents is the V1 foundation for a multi-tenant civil-infrastructure non-destructive-testing
 agent platform. The repository contains the S0 engineering baseline, the isolated S1 agent runtime,
-the S2 context, memory, restore, cache, and governed data-lifecycle boundaries, and the S3-01
-Knowledge Agent entry graph. Production enablement remains blocked by the approvals and external
-evidence recorded in `plan.md`.
+the S2 context, memory, restore, cache, and governed data-lifecycle boundaries, the S3 knowledge
+pipeline, and locally implemented S4 professional boundaries. Production enablement remains
+blocked by the approvals and external evidence recorded in `plan.md`. S5 now includes the shared
+Tool Registry, provider-neutral gateways, adapter SDK, canonical inspection data, metered model
+inference, and deterministic six-method reference simulators; no live S5 provider, MCP server,
+model, or instrument is enabled.
 
 ## Repository layout
 
@@ -61,6 +64,47 @@ The central quantitative policy, reservation, degradation, and typed-stop bounda
 [`docs/contracts/budget-guard-v1.md`](./docs/contracts/budget-guard-v1.md).
 The independent per-result, targeted-correction, and cross-result aggregation gate is documented in
 [`docs/contracts/review-graph-v1.md`](./docs/contracts/review-graph-v1.md).
+The exact-scope Technical QA candidate and citation-validation boundary is documented in
+[`docs/contracts/technical-qa-v1.md`](./docs/contracts/technical-qa-v1.md).
+The generated-template inspection-plan, quantity, applicable-basis, gap, review, and approval-
+pending boundary is documented in
+[`docs/contracts/inspection-plan-v1.md`](./docs/contracts/inspection-plan-v1.md).
+The traceable report template, source/processing evidence, Decimal calculation, finding, revision,
+review, and approval-pending boundary is documented in
+[`docs/contracts/inspection-report-v1.md`](./docs/contracts/inspection-report-v1.md).
+The source manifest, processing version/parameter, budget, quality, observation, figure, failure,
+and report-evidence bridge is documented in
+[`docs/contracts/data-processing-control-v1.md`](./docs/contracts/data-processing-control-v1.md).
+The six-method metadata, calibration, input/output, provenance, limitation, safety, and zero-action
+Skill registry is documented in
+[`docs/contracts/method-skills-v1.md`](./docs/contracts/method-skills-v1.md).
+The five professional per-result checklists, exact review envelopes, cross-result traceability, and
+deterministic S1-09 adapter are documented in
+[`docs/contracts/professional-review-v1.md`](./docs/contracts/professional-review-v1.md).
+The action-specific plan, preliminary-report, and critical-finding checkpoints layered on S1-13 are
+documented in
+[`docs/contracts/professional-approval-v1.md`](./docs/contracts/professional-approval-v1.md).
+The unified internal, Bash, Function Calling, Web Search, MCP, instrument, and AI-model registration
+and authorized-exposure boundary is documented in
+[`docs/contracts/tool-registry-v1.md`](./docs/contracts/tool-registry-v1.md).
+The provider-neutral strict Function Calling catalog, catalog attestation, call-envelope validation,
+and exact ToolResult mapping are documented in
+[`docs/contracts/function-gateway-v1.md`](./docs/contracts/function-gateway-v1.md).
+The policy-bound Web Search adapter, source classes, query/page budgets, exact citations, untrusted
+candidate evidence, and retrieval-cache behavior are documented in
+[`docs/contracts/web-search-v1.md`](./docs/contracts/web-search-v1.md).
+The local/remote MCP registration, exact capability discovery, scoped credential lease, streaming,
+artifact, asynchronous handle, polling, cancellation, and disconnect-recovery boundary is
+documented in [`docs/contracts/mcp-gateway-v1.md`](./docs/contracts/mcp-gateway-v1.md).
+The common Bash/CLI, HTTP API, SDK, DLL, file-exchange, MCP, and simulator adapter registrations,
+provider wrapper, result envelope, and provenance evidence are documented in
+[`docs/contracts/adapter-sdk-v1.md`](./docs/contracts/adapter-sdk-v1.md).
+The strict six-method canonical source manifest, immutable channel locators, deterministic UTF-8
+codec, processing/formal-use validation, and S4-04 projection are documented in
+[`docs/contracts/canonical-inspection-data-v1.md`](./docs/contracts/canonical-inspection-data-v1.md).
+The exact AE, GPR, IE, MV, RT, and UT local reference-simulator profiles and shared-registry
+canonical-data execution boundary are documented in
+[`docs/contracts/reference-adapters-v1.md`](./docs/contracts/reference-adapters-v1.md).
 
 ## Local setup
 

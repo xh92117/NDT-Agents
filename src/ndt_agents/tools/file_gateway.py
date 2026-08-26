@@ -23,12 +23,44 @@ from ndt_agents.tools.registry import (
     NetworkPolicy,
     SideEffectClass,
     ToolAdapter,
+    ToolDataDestination,
+    ToolDataScope,
     ToolDefinition,
     ToolInvocation,
+    ToolKind,
+    ToolRecoveryPolicy,
+    ToolTransport,
     canonical_sha256,
 )
 
 FILE_GATEWAY_VERSION: Literal["1.0.0"] = "1.0.0"
+_FILE_ERROR_CODES = frozenset(
+    {
+        "FILE_COMMAND_DENIED",
+        "FILE_COMMAND_DUPLICATE",
+        "FILE_COMMAND_FAILED",
+        "FILE_EDIT_RANGE_INVALID",
+        "FILE_ENCODING_UNCERTAIN",
+        "FILE_EXECUTABLE_BINDING_INVALID",
+        "FILE_EXECUTABLE_CHANGED",
+        "FILE_EXECUTABLE_NOT_FOUND",
+        "FILE_IMMUTABLE",
+        "FILE_INPUT_LIMIT_INVALID",
+        "FILE_INPUT_TOO_LARGE",
+        "FILE_IO_FAILED",
+        "FILE_NOT_FOUND",
+        "FILE_OUTPUT_TOO_LARGE",
+        "FILE_OVERWRITE_DENIED",
+        "FILE_PATH_DENIED",
+        "FILE_PATTERN_DENIED",
+        "FILE_ROOT_INVALID",
+        "FILE_SCOPE_DENIED",
+        "FILE_SOURCE_CHANGED",
+        "FILE_SOURCE_NOT_REGULAR",
+        "FILE_VERSION_CONFLICT",
+        "FILE_VERSION_NOT_FOUND",
+    }
+)
 FileOperation = Literal["LIST", "SEARCH", "READ", "WRITE", "EDIT", "ROLLBACK", "EXECUTE"]
 _FORBIDDEN_PATH_CHARACTERS = frozenset("*?;&|`$><")
 _INTERNAL_VERSION_ROOT = ".ndt-versions"
@@ -232,6 +264,10 @@ def _tool_definition(
         name=name,
         version=FILE_GATEWAY_VERSION,
         purpose=purpose,
+        kind=ToolKind.BASH,
+        transport=ToolTransport.BASH,
+        data_scope=ToolDataScope.TASK,
+        data_destination=ToolDataDestination.LOCAL,
         side_effect=side_effect,
         input_schema=input_model.model_json_schema(),
         output_schema=FileToolOutput.model_json_schema(),
@@ -248,7 +284,14 @@ def _tool_definition(
             else IdempotencyPolicy.REQUIRED
         ),
         network=NetworkPolicy.NONE,
+        declared_error_codes=_FILE_ERROR_CODES,
+        recovery_policy=(
+            ToolRecoveryPolicy.NO_RETRY
+            if side_effect is SideEffectClass.READ_ONLY
+            else ToolRecoveryPolicy.RECONCILE
+        ),
         audit_owner="file-tool-runtime",
+        test_owner="file-tool-runtime",
         test_groups=frozenset({"INT-BASH", "SEC-BASH", "SEC-TOOLS"}),
     )
 
