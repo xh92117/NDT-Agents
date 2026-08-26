@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.65
+**Specification version:** 1.66
 **Date:** 2026-08-26
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -808,6 +808,11 @@ and bounded captured output. Safe write denies overwrite. Safe edit and rollback
 content hashes, preserve a prior working-copy version, and commit through an internal same-root
 atomic replace. An execute request selects only an application-published command template and
 bounded authorized paths; it cannot select an executable, flags, shell, or network destination.
+
+Path policy is host-independent. POSIX absolute paths, Windows drive-qualified and drive-relative
+paths, rooted Windows paths, UNC paths, traversal segments under either separator convention, and
+ambiguous control or metacharacter forms are rejected before existence checks on every worker OS.
+The same lexical policy is reused by knowledge intake and registered application adapters.
 
 ### 12.1 Chinese paths and text encoding
 
