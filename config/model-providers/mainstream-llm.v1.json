@@ -1,0 +1,456 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "mainstream-llm",
+  "catalog_version": "1.0.0",
+  "checked_on": "2026-08-26",
+  "providers": [
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "openai",
+      "version": "1.0.0",
+      "display_name": "OpenAI",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "responses",
+          "protocol": "OPENAI_RESPONSES",
+          "base_url": "https://api.openai.com/v1",
+          "request_path": "/responses",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.openai.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": [
+        "https://platform.openai.com/docs/api-reference/responses/create",
+        "https://platform.openai.com/docs/models"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "anthropic",
+      "version": "1.0.0",
+      "display_name": "Anthropic",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "messages",
+          "protocol": "ANTHROPIC_MESSAGES",
+          "base_url": "https://api.anthropic.com/v1",
+          "request_path": "/messages",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "API_KEY_HEADER",
+      "credential_header": "x-api-key",
+      "credential_purpose": "model.anthropic.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": [
+        "https://platform.claude.com/docs/en/api/messages",
+        "https://platform.claude.com/docs/en/about-claude/models/overview"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "google",
+      "version": "1.0.0",
+      "display_name": "Google Gemini",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.google.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": [
+        "https://ai.google.dev/gemini-api/docs/openai",
+        "https://ai.google.dev/gemini-api/docs/models"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "alibaba",
+      "version": "1.0.0",
+      "display_name": "Alibaba Cloud Model Studio",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.alibaba.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": [
+        "https://help.aliyun.com/zh/model-studio/what-is-model-studio",
+        "https://help.aliyun.com/zh/model-studio/use-bailian-in-langchain"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "moonshot",
+      "version": "1.0.0",
+      "display_name": "Moonshot Kimi",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://api.moonshot.cn/v1",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.moonshot.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://platform.kimi.com/docs/api/chat"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "zhipu",
+      "version": "1.0.0",
+      "display_name": "Zhipu BigModel",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://open.bigmodel.cn/api/paas/v4",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.zhipu.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://open.bigmodel.cn/dev/api"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "minimax",
+      "version": "1.0.0",
+      "display_name": "MiniMax",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://api.minimaxi.com/v1",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.minimax.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": [
+        "https://platform.minimaxi.com/docs/api-reference/api-overview",
+        "https://platform.minimaxi.com/docs/guides/text-chat"
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "baidu",
+      "version": "1.0.0",
+      "display_name": "Baidu Qianfan",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://qianfan.baidubce.com/v2",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.baidu.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://cloud.baidu.com/doc/qianfan/s/rmh4stn9m"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "tencent",
+      "version": "1.0.0",
+      "display_name": "Tencent Hunyuan",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "openai-chat",
+          "protocol": "OPENAI_CHAT_COMPLETIONS",
+          "base_url": "https://api.hunyuan.cloud.tencent.com/v1",
+          "request_path": "/chat/completions",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.tencent.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://cloud.tencent.com/document/product/1729/111007"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "doubao",
+      "version": "1.0.0",
+      "display_name": "Volcengine Doubao",
+      "endpoints": [
+        {
+          "schema_version": "1.0.0",
+          "endpoint_id": "responses",
+          "protocol": "OPENAI_RESPONSES",
+          "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+          "request_path": "/responses",
+          "models_path": "/models"
+        }
+      ],
+      "credential_scheme": "BEARER",
+      "credential_purpose": "model.doubao.credential",
+      "allowed_data_classes": ["PUBLIC", "SYNTHETIC"],
+      "processing_regions": [],
+      "processing_region_state": "UNVERIFIED",
+      "retention_state": "UNVERIFIED",
+      "training_use_state": "UNVERIFIED",
+      "commercial_terms_state": "UNVERIFIED",
+      "production_eligible": false,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://www.volcengine.com/docs/82379/1795150"]
+    }
+  ],
+  "models": [
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "openai",
+      "provider_version": "1.0.0",
+      "model_id": "gpt-5.6",
+      "model_snapshot": "gpt-5.6",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_RESPONSES"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://platform.openai.com/docs/models"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "anthropic",
+      "provider_version": "1.0.0",
+      "model_id": "claude-sonnet-5",
+      "model_snapshot": "claude-sonnet-5",
+      "lifecycle": "STABLE",
+      "protocols": ["ANTHROPIC_MESSAGES"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "VISION_INPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 1000000,
+      "max_output_tokens": 128000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://platform.claude.com/docs/en/about-claude/models/overview"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "google",
+      "provider_version": "1.0.0",
+      "model_id": "gemini-3.7-flash",
+      "model_snapshot": "gemini-3.7-flash",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "VISION_INPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 1000000,
+      "max_output_tokens": 64000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://ai.google.dev/gemini-api/docs/openai"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "alibaba",
+      "provider_version": "1.0.0",
+      "model_id": "qwen3.8-max",
+      "model_snapshot": "qwen3.8-max",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://help.aliyun.com/zh/model-studio/what-is-model-studio"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "moonshot",
+      "provider_version": "1.0.0",
+      "model_id": "kimi-k3",
+      "model_snapshot": "kimi-k3",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://platform.kimi.com/docs/api/chat"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "zhipu",
+      "provider_version": "1.0.0",
+      "model_id": "glm-5-turbo",
+      "model_snapshot": "glm-5-turbo",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://open.bigmodel.cn/dev/api"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "minimax",
+      "provider_version": "1.0.0",
+      "model_id": "MiniMax-M2.7",
+      "model_snapshot": "MiniMax-M2.7",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 204800,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://platform.minimaxi.com/docs/api-reference/api-overview"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "baidu",
+      "provider_version": "1.0.0",
+      "model_id": "ernie-5.1",
+      "model_snapshot": "ernie-5.1",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://cloud.baidu.com/doc/qianfan/s/rmh4stn9m"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "tencent",
+      "provider_version": "1.0.0",
+      "model_id": "hunyuan-turbos-latest",
+      "model_snapshot": "hunyuan-turbos-latest",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_CHAT_COMPLETIONS"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://cloud.tencent.com/document/product/1729/111007"]
+    },
+    {
+      "schema_version": "1.0.0",
+      "origin": "APPLICATION",
+      "provider_id": "doubao",
+      "provider_version": "1.0.0",
+      "model_id": "doubao-seed-2-0-lite-260215",
+      "model_snapshot": "doubao-seed-2-0-lite-260215",
+      "lifecycle": "STABLE",
+      "protocols": ["OPENAI_RESPONSES"],
+      "capabilities": ["TEXT_INPUT", "TEXT_OUTPUT", "TOOL_CALLING", "JSON_OUTPUT", "REASONING", "STREAMING"],
+      "context_window_tokens": 128000,
+      "max_output_tokens": 16000,
+      "metadata_checked_on": "2026-08-26",
+      "official_sources": ["https://www.volcengine.com/docs/82379/1795150"]
+    }
+  ]
+}

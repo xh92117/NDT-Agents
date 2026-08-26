@@ -23,6 +23,18 @@ from ndt_agents.identity.models import ScopeResponse
 from ndt_agents.knowledge.entry import KnowledgeEntryGraph
 from ndt_agents.knowledge.models import KnowledgeEntryResponse, KnowledgeUiStartRequest
 from ndt_agents.models.config import load_model_runtime_configuration
+from ndt_agents.orchestration.agent_config import load_agent_runtime_configuration
+from ndt_agents.orchestration.configured_review_runtime import (
+    ConfiguredReviewBindings,
+    ConfiguredReviewedOrchestrationRuntime,
+)
+from ndt_agents.orchestration.configured_runtime import (
+    ConfiguredExecutorFactory,
+    ConfiguredOrchestrationRuntime,
+)
+from ndt_agents.orchestration.langgraph_runtime import ConfiguredChildDelegate
+from ndt_agents.orchestration.prompt_registry import load_prompt_registry
+from ndt_agents.orchestration.review_recovery import ReviewRecoveryRepository
 from ndt_agents.runtime.config import AppSettings
 from ndt_agents.runtime.logging import configure_logging
 from ndt_agents.runtime.middleware import RequestContextMiddleware, apply_response_headers
@@ -52,6 +64,10 @@ def create_app(
     knowledge_entry: KnowledgeEntryGraph | None = None,
     workbench: WorkbenchRuntime | None = None,
     model_environment: Mapping[str, str] | None = None,
+    agent_tool_references: frozenset[str] = frozenset(),
+    agent_delegates: Mapping[str, ConfiguredChildDelegate] | None = None,
+    review_bindings: ConfiguredReviewBindings | None = None,
+    review_recovery_repository: ReviewRecoveryRepository | None = None,
 ) -> FastAPI:
     """Build an application without contacting storage, model providers, or external services."""
 
@@ -68,6 +84,39 @@ def create_app(
             environ=model_environment,
             expected_environment=SecurityEnvironment(active_settings.environment.value),
         )
+    prompt_registry = None
+    if active_settings.prompt_config_path is not None:
+        prompt_registry = load_prompt_registry(active_settings.prompt_config_path)
+    agent_runtime = None
+    if active_settings.agent_config_path is not None:
+        assert model_runtime is not None
+        assert prompt_registry is not None
+        agent_runtime = load_agent_runtime_configuration(
+            active_settings.agent_config_path,
+            model_runtime=model_runtime,
+            prompt_registry=prompt_registry,
+            known_tool_references=agent_tool_references,
+        )
+    if agent_delegates is not None and agent_runtime is None:
+        raise ValueError("Configured agent delegates require an agent runtime configuration.")
+    orchestration_runtime = (
+        ConfiguredOrchestrationRuntime(ConfiguredExecutorFactory(agent_runtime, agent_delegates))
+        if agent_runtime is not None and agent_delegates is not None
+        else None
+    )
+    if review_bindings is not None and orchestration_runtime is None:
+        raise ValueError("Configured review bindings require configured agent delegates.")
+    if review_recovery_repository is not None and review_bindings is None:
+        raise ValueError("Review recovery requires configured review bindings.")
+    reviewed_orchestration_runtime = (
+        ConfiguredReviewedOrchestrationRuntime(
+            orchestration_runtime,
+            review_bindings,
+            review_recovery_repository=review_recovery_repository,
+        )
+        if orchestration_runtime is not None and review_bindings is not None
+        else None
+    )
     if configure_logs:
         configure_logging(
             service_name=active_settings.service_name,
@@ -93,6 +142,10 @@ def create_app(
     )
     app.state.settings = active_settings
     app.state.model_runtime = model_runtime
+    app.state.prompt_registry = prompt_registry
+    app.state.agent_runtime = agent_runtime
+    app.state.orchestration_runtime = orchestration_runtime
+    app.state.reviewed_orchestration_runtime = reviewed_orchestration_runtime
     if identity is not None:
         app.add_middleware(ScopeAuthorizationMiddleware, identity=identity)
     app.add_middleware(RequestContextMiddleware)
@@ -115,9 +168,27 @@ def create_app(
             if model_runtime is not None
             else ()
         )
+        prompt_checks = (
+            (HealthCheck(name="prompt_configuration", status="PASS"),)
+            if prompt_registry is not None
+            else ()
+        )
+        agent_checks = (
+            (HealthCheck(name="agent_configuration", status="PASS"),)
+            if agent_runtime is not None
+            else ()
+        )
+        review_checks = (
+            (HealthCheck(name="review_execution_binding", status="PASS"),)
+            if reviewed_orchestration_runtime is not None
+            else ()
+        )
         checks = (
             HealthCheck(name="application", status="PASS"),
             *model_checks,
+            *prompt_checks,
+            *agent_checks,
+            *review_checks,
             *dependency_checks,
         )
         status: Literal["PASS", "FAIL"] = (

@@ -327,11 +327,25 @@ def test_checked_in_examples_are_nonsecret_ignored_and_loadable() -> None:
         env_file_path=EXAMPLE_ENV,
         environ={},
     )
-    assert runtime.status.bindings == 1
+    assert runtime.status.catalogs == 2
+    assert runtime.status.bindings == 11
     assert runtime.status.enabled_bindings == 0
     assert runtime.status.provisioned_secrets == 0
     env_text = EXAMPLE_ENV.read_text(encoding="utf-8")
-    assert "DEEPSEEK_API_KEY=" in env_text
+    for variable in (
+        "OPENAI_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "GEMINI_API_KEY",
+        "DEEPSEEK_API_KEY",
+        "DASHSCOPE_API_KEY",
+        "MOONSHOT_API_KEY",
+        "ZHIPU_API_KEY",
+        "MINIMAX_API_KEY",
+        "QIANFAN_API_KEY",
+        "HUNYUAN_API_KEY",
+        "ARK_API_KEY",
+    ):
+        assert f"{variable}=" in env_text
     assert "sk-" not in env_text
     gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
     assert "config/runtime/*.local.yaml" in gitignore

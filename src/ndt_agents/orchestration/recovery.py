@@ -515,6 +515,12 @@ class RecoverableChildExecutor(Protocol):
     ) -> Mapping[str, Any]: ...
 
 
+class RecoverableExecutorBinder(Protocol):
+    def bind(
+        self, contexts: Sequence[ChildTaskContext]
+    ) -> Mapping[str, RecoverableChildExecutor]: ...
+
+
 class RecoveryControl:
     """Durable side-effect and interrupt boundary supplied to a recoverable child."""
 
@@ -636,17 +642,19 @@ class TaskRecoveryRuntime:
         artifact_service: ArtifactStorageService,
         hard_professional_concurrency: int = 4,
         fault_injector: Callable[[RecoveryFaultPoint, RecoverySnapshot], None] | None = None,
+        executor_binder: RecoverableExecutorBinder | None = None,
     ) -> None:
         self._backend = backend
         self._artifact_service = artifact_service
         self._hard_professional_concurrency = hard_professional_concurrency
         self._fault_injector = fault_injector
+        self._executor_binder = executor_binder
         self._bindings: dict[UUID, Mapping[str, RecoverableChildExecutor]] = {}
 
     async def submit(
         self,
         contexts: Sequence[ChildTaskContext],
-        executors: Mapping[str, RecoverableChildExecutor],
+        executors: Mapping[str, RecoverableChildExecutor] | None = None,
         *,
         idempotency_key: str,
     ) -> RecoveryHandle:
@@ -657,7 +665,8 @@ class TaskRecoveryRuntime:
                 "Use 1 to 256 registered alphanumeric key characters.",
             )
         prepared = tuple(contexts)
-        self._validate_schedule(prepared, executors)
+        bound = self._resolve_executors(prepared, executors)
+        self._validate_schedule(prepared, bound)
         request_sha256 = self._request_sha256(prepared)
         proposed = uuid4()
         first = prepared[0]
@@ -668,7 +677,7 @@ class TaskRecoveryRuntime:
             request_sha256,
             proposed,
         )
-        self._bindings[claim.recovery_id] = dict(executors)
+        self._bindings[claim.recovery_id] = dict(bound)
         if claim.reused:
             loaded = await self._load(claim.recovery_id, first.scope, first.parent_task_id)
         else:
@@ -806,7 +815,9 @@ class TaskRecoveryRuntime:
                 await self._write_checkpoint(interrupted),
                 recovered=snapshot.phase is not RecoveryPhase.QUEUED,
             )
-        bound = executors or self._bindings.get(recovery_id)
+        bound = executors if executors is not None else self._bindings.get(recovery_id)
+        if bound is None and self._executor_binder is not None:
+            bound = self._executor_binder.bind(snapshot.contexts)
         if bound is None:
             raise RecoveryError(
                 "RECOVERY_EXECUTOR_BINDING_REQUIRED",
@@ -899,6 +910,21 @@ class TaskRecoveryRuntime:
         placeholders = {key: _NeverExecute() for key in keys}
         TaskScheduler(hard_professional_concurrency=self._hard_professional_concurrency).validate(
             contexts, placeholders
+        )
+
+    def _resolve_executors(
+        self,
+        contexts: tuple[ChildTaskContext, ...],
+        executors: Mapping[str, RecoverableChildExecutor] | None,
+    ) -> Mapping[str, RecoverableChildExecutor]:
+        if executors is not None:
+            return executors
+        if self._executor_binder is not None:
+            return self._executor_binder.bind(contexts)
+        raise RecoveryError(
+            "RECOVERY_EXECUTOR_BINDING_REQUIRED",
+            "Recovered work requires explicit authorized executor bindings.",
+            "Provide exact executors or configure an authorized recoverable binder.",
         )
 
     @staticmethod

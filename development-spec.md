@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.71
+**Specification version:** 1.77
 **Date:** 2026-08-26
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -257,6 +257,72 @@ delegation, decision, and resume events are monotonically sequenced and hash-cha
 recovery, with forced-RLS append-only PostgreSQL schema support. Every success and denial creates a
 correlated hash-only S1-10 `APPROVAL` audit record. Later knowledge, professional, instrument,
 lifecycle, and release tasks configure domain-specific policies around this shared core.
+
+S1-14 makes the ADR-selected LangGraph runtime concrete behind the existing child-execution port.
+The application compiles one bounded Observe-Plan-Act-Verify graph for each registered child
+runtime, invokes one injected executor in the Act node, validates the existing minimal
+`ChildTaskContext` before entry and the strict `AgentResult` before exit, and keeps raw LangGraph
+state, provider SDK objects, checkpointer objects, and model credentials outside domain and API
+contracts. The adapter has no hidden retry and accepts persistence only through an injected
+checkpointer port; production checkpoint selection remains governed by S1-07. A versioned strict
+YAML document borrows the DeerFlow organization of named `models` and `subagents`, including global
+subagent defaults and per-agent overrides. Model entries reference existing S5-07 binding and model
+identities, and agent entries reference application-owned prompt, Skill, graph, and Tool Registry
+versions. Dynamic Python class paths, inline secrets, caller-selected tools, unbounded limits, YAML
+aliases or anchors, duplicate keys, and unresolved references are forbidden. Startup loading is
+offline and publishes only non-secret status metadata; configuration does not enable a provider.
+
+S1-15 connects that configuration to the executable orchestration path without changing the
+application-owned scheduler contract. One configured assembly layer runs the deterministic Main
+Graph, builds minimal child contexts from the configuration-derived Agent Registry, and binds each
+assignment to exactly one LangGraph child executor selected by registered agent type. Delegate
+catalogs must match the configured profiles exactly; missing, extra, stale, or kind-incompatible
+bindings fail before scheduling and before a delegate call. General work runs synchronously;
+verified professional dispatch preserves the Main Graph asynchronous decision and remains review
+required. Human-required dispatch is never scheduled. A separate recoverable binder recreates
+assignment executors from persisted child contexts after restart and passes `RecoveryControl` only
+to recoverable delegates. The exact configuration hash is included in the private child context
+and therefore in its integrity manifest and recovery request hash; raw configuration, provider
+objects, delegates, checkpointers, and LangGraph state remain outside persisted and API contracts.
+This local assembly does not enable a provider, review bypass, user delivery, publication, or
+physical action.
+
+S1-16 connects terminal configured schedules to the existing S1-09 Review Workflow and Main
+Aggregation Gate. A General schedule must complete successfully before its one verified result is
+converted to Main-only aggregation input. Every professional schedule enters per-result review;
+multiple professional results also enter cross-result review, including independent results that
+may interact during Main synthesis. A review `REVISE` decision binds the responsible correction
+executor by configured agent type and re-reviews only changed results. `CONFLICT`,
+`HUMAN_REQUIRED`, `FAILED`, timeout, malformed output, missing correction, schedule failure, or
+budget stop remains typed and non-aggregatable. Queued schedules retain their minimal contexts
+until explicit advancement, after which review is automatic and terminal review results are
+idempotently reusable in the local runtime. When an S1-09 recovery repository is injected, the
+review and correction calls use its append-only replay boundary before Main aggregation. Reviewer
+and correction executors remain injected application dependencies; this assembly enables no model
+provider, credential, direct user delivery, publication, or physical action.
+
+S1-17 publishes one local candidate catalog for common domestic and international hosted model
+providers and expands the DeerFlow-shaped agent example to the planned General, Technical QA,
+inspection planning, inspection reporting, data processing, method compatibility, and Knowledge
+child profiles. Every hosted binding is disabled by default, uses only an environment-variable
+secret selector, remains limited to PUBLIC and SYNTHETIC data, and is not production eligible.
+The example keeps provider selection separate from child-role selection, supports exact
+case-sensitive provider model IDs, and performs no provider call during configuration loading.
+The independent Review Agent remains an application-injected review dependency rather than a
+dispatchable child profile. MinerU remains on the pinned local CLI adapter; optional official
+hosted MinerU variables are documented as reserved configuration until a separately tested API
+adapter exists.
+
+S1-18 publishes and loads application-owned prompts through a separate strict catalog. Agent
+profiles reference a prompt name rather than carrying inline text. Each catalog entry binds an
+exact identifier, version, relative Markdown path, UTF-8 content hash, and bounded content. The
+loader rejects duplicate identities, unsafe or escaping paths, symbolic-link escapes, BOM or
+invalid encoding, stale hashes, missing files, oversized text, and unresolved profile references.
+Resolved child, review, and correction bindings receive one immutable prompt instruction while raw
+prompt text remains outside ChildTaskContext, LangGraph checkpoint state, audit payloads, and public
+contracts. The agent-configuration hash binds the prompt-catalog hash so prompt changes invalidate
+stale execution and recovery bindings. This task does not create a live provider adapter or approve
+external model use.
 
 TG-01 corrective work closes the S1-09 mid-review recovery gap with a small idempotent review
 journal. The journal binds the exact schedule, child contexts, reviewer definition, cross-review
@@ -1096,6 +1162,22 @@ model configuration remains provider-neutral. An enabled binding with a missing,
 or invalid secret source fails with a typed non-disclosing configuration error; a disabled binding
 may remain unprovisioned. Successful loading validates every catalog and binding and attaches the
 reference-only model runtime configuration to application state without making a provider call.
+
+S5-07-LIVE adds the first real hosted-model transport behind the existing S5-07 provider port. The
+DeepSeek adapter accepts only an exact authorized DeepSeek OpenAI Chat Completions route, resolves
+the scoped secret only after preflight, uses certificate-validated HTTPS, disables redirects,
+performs one bounded non-streaming POST without hidden retry, bounds response bytes, and maps HTTP,
+timeout, transport, JSON, identity, finish-reason, usage, and output-schema failures into the
+existing typed provider contract. Authorization, LLM-call and token metering, output validation,
+review requirements, and hash-only audit remain owned by the S5-07 gateway. The adapter never logs,
+serializes, returns, or hashes plaintext credentials or provider response bodies.
+
+The ignored local DeepSeek binding may be enabled only for PUBLIC or SYNTHETIC personal-development
+inputs after its secret is present. Adapter construction and offline transport tests do not grant a
+physical network call. A live synthetic smoke requires a separate explicit operator policy
+acknowledgement because processing region, retention, training use, and commercial terms remain
+unverified. Without that acknowledgement, smoke preflight returns a typed blocked result and makes
+zero network calls.
 
 ## 15. Multi-tenancy, security, and audit
 

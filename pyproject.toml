@@ -18,6 +18,7 @@ dependencies = [
     "redis==8.1.0",
     "sqlalchemy==2.0.52",
     "uvicorn==0.52.4",
+    "langgraph==1.2.11",
 ]
 
 [dependency-groups]

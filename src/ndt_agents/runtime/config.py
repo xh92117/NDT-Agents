@@ -45,6 +45,8 @@ class AppSettings(BaseModel):
     expose_api_docs: bool = False
     model_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
     model_env_file: str | None = Field(default=None, min_length=1, max_length=4096)
+    prompt_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
+    agent_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
 
     @model_validator(mode="after")
     def validate_production_docs(self) -> Self:
@@ -52,9 +54,20 @@ class AppSettings(BaseModel):
             raise ValueError("API documentation cannot be exposed in production")
         if self.model_env_file is not None and self.model_config_path is None:
             raise ValueError("a model environment file requires a model configuration")
+        if self.agent_config_path is not None and self.model_config_path is None:
+            raise ValueError("an agent configuration requires a model configuration")
+        if self.agent_config_path is not None and self.prompt_config_path is None:
+            raise ValueError("an agent configuration requires a prompt catalog")
+        if self.prompt_config_path is not None and self.agent_config_path is None:
+            raise ValueError("a prompt catalog requires an agent configuration")
         if self.environment is RuntimeEnvironment.PRODUCTION and self.model_env_file is not None:
             raise ValueError("a local model environment file is forbidden in production")
-        for path in (self.model_config_path, self.model_env_file):
+        for path in (
+            self.model_config_path,
+            self.model_env_file,
+            self.prompt_config_path,
+            self.agent_config_path,
+        ):
             if path is not None and ("\x00" in path or "\r" in path or "\n" in path):
                 raise ValueError("model configuration paths contain forbidden characters")
         return self
@@ -73,6 +86,8 @@ class AppSettings(BaseModel):
             "NDT_EXPOSE_API_DOCS": "expose_api_docs",
             "NDT_MODEL_CONFIG": "model_config_path",
             "NDT_MODEL_ENV_FILE": "model_env_file",
+            "NDT_PROMPT_CONFIG": "prompt_config_path",
+            "NDT_AGENT_CONFIG": "agent_config_path",
         }
         unknown = sorted(
             key for key in source if key.startswith("NDT_") and key not in environment_keys

@@ -6,8 +6,9 @@ the S2 context, memory, restore, cache, and governed data-lifecycle boundaries, 
 pipeline, and locally implemented S4 professional boundaries. Production enablement remains
 blocked by the approvals and external evidence recorded in `plan.md`. S5 now includes the shared
 Tool Registry, provider-neutral gateways, adapter SDK, canonical inspection data, metered model
-inference, and deterministic six-method reference simulators; no live S5 provider, MCP server,
-model, or instrument is enabled.
+inference, a strict opt-in DeepSeek HTTPS adapter, and deterministic six-method reference
+simulators; one bounded local synthetic DeepSeek smoke has passed, while no MCP server, production
+model, or instrument is approved.
 
 ## Repository layout
 
@@ -21,7 +22,7 @@ model, or instrument is enabled.
 | `fixtures/v1` | synthetic parser, template, and raw-inspection fixtures |
 | `benchmarks/v1` | synthetic evaluation JSONL sets and frozen manifest |
 | `config/model-providers` | non-secret provider and model catalogs |
-| `config/runtime` | non-secret model binding examples; local copies are ignored |
+| `config/runtime` | non-secret model binding and agent runtime examples; local copies are ignored |
 | `security` | machine-readable security and license decision baselines |
 | `sbom` | generated CycloneDX inventory |
 | `tools` | deterministic generators and repository checks |
@@ -31,6 +32,8 @@ The runtime API contract is documented in
 [`docs/contracts/runtime-api-v1.md`](./docs/contracts/runtime-api-v1.md).
 The provider-neutral multi-API catalog and binding contract is documented in
 [`docs/contracts/model-api-registry-v1.md`](./docs/contracts/model-api-registry-v1.md).
+The first strict hosted transport is documented in
+[`docs/contracts/deepseek-provider-v1.md`](./docs/contracts/deepseek-provider-v1.md).
 Storage ports and local adapter boundaries are documented in
 [`docs/contracts/storage-ports-v1.md`](./docs/contracts/storage-ports-v1.md).
 The isolated OIDC, RBAC, request-scope, and PostgreSQL RLS contract is documented in
@@ -39,6 +42,8 @@ The deterministic rules-first routing boundary is documented in
 [`docs/contracts/main-graph-v1.md`](./docs/contracts/main-graph-v1.md).
 The isolated General and professional child execution boundary is documented in
 [`docs/contracts/child-subgraphs-v1.md`](./docs/contracts/child-subgraphs-v1.md).
+The pinned LangGraph child adapter and strict DeerFlow-inspired agent configuration are documented
+in [`docs/contracts/langgraph-runtime-v1.md`](./docs/contracts/langgraph-runtime-v1.md).
 The deterministic permission-filtered context-assembly boundary is documented in
 [`docs/contracts/context-assembly-v1.md`](./docs/contracts/context-assembly-v1.md).
 The provider-neutral C0 through C3 context-compression boundary is documented in
@@ -130,32 +135,54 @@ Start the API without storage, cache, model, or network dependencies:
 uv run python -m ndt_agents.runtime
 ```
 
-To assemble the disabled DeepSeek reference binding without making a provider call, copy
+To assemble the disabled common hosted-model bindings and the planned bounded child profiles
+without making a provider call, copy
 `config/runtime/model-bindings.example.yaml` to the ignored
-`config/runtime/model-bindings.local.yaml`, then set these process or IDE environment values:
+`config/runtime/model-bindings.local.yaml` and `config/runtime/agent-runtime.example.yaml` to the
+ignored `config/runtime/agent-runtime.local.yaml`, then set these process or IDE environment values:
 
 ```text
 NDT_MODEL_CONFIG=config/runtime/model-bindings.local.yaml
-NDT_MODEL_ENV_FILE=.env.local
+NDT_PROMPT_CONFIG=prompts/professional/catalog.v1.yaml
+NDT_AGENT_CONFIG=config/runtime/agent-runtime.local.yaml
+NDT_MODEL_ENV_FILE=.env
 ```
 
-Copy `.env.example` to the ignored `.env.local` and place the real value after
-`DEEPSEEK_API_KEY=`. Do not commit or send that file. The application does not automatically load
-`.env.example` or `.env.local`; `NDT_MODEL_ENV_FILE` explicitly selects the latter. Process
-environment variables take precedence over the selected file. Change a binding to `ENABLED` only
+Copy `.env.example` to the ignored `.env` and place real values only after the provider variables
+you intend to use. Do not commit or send that file. The application does not automatically load
+`.env.example` or `.env`; `NDT_MODEL_ENV_FILE` explicitly selects the latter. Process
+environment variables take precedence over the selected file. `NDT_PROMPT_CONFIG` selects the
+versioned application-owned prompt catalog; its Markdown files are loaded and hash-verified before
+agent assembly. Change a binding to `ENABLED` only
 when its referenced secret is present; startup otherwise fails closed. This bootstrap validates and
-assembles configuration but still performs zero model-network calls.
+assembles configuration but still performs zero model-network calls. The agent file may reference
+only exact model bindings, prompt aliases, and application-owned tool versions; it cannot contain
+inline prompts, API keys, provider class paths, dynamic imports, or caller-selected tools.
+
+For the ignored local configuration, `personal-deepseek` can be enabled after
+`DEEPSEEK_API_KEY` is present. This provisions the opt-in adapter but makes no call during startup.
+The first synthetic network smoke was an explicit operator action because the catalog still marks
+DeepSeek processing region, retention, training use, and commercial terms as unverified. Its single
+successful call does not change production eligibility or authorize real inspection data.
+
+The example includes OpenAI, Anthropic, Gemini, DeepSeek, Qwen, Kimi, GLM, MiniMax, ERNIE,
+Hunyuan, and Doubao bindings. All planned child profiles use the `primary` model alias by default;
+change a profile's `model` value and enable the matching binding to select another provider. See
+`docs/contracts/model-agent-configuration-v1.md` for the exact mapping. MinerU remains on the
+pinned local CLI adapter. Its hosted API variables are reserved placeholders and do not activate a
+network parser.
 
 Supported settings are `NDT_SERVICE_NAME`, `NDT_ENVIRONMENT`, `NDT_LOG_LEVEL`, `NDT_HOST`,
-`NDT_PORT`, `NDT_EXPOSE_API_DOCS`, `NDT_MODEL_CONFIG`, and `NDT_MODEL_ENV_FILE`. Unknown `NDT_`
-settings fail startup. API documentation is disabled by default and cannot be enabled when
+`NDT_PORT`, `NDT_EXPOSE_API_DOCS`, `NDT_MODEL_CONFIG`, `NDT_PROMPT_CONFIG`,
+`NDT_AGENT_CONFIG`, and `NDT_MODEL_ENV_FILE`. Unknown `NDT_` settings fail startup. An agent
+configuration requires both model and prompt configuration. API documentation is disabled by default and cannot be enabled when
 `NDT_ENVIRONMENT=production`. Local environment files are forbidden in production.
 
 Runtime probes:
 
 - `GET /health/live` confirms that the service process is serving requests;
 - `GET /health/ready` confirms that the S1-01 application scaffold initialized and, when selected,
-  that non-secret model configuration assembled successfully;
+  that non-secret model, prompt, and agent configurations assembled successfully;
 - both responses use schema version `1.0.0` and return `Cache-Control: no-store`.
 
 When an authenticated identity runtime and `KnowledgeEntryGraph` are explicitly injected,

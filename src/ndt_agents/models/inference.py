@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import hashlib
 import json
 import time
 from collections.abc import Callable, Mapping, Sequence
@@ -21,6 +20,10 @@ from ndt_agents.inspection_data import (
     CanonicalInspectionDataset,
     validate_canonical_inspection_dataset,
 )
+from ndt_agents.models.instructions import ApplicationInstruction as ApplicationInstruction
+from ndt_agents.models.instructions import (
+    build_application_instruction as _build_application_instruction,
+)
 from ndt_agents.models.profiles import (
     InspectionModelProfile,
     InspectionModelProfileError,
@@ -30,7 +33,6 @@ from ndt_agents.models.profiles import (
 )
 from ndt_agents.models.registry import (
     ApiProtocol,
-    CatalogOrigin,
     ModelCapability,
     ModelDataClass,
     ModelRegistryError,
@@ -69,21 +71,6 @@ class ModelInferenceStatus(StrEnum):
     CANCELLED = "CANCELLED"
 
 
-class ApplicationInstruction(StrictModel):
-    schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
-    origin: Literal[CatalogOrigin.APPLICATION] = CatalogOrigin.APPLICATION
-    instruction_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,127}$")
-    instruction_version: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
-    text: str = Field(min_length=1, max_length=100_000)
-    instruction_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
-
-    @model_validator(mode="after")
-    def validate_hash(self) -> Self:
-        if self.instruction_sha256 != hashlib.sha256(self.text.encode("utf-8")).hexdigest():
-            raise ValueError("application instruction hash is invalid")
-        return self
-
-
 class _ModelInferenceRequestContent(StrictModel):
     schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
     task_id: UUID
@@ -98,7 +85,9 @@ class _ModelInferenceRequestContent(StrictModel):
     binding_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,127}$")
     profile_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,127}$")
     profile_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
-    requested_model_id: str | None = Field(default=None, pattern=r"^[a-z0-9][a-z0-9._-]{0,127}$")
+    requested_model_id: str | None = Field(
+        default=None, pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    )
     required_capabilities: frozenset[ModelCapability] = Field(min_length=1)
     data_class: ModelDataClass
     granted_permissions: frozenset[str]
@@ -158,6 +147,10 @@ class ModelProviderRequest(StrictModel):
     instruction_id: str
     instruction_version: str
     instruction_text: str = Field(min_length=1, max_length=100_000)
+    output_schema_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._:@/-]{0,255}$")
+    output_schema: dict[str, Any]
+    output_schema_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    required_metrics: tuple[str, ...] = Field(min_length=1, max_length=64)
     parameters: dict[str, Any]
     maximum_input_tokens: int
     maximum_output_tokens: int
@@ -165,6 +158,10 @@ class ModelProviderRequest(StrictModel):
 
     @model_validator(mode="after")
     def validate_hash(self) -> Self:
+        if self.output_schema_sha256 != canonical_sha256(self.output_schema):
+            raise ValueError("model provider output schema hash is invalid")
+        if self.required_metrics != tuple(sorted(set(self.required_metrics))):
+            raise ValueError("model provider metrics must be sorted and unique")
         if self.provider_request_sha256 != model_provider_request_sha256(self):
             raise ValueError("model provider request hash is invalid")
         return self
@@ -900,11 +897,12 @@ def build_application_instruction(
     instruction_version: str,
     text: str,
 ) -> ApplicationInstruction:
-    return ApplicationInstruction(
+    """Backward-compatible inference API for one immutable application instruction."""
+
+    return _build_application_instruction(
         instruction_id=instruction_id,
         instruction_version=instruction_version,
         text=text,
-        instruction_sha256=hashlib.sha256(text.encode("utf-8")).hexdigest(),
     )
 
 
@@ -914,21 +912,26 @@ def build_model_inference_request(
     content = dict(payload)
     content.pop("request_sha256", None)
     content.setdefault("schema_version", MODEL_INFERENCE_CONTRACT_VERSION)
-    normalized = _ModelInferenceRequestContent.model_validate(content).model_dump(mode="json")
+    normalized_model = _ModelInferenceRequestContent.model_validate(content)
+    normalized = normalized_model.model_dump(mode="json")
     return ModelInferenceRequest.model_validate(
         {
             **normalized,
-            "request_sha256": canonical_sha256(normalized),
+            "request_sha256": canonical_sha256(_jsonable(normalized_model)),
         }
     )
 
 
 def model_inference_request_sha256(request: ModelInferenceRequest) -> str:
-    return canonical_sha256(request.model_dump(mode="json", exclude={"request_sha256"}))
+    return canonical_sha256(
+        _jsonable(request.model_dump(mode="python", exclude={"request_sha256"}))
+    )
 
 
 def model_provider_request_sha256(request: ModelProviderRequest) -> str:
-    return canonical_sha256(request.model_dump(mode="json", exclude={"provider_request_sha256"}))
+    return canonical_sha256(
+        _jsonable(request.model_dump(mode="python", exclude={"provider_request_sha256"}))
+    )
 
 
 def model_inference_evidence_sha256(evidence: ModelInferenceEvidence) -> str:
@@ -962,6 +965,10 @@ def _provider_request(
         "instruction_id": instruction.instruction_id,
         "instruction_version": instruction.instruction_version,
         "instruction_text": instruction.text,
+        "output_schema_id": profile.output_schema_id,
+        "output_schema": profile.output_schema,
+        "output_schema_sha256": profile.output_schema_sha256,
+        "required_metrics": tuple(item.metric for item in profile.thresholds),
         "parameters": request.parameters,
         "maximum_input_tokens": request.maximum_input_tokens,
         "maximum_output_tokens": request.maximum_output_tokens,
@@ -1131,10 +1138,13 @@ def _validate_plain_json(value: object) -> None:
 
 def _jsonable(value: object) -> object:
     if isinstance(value, BaseModel):
-        return value.model_dump(mode="json")
+        return _jsonable(value.model_dump(mode="python"))
     if isinstance(value, Mapping):
         return {str(key): _jsonable(item) for key, item in value.items()}
-    if isinstance(value, (tuple, list, frozenset)):
+    if isinstance(value, frozenset):
+        items = [_jsonable(item) for item in value]
+        return sorted(items, key=_canonical_json)
+    if isinstance(value, (tuple, list)):
         return [_jsonable(item) for item in value]
     if isinstance(value, (StrEnum, UUID, Decimal)):
         return str(value)

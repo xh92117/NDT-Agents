@@ -1,7 +1,8 @@
 schema_version: 1.0.0
-config_version: 1.0.0
+config_version: 1.1.0
 catalogs:
   - ../model-providers/deepseek-v4.v1.json
+  - ../model-providers/mainstream-llm.v1.json
 bindings:
   - binding_id: personal-deepseek
     version: 1.0.0
@@ -13,15 +14,10 @@ bindings:
     permission_version: permissions-1
     endpoint_id: openai-chat
     state: DISABLED
-    allowed_model_ids:
-      - deepseek-v4-pro
-      - deepseek-v4-flash
+    allowed_model_ids: [deepseek-v4-pro, deepseek-v4-flash]
     default_model_id: deepseek-v4-pro
-    fallback_model_ids:
-      - deepseek-v4-flash
-    allowed_data_classes:
-      - PUBLIC
-      - SYNTHETIC
+    fallback_model_ids: [deepseek-v4-flash]
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
     required_permission: model.invoke.deepseek
     budget_policy_version: budget-policy-1.0.0
     timeout_ms: 120000
@@ -35,3 +31,273 @@ bindings:
       version: local-v1
       secret_id: deepseek-api-key
       purpose: model.deepseek.credential
+  - binding_id: personal-openai
+    version: 1.0.0
+    provider_id: openai
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: responses
+    state: DISABLED
+    allowed_model_ids: [gpt-5.6]
+    default_model_id: gpt-5.6
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.openai
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: OPENAI_API_KEY
+      version: local-v1
+      secret_id: openai-api-key
+      purpose: model.openai.credential
+  - binding_id: personal-anthropic
+    version: 1.0.0
+    provider_id: anthropic
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: messages
+    state: DISABLED
+    allowed_model_ids: [claude-sonnet-5]
+    default_model_id: claude-sonnet-5
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.anthropic
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: ANTHROPIC_API_KEY
+      version: local-v1
+      secret_id: anthropic-api-key
+      purpose: model.anthropic.credential
+  - binding_id: personal-google
+    version: 1.0.0
+    provider_id: google
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [gemini-3.7-flash]
+    default_model_id: gemini-3.7-flash
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.google
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: GEMINI_API_KEY
+      version: local-v1
+      secret_id: google-api-key
+      purpose: model.google.credential
+  - binding_id: personal-alibaba
+    version: 1.0.0
+    provider_id: alibaba
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [qwen3.8-max]
+    default_model_id: qwen3.8-max
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.alibaba
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: DASHSCOPE_API_KEY
+      version: local-v1
+      secret_id: alibaba-api-key
+      purpose: model.alibaba.credential
+  - binding_id: personal-moonshot
+    version: 1.0.0
+    provider_id: moonshot
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [kimi-k3]
+    default_model_id: kimi-k3
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.moonshot
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: MOONSHOT_API_KEY
+      version: local-v1
+      secret_id: moonshot-api-key
+      purpose: model.moonshot.credential
+  - binding_id: personal-zhipu
+    version: 1.0.0
+    provider_id: zhipu
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [glm-5-turbo]
+    default_model_id: glm-5-turbo
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.zhipu
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: ZHIPU_API_KEY
+      version: local-v1
+      secret_id: zhipu-api-key
+      purpose: model.zhipu.credential
+  - binding_id: personal-minimax
+    version: 1.0.0
+    provider_id: minimax
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [MiniMax-M2.7]
+    default_model_id: MiniMax-M2.7
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.minimax
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: MINIMAX_API_KEY
+      version: local-v1
+      secret_id: minimax-api-key
+      purpose: model.minimax.credential
+  - binding_id: personal-baidu
+    version: 1.0.0
+    provider_id: baidu
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [ernie-5.1]
+    default_model_id: ernie-5.1
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.baidu
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: QIANFAN_API_KEY
+      version: local-v1
+      secret_id: baidu-api-key
+      purpose: model.baidu.credential
+  - binding_id: personal-tencent
+    version: 1.0.0
+    provider_id: tencent
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: openai-chat
+    state: DISABLED
+    allowed_model_ids: [hunyuan-turbos-latest]
+    default_model_id: hunyuan-turbos-latest
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.tencent
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: HUNYUAN_API_KEY
+      version: local-v1
+      secret_id: tencent-api-key
+      purpose: model.tencent.credential
+  - binding_id: personal-doubao
+    version: 1.0.0
+    provider_id: doubao
+    provider_version: 1.0.0
+    environment: local
+    tenant_id: 00000000-0000-4000-8000-000000000101
+    project_id: 00000000-0000-4000-8000-000000000102
+    permission_version: permissions-1
+    endpoint_id: responses
+    state: DISABLED
+    allowed_model_ids: [doubao-seed-2-0-lite-260215]
+    default_model_id: doubao-seed-2-0-lite-260215
+    fallback_model_ids: []
+    allowed_data_classes: [PUBLIC, SYNTHETIC]
+    required_permission: model.invoke.doubao
+    budget_policy_version: budget-policy-1.0.0
+    timeout_ms: 120000
+    max_attempts: 2
+    max_concurrency: 1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+    secret:
+      source: ENVIRONMENT
+      variable: ARK_API_KEY
+      version: local-v1
+      secret_id: doubao-api-key
+      purpose: model.doubao.credential

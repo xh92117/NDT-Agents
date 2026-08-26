@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Packet version | `1.3.0` |
+| Packet version | `1.4.0` |
 | Task | `S0-08` with required `S0-10` baseline input |
 | State | `PENDING_ACCOUNTABLE_REVIEW` |
 | Prepared from | `main` commit `0b3e9a88694135cbccd15324496a6c65da8bf818` plus the review branch |
@@ -23,12 +23,12 @@ requires a new packet and review.
 | [personal-project governance](../../security/personal-project-governance.v1.json) | `1.0.0` | `c649dfa59ec6cc94c2bd80ea8f9f24699a10d9af36e033a3bc87a80f9a63b083` |
 | [personal-development runtime candidate](../../architecture/personal-development-runtime.v1.json) | `1.2.0` | `3259b8d6297fbea93e409ad8f20a2d401331ff8ea2dd83c8ddcafd033101da7f` |
 | [DeepSeek V4 non-secret catalog](../../config/model-providers/deepseek-v4.v1.json) | `1.0.0` | `7eb570adb12b029a4995b77e39813a534a89109fe92e2f13ef09f1a344f01fef` |
-| [CycloneDX SBOM](../../sbom/cyclonedx.v1.json) | `1` / CycloneDX `1.6` | `755a8ffbd4a4657412816d3975683ebdd212ad8d41b0d6c772d0c9984e9bcec4` |
-| [official license evidence](../../security/license-evidence.v1.json) | `1.0.0` | `b2beb773b7ff92897718b0134cd36c63aaa079f9bad48dff4dad11b8fbbc923a` |
-| [pending license decisions](../../security/license-decisions.v1.json) | `1.1.0` | `bdbad0452e34e86abec4d833144ed4772d96b4c17eeea4c46da0421314403c3a` |
-| [locked dependency graph](../../uv.lock) | lock revision `1` | `2c3267c7de70a602067c9e86bdc2842ae01733a51b4641a15e554e2c17765966` |
+| [CycloneDX SBOM](../../sbom/cyclonedx.v1.json) | `1` / CycloneDX `1.6` | `f96589be81f7602ce3979831c506f7a4d2d5fdb158797bf72aa6d1e65e8ce7d2` |
+| [official license evidence](../../security/license-evidence.v1.json) | `1.0.0` | `6d1cd0cf51008e60bdc12ef7ad8e902852485d15f433a7918477eb330af136a8` |
+| [pending license decisions](../../security/license-decisions.v1.json) | `1.1.0` | `d807d2f79c73c166a7560a588e796221385afb71e76a8659de273e6b5d0ab59f` |
+| [locked dependency graph](../../uv.lock) | lock revision `1` | `f198dd09fc36bf9658f8c8de8cb188e9a0caa9b9972bfc56471b087e6e4ca5ff` |
 
-The license snapshot was captured at `2026-08-24T04:03:33Z` from the official PyPI version JSON
+The license snapshot was captured at `2026-08-26T03:50:52Z` from the official PyPI version JSON
 API. Its method follows the Python packaging `License-Expression` and `License-File` metadata
 specification. The source policy is recorded in the snapshot; every response is independently
 hash-bound.
@@ -48,16 +48,17 @@ data, formal compliance claims, and commercial release remain blocked.
 
 ## 4. R-005 review summary
 
-The exact Python inventory contains 87 components: 14 runtime-direct, 14 development-direct, and
-59 transitive. Official release metadata provides:
+The exact Python inventory contains 108 components: 15 runtime-direct, 14 development-direct, and
+79 transitive. Official release metadata provides:
 
-- 56 author-declared SPDX expressions;
-- 30 legacy metadata records that still require license-text and notice review; and
+- 66 author-declared SPDX expressions;
+- 41 legacy metadata records that still require license-text and notice review; and
 - one record with no license metadata: `mypy-extensions@1.1.0`.
 
-The SPDX declarations group as follows: 30 `MIT`, ten `Apache-2.0`, nine `BSD-3-Clause`, one each
+The SPDX declarations group as follows: 34 `MIT`, 13 `BSD-3-Clause`, ten `Apache-2.0`, and one each
 of `BSD-2-Clause`, `MIT-0`, `MIT-CMU`, `PSF-2.0`, `MIT AND PSF-2.0`,
-`Apache-2.0 OR BSD-2-Clause`, and `Apache-2.0 OR BSD-3-Clause`.
+`Apache-2.0 OR MIT`, `Apache-2.0 OR BSD-2-Clause`, `Apache-2.0 OR BSD-3-Clause`, and
+`MPL-2.0 AND (Apache-2.0 OR MIT)`.
 
 The direct dependencies requiring text review are:
 
@@ -65,12 +66,12 @@ The direct dependencies requiring text review are:
 - development: `openpyxl@3.1.5`, `pip-audit@2.10.1`, `python-docx@1.2.0`,
   `python-pptx@1.0.2`, and `reportlab@5.0.1`.
 
-The remaining 23 legacy transitive records and the one missing record are listed by exact purl,
+The remaining 34 legacy transitive records and the one missing record are listed by exact purl,
 source URL, raw metadata value, classifier, and response hash in the license-evidence JSON.
 
 R-005 cannot close until the Legal and Security Owners:
 
-1. review the 30 legacy records and the missing record against distribution license texts;
+1. review the 41 legacy records and the missing record against distribution license texts;
 2. confirm commercial-use compatibility for the intended distribution and service model;
 3. define required copyright, attribution, notice, source-offer, patent, and modification handling;
 4. approve or reject each exact component and record conditions;

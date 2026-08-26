@@ -67,7 +67,7 @@ class ModelBindingConfiguration(StrictModel):
     endpoint_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,63}$")
     state: BindingState = BindingState.DISABLED
     allowed_model_ids: tuple[str, ...] = Field(min_length=1)
-    default_model_id: str = Field(pattern=r"^[a-z0-9][a-z0-9._-]{0,127}$")
+    default_model_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
     fallback_model_ids: tuple[str, ...] = ()
     allowed_data_classes: frozenset[ModelDataClass] = Field(min_length=1)
     required_permission: str = Field(pattern=r"^[a-z][a-z0-9._-]{0,127}$")

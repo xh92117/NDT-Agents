@@ -1,0 +1,160 @@
+schema_version: 1.1.0
+config_version: 1.2.0
+models:
+  - name: primary
+    display_name: Default DeepSeek profile
+    binding_id: personal-deepseek
+    binding_version: 1.0.0
+    model_id: deepseek-v4-pro
+    max_input_tokens: 120000
+    max_output_tokens: 60000
+  - name: openai
+    display_name: OpenAI GPT profile
+    binding_id: personal-openai
+    binding_version: 1.0.0
+    model_id: gpt-5.6
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: anthropic
+    display_name: Anthropic Claude profile
+    binding_id: personal-anthropic
+    binding_version: 1.0.0
+    model_id: claude-sonnet-5
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: gemini
+    display_name: Google Gemini profile
+    binding_id: personal-google
+    binding_version: 1.0.0
+    model_id: gemini-3.7-flash
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: qwen
+    display_name: Alibaba Qwen profile
+    binding_id: personal-alibaba
+    binding_version: 1.0.0
+    model_id: qwen3.8-max
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: kimi
+    display_name: Moonshot Kimi profile
+    binding_id: personal-moonshot
+    binding_version: 1.0.0
+    model_id: kimi-k3
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: glm
+    display_name: Zhipu GLM profile
+    binding_id: personal-zhipu
+    binding_version: 1.0.0
+    model_id: glm-5-turbo
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: minimax
+    display_name: MiniMax profile
+    binding_id: personal-minimax
+    binding_version: 1.0.0
+    model_id: MiniMax-M2.7
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: ernie
+    display_name: Baidu ERNIE profile
+    binding_id: personal-baidu
+    binding_version: 1.0.0
+    model_id: ernie-5.1
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: hunyuan
+    display_name: Tencent Hunyuan profile
+    binding_id: personal-tencent
+    binding_version: 1.0.0
+    model_id: hunyuan-turbos-latest
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+  - name: doubao
+    display_name: Volcengine Doubao profile
+    binding_id: personal-doubao
+    binding_version: 1.0.0
+    model_id: doubao-seed-2-0-lite-260215
+    max_input_tokens: 64000
+    max_output_tokens: 8000
+subagents:
+  default_max_turns: 2
+  hard_max_turns: 6
+  default_timeout_ms: 30000
+  hard_timeout_ms: 180000
+  max_concurrent: 3
+  hard_max_concurrent: 4
+  max_total_per_run: 6
+  hard_max_total_per_run: 10
+  agents:
+    - name: general
+      kind: GENERAL
+      description: General bounded execution path for tasks requiring no professional specialization.
+      model: primary
+      prompt: general
+      skill_version: general-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 2
+      timeout_ms: 30000
+    - name: technical_qa
+      kind: PROFESSIONAL
+      description: Evidence-grounded technical question answering with citation and applicability checks.
+      model: primary
+      prompt: technical_qa
+      skill_version: technical-qa-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 3
+      timeout_ms: 90000
+    - name: inspection_plan
+      kind: PROFESSIONAL
+      description: Inspection plan drafting and deterministic completeness validation.
+      model: primary
+      prompt: inspection_plan
+      skill_version: inspection-plan-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 4
+      timeout_ms: 120000
+    - name: inspection_report
+      kind: PROFESSIONAL
+      description: Inspection report drafting with source, calculation, finding, and limitation traceability.
+      model: primary
+      prompt: inspection_report
+      skill_version: inspection-report-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 4
+      timeout_ms: 120000
+    - name: data_processing
+      kind: PROFESSIONAL
+      description: Registered source-data processing control and result interpretation boundary.
+      model: primary
+      prompt: data_processing
+      skill_version: data-processing-control-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 3
+      timeout_ms: 120000
+    - name: method_compatibility
+      kind: PROFESSIONAL
+      description: Method applicability and compatibility validation for registered inspection methods.
+      model: primary
+      prompt: method_compatibility
+      skill_version: method-compatibility-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 3
+      timeout_ms: 90000
+    - name: knowledge
+      kind: PROFESSIONAL
+      description: Explicit-intent knowledge ingestion, parsing, normalization, review, and publication preparation.
+      model: primary
+      prompt: knowledge
+      skill_version: knowledge-1.0.0
+      graph_version: child-react-1.0.0
+      allowed_tools: []
+      max_turns: 4
+      timeout_ms: 120000
