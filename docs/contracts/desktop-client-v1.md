@@ -2,7 +2,7 @@
 
 ## Status
 
-S6-02 local scaffold, contract version `1.0.0`. The desktop package is default-deny and does not
+S6-02 application runtime candidate, contract version `1.1.0`. The desktop package is default-deny and does not
 approve production deployment, formal conclusions, physical actions, signing, or publication.
 
 ## Dependency and package boundary
@@ -32,16 +32,22 @@ and bounded idempotency key. Unknown fields, nil identities, changed versions, u
 non-object arguments, and oversized input fail before any executor action.
 
 The frontend cannot supply tenant scope, permissions, approval bindings, executable identity, path,
-network destination, retry policy, or budget authority. Those values must be resolved by a future
-application-owned authenticated session and registry adapter.
+network destination, retry policy, or budget authority. The application-owned desktop service hashes
+rather than persists the opaque handle, resolves exact task, run, tenant, project, user, permission,
+policy, registry, allowlist, observation, budget, and expiry state, and then uses the existing shared
+Tool Registry invocation path. Registry permission, approval, destination, schema, budget,
+idempotency, ToolResult, and hash-only audit controls remain authoritative. Missing, expired,
+mismatched, stale, or unauthorized sessions stop before the provider, and replay uses the committed
+same-scope registry result without a second physical call.
 
-The scaffold returns `DESKTOP_SESSION_REQUIRED` after request validation and makes zero adapter,
-process, shell, file, network, instrument, model, approval, or publication action. If a session is
-installed without a qualified fixed executor, the required next state is
-`DESKTOP_EXECUTOR_UNAVAILABLE`.
+The native scaffold still returns `DESKTOP_SESSION_REQUIRED` after request validation and makes zero
+adapter, process, shell, file, network, instrument, model, approval, or publication action. The Rust
+command is not yet bound to the application service. If a session is installed without that qualified
+fixed executor, the required next state is `DESKTOP_EXECUTOR_UNAVAILABLE`.
 
 ## Remaining acceptance work
 
-S6-02 remains in progress until the application-owned session and registry executor are installed,
-the invoke permission is enabled only for the exact qualified command, and malformed IPC, path,
-tenant, permission, approval, audit, package, signing, upgrade, rollback, and desktop E2E tests pass.
+S6-02 remains in progress until the fixed native ABI binds the application session and registry
+service, the invoke permission is enabled only for the exact qualified command, and malformed IPC,
+path, tenant, permission, approval, audit, package, signing, upgrade, rollback, and desktop E2E tests
+pass.
