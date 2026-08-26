@@ -5,13 +5,18 @@ from __future__ import annotations
 import logging
 from collections.abc import AsyncIterator, Mapping
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Literal, cast
+from uuid import UUID
 
 from fastapi import FastAPI, Request, Response
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from starlette.exceptions import HTTPException as StarletteHttpException
+from starlette.staticfiles import StaticFiles
 
+from ndt_agents.client.models import TaskCreateRequest, TaskEventBatch, WorkbenchTask
+from ndt_agents.client.service import WorkbenchError, WorkbenchRuntime
 from ndt_agents.contracts.v1 import TenantScope
 from ndt_agents.identity.middleware import IdentityRuntime, ScopeAuthorizationMiddleware
 from ndt_agents.identity.models import ScopeResponse
@@ -45,6 +50,7 @@ def create_app(
     readiness_probes: tuple[DependencyProbe, ...] = (),
     identity: IdentityRuntime | None = None,
     knowledge_entry: KnowledgeEntryGraph | None = None,
+    workbench: WorkbenchRuntime | None = None,
     model_environment: Mapping[str, str] | None = None,
 ) -> FastAPI:
     """Build an application without contacting storage, model providers, or external services."""
@@ -52,6 +58,8 @@ def create_app(
     active_settings = settings or AppSettings.from_environment()
     if knowledge_entry is not None and identity is None:
         raise ValueError("Knowledge UI entry requires the authenticated identity runtime.")
+    if workbench is not None and identity is None:
+        raise ValueError("Workbench routes require the authenticated identity runtime.")
     model_runtime = None
     if active_settings.model_config_path is not None:
         model_runtime = load_model_runtime_configuration(
@@ -158,6 +166,86 @@ def create_app(
                 response.status_code = 409
             return knowledge_entry.response(result)
 
+    if workbench is not None:
+        asset_root = Path(__file__).resolve().parents[1] / "client" / "web"
+        app.mount(
+            "/workbench/assets",
+            StaticFiles(directory=asset_root / "assets"),
+            name="workbench-assets",
+        )
+
+        @app.get("/workbench", include_in_schema=False)
+        async def workbench_shell() -> FileResponse:
+            response = FileResponse(asset_root / "index.html", media_type="text/html")
+            response.headers["cache-control"] = "no-store"
+            response.headers["content-security-policy"] = (
+                "default-src 'self'; script-src 'self'; style-src 'self'; "
+                "img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; "
+                "frame-ancestors 'none'; form-action 'self'"
+            )
+            return response
+
+        @app.get("/workbench/sw.js", include_in_schema=False)
+        async def workbench_service_worker() -> FileResponse:
+            response = FileResponse(asset_root / "sw.js", media_type="text/javascript")
+            response.headers["cache-control"] = "no-cache"
+            response.headers["service-worker-allowed"] = "/workbench"
+            return response
+
+        @app.post(
+            "/v1/workbench/tasks",
+            response_model=WorkbenchTask,
+            status_code=202,
+            tags=["workbench"],
+        )
+        async def create_workbench_task(
+            payload: TaskCreateRequest, request: Request
+        ) -> WorkbenchTask:
+            scope = cast(TenantScope, request.state.scope)
+            return workbench.create(scope, payload)
+
+        @app.get(
+            "/v1/workbench/task",
+            response_model=WorkbenchTask,
+            tags=["workbench"],
+        )
+        async def read_workbench_task(task_id: UUID, request: Request) -> WorkbenchTask:
+            scope = cast(TenantScope, request.state.scope)
+            return workbench.get(scope, task_id)
+
+        @app.get(
+            "/v1/workbench/events",
+            response_model=None,
+            tags=["workbench"],
+        )
+        async def stream_workbench_events(
+            task_id: UUID, request: Request, after_sequence: int = 0
+        ) -> StreamingResponse:
+            scope = cast(TenantScope, request.state.scope)
+            batch = workbench.events(scope, task_id, after_sequence)
+
+            async def encode_events() -> AsyncIterator[bytes]:
+                for event in batch.events:
+                    data = event.model_dump_json()
+                    yield f"id: {event.sequence}\nevent: task-event\ndata: {data}\n\n".encode()
+                control = TaskEventBatch(
+                    task_id=batch.task_id,
+                    after_sequence=batch.after_sequence,
+                    last_sequence=batch.last_sequence,
+                    terminal=batch.terminal,
+                    events=(),
+                ).model_dump_json()
+                yield f"event: stream-state\ndata: {control}\n\n".encode()
+
+            return StreamingResponse(
+                encode_events(),
+                media_type="text/event-stream",
+                headers={
+                    "cache-control": "no-store",
+                    "x-accel-buffering": "no",
+                },
+            )
+
     @app.exception_handler(RequestValidationError)
     async def validation_error(request: Request, _error: RequestValidationError) -> JSONResponse:
         return _problem_response(
@@ -186,6 +274,19 @@ def create_app(
                 request_id=_request_id(request),
                 retryable=False,
                 next_action="Verify the request path, method, and authorization scope.",
+            ),
+        )
+
+    @app.exception_handler(WorkbenchError)
+    async def workbench_error(request: Request, error: WorkbenchError) -> JSONResponse:
+        return _problem_response(
+            error.status_code,
+            ProblemDetail(
+                error_code=error.code,
+                message=str(error),
+                request_id=_request_id(request),
+                retryable=False,
+                next_action=error.next_action,
             ),
         )
 

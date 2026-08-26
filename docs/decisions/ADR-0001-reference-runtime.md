@@ -94,7 +94,7 @@ Keep production selection open behind `ModelPort`.
 
 | Candidate | Intended use | Required safeguards | Current decision |
 |---|---|---|---|
-| DeepSeek V4 hosted API offered by the owner | potential personal prototype route; provisional default `deepseek-v4-pro`, configurable fallback `deepseek-v4-flash` | verified processing/storage region, retention/training terms, commercial terms, scoped secret reference, S5-01 inference gateway, and full `PROVIDER-SMOKE` before a physical call | non-secret catalog and OpenAI-compatible endpoint metadata recorded; `CATALOGED_POLICY_REVIEW_AND_SECRET_PENDING`; no credential requested |
+| DeepSeek V4 hosted API offered by the owner | potential personal prototype route; provisional default `deepseek-v4-pro`, configurable fallback `deepseek-v4-flash` | verified processing/storage region, retention/training terms, commercial terms, scoped secret reference, S5-06 canonical data, S5-07 separately metered inference gateway, and full `PROVIDER-SMOKE` before a physical call | non-secret catalog and OpenAI-compatible endpoint metadata recorded; `CATALOGED_POLICY_REVIEW_AND_SECRET_PENDING`; no credential requested |
 | OpenAI Responses API | hosted reasoning and multimodal candidate; `gpt-5.6-terra` is the current prototype candidate if a supported jurisdiction is later established | supported jurisdiction and account; `store=false`; tenant-specific provider policy; ZDR/residency review; product-side budgets and audit; exact model snapshots | `BLOCKED_UNSUPPORTED_CURRENT_JURISDICTION`; no credential requested |
 | vLLM OpenAI-compatible server | local or private-cloud candidate | pinned server and model weights; structured-output conformance; GPU sizing benchmark; license and provenance review | approved for interface smoke-test design only |
 | deterministic fake model | personal development, CI, fault, schema, and budget tests | seeded outputs; public or synthetic data only; no network | `DETERMINISTIC_FAKE_ONLY` selected for the current personal-development route |
@@ -147,7 +147,8 @@ record, observed host, provider feasibility, restrictions, and deterministic smo
 - Run Python 3.12 application and repository work directly on `PERSONAL-DEV-1`.
 - Use `DETERMINISTIC_FAKE_ONLY` with zero physical model-network calls and public or synthetic data.
 - Keep the cataloged DeepSeek V4 hosted route pending until regional-processing, retention,
-  training, and commercial metadata is reviewed and the S5-01 inference gateway exists. Receive any
+  training, and commercial metadata is reviewed and the S5-06 canonical-data and S5-07 separately
+  metered inference gateways exist. Receive any
   later key only through an approved local secret reference, never chat or repository content.
 - Keep Linux Docker Compose as a deferred container target. The Docker 29.7.2 client is installed,
   but its engine was unavailable during observation and no Compose candidate exists yet.

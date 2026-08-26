@@ -1,7 +1,7 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.44
-**Date:** 2026-08-25
+**Specification version:** 1.65
+**Date:** 2026-08-26
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)
@@ -241,8 +241,8 @@ definition, checks exact task and scope, permissions, security declarations, ide
 central S1-08 physical-tool budget before calling an injected adapter. Arguments are validated
 before execution and the returned V1 `ToolResult`, its identity, hashes, scope, status, and declared
 output are validated before entering agent context. Every allow or denial produces a correlated,
-hash-only S1-10 `TOOL` audit record. Concrete Bash, Function Calling, Web, MCP, instrument, and model
-adapters remain assigned to S3 and S5.
+hash-only S1-10 `TOOL` audit record. S3-02 supplies the controlled Bash adapter family. Function
+Calling, Web, MCP, instrument, and model gateways remain assigned to S5.
 
 S1-13 adds one generic human-approval state machine for knowledge changes, inspection plans, formal
 reports, critical findings, high-impact instrument commands, destructive operations, and release
@@ -367,6 +367,108 @@ Validation order:
 6. Escalate to a human or return an explicit failure.
 
 Keep the last ten action signatures. If the same action and parameters occur twice with no new observation, stop the loop. Three consecutive failures trip a 60-second tool circuit breaker.
+
+### 7.1 S4 professional validation
+
+The S4-01 Technical QA Skill accepts a strict request and typed child-agent candidate, then performs
+deterministic evidence validation through the S3-07 exact-scope retrieval boundary. Missing method,
+structure, or material inputs stop before retrieval. Values outside the V1 ontology require a
+qualified domain owner. Every used snapshot is revalidated for exact tenant, project, user, roles,
+permission version, published state, corpus/index/embedding versions, metadata, and content
+identity. The finalizer rebuilds citations from immutable index records and accepts a support only
+when its exact quote occurs in the retrieved chunk and every canonical support term occurs in both
+the claim and quote. Unsupported claims remain explicit; unsupported critical claims and all formal
+conclusions require a qualified human. Identical inputs and repository state produce identical
+claim and result hashes. The boundary makes no model, network, approval, publication, instrument,
+or retry call and does not replace independent S1-09 review.
+
+The S4-02 inspection-plan Skill consumes one exact-scope, hash-valid S4-01 result and the generated
+`TPL-INSPECTION-PLAN-V1` template. The template has seventeen ordered required sections spanning
+objective, scope, structure/component, basis, methods/layout, equipment/calibration, procedure,
+sampling/coverage, acceptance, safety, data, quality, schedule, deliverables, limitations,
+review/approval, and missing-input handling. Candidate methods use only ontology codes and bind
+equipment, calibration, procedure, registered-dimensional sampling quantities, applicable standard
+bases, and safety controls. Missing request inputs remain explicit gaps with reason, impact, owner,
+and blocking state. Each standard basis must bind an applicable QA claim and exact published index
+record, then pass the S3-08 scope, date, region, type, lifecycle, rights, role, and supersession
+checks. Output is deterministically hash-bound, always review-required and approval-pending, and
+never allowed for formal use before the later approval workflow. The finalizer makes no model,
+network, approval, publication, instrument, or retry call.
+
+The S4-03 inspection-report Skill consumes one exact-scope, hash-valid, approval-pending S4-02 plan
+and generated `TPL-INSPECTION-REPORT-V1`. The template has fifteen ordered sections spanning
+identity, scope, plan, source data, method/equipment/calibration, observations, calculations/units,
+figures, findings, limitations, citations, conclusion boundary, revisions, review, and approval.
+Every dataset binds an immutable artifact, method, instrument, calibration, operator, acquisition
+time, and dataset hash. Processing binds adapter, parser, algorithm, parameter, and output versions
+and hashes. Observations bind processing, dataset, location, dimension, unit, value, and evidence.
+Only count, minimum, maximum, mean, range, and sum calculations are allowed; Decimal recomputation
+must exactly match the reported value, dimension, and unit. Figures bind immutable artifacts and
+observations. Findings bind observations, calculations, applicable plan bases, and limitations;
+conclusions bind findings. Critical findings and formal conclusions require qualified human
+confirmation. Revision history is contiguous and hash-linked. Output is deterministically
+hash-bound, review-required, approval-pending, and forbidden for formal release. The finalizer makes
+no model, network, approval, publication, instrument, or retry call.
+
+The S4-04 Data Processing Control Skill validates one already-executed registered adapter result; it
+does not execute an algorithm or physical command. The source manifest binds exact scope, immutable
+artifact and dataset hashes, simulated/laboratory/production origin, method, structure, component,
+location, coordinates, channel and sample bounds, sample rate, dimension/unit, acquisition settings,
+instrument, calibration interval, operator, and UTC acquisition time. The request binds exact
+adapter, parser, algorithm, output schema, canonical parameters, one-attempt budget, and quality
+policy. Candidate output binds immutable artifacts, observations, figures, quality metrics,
+duration/bytes/call counters, and typed failure evidence. Validation enforces exact identity and
+versions, calibration at acquisition, ontology method, registered units, source bounds, quality
+thresholds, and exactly one adapter call and one attempt; model, network, and physical-command
+counters must be zero. Failed output preserves cause, impact, and next action. Only a clean
+production result is report eligible, and the deterministic S4-03 bridge preserves every source,
+processing, observation, hash, unit, and value field. All output remains review-required.
+
+The S4-05 Method Skill Pack is a read-only registry containing exactly six versioned skeletons:
+UT, GPR, IE, RT, AE, and MV. Each hash-bound definition declares supported V1 structures and
+materials, required acquisition settings and calibration kinds, accepted input dimensions and
+units, required processing parameter names, registered output observation families, allowed
+simulated/laboratory/production origins, limitations, safety notes, and production-report policy.
+Validation binds one exact S4-04 request and candidate to the selected definition and fails closed
+on unknown or changed methods, cross-scope data, missing metadata or parameters, unsupported
+applicability, incompatible calibration/input units, missing successful output, or unregistered
+observation names, dimensions, and units. A compatible simulated or laboratory result remains
+reviewable but cannot receive production-report permission. That permission does not bypass the
+independent S4-04 processing, S4-06 review, or S4-07 approval gates. The skeletons execute no
+algorithm, instrument command, model/network call, approval, publication, conclusion, or retry and
+make no standards-compliance or expert-correctness claim.
+
+The S4-06 professional review layer adds five versioned, hash-bound checklists to the existing
+S1-09 Review Graph for Technical QA, inspection plan, data processing, method validation, and
+inspection report results. Each result travels in an exact scope/task/run/type envelope and is
+rehydrated through its strict contract so schema and internal hashes are independently rechecked.
+Per-result review checks status, unresolved issues, citations and traceability, units and numeric
+evidence, explicit human boundaries, review/approval/formal-use state, and zero-action counters as
+applicable. It returns only the existing PASS, REVISE, HUMAN_REQUIRED, or FAILED decisions. Cross-
+result review begins only after per-result PASS and compares QA claims/citation chunks to plan
+bases, plan identity to report identity, processing source/run/versions/output/observations to
+report evidence, and method request/candidate identity to processing. Duplicate singular results,
+stale hashes, changed identities, cross-scope inputs, and any relationship mismatch remain an
+explicit non-aggregatable conflict. The deterministic S1-09 adapter performs zero model, tool,
+network, correction, approval, publication, mutation, retry, or user-delivery calls; S1-09 still
+owns correction/re-review budgets and the Main-only aggregation gate.
+
+The S4-07 professional approval layer configures S1-13 with separate qualified plan, report, and
+critical-finding roles. A plan or preliminary non-formal report checkpoint requires a strict clean
+S4-02 or S4-03 result, exact PASS S4-06 assessment, and completed aggregation-ready S1-09 manifest
+whose reviewed child envelope binds that result. Plan approval cannot imply report approval or
+formal use. Report approval cannot set formal-release state and rejects any unresolved critical,
+formal, or human-confirmation boundary. A critical-finding checkpoint instead requires the exact
+hash-valid S4-03 HUMAN_REQUIRED report, selected sorted critical finding IDs, S4-06 HUMAN_REQUIRED
+assessment, and S1-09 human-required pause. It binds hashes for each statement, observation,
+calculation, plan basis, limitation, and evidence reference; confirmation supplies evidence for a
+bounded correction and re-review and does not mutate the report. The professional subject hash
+covers exact scope/task, action, target, result/content, review envelope, assessment, manifest, and
+finding bindings and becomes the generic approval candidate hash. S1-13 continues to enforce
+separation of duty, action-specific roles, expiry, terminal decisions, event/audit integrity,
+idempotency, and one exact resume grant. The wrapper performs zero model, tool, network,
+publication, mutation, formal-conclusion, retry, or user-delivery actions. Formal responsibility
+and accreditation remain blocked under R-004.
 
 ## 8. Context engineering and compression
 
@@ -726,6 +828,26 @@ Reference deployment uses Linux Bash. A Windows desktop bridge must use WSL, a c
 
 ## 13. Web Search, Function Calling, and MCP
 
+S5-01 upgrades the shared Tool Registry contract to schema `1.1.0`. One application-owned
+definition now declares internal, Bash, Function Calling, Web Search, MCP, instrument, or AI-model
+kind; registered transport and namespace for MCP transport; tenant/project/task data scope; local,
+tenant-managed, or approved-external data destination; side effect; permissions; secret purposes;
+network and approval policy; timeout, attempts, concurrency, bytes, and tokens; declared errors;
+recovery policy; and audit and test ownership. Family-specific invalid combinations and plaintext
+credential fields fail before publication. The immutable registry hash changes with any definition.
+
+The S5-01 exposure boundary resolves only an allowlisted exact version or unambiguous registered
+name and rechecks registry version, permissions, secret purposes, network, and data destination. It
+returns a deterministic hash-bound minimal input-schema manifest with no secret declaration,
+transport, output schema, adapter, or adapter state. The active defaults expose at most six tools
+and one MCP namespace; the hard limits are twelve tools and two namespaces. Side-effecting and
+approval-gated definitions require explicit exposure policy. Exposure makes zero external calls and
+is hash-only audited. Invocation also binds approval to the exact scope, task, run, registry, policy,
+tool, and canonical input hash; validates attempt and retry state; accepts only declared result
+errors and compatible retryability; and preserves the S1-08 physical-tool meter. AI-model
+definitions stop before that meter and require the separate S5-07 LLM-call and token-metered gateway.
+S5-01 enables no live provider, network request, MCP server, model inference, or instrument action.
+
 ### Web Search
 
 - Use only when the user requests current information or a standards/status check requires it.
@@ -734,12 +856,45 @@ Reference deployment uses Linux Bash. A Windows desktop bridge must use WSL, a c
 - Save URL, title, publication date, and access time.
 - Search results enter a candidate knowledge area and never auto-publish.
 
+S5-03 implements Web Search as one read-only `WEB_SEARCH` definition executed only through the
+shared Tool Registry. An application-owned policy maps exact HTTPS domains or approved subdomains
+to government, standards-body, vendor, or primary-research source classes; literal IP addresses,
+credentials in URLs, non-HTTPS schemes, non-default ports, fragments, redirects outside policy,
+and request-supplied domain expansion fail closed. Active query and opened-page limits start at two
+and four and cannot exceed hard limits of four and eight. Provider calls, opened pages, cache state,
+source policy, provider version, access time, publication time, canonical URL, excerpt hash, and
+result hash remain explicit evidence.
+
+The adapter uses the S2 retrieval cache only for non-current requests. Cache keys bind exact scope,
+normalized queries, domain filters, source policy, provider version, schema, and permission version.
+A current-information request always bypasses and does not populate the cache. Stale or undated
+evidence cannot satisfy a current request. Provider content is bounded, marked `UNTRUSTED`, scanned
+for instruction-like text without executing it, and returned only as candidate evidence with exact
+citations. It never changes tool authority, becomes a system instruction, or auto-publishes into
+knowledge. Offline, malformed, freshness, budget, and source-policy failures return typed results
+with zero fabricated citations.
+
 ### Function Calling
 
 - Every function maps to a registered Bash, Web Search, MCP, API, or internal tool.
 - Validate strict JSON Schema, permission, risk, budget, idempotency, cache, and timeout.
 - Expose at most six functions by default and twelve at hard limit.
 - At most three read-only calls may run in parallel. Side-effect calls are serial.
+
+S5-02 adds one provider-neutral Function Calling gateway over the S5-01 registry. Catalog loading
+starts from an authorized `ToolExposureManifest`, converts every exposed tool into one deterministic
+strict function schema, and binds the catalog to the exact registry snapshot, exposure manifest,
+and authorization-context hash. Only the function name, purpose, strict input schema, and strict
+flag enter model context; the internal tool mapping remains outside the model-visible schema.
+
+Function calls enter as bounded UTF-8 JSON. Duplicate keys, non-finite numbers, unknown envelope
+fields, wrong types, unknown functions, stale or fabricated catalogs, cross-context reuse, and
+schema-invalid arguments fail before registry execution and before a physical tool-call count.
+Retry state, attempt number, idempotency key, approval evidence, and budget remain orchestration
+inputs rather than model-controlled fields. A valid call resolves one exact registered tool version,
+reuses the shared authorization, approval, concurrency, timeout, idempotency, result-validation, and
+audit path, and returns the registry's validated `ToolResult` unchanged. The gateway performs no
+provider, model, network, MCP, Bash, or instrument discovery outside the registry.
 
 ### MCP
 
@@ -748,6 +903,41 @@ Reference deployment uses Linux Bash. A Windows desktop bridge must use WSL, a c
 - Use short-lived, least-privilege, audience-bound credentials. Do not pass through tokens.
 - Bind async tasks to tenant, user, project, and original task identifiers.
 - Store large results as artifacts and return only references and summaries.
+
+S5-04 implements an application-owned MCP gateway over the S5-01 Tool Registry. A server
+registration fixes local or remote deployment, safe endpoint, namespace, audience, credential
+policy, capability allowlist, schemas, side effects, destination, timeouts, streaming bounds, and
+asynchronous support. Remote registrations require restricted HTTPS egress and a short-lived
+credential broker; local registrations use an explicit application-owned local endpoint and cannot
+silently become remote. Caller-supplied access tokens, server-discovered permissions, unregistered
+capabilities, unsafe endpoints, and cross-namespace routing are rejected before transport use.
+
+Capability discovery is a separately registered and metered read-only MCP action. The returned
+manifest is untrusted, bounded, canonicalized, and intersected with the static application allowlist.
+Capability name, version, input/output schema hashes, side-effect class, and async/streaming flags
+must match exactly. A changed or malformed manifest fails closed and cannot rewrite the Tool
+Registry. Capability invocation, polling, and cancellation are separately registered operations;
+each reuses registry permission, scope, destination, approval, idempotency, timeout, physical-call,
+result-validation, and hash-only audit controls.
+Discovery has a five-minute local default and one-hour hard lifetime. New work requires the current
+unexpired manifest; prior exact manifests may only finish or cancel asynchronous work already bound
+to their hash, preventing refresh from orphaning a valid handle.
+
+Remote credentials are issued only after registry authorization. Each lease binds exact tenant,
+project, user, permission version, server audience, requested capability permission, policy version,
+and a bounded expiry. Only the injected transport receives the secret value; model input, MCP
+arguments, results, artifacts, errors, audit, and serialized state contain no credential material.
+
+An accepted asynchronous result creates an application-owned local handle bound to the exact scope,
+original task and run, server and capability versions, input hash, and opaque remote task identity.
+Poll and cancel reject wrong scope, user, task, run, capability, or terminal-state replay before
+transport use. State transitions are monotonic. Timeout, cancellation, disconnect, malformed
+payload, and provider failure are typed; a disconnect preserves the last valid task state. Streaming
+chunks require contiguous indexes and bounded aggregate bytes. Oversized completed results require
+immutable scoped artifact references and return only a bounded summary and references.
+
+The S5-04 local tests use an injected deterministic transport and credential broker. They perform no
+live MCP, network, subprocess, or external credential operation.
 
 ## 14. Source data, instruments, and AI models
 
@@ -765,9 +955,115 @@ source file or instrument task
   -> qualified human confirmation
 ```
 
-Canonical data includes structure, component, area, point, channel, sample rate, unit, coordinates, time, acquisition settings, instrument, calibration, operator, source hash, and parser version.
+Canonical data includes structure, component, area, point, channel, sample rate, unit, coordinates,
+time, acquisition settings, instrument, calibration, operator, source hash, and parser version. The
+S5-06 canonical contract binds one exact tenant and project scope, immutable source and channel
+artifacts, explicit simulated/laboratory/production origin, one of the six registered methods, and
+a deterministic manifest hash. Large samples remain in immutable artifacts; the manifest stores
+only bounded channel locators, counts, rates, time origins, dimensions, units, and content hashes.
 
-The model registry stores model version, valid structures and materials, input/output schema, training and validation scope, thresholds, runtime, resources, and report eligibility.
+Topology contains stable structure, component, area, point, and legacy location identities plus an
+explicit coordinate reference and registered-dimensional coordinate values. Acquisition settings
+are sorted typed scalar entries. Device identity, adapter version, calibration kind/status/validity
+and evidence, operator identity and qualifications, exact source name, media type, encoding
+decision, parser identity/version/configuration, and lossless-conversion state remain distinct.
+Canonical UTF-8 serialization rejects a BOM, malformed or duplicate JSON keys, non-finite values,
+unknown fields, and a changed manifest hash. It preserves non-ASCII filenames and text exactly.
+
+Deterministic validation separates structural processing eligibility from formal-use eligibility.
+Missing provenance, cross-scope or mutable artifacts, invalid registered units, non-contiguous
+channels, source-range overflow, lossy normalization, or a changed hash blocks processing. A
+simulated or laboratory origin, invalid/revoked/expired calibration, acquisition outside every
+calibration interval, or an operator without a declared qualification blocks formal use. The S4-04
+bridge projects the exact canonical subset into `ProcessingSourceManifest@1.0.0` and revalidates
+scope, dataset, source, method, topology, channel/sample bounds, unit, time, instrument,
+calibration, operator, and parser identity without executing a parser, tool, model, network call,
+instrument, or device.
+
+S5-05 defines one application-owned adapter SDK for registered Bash/CLI, HTTP API, SDK, DLL,
+file-exchange, MCP, and simulator transports. A transport binding contains only stable command,
+endpoint, package, library, exchange-root, MCP-registration, or simulator identities and hashes; it
+never contains raw command text, dynamic executable or library paths, credentials, arbitrary file
+paths, or caller-selected destinations. Transport-specific combinations fail before registration.
+Remote HTTP endpoints require safe HTTPS and restricted egress. Bash/CLI uses an S3-02 registered
+command identity, file exchange uses an application-owned root identifier, and simulators are local,
+network-free, credential-free, and explicitly simulated.
+
+An adapter registration fixes capability family, origin, strict input/output schemas, transport
+binding, permissions, secrets, network, destination, side effects, approval, idempotency, timeout,
+attempt, concurrency, byte/token budgets, required device/calibration/model provenance, declared
+errors, and a canonical registration hash. Its generated Tool Registry definition binds that hash.
+AI-model definitions remain non-executable through the physical-tool path and are consumed only by
+the separate S5-07 inference gateway.
+
+The provider-neutral runtime wrapper receives one registry-authorized request, invokes one injected
+provider once, validates its strict reply and declared failure, and constructs the final untrusted
+result and evidence itself. Evidence binds exact tenant/project/user scope, task, run, call,
+registration, transport, origin, input/output hashes, artifact identities, device, calibration,
+model, provider operation, bytes, duration, and call count. Required provenance is enforced before
+success. Artifact references must be immutable and exact-scope. Provider exceptions, malformed
+identity or output, undeclared errors, timeout, and retryability mismatch are typed; no hidden retry
+or dynamic transport discovery is allowed.
+
+The S5-05 local tests use injected deterministic providers only. They execute no Bash command,
+network request, SDK, DLL, file exchange, MCP call, simulator process, instrument, model, or device.
+
+The model registry stores model version, valid structures and materials, input/output schema,
+training and validation scope, thresholds, runtime, resources, and report eligibility.
+
+S5-07 extends the reference-only API-management registry with a separate inspection-model profile
+registry and inference gateway. A hash-bound profile fixes provider/model snapshot, supported
+methods/structures/materials, canonical-input schema hash, strict local-only output schema,
+training and validation evidence scopes, quality thresholds, runtime identity, bounded resources,
+declared provider errors, and report-eligibility class. Profiles cannot expand the provider catalog
+or claim formal eligibility without explicit validation metadata and mandatory human review.
+
+An inference request binds exact scope/task/run/call/request, both registry hashes, selected profile,
+the S5-06 manifest hash, application-owned instruction identity/version/hash, bounded canonical
+parameters, data class, capabilities, input/output token reservations, network authorization, and
+formal-use intent. Registry, scope, method, structure, material, canonical processing eligibility,
+formal-use prerequisites, schema, token, and budget checks run before provider execution. The model
+call uses `BudgetGuard.begin_llm_call` and `complete_llm_call`; it never consumes the physical-tool
+meter. One injected provider is called at most once with a reference-only credential selector and
+no plaintext secret. Timeout, cancellation, refusal, incomplete, rate limit, provider error,
+malformed identity, usage overflow, invalid output schema, quality-threshold failure, and budget
+telemetry failure are typed and have no hidden retry or fallback call.
+
+Every physical attempt produces hash-only audit and immutable evidence containing exact registry,
+route, provider, endpoint, model snapshot, profile, canonical input, instruction, parameter, output,
+artifact, token, latency, confidence, quality, status, and call-count identities. Provider output is
+untrusted and review-required. Even an otherwise formal-use candidate remains human-confirmation
+required; the inference gateway cannot publish a report conclusion or approval. S5-07 local tests
+use an injected deterministic provider and perform no live network, secret resolution, model, tool,
+instrument, device, approval, or publication action.
+
+S5-08 publishes one application-owned reference-simulator profile for each of AE, GPR, IE, MV, RT,
+and UT. Every profile binds the exact S4-05 method-definition hash, one S5-05 simulator transport and
+adapter-registration hash, and one deterministic fixture hash. Simulators are local, network-free,
+credential-free, read-only, explicitly simulated, and available only through the shared Tool
+Registry permission, scope, schema, budget, timeout, result, and audit boundary. The caller selects
+only a registered fixture identity; it cannot select a command, executable, endpoint, path, device,
+parser, calibration, method, or output identity.
+
+One accepted simulator call returns a bounded canonical UTF-8 payload and declared manifest hash.
+The reference-adapter consumer re-parses the payload through S5-06 and verifies exact scope, method,
+simulated origin, fixture/profile/registration hashes, device and calibration provenance, manifest
+hash, processing eligibility, and formal-use denial before returning an untrusted review-required
+result. Every method uses one deterministic physical-tool call and zero LLM, network, secret,
+instrument-command, device, approval, publication, or retry calls. Cross-scope output, a changed
+fixture or method, malformed or non-canonical payload, missing provenance, stale registration,
+provider error, timeout, or tampered hash remains a typed failure with no fallback. These reference
+fixtures demonstrate integration contracts only; they are not real instrument, calibration,
+algorithm-quality, or formal inspection evidence.
+
+The local TG-05 assessment exercises the assigned `UNIT-MODELREG`, `INT-FUNCTION`, `INT-WEB`,
+`INT-MCP`, `INT-INSTRUMENT`, and `SEC-TOOLS` boundaries together with their tenant, budget, audit,
+cache, canonical-data, and method-Skill dependencies. Local deterministic evidence may complete the
+S5 implementation tasks, but it cannot pass TG-05 without an immutable candidate and protected CI,
+approved live provider and credential evidence, production parser and model qualification,
+authorized calibrated real-device data, hardware-lab and expert-gold results, and accountable
+security, rights, license, provider-policy, and formal-use approvals. S6 does not inherit permission
+to enable any missing production integration while TG-05 is blocked.
 
 The isolated S5-07 API-management control plane separates immutable provider and model catalog
 metadata from tenant/project provider bindings. A binding contains only a scoped S1-11
@@ -779,7 +1075,7 @@ reference-only route. Provider compliance metadata records the verification stat
 region, retention, training use, and commercial terms. Unverified hosted providers cannot be
 enabled for production or confidential/restricted data. The initial DeepSeek V4 catalog is a
 non-secret personal-development candidate; it does not perform inference, resolve a secret, or
-satisfy the unfinished S5-01 and S5-06 dependencies.
+satisfy the unfinished S5-06 canonical-data and S5-07 metered-inference dependencies.
 
 The S5-07 configuration bootstrap reads an explicitly selected strict YAML document at application
 startup. The YAML contains only catalog paths, scoped provider bindings, limits, and secret-source
@@ -820,6 +1116,145 @@ Cryptographic erasure requires retention expiry, exact approval, and confirmed r
 object-unique key before content removal. Every successful lifecycle action appends hash-bound audit
 evidence. Backup expiry, cache and index invalidation, and live-service probes remain integration
 requirements; local contract tests cannot promote them to production gate evidence.
+
+### 15.1 S6 client boundary
+
+S6-01 adds one provider-neutral Web workbench over application-owned client contracts. The server,
+not browser input, derives tenant, project, user, roles, and permission version from the authenticated
+request. Task creation accepts only a bounded goal, success criteria, task class, and an idempotency
+key. It creates server-owned task and event identities and begins with a non-terminal accepted event;
+it cannot fabricate an AgentResult, review, approval, formal conclusion, or publication state.
+
+Task reads and event streams use fixed protected routes with task identity in validated query data so
+the existing exact-route authorization policy remains default deny. Events are immutable, strictly
+ordered, scope-bound, and replayable after the last acknowledged sequence. A reconnect receives only
+later events and never repeats a committed side effect. Terminal tasks replay the bounded terminal
+history and close the stream. Unknown, cross-scope, stale-permission, invalid-sequence, and conflicting
+idempotency requests fail with stable non-disclosing errors before state is exposed or changed.
+Task-state reads, sequence validation, event append, and task-state replacement occur in one atomic
+repository transaction. Concurrent appenders cannot commit the same sequence, overwrite a later
+state, or return an event batch whose cursor and terminal metadata describe a different snapshot.
+
+The initial Web shell is responsive and keyboard operable, uses semantic landmarks and labeled
+controls, announces stream state through a polite live region, provides visible focus, honors reduced
+motion, renders event text as text rather than trusted markup, stores no bearer token, and prevents
+client/API caching. Local S6-01 uses an in-memory repository and deterministic event injection only;
+durable queues, multi-process fan-out, production identity, browser and assistive-technology matrices,
+and load qualification remain later S6 evidence.
+
+S6-03 extends the same shell into a PWA without creating a second business path. Its service worker
+is a public-shell cache only: it accepts safe same-origin GET requests for the workbench document and
+versioned assets, rejects every protected API, event, task, mutation, authorization-bearing, and
+cross-origin request, and stores no user data or credential. Offline mode reports disconnection and
+may show only the static shell and limitations; it cannot queue work or synthesize server state.
+
+### 15.2 S6 operations and recovery boundary
+
+S6-04 uses one hash-bound operations profile whose governance state is explicit. Provisional targets
+may drive deterministic local tests but cannot produce an approved SLO or release-gating restore
+PASS. Independent approval must bind the exact profile, security baseline, metric definitions,
+reference environment, backup stores, key policy, RPO, RTO, zero-loss categories, and owners.
+
+Quota claims are server-owned, exact-scope, atomic, and separately count tenant concurrency, user
+concurrency, accepted tasks, storage bytes, and request rate. Active and hard limits remain distinct;
+denial changes no counter, release is idempotent, and no claim or capacity crosses tenant, project,
+user, permission-version, or policy-version boundaries.
+
+Backup manifests contain hashes and key references, never content or key material. Restore evidence
+must revalidate manifest-chain integrity, exact stores and artifacts, source-to-restored hashes,
+checkpoint and event counts, approval/publication zero-loss, elapsed recovery point and recovery time,
+degraded mode, rollback readiness, and evidence location. Any missing, stale, cross-scope, synthetic,
+or provisional requirement returns a typed blocked result with the required next action.
+
+### 15.3 S6 assurance evidence
+
+S6-05 uses a versioned required-case catalog rather than treating an undifferentiated test command as
+commercial assurance. Each result binds case, build, environment, configuration, data, start/end,
+evidence hash and URI, severity counts, tenant leaks, duplicate committed side effects, retry-limit
+violations, and failure-explanation completeness. Aggregation is fail closed and distinguishes local
+deterministic, CI, staging, production-like, hardware-lab, and independent penetration evidence.
+Simulation cannot satisfy a case marked live or independent, and a green local report cannot clear
+the corresponding release blocker.
+
+### 15.4 S6 performance and token evidence
+
+S6-06 records latency, throughput, concurrency, token, and cache measurements as versioned sample
+series bound to one exact build, benchmark profile, workload, environment, and configuration. Every
+latency series reports a deterministic nearest-rank P50, P95, and P99 plus sample count and failures.
+Token economics separates input, output, hidden orchestration, review, retry, cache-hit, and
+cache-miss usage and compares cold and warm repetitions without converting estimated or synthetic
+counts into provider billing evidence.
+
+A local microbenchmark can validate aggregation, threshold, and concurrency contracts. Release
+qualification additionally requires the approved reference hardware and live database, vector,
+parser, artifact-transfer, client-streaming, queue, model-provider, and cache paths. Missing live
+dimensions, an incorrect result, an isolation failure, insufficient samples, or stale build/profile
+binding yields a typed blocked or failed assessment rather than an inferred production result.
+
+### 15.5 S6 budget calibration
+
+S6-07 calibrates each task-class budget dimension only from successful exact-build observations that
+report P95 and P99, sample count, environment, provider-measurement state, quality result, and zero
+correctness or isolation failures. The candidate default is `ceil(P95 * 1.15)` and the candidate hard
+limit is `min(ceil(P99 * 1.25), product_global_limit)`. A candidate whose default exceeds its hard
+limit or whose hard limit exceeds the existing global ceiling is invalid.
+
+The calibration record preserves every source observation and emits a new immutable policy rather
+than mutating the V1 defaults. Missing, local-only, estimated, failed-quality, stale, or insufficient
+evidence yields a provisional or blocked result. Only complete approved-reference and
+provider-measured evidence for every required task class and dimension can produce an approvable
+production budget profile.
+
+### 15.6 S6 shadow deployment and expert pilot
+
+S6-08 uses an immutable hash-chained ledger for seven consecutive UTC service dates. Every daily
+record binds the same release build, benchmark profile, calibrated budget profile, deployment
+configuration, production-like environment, start/end times, workload counts, workflow pass rates,
+security, resilience, performance, and token assessments, and zero P0/P1, tenant leak, duplicate
+committed side effect, correctness, and isolation failure counts.
+
+Completion requires seven daily records, at least six elapsed 24-hour periods between the first
+start and final evaluation, no future or duplicate date, 100 percent critical workflow pass rate,
+at least 98 percent noncritical workflow pass rate, and the profile-defined number of distinct
+qualified expert acceptances bound to the same evidence. A local test, backdated fabricated record,
+broken hash chain, changed build/profile, missing live prerequisite, or insufficient elapsed time
+returns blocked or failed and cannot satisfy S6-08.
+
+### 15.7 S6 immutable release candidate
+
+S6-09 constructs one content-addressed candidate manifest only after S6-01 through S6-08 and every
+required phase prerequisite pass for the exact immutable source commit. The manifest binds source,
+dependency lock, SBOM, client and server artifacts, migrations, configuration, schema, prompts,
+Skills, tools, models, test evidence, rollback evidence, and release-smoke evidence by SHA-256.
+
+Migration evidence proves upgrade and downgrade against a production-like copy with unchanged
+protected-data hashes. Signing uses an approved asymmetric key reference and signs the canonical
+candidate hash; private key material never enters the manifest, logs, or artifacts. Verification
+resolves that reference through a trusted application-owned key registry, requires an exact approved
+and non-revoked release-signing key identity, and never treats a candidate-supplied public key,
+environment label, or approval flag as trust evidence. Verification checks the signature against the
+resolved trusted public key, artifact sizes and hashes, exact build/profile bindings,
+mandatory smoke checks, and zero P0/P1, leak, duplicate-side-effect, correctness, or isolation
+failure. A local generated-key contract test, offline SQL compilation, mutable source tree, missing
+prerequisite, or synthetic smoke result cannot create a release-qualified V1.0 candidate.
+
+### 15.8 S6 publication and post-publication verification
+
+S6-10 accepts only the exact S6-09 sealed candidate whose RELEASE assessment and TG-06 evidence
+PASS. An immutable release decision binds candidate hash, artifact-set hash, TG-06 evidence hash,
+authorized approver, role, permission version, decision time, expiry, target, and residual-risk
+acknowledgement. TG-06 evidence and the release decision must resolve by immutable hash from an
+application-owned authority store; request-supplied copies are untrusted and must exactly match the
+stored records. The authority adapter revalidates approval, permission, freshness, target, and
+revocation state before publication. Publication is idempotent for that exact decision and target;
+a changed input or replayed key fails before the publisher adapter runs.
+
+The publisher adapter returns an immutable deployment identity and deployed candidate hash. The
+runtime creates a PUBLISHED_PENDING_SMOKE record, then requires live post-publication checks for
+health, identity, tenant isolation, task streaming, review/approval controls, cache/tool isolation,
+and artifact/version identity within the approved window. A mismatch or unsafe count produces a
+typed rollback-required state. Missing candidate, TG-06, approval, permission, publisher, or live
+smoke evidence remains blocked; local injected adapters cannot publish commercial V1.0.
 
 ## 16. Core data objects
 

@@ -13,6 +13,9 @@ from ndt_agents.identity.models import Principal
 class Permission(StrEnum):
     RUNTIME_SCOPE_READ = "runtime:scope:read"
     KNOWLEDGE_IMPORT_START = "knowledge:import:start"
+    WORKBENCH_TASK_CREATE = "workbench:task:create"
+    WORKBENCH_TASK_READ = "workbench:task:read"
+    WORKBENCH_EVENT_READ = "workbench:event:read"
 
 
 @dataclass(frozen=True, slots=True)

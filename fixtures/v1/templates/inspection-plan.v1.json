@@ -1,12 +1,22 @@
 {
   "required_sections": [
+    "objective",
     "scope",
     "structure_and_component",
     "applicable_basis",
-    "method_and_coverage",
+    "method_and_layout",
     "equipment_and_calibration",
-    "acceptance_and_review",
-    "safety_and_limitations"
+    "procedure",
+    "sampling_and_coverage",
+    "acceptance_criteria",
+    "safety",
+    "data_management",
+    "quality_control",
+    "schedule",
+    "deliverables",
+    "limitations",
+    "review_and_approval",
+    "missing_input_handling"
   ],
   "schema_version": "1.0.0",
   "template_id": "TPL-INSPECTION-PLAN-V1"

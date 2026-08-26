@@ -1,6 +1,6 @@
 # Model API Registry V1
 
-**Task:** S5-07 isolated API-management control plane
+**Task:** S5-07 model API control plane and metered inference gateway
 
 **Contract version:** 1.0.0
 
@@ -8,10 +8,12 @@
 
 ## 1. Boundary
 
-This contract manages multiple hosted model API configurations without coupling domain code to a
-provider SDK. It publishes provider and model metadata, binds one provider to one tenant/project and
-environment, and resolves a policy-checked route. It does not execute inference, reveal a secret,
-or complete the S5-01 unified tool gateway and S5-06 canonical inspection-data dependencies.
+This contract manages multiple model API configurations without coupling domain code to a provider
+SDK. It publishes provider and model metadata, binds one provider to one tenant/project and
+environment, resolves a policy-checked route, registers inspection-model profiles, and executes one
+separately metered provider-neutral inference attempt. It never reveals or serializes a plaintext
+secret. S5-01 provides application-owned AI-model capability metadata but deliberately denies model
+execution through the physical-tool meter; S5-07 uses the distinct physical LLM-call/token meter.
 
 The implementation is `ndt_agents.models`. The initial non-secret catalog is
 `config/model-providers/deepseek-v4.v1.json`; the startup example is
@@ -66,7 +68,31 @@ registry hash, retains secret material only in a non-serializable read-only prov
 only non-secret counts and hashes in status. `build_registry(audit)` is the future audited execution
 boundary. Bootstrap itself makes no provider-network call.
 
-## 5. DeepSeek V4 candidate
+## 5. Inspection-model profiles and inference
+
+`InspectionModelProfile@1.0.0` binds an exact catalog provider, model, and snapshot to sorted NDT
+method, structure, and material applicability; the S5-06 input schema hash; one strict local-only
+output schema and hash; training and validation evidence scope; Decimal quality thresholds;
+runtime and resource bounds; declared provider failures; and report eligibility. A formal profile
+requires explicit validation evidence and still requires independent review and qualified human
+confirmation.
+
+`ModelInferenceRequest@1.0.0` binds exact scope/task/run/call/request, API and profile registry
+hashes, profile, canonical manifest, application-owned instruction identity/version/hash, bounded
+canonical parameters, data class, capabilities, network authorization, token reservations, and
+formal-use intent. Preflight denial makes zero provider calls. An accepted request reserves one LLM
+call and total tokens, invokes one injected provider at most once, completes actual token telemetry,
+and never increments the physical-tool counter or performs an implicit fallback call.
+
+Provider replies are untrusted. Exact identity, token usage, immutable artifacts, strict output
+schema, declared failures, retryability, and quality thresholds are validated before output reaches
+agent context. Timeout, cancellation, refusal, incomplete, rate limit, provider failure, malformed
+reply, usage overflow, schema failure, threshold failure, and budget overrun remain typed. Evidence
+and hash-only MODEL audit bind exact route, provider, endpoint, model snapshot, profile, canonical
+input, instruction, parameters, output, artifacts, usage, latency, confidence, metrics, status, and
+call count without storing a plaintext secret or full canonical payload.
+
+## 6. DeepSeek V4 candidate
 
 The catalog records the official OpenAI-compatible base URL and current model IDs checked on
 2026-08-24. The personal-development binding policy is:
@@ -83,7 +109,7 @@ The catalog records the official OpenAI-compatible base URL and current model ID
 Current pricing is deliberately not hardcoded in the registry. A later cost policy must reference a
 dated provider source and version because prices can change independently of code.
 
-## 6. Adding another API
+## 7. Adding another API
 
 To add a provider without changing domain code:
 
@@ -98,15 +124,14 @@ Do not place an API key in chat, source, JSON, Markdown, committed environment e
 traces, evidence, or exception text. The local/CI read-only environment adapter is implemented;
 production secret-provider selection remains a separate S1-11 operational concern.
 
-## 7. Deferred live integration
+## 8. Deferred live integration
 
 Before the first DeepSeek call, complete or explicitly approve:
 
 - provider processing/storage region, retention, training-use, and commercial/exit terms;
 - a production managed secret-provider binding and rotation test;
-- S5-01 model execution through the shared Tool Registry and S1-08 physical-call budget;
-- strict request/response, tool-call, timeout, rate-limit, cancellation, and incomplete-state
-  mapping;
+- an approved live provider adapter that resolves a short-lived secret lease only after S5-07 route
+  authorization and never exposes the value to a contract, log, exception, or evidence record;
 - synthetic live `PROVIDER-SMOKE` with usage, latency, model snapshot, endpoint, and evidence hashes;
 - fallback rules that cannot move confidential or restricted data to another provider.
 

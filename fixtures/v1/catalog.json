@@ -4052,8 +4052,8 @@
       "media_type": "application/json",
       "path": "fixtures/v1/templates/inspection-plan.v1.json",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "7b473b62a2d83458bab3d9fae1381c134dc32f794d678ccfe9e241d685575691",
-      "size_bytes": 291,
+      "sha256": "56556f17089d372fb6d4740e933f67da3cd27862a1cf26bca883ac8e9e9c9b31",
+      "size_bytes": 492,
       "training_use": "PROHIBITED"
     },
     {
@@ -4067,8 +4067,8 @@
       "media_type": "application/json",
       "path": "fixtures/v1/templates/inspection-report.v1.json",
       "rights_basis": "PROJECT_GENERATED_SYNTHETIC",
-      "sha256": "ddaa3f4c032c68e6c184d840b728171d8fa0f2e2065a0896515cb98bc3873b41",
-      "size_bytes": 265,
+      "sha256": "84ee26bdf69bf75e985b7a6bdf30f5fd0a9ed8790cde4e633fef70b6982918c8",
+      "size_bytes": 414,
       "training_use": "PROHIBITED"
     }
   ],

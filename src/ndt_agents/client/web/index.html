@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#173f37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>NDT Agent Workbench</title>
+    <link rel="manifest" href="/workbench/assets/manifest.webmanifest">
+    <link rel="icon" href="/workbench/assets/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/workbench/assets/workbench.css">
+    <script src="/workbench/assets/workbench.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#task-form">Skip to task creation</a>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Civil infrastructure intelligence</p>
+        <h1>NDT Agent Workbench</h1>
+      </div>
+      <div class="connection" aria-live="polite">
+        <span class="connection-dot" aria-hidden="true"></span>
+        <span id="connection-label">Session required</span>
+      </div>
+    </header>
+    <main class="layout">
+      <section class="composer" aria-labelledby="composer-title">
+        <div class="section-heading">
+          <p class="step">01 / Define</p>
+          <h2 id="composer-title">Start a controlled task</h2>
+          <p>Scope is taken from your authenticated project session. Results remain review-bound.</p>
+        </div>
+        <form id="task-form">
+          <label for="task-class">Task route</label>
+          <select id="task-class" name="task_class">
+            <option value="G0">General analysis</option>
+            <option value="P1">Professional synchronous</option>
+            <option value="P2">Professional asynchronous</option>
+            <option value="P3">Multi-professional review</option>
+            <option value="K1">Knowledge construction</option>
+          </select>
+          <label for="goal">Goal</label>
+          <textarea id="goal" name="goal" maxlength="8000" required
+            placeholder="Describe the structure, method, evidence, and decision you need."></textarea>
+          <label for="criteria">Success criteria <span>(one per line)</span></label>
+          <textarea id="criteria" name="criteria" maxlength="4000" required
+            placeholder="Evidence is traceable&#10;Uncertainty is explicit"></textarea>
+          <button type="submit">Create task <span aria-hidden="true">-&gt;</span></button>
+        </form>
+      </section>
+      <section class="task-panel" aria-labelledby="task-title">
+        <div class="section-heading">
+          <p class="step">02 / Observe</p>
+          <h2 id="task-title">Task timeline</h2>
+          <p id="task-meta">Create a task to begin an auditable event stream.</p>
+        </div>
+        <div class="status-grid" aria-label="Task safeguards">
+          <div><span>Status</span><strong id="task-state">Not started</strong></div>
+          <div><span>Review</span><strong id="review-state">Not evaluated</strong></div>
+          <div><span>Formal use</span><strong>Not allowed</strong></div>
+        </div>
+        <ol id="event-list" class="timeline" aria-label="Task events"></ol>
+        <div id="empty-state" class="empty-state">
+          <span aria-hidden="true">NDT</span>
+          <p>Accepted, routing, review, approval, and terminal events appear here in exact order.</p>
+        </div>
+        <p id="live-status" class="sr-only" aria-live="polite"></p>
+      </section>
+    </main>
+    <footer>
+      <p id="offline-limitation">Provider-neutral local candidate. Offline mode cannot create or update tasks. No formal conclusion or publication is enabled.</p>
+    </footer>
+  </body>
+</html>
