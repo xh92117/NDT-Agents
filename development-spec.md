@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.77
+**Specification version:** 1.78
 **Date:** 2026-08-26
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1244,11 +1244,19 @@ review, or formal-state authority and may query bridge readiness only.
 The native bridge accepts one strict versioned envelope with an opaque session handle, non-nil task
 and run identities, registry version, one compiled reference-adapter identity and version, bounded
 JSON object, and bounded idempotency key. It rejects unknown fields, malformed identities, changed
-versions, unknown tools, non-object arguments, and oversized input before execution. The initial
-scaffold always returns `DESKTOP_SESSION_REQUIRED` after validation and performs zero adapter, shell,
-process, file, network, instrument, model, approval, publication, or retry action. A local no-bundle
-binary proves compilation only; signing, installers, upgrade, rollback, authenticated execution,
-audit binding, live desktop E2E, and immutable release qualification remain required.
+versions, unknown tools, non-object arguments, and oversized input before execution. The
+application-owned desktop service hashes rather than persists raw handles, resolves exact task,
+run, tenant, project, user, permission, policy, registry, allowlist, budget, observation, and expiry
+state from the session, and invokes only the shared Tool Registry. Therefore approval, permission,
+destination, budget, idempotency, strict schema, typed ToolResult, and hash-only audit controls remain
+server-owned and cannot be supplied by IPC. Missing, expired, mismatched, stale, or unauthorized
+requests stop before the provider; same-scope replay reuses the committed registry result.
+
+The Tauri window still receives status permission only, and the native command still returns
+`DESKTOP_SESSION_REQUIRED` with zero action until a fixed qualified ABI binds it to the application
+service. A local no-bundle binary proves compilation only; native ABI qualification, invocation
+permission, signing, installers, upgrade, rollback, live desktop E2E, and immutable release
+qualification remain required.
 
 S6-03 extends the same shell into a PWA without creating a second business path. Its service worker
 is a public-shell cache only: it accepts safe same-origin GET requests for the workbench document and

@@ -1,5 +1,13 @@
-"""Versioned Web workbench contracts and runtime."""
+"""Versioned Web and desktop client contracts and runtimes."""
 
+from ndt_agents.client.desktop import (
+    DesktopBridgeError,
+    DesktopBridgeRequest,
+    DesktopBridgeResult,
+    DesktopBridgeService,
+    DesktopSessionGrant,
+    InMemoryDesktopSessionAuthority,
+)
 from ndt_agents.client.models import (
     ClientTaskClass,
     TaskCreateRequest,
@@ -12,7 +20,13 @@ from ndt_agents.client.service import InMemoryTaskRepository, WorkbenchError, Wo
 
 __all__ = [
     "ClientTaskClass",
+    "DesktopBridgeError",
+    "DesktopBridgeRequest",
+    "DesktopBridgeResult",
+    "DesktopBridgeService",
+    "DesktopSessionGrant",
     "InMemoryTaskRepository",
+    "InMemoryDesktopSessionAuthority",
     "TaskCreateRequest",
     "TaskEvent",
     "TaskEventKind",
