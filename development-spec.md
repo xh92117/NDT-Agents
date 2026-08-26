@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.67
+**Specification version:** 1.68
 **Date:** 2026-08-26
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1000,6 +1000,11 @@ attempt, concurrency, byte/token budgets, required device/calibration/model prov
 errors, and a canonical registration hash. Its generated Tool Registry definition binds that hash.
 AI-model definitions remain non-executable through the physical-tool path and are consumed only by
 the separate S5-07 inference gateway.
+
+The registration hash canonicalizes every set-valued permission, secret-purpose, and declared-error
+field as a sorted JSON array before hashing. Draft construction, validated reconstruction, process
+hash randomization, worker OS, and caller insertion order cannot change an equivalent registration
+hash. Any semantic member change must still change the hash.
 
 The provider-neutral runtime wrapper receives one registry-authorized request, invokes one injected
 provider once, validates its strict reply and declared failure, and constructs the final untrusted

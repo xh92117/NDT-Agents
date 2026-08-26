@@ -51,6 +51,7 @@ from ndt_agents.tools import (
     adapter_transport_binding_sha256,
     tool_approval_binding_sha256,
 )
+from ndt_agents.tools.adapter_sdk import _canonicalize_adapter_registration_sets
 from ndt_agents.tools.registry import canonical_sha256
 
 SCOPE = TenantScope(
@@ -374,6 +375,28 @@ def test_all_seven_transport_registrations_generate_shared_tool_definitions(
     )
     if transport is ToolTransport.BASH:
         assert "SEC-BASH" in definition.test_groups
+
+
+def test_registration_hash_canonicalizes_set_order_and_detects_member_changes() -> None:
+    selected = registration()
+    payload = selected.model_dump(mode="json", exclude={"registration_sha256"})
+    forward = dict(payload)
+    reverse = dict(payload)
+    for field_name in ("required_permissions", "secret_purposes", "declared_error_codes"):
+        forward[field_name] = sorted(payload[field_name])
+        reverse[field_name] = sorted(payload[field_name], reverse=True)
+
+    assert canonical_sha256(_canonicalize_adapter_registration_sets(forward)) == (
+        selected.registration_sha256
+    )
+    assert canonical_sha256(_canonicalize_adapter_registration_sets(reverse)) == (
+        selected.registration_sha256
+    )
+    changed = dict(forward)
+    changed["declared_error_codes"] = [*forward["declared_error_codes"], "FIXTURE_TIMEOUT"]
+    assert canonical_sha256(_canonicalize_adapter_registration_sets(changed)) != (
+        selected.registration_sha256
+    )
 
 
 @pytest.mark.parametrize(

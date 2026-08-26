@@ -62,6 +62,11 @@ _STANDARD_ADAPTER_ERRORS = frozenset(
         "ADAPTER_RESPONSE_INVALID",
     }
 )
+_REGISTRATION_SET_FIELDS = (
+    "required_permissions",
+    "secret_purposes",
+    "declared_error_codes",
+)
 
 
 class AdapterCapabilityFamily(StrEnum):
@@ -734,7 +739,15 @@ def adapter_transport_binding_sha256(binding: AdapterTransportBinding) -> str:
 
 
 def adapter_registration_sha256(registration: AdapterRegistration) -> str:
-    return canonical_sha256(registration.model_dump(mode="json", exclude={"registration_sha256"}))
+    payload = registration.model_dump(mode="json", exclude={"registration_sha256"})
+    return canonical_sha256(_canonicalize_adapter_registration_sets(payload))
+
+
+def _canonicalize_adapter_registration_sets(payload: Mapping[str, Any]) -> dict[str, Any]:
+    canonical = dict(payload)
+    for field_name in _REGISTRATION_SET_FIELDS:
+        canonical[field_name] = sorted(canonical[field_name])
+    return canonical
 
 
 def adapter_execution_request_sha256(request: AdapterExecutionRequest) -> str:
