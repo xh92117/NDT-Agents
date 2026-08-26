@@ -191,6 +191,7 @@ class ChildContextFactory:
             assignment_id=child_input.assignment_id,
             kind=definition.kind,
             agent_type=definition.agent_type,
+            agent_configuration_sha256=definition.agent_configuration_sha256,
             scope=task.scope,
             task_class=task.task_class,
             goal=child_input.goal,

@@ -503,6 +503,27 @@ def test_success_is_separately_metered_untrusted_and_hash_bound() -> None:
         runtime.close()
 
 
+def test_request_hash_is_stable_across_unordered_input_insertion() -> None:
+    runtime = InferenceRuntime()
+    try:
+        forward = runtime.request(
+            required_capabilities=frozenset(
+                (ModelCapability.JSON_OUTPUT, ModelCapability.TEXT_OUTPUT)
+            ),
+            granted_permissions=frozenset(("model.invoke.deepseek", "model.read.public")),
+        )
+        reverse = runtime.request(
+            required_capabilities=frozenset(
+                (ModelCapability.TEXT_OUTPUT, ModelCapability.JSON_OUTPUT)
+            ),
+            granted_permissions=frozenset(("model.read.public", "model.invoke.deepseek")),
+        )
+
+        assert forward.request_sha256 == reverse.request_sha256
+    finally:
+        runtime.close()
+
+
 @pytest.mark.parametrize(
     ("mode", "status", "code", "retryable"),
     (

@@ -35,6 +35,7 @@ class ApiProtocol(StrEnum):
 
 class CredentialScheme(StrEnum):
     BEARER = "BEARER"
+    API_KEY_HEADER = "API_KEY_HEADER"
 
 
 class PolicyVerification(StrEnum):
@@ -114,6 +115,7 @@ class ProviderDefinition(StrictModel):
     display_name: str = Field(min_length=1, max_length=128)
     endpoints: tuple[ProviderEndpoint, ...] = Field(min_length=1)
     credential_scheme: CredentialScheme
+    credential_header: str | None = Field(default=None, pattern=r"^[A-Za-z][A-Za-z0-9-]{0,127}$")
     credential_purpose: str = Field(pattern=r"^[a-z][a-z0-9._-]{0,63}$")
     allowed_data_classes: frozenset[ModelDataClass] = Field(min_length=1)
     processing_regions: tuple[str, ...] = ()
@@ -131,6 +133,11 @@ class ProviderDefinition(StrictModel):
             raise ValueError("only application-owned provider definitions are publishable")
         if len({endpoint.endpoint_id for endpoint in self.endpoints}) != len(self.endpoints):
             raise ValueError("provider endpoint IDs must be unique")
+        if self.credential_scheme is CredentialScheme.BEARER:
+            if self.credential_header is not None:
+                raise ValueError("bearer credentials cannot override the authorization header")
+        elif self.credential_header is None:
+            raise ValueError("API-key header credentials require an exact header name")
         _validate_source_urls(self.official_sources)
         verification = (
             self.processing_region_state,
@@ -161,7 +168,7 @@ class ModelDefinition(StrictModel):
     origin: CatalogOrigin = CatalogOrigin.APPLICATION
     provider_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,63}$")
     provider_version: str = Field(pattern=r"^[0-9]+\.[0-9]+\.[0-9]+$")
-    model_id: str = Field(pattern=r"^[a-z0-9][a-z0-9._-]{0,127}$")
+    model_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
     model_snapshot: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
     lifecycle: ModelLifecycle
     protocols: frozenset[ApiProtocol] = Field(min_length=1)
@@ -227,7 +234,7 @@ class ProviderBinding(StrictModel):
     secret_selector: SecretSelector
     state: BindingState = BindingState.DISABLED
     allowed_model_ids: tuple[str, ...] = Field(min_length=1)
-    default_model_id: str = Field(pattern=r"^[a-z0-9][a-z0-9._-]{0,127}$")
+    default_model_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
     fallback_model_ids: tuple[str, ...] = ()
     allowed_data_classes: frozenset[ModelDataClass] = Field(min_length=1)
     required_permission: str = Field(pattern=r"^[a-z][a-z0-9._-]{0,127}$")
@@ -281,7 +288,9 @@ class ModelResolutionContext(StrictModel):
 
 class ModelSelectionRequest(StrictModel):
     schema_version: Literal["1.0.0"] = MODEL_API_REGISTRY_CONTRACT_VERSION
-    requested_model_id: str | None = Field(default=None, pattern=r"^[a-z0-9][a-z0-9._-]{0,127}$")
+    requested_model_id: str | None = Field(
+        default=None, pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    )
     required_capabilities: frozenset[ModelCapability] = Field(min_length=1)
     data_class: ModelDataClass
     input_tokens: int = Field(ge=1, le=1_000_000)
@@ -301,6 +310,8 @@ class ResolvedModelRoute(StrictModel):
     endpoint_id: str
     endpoint_url: str
     protocol: ApiProtocol
+    credential_scheme: CredentialScheme
+    credential_header: str | None = None
     selection_source: SelectionSource
     capabilities: frozenset[ModelCapability]
     secret_selector: SecretSelector
@@ -527,6 +538,8 @@ class ModelApiRegistry:
             endpoint_id=endpoint.endpoint_id,
             endpoint_url=endpoint.request_url,
             protocol=endpoint.protocol,
+            credential_scheme=provider.credential_scheme,
+            credential_header=provider.credential_header,
             selection_source=source,
             capabilities=model.capabilities,
             secret_selector=binding.secret_selector,

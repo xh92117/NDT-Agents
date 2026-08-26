@@ -46,6 +46,7 @@ class AgentDefinition(ChildModel):
     schema_version: Literal["1.0.0"] = "1.0.0"
     agent_type: str = Field(min_length=1, max_length=128, pattern=r"^[a-z][a-z0-9_-]*$")
     kind: ChildAgentKind
+    agent_configuration_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
     allowed_tools: frozenset[str] = Field(max_length=12)
     skill_version: str = Field(min_length=1, max_length=128)
     prompt_version: str = Field(min_length=1, max_length=128)
@@ -70,6 +71,7 @@ class ChildTaskContext(ChildModel):
     assignment_id: str = Field(min_length=1, max_length=128)
     kind: ChildAgentKind
     agent_type: str = Field(min_length=1, max_length=128)
+    agent_configuration_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
     scope: TenantScope
     task_class: Literal["G0", "P1", "P2", "P3", "K1"]
     goal: str = Field(min_length=1, max_length=8000)

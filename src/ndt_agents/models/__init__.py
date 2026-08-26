@@ -7,7 +7,6 @@ from ndt_agents.models.config import (
     load_model_runtime_configuration,
 )
 from ndt_agents.models.inference import (
-    ApplicationInstruction,
     ModelInferenceAuditSink,
     ModelInferenceError,
     ModelInferenceEvidence,
@@ -21,13 +20,13 @@ from ndt_agents.models.inference import (
     ModelProviderReply,
     ModelProviderRequest,
     ModelProviderStatus,
-    build_application_instruction,
     build_model_inference_request,
     model_inference_evidence_sha256,
     model_inference_request_sha256,
     model_inference_result_sha256,
     model_provider_request_sha256,
 )
+from ndt_agents.models.instructions import ApplicationInstruction, build_application_instruction
 from ndt_agents.models.profiles import (
     InspectionModelProfile,
     InspectionModelProfileError,

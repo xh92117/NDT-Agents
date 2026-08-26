@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.71
+**Version:** 1.77
 **Updated:** 2026-08-26
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -83,7 +83,7 @@ Each group is defined in Section 8. A phase is complete only when every assigned
 | Gate | Development phase | What must pass | When to run |
 |---|---|---|---|
 | `TG-00` | S0 requirements and baseline | `DOC`, `SCHEMA`, `DATASET`, `SEC-BASELINE`, `PROVIDER-SMOKE` | after S0-01 through S0-10 and before S1 starts |
-| `TG-01` | S1 lightweight runtime | `UNIT-CORE`, `INT-ORCH`, `SEC-TENANT`, `RES-CHECKPOINT`, `BUDGET`, `OBS-AUDIT`, `SEC-PLATFORM`, `UNIT-TOOLREG`, `INT-APPROVAL` | after S1-01 through S1-13 and before S2 starts |
+| `TG-01` | S1 lightweight runtime | `UNIT-CORE`, `INT-ORCH`, `SEC-TENANT`, `RES-CHECKPOINT`, `BUDGET`, `OBS-AUDIT`, `SEC-PLATFORM`, `UNIT-TOOLREG`, `INT-APPROVAL` | after S1-01 through S1-18 and before S2 starts |
 | `TG-02` | S2 context, memory, and cache | `UNIT-CONTEXT`, `EVAL-COMPRESSION`, `INT-MEMORY`, `SEC-CACHE`, `INT-DATA-LIFECYCLE` | after S2-01 through S2-09 and before S3 starts |
 | `TG-03` | S3 files and knowledge | `INT-MINERU`, `INT-OCR`, `INT-KNOWLEDGE`, `INT-BASH`, `EVAL-RETRIEVAL`, `SEC-BASH` | after S3-01 through S3-09 and before S4 starts |
 | `TG-04` | S4 professional capabilities | `EVAL-QA`, `EVAL-PLAN`, `EVAL-REPORT`, `INT-REVIEW` | after S4-01 through S4-07 and before S5 starts |
@@ -113,6 +113,11 @@ This table determines the minimum `TASK` profile. Add more groups when a change 
 | S1-11 | `SEC-PLATFORM`, `SEC-TENANT`, recovery tests for key and secret rotation |
 | S1-12 | `UNIT-TOOLREG`, `SEC-TOOLS`, `BUDGET` |
 | S1-13 | `INT-APPROVAL`, `SEC-PLATFORM`, `RES-CHECKPOINT` |
+| S1-14 | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `BUDGET`, `UNIT-MODELREG`, `SEC-PLATFORM`, `SEC-TOOLS`, dependency scan |
+| S1-15 | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `BUDGET`, `SEC-TENANT` |
+| S1-16 | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `BUDGET`, `SEC-TENANT` |
+| S1-17 | `UNIT-MODELREG`, `UNIT-CORE`, `INT-ORCH`, `SEC-PLATFORM`, `INT-MINERU` |
+| S1-18 | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `EVAL-QA`, `EVAL-PLAN`, `EVAL-REPORT`, `EVAL-TOKEN`, `SEC-PLATFORM` |
 | S2-01 to S2-03 | `UNIT-CONTEXT`, `EVAL-COMPRESSION` |
 | S2-04 to S2-06 | `INT-MEMORY`, `SEC-CACHE`, `RES-CHECKPOINT` |
 | S2-07 to S2-08 | `SEC-CACHE`, `EVAL-TOKEN` |
@@ -135,6 +140,7 @@ This table determines the minimum `TASK` profile. Add more groups when a change 
 | S5-04 | `INT-MCP`, `SEC-TOOLS`, `RES-ALL` |
 | S5-05 to S5-06 and S5-08 | `INT-INSTRUMENT`, `SEC-TOOLS`, method golden tests |
 | S5-07 | `UNIT-MODELREG`, `INT-INSTRUMENT`, `SEC-TOOLS`, `PROVIDER-SMOKE`, `OBS-AUDIT` model events |
+| S5-07-LIVE | `UNIT-MODELREG`, `PROVIDER-SMOKE`, `SEC-PLATFORM`, `SEC-TOOLS`, `BUDGET`, `OBS-AUDIT` model events |
 | S6-01 and S6-03 | `E2E`, client contract, concurrent event sequence/snapshot, PWA, and accessibility tests |
 | S6-02 | `E2E`, pinned Tauri manifests, Rust unit tests, explicit capability and command permissions, malformed IPC, session and registry denial, no-shell/no-network bridge checks, package build, upgrade, rollback, `SEC-TOOLS`, `SEC-BASH`, and `SEC-TENANT` |
 | S6-04 to S6-05 | `SEC-ALL`, `RES-ALL` |
@@ -258,6 +264,46 @@ Test these paths end to end:
 4. User -> Main Agent -> asynchronous child tasks -> checkpoint -> resume -> review -> Main Agent -> user.
 5. A failed child is retried, repaired, or returned as a typed failure without bypassing review.
 
+For S1-15, `tests/orchestration/test_configured_runtime.py` must verify that the Main Graph route
+selects configuration-derived General and professional definitions; assignment IDs bind to the
+correct registered agent type without caller-supplied assignment executors; synchronous General
+and queued-asynchronous professional schedules preserve existing results and review flags; missing
+or extra delegates, stale child versions, and human-required routes stop before a delegate call;
+and changed configuration cannot resume a persisted context.
+
+For S1-16, `tests/orchestration/test_configured_review_runtime.py` must verify that successful
+General work enters only the direct Main aggregation gate; synchronous and explicitly advanced
+professional work automatically enters Review Workflow; two or more professional results receive
+cross-result review; a correction executor is selected from the configured child profile rather
+than a caller assignment map; PASS creates a manifest-bound Main aggregation input; and schedule
+failure, conflict, human requirement, review failure, missing correction, stale configuration, or
+invalid binding returns a typed non-aggregatable result with no user-delivery path.
+
+For S1-17, model configuration tests must validate every checked-in provider and model against the
+strict registry schema, require unique provider, binding, endpoint, model, secret-variable, and
+secret identities, and prove that all example bindings are disabled, non-production, limited to
+PUBLIC and SYNTHETIC data, and load without a secret or network call. The catalog must preserve
+case-sensitive provider model IDs and contain only credential-free official HTTPS source URLs.
+Agent configuration tests must resolve exactly the planned General, Technical QA, inspection-plan,
+inspection-report, data-processing, method-compatibility, and Knowledge child profiles, with one
+General profile, bounded limits, exact model references, and no unregistered tools. Static secret
+checks must cover every documented model key and the reserved MinerU token while proving that no
+value is committed. MinerU tests must continue to select the pinned local CLI path; no hosted
+MinerU endpoint may be described as active without a separately registered and tested adapter.
+
+For S1-18, prompt configuration tests must validate one strict catalog entry for every planned
+child prompt and the Review Agent prompt. Prompt IDs, versions, relative Markdown paths, and file
+hashes must be unique and exact. Tests must reject duplicate YAML keys, aliases, anchors, unknown
+fields, missing files, absolute or escaping paths, symbolic-link escapes where supported, BOM,
+invalid UTF-8, oversized content, stale hashes, duplicate prompt identities, unresolved agent
+prompt references, and reviewer-definition version mismatch before any delegate call. Static prompt
+evaluation must verify role, minimal-context, untrusted-input, evidence, uncertainty, output-schema,
+human-boundary, no-user-delivery, and no-unauthorized-action instructions for relevant prompts.
+Configured child, reviewer, and correction probes must receive the exact immutable instruction text,
+version, and hash while serialized ChildTaskContext and LangGraph checkpoint input contain no raw
+prompt. A prompt-content change must change the prompt-catalog and agent-configuration hashes and
+must reject stale recovery binding. No provider or network call is permitted in this task profile.
+
 Run after graph, router, scheduler, review, or state changes; nightly; and at `TG-01`.
 
 Acceptance: 100 percent mandatory path compliance, zero cross-agent private-state access, and zero duplicate external side effect.
@@ -314,6 +360,16 @@ the running checkpoint, during a child call, and after durable assignment output
 terminal checkpoint. A durable output must prevent another physical child call. A committed side
 effect must return its stored result; a started but uncommitted side effect must require typed
 reconciliation and must not run again. Corrupt or cross-scope checkpoints must never restore.
+
+For S1-15, restart a new recovery runtime with only the same configured recoverable binder and the
+persisted recovery ID. It must reconstruct exact assignment bindings from checkpointed child
+contexts, preserve `RecoveryControl`, reuse committed assignment output, reject a changed profile
+before a physical call, and retain S1-07 budget and idempotency behavior.
+
+For S1-16, inject the S1-09 append-only review repository, stop after one committed reviewer output
+and before Main aggregation, then reconstruct the configured review runtime. Completed review and
+correction calls must replay without another physical call; a changed reviewer definition,
+schedule, context, correction binding, scope, or recovery payload must fail before aggregation.
 
 Run after state, queue, checkpoint, tool, or idempotency changes; nightly; and at `TG-01`.
 
@@ -1119,6 +1175,18 @@ unvalidated formal, resource-unbounded, or hash-tampered profiles. Verify reques
 canonical scope/manifest/profile bindings, reference-only credentials, one selected route, no
 implicit model fallback after a physical attempt, and separate LLM/tool budget counters.
 
+For S5-07-LIVE, test the real DeepSeek adapter through an injected transport before any live call.
+Require an exact DeepSeek provider, endpoint, protocol, model, snapshot, HTTPS URL, bearer credential
+scheme, request hash, instruction, canonical input, JSON-output mode, non-streaming mode, and bounded
+token cap. Verify certificate validation, redirect denial, one request, no hidden retry, bounded
+response bytes, exact response identity and usage, and strict JSON output. Map 400, 401, 402, 422,
+429, 500, 503, timeout, DNS or TLS failure, malformed JSON, duplicate fields, missing choices,
+wrong model, unsupported finish reason, empty content, usage overflow, and schema mismatch to typed
+non-disclosing results. Prove the secret is resolved only after route authorization and never enters
+request models, logs, audit, evidence, exceptions, or snapshots. Live smoke must use only a fixed
+synthetic request, one call, a small output cap, and an explicit operator acknowledgement of the
+unverified provider policy; absent acknowledgement must make zero network calls.
+
 Run after any provider, model, endpoint, capability, secret-binding, fallback, or selection-policy
 change; before a registry snapshot or binding is enabled; in `PR`; and at `TG-05` and `RELEASE`.
 
@@ -1222,6 +1290,12 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 
 | Run ID | Date | Task/build | Profile or group | Environment | Result | Evidence | Defects | Reviewer |
 |---|---|---|---|---|---|---|---|---|
+| S5-07-LIVE-20260826-01 | 2026-08-26 | S5-07-LIVE strict DeepSeek adapter / branch `codex/langgraph-child-runtime` / mutable build / base `966624f7b340` | `UNIT-MODELREG`, offline and live `PROVIDER-SMOKE`, `SEC-PLATFORM`, `SEC-TOOLS`, `BUDGET`, `OBS-AUDIT`, complete regression, `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 / injected zero-network transport plus one acknowledged DeepSeek call / ignored `.env` and local binding / no secret output | `PASS` | [task evidence](./evidence/s5/s5-07-live-deepseek-20260826.md); 24 dedicated adapter cases and 68 final provider/gateway/harness cases passed; acknowledgement denial returned zero network calls; one live `deepseek-v4-pro` synthetic call returned `SUCCESS`, `stop`, valid fixed output, 2697 input and 196 output tokens, one physical LLM and network call, and no secret output; 1113 complete-regression cases passed with one documented Windows skip; Ruff and format over 204 files, strict mypy over 204 source files, DOC 1.77, secret-safe local configuration preflight, and full graph refresh passed | no task code defect; provider policy states remain unverified, production eligibility remains false, and the smoke authorizes no real inspection data | Codex |
+| S1-18-TASK-20260826-01 | 2026-08-26 | S1-18 optimized prompt runtime / branch `codex/langgraph-child-runtime` / mutable build / base `966624f7b340` | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `EVAL-QA`, `EVAL-PLAN`, `EVAL-REPORT`, `EVAL-TOKEN`, `SEC-PLATFORM`, complete regression, `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 / eight hashed prompts / injected offline delegates / zero provider or network call | `PASS` | [task evidence](./evidence/s1/s1-18-prompt-runtime-20260826.md); 79 focused, 393 affected-boundary, and 1086 complete-regression cases passed with one documented Windows skip; Ruff, format over 199 files, strict mypy over 200 source files, DOC 1.76, offline load of eight prompts and seven child profiles, diff checks, and full graph refresh passed | no task defect; live provider delegates, managed secrets, frozen expert evaluation, immutable CI, and TG-01 live-service evidence remain unavailable | Codex |
+| S1-17-TASK-20260826-01 | 2026-08-26 | S1-17 common model and planned child configuration / branch `codex/langgraph-child-runtime` / mutable build / base `966624f7b340` | `UNIT-MODELREG`, `UNIT-CORE`, `INT-ORCH`, `SEC-PLATFORM`, `INT-MINERU`, complete regression, `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 / eleven disabled hosted bindings / blank ignored local environment / local MinerU CLI boundary | `PASS` | [task evidence](./evidence/s1/s1-17-model-agent-config-20260826.md); offline load resolved two catalogs, eleven bindings, eleven model aliases, and seven child profiles with zero enabled bindings or secrets; 105 task-focused and 1071 complete-regression cases passed with one documented Windows skip; Ruff, format over 197 files, strict mypy over 197 source files, DOC 1.75, diff checks, and code-graph refresh passed | no task defect; live provider adapters/calls, managed secrets, hosted MinerU adapter, approved provider policy, immutable CI, and live phase-gate evidence remain unavailable | Codex |
+| S1-16-TASK-20260826-01 | 2026-08-26 | S1-16 configured review runtime / branch `codex/langgraph-child-runtime` / mutable build / base `966624f7b340` | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `BUDGET`, `SEC-TENANT`, complete regression, `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 / disabled model binding / injected child, reviewer, and correction executors / in-memory review journal | `PASS` | [task evidence](./evidence/s1/s1-16-configured-review-20260826.md); 13 dedicated and 130 orchestration cases passed; complete regression collected 1067 cases and completed with one documented Windows skip; Ruff, format over 196 files, strict mypy over 196 source files, DOC 1.74, diff checks, and code-graph refresh passed | no task defect; real reviewer/corrector providers, production credentials, durable review repository, final Main synthesis, immutable CI, and TG-01 live-service evidence remain unavailable | Codex |
+| S1-15-TASK-20260826-01 | 2026-08-26 | S1-15 configured orchestration runtime / branch `codex/langgraph-child-runtime` / mutable build / base `966624f7b340` | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `BUDGET`, `SEC-TENANT`, complete regression, `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 / disabled model binding / injected delegates and in-memory recovery stores | `PASS` | [task evidence](./evidence/s1/s1-15-configured-orchestration-20260826.md); 10 dedicated and 117 orchestration cases passed; complete regression collected 1054 cases and completed with one documented Windows skip; Ruff, format over 194 files, strict mypy over 194 source files, DOC 1.73, diff checks, and code-graph refresh passed | no task defect; production delegates, provider, durable checkpointer, live recovery services, immutable CI, automatic S1-09 review invocation, and TG-01 live-service evidence remain unavailable | Codex |
+| S1-14-TASK-20260826-01 | 2026-08-26 | S1-14 LangGraph child runtime / branch `codex/langgraph-child-runtime` / mutable build / LangGraph `1.2.11` | `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `RES-CHECKPOINT`, `BUDGET`, `UNIT-MODELREG`, `SEC-PLATFORM`, `SEC-TOOLS`, dependency and SBOM/license integrity, complete regression, `QUICK`, `DOC` | local Windows / CPython 3.12.13 / uv 0.11.20 / disabled model binding / injected executor and checkpointer | `PASS` | [task evidence](./evidence/s1/s1-14-langgraph-runtime-20260826.md); 18 dedicated, 501 affected, and 1043 complete-regression tests passed with one documented Windows skip; Ruff, format over 394 files, strict mypy over 192 source files, DOC 1.72, 108-component SBOM integrity, official PyPI metadata capture, and dependency audit passed | no task defect; production checkpointer, live provider, immutable CI, accountable license approval, and TG-01 live-service evidence remain unavailable | Codex |
 | S5-05-CI-REPAIR-20260826-01 | 2026-08-26 | S5-05 registration hash repair / commit `f25e4e840f2a029744c2954b2c7e9199ae56a491` / PR 8 | protected `quality`: controlled generation, DOC, full regression including S5-08, Ruff, strict mypy, dependency audit, and evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `PASS` | [run 32920295360](https://github.com/xh92117/NDT-Agents/actions/runs/32920295360) and [repair evidence](./evidence/s5/s5-05-registration-hash-repair-20260826.md); 1021 tests passed with zero skip; DOC 1.68, Ruff, strict mypy over 187 source files, and dependency audit passed | process-dependent registration-hash defect closed; no remaining S5-05 task defect | Codex |
 | S5-05-CI-REPAIR-LOCAL-20260826-01 | 2026-08-26 | S5-05 registration hash repair / PR 8 / mutable follow-up workspace | registration set permutation and semantic-change test, S5-08 reference adapters, `INT-INSTRUMENT`, `SEC-TOOLS`, full regression, Ruff, format, strict mypy, DOC, and diff checks | local Windows / CPython 3.12.13 / uv 0.11.20 | `PASS` | [repair evidence](./evidence/s5/s5-05-registration-hash-repair-20260826.md); 92 focused and 1020 full-regression tests passed with one documented Windows skip; Ruff, format, strict mypy, DOC 1.68, and diff checks passed | Ubuntu run 32919785241 exposed process-dependent set-array ordering after the same source passed run 32919640865; repaired immutable Linux rerun pending | Codex |
 | S3-02-CI-REPAIR-20260826-01 | 2026-08-26 | S3-02 cross-platform path repair / commit `3dab6601406cf66fd8b90dec9c7a8e0bf5ccf96b` / PR 8 | protected `quality`: controlled generation, DOC, full regression, Ruff, strict mypy, dependency audit, and evidence upload | GitHub Actions Ubuntu 24.04 / CPython 3.12.14 / uv 0.11.20 | `PASS` | [run 32919640865](https://github.com/xh92117/NDT-Agents/actions/runs/32919640865) and [repair evidence](./evidence/s3/s3-02-cross-platform-path-repair-20260826.md); 1020 tests passed with zero skip; DOC 1.66, Ruff, strict mypy over 187 source files, and dependency audit passed | first-run host-dependent path defect closed; no remaining S3-02 task defect | Codex |

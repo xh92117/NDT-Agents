@@ -220,6 +220,8 @@ def test_multiple_api_bindings_are_order_independent_and_resolve_separately() ->
             )
         assert route.model_id == "deepseek-v4-flash"
         assert route.secret_selector.secret_id == "deepseek-backup-key"
+        assert route.credential_scheme.value == "BEARER"
+        assert route.credential_header is None
     finally:
         runtime.close()
 

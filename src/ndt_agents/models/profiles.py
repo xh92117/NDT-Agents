@@ -123,7 +123,7 @@ class InspectionModelProfile(StrictModel):
     profile_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,127}$")
     profile_version: str = Field(pattern=r"^[0-9]+\.[0-9]+\.[0-9]+$")
     provider_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,63}$")
-    model_id: str = Field(pattern=r"^[a-z0-9][a-z0-9._-]{0,127}$")
+    model_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
     model_snapshot: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
     method_codes: tuple[str, ...] = Field(min_length=1, max_length=64)
     structure_classes: tuple[str, ...] = Field(min_length=1, max_length=64)

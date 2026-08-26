@@ -15,8 +15,9 @@ separately metered provider-neutral inference attempt. It never reveals or seria
 secret. S5-01 provides application-owned AI-model capability metadata but deliberately denies model
 execution through the physical-tool meter; S5-07 uses the distinct physical LLM-call/token meter.
 
-The implementation is `ndt_agents.models`. The initial non-secret catalog is
-`config/model-providers/deepseek-v4.v1.json`; the startup example is
+The implementation is `ndt_agents.models`. The non-secret catalogs are
+`config/model-providers/deepseek-v4.v1.json` and
+`config/model-providers/mainstream-llm.v1.json`; the startup example is
 `config/runtime/model-bindings.example.yaml`.
 
 ## 2. Three separate objects
@@ -84,6 +85,11 @@ formal-use intent. Preflight denial makes zero provider calls. An accepted reque
 call and total tokens, invokes one injected provider at most once, completes actual token telemetry,
 and never increments the physical-tool counter or performs an implicit fallback call.
 
+The hash-protected provider request also carries the exact registered output-schema identity,
+content, and hash plus sorted required metric names. A hosted adapter can therefore request one
+provider-specific JSON envelope while the gateway remains the independent authority for local
+schema and threshold validation.
+
 Provider replies are untrusted. Exact identity, token usage, immutable artifacts, strict output
 schema, declared failures, retryability, and quality thresholds are validated before output reaches
 agent context. Timeout, cancellation, refusal, incomplete, rate limit, provider failure, malformed
@@ -103,8 +109,9 @@ The catalog records the official OpenAI-compatible base URL and current model ID
 - data classes: public and synthetic only;
 - production eligibility: false;
 - processing region, retention, training use, and commercial terms: unverified;
-- physical model calls: disabled until the remaining policy, secret, gateway, and smoke conditions
-  are met.
+- local adapter and ignored binding: available after offline tests and secret provisioning;
+- physical smoke calls: gated until the unverified provider-policy states are explicitly
+  acknowledged.
 
 Current pricing is deliberately not hardcoded in the registry. A later cost policy must reference a
 dated provider source and version because prices can change independently of code.
@@ -135,4 +142,8 @@ Before the first DeepSeek call, complete or explicitly approve:
 - synthetic live `PROVIDER-SMOKE` with usage, latency, model snapshot, endpoint, and evidence hashes;
 - fallback rules that cannot move confidential or restricted data to another provider.
 
-Until then, the deterministic fake remains the only selected executable model route.
+The strict DeepSeek transport is implemented in `ndt_agents.models.deepseek`; its exact request,
+credential, TLS, response, and smoke boundaries are defined in
+[`deepseek-provider-v1.md`](./deepseek-provider-v1.md). One explicitly acknowledged, fixed synthetic
+smoke passed on 2026-08-26. Automated tests remain offline, and the call does not verify provider
+policy or grant production eligibility.

@@ -1,0 +1,35 @@
+schema_version: 1.0.0
+catalog_version: 1.1.0
+prompts:
+  - prompt_id: general
+    version: 1.1.0
+    path: general.v1.md
+    sha256: 51f16e94ba775c06046e7dc06c7ed60415b38fd9ccbbadb41c80341018ed0957
+  - prompt_id: technical_qa
+    version: 1.1.0
+    path: technical-qa.v1.md
+    sha256: f97b3f38dc1e5540115d7885f562688f4134b87ed5458d127c30fd99eaf8ad3f
+  - prompt_id: inspection_plan
+    version: 1.1.0
+    path: inspection-plan.v1.md
+    sha256: 4df03aab7c8a9e22a84eb988250db9b6bda8d1d1e38575f93a0955dc583cf9e3
+  - prompt_id: inspection_report
+    version: 1.1.0
+    path: inspection-report.v1.md
+    sha256: 708a999eced455f5880289b4844270c22665f929f4ebbcf3468e9c4dff15ad2d
+  - prompt_id: data_processing
+    version: 1.1.0
+    path: data-processing.v1.md
+    sha256: d47df712ece2a884199dd5243df5e37ffc59890530912fc9c63c89d5e35a565b
+  - prompt_id: method_compatibility
+    version: 1.1.0
+    path: method-skills.v1.md
+    sha256: 557c65c0f832dda4a8aa5db5a2c51a8fbdc974c3e985c16b67eb252f4f609b84
+  - prompt_id: knowledge
+    version: 1.1.0
+    path: knowledge.v1.md
+    sha256: e8bdaddd885a6ee0a1e48273a5c35c4b71c01de838fefc81a58ece99c3dbbc83
+  - prompt_id: review
+    version: 1.1.0
+    path: review.v1.md
+    sha256: 35b7e57af6c4e0a59281c031206bcde033c6b53a4e771096d554cbff3b4277b6
