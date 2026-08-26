@@ -1,6 +1,6 @@
 # Codex Development Rules
 
-**Version:** 1.69
+**Version:** 1.71
 **Updated:** 2026-08-26
 **Scope:** the entire repository
 

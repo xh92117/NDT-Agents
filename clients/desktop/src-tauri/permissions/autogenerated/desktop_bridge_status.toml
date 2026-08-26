@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-desktop-bridge-status"
+description = "Enables the desktop_bridge_status command without any pre-configured scope."
+commands.allow = ["desktop_bridge_status"]
+
+[[permission]]
+identifier = "deny-desktop-bridge-status"
+description = "Denies the desktop_bridge_status command without any pre-configured scope."
+commands.deny = ["desktop_bridge_status"]

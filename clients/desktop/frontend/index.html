@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#173f37">
+    <title>NDT Agent Desktop</title>
+    <link rel="stylesheet" href="./desktop.css">
+    <script src="./desktop.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#desktop-status">Skip to desktop status</a>
+    <header>
+      <p class="eyebrow">Civil infrastructure intelligence</p>
+      <h1>NDT Agent Desktop</h1>
+      <p>Local shell for the reviewed NDT Agent workbench contract.</p>
+    </header>
+    <main>
+      <section id="desktop-status" class="status-card" aria-labelledby="status-title">
+        <p class="step">01 / Verify</p>
+        <h2 id="status-title">Desktop bridge status</h2>
+        <dl>
+          <div><dt>Runtime</dt><dd id="runtime-state">Checking</dd></div>
+          <div><dt>Local adapters</dt><dd id="adapter-state">Default deny</dd></div>
+          <div><dt>Formal use</dt><dd>Not allowed</dd></div>
+        </dl>
+        <p id="status-message" role="status" aria-live="polite">
+          Validating the application-owned desktop boundary.
+        </p>
+      </section>
+      <section class="limits" aria-labelledby="limits-title">
+        <p class="step">02 / Protect</p>
+        <h2 id="limits-title">Local adapter execution unavailable</h2>
+        <p>
+          This build exposes status only. It cannot start a shell, select an executable, read an
+          unrestricted path, grant itself permission, invoke an instrument, or publish a result.
+        </p>
+        <p>
+          An application-owned authenticated session and registry-bound executor must be installed
+          before the invocation permission can be enabled.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>Provider-neutral local candidate. Signing, upgrade, rollback, and TG-06 remain open.</p>
+    </footer>
+  </body>
+</html>
