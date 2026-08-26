@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.69
+**Specification version:** 1.71
 **Date:** 2026-08-26
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1151,6 +1151,22 @@ motion, renders event text as text rather than trusted markup, stores no bearer 
 client/API caching. Local S6-01 uses an in-memory repository and deterministic event injection only;
 durable queues, multi-process fan-out, production identity, browser and assistive-technology matrices,
 and load qualification remain later S6 evidence.
+
+S6-02 packages a pinned Rust and Tauri desktop shell around one application-owned local origin. One
+exact local window receives only the generated readiness-status permission. The native invocation
+command is registered so its permission identity is deterministic, but the window capability does
+not grant it until an authenticated application session and registry-bound executor are qualified.
+The frontend has no shell, process, filesystem, network, credential storage, permission, approval,
+review, or formal-state authority and may query bridge readiness only.
+
+The native bridge accepts one strict versioned envelope with an opaque session handle, non-nil task
+and run identities, registry version, one compiled reference-adapter identity and version, bounded
+JSON object, and bounded idempotency key. It rejects unknown fields, malformed identities, changed
+versions, unknown tools, non-object arguments, and oversized input before execution. The initial
+scaffold always returns `DESKTOP_SESSION_REQUIRED` after validation and performs zero adapter, shell,
+process, file, network, instrument, model, approval, publication, or retry action. A local no-bundle
+binary proves compilation only; signing, installers, upgrade, rollback, authenticated execution,
+audit binding, live desktop E2E, and immutable release qualification remain required.
 
 S6-03 extends the same shell into a PWA without creating a second business path. Its service worker
 is a public-shell cache only: it accepts safe same-origin GET requests for the workbench document and

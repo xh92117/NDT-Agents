@@ -1,0 +1,8 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop-main",
+  "description": "Status-only capability for the single packaged desktop window.",
+  "local": true,
+  "windows": ["main"],
+  "permissions": ["allow-desktop-bridge-status"]
+}

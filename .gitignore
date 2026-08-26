@@ -19,3 +19,6 @@ config/runtime/*.local.yaml
 Thumbs.db
 .DS_Store
 .code-review-graph/
+clients/desktop/node_modules/
+clients/desktop/src-tauri/gen/
+clients/desktop/src-tauri/target/
