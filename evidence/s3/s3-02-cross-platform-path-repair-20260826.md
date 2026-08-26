@@ -28,9 +28,10 @@ Windows drive-qualified, drive-relative, rooted, UNC, and traversal forms now fa
 - `uv run python tools/check_controlled_docs.py`: `DOC=PASS version=1.66 files=4 gates=7 ascii=true`.
 - `git diff --check`: passed.
 
-## Remaining qualification
+## Remote qualification
 
-The local Windows run validates the host-independent lexical matrix but cannot replace the Ubuntu
-worker that reproduced the defect. The task remains in progress until protected PR quality passes
-the repaired immutable commit. The unrelated control-character filename case remains skipped on
-Windows and is expected to execute on Ubuntu.
+Protected GitHub Actions quality run `32919640865` passed commit
+`3dab6601406cf66fd8b90dec9c7a8e0bf5ccf96b` on Ubuntu 24.04 with 1020 tests and zero skips.
+DOC 1.66, Ruff, strict mypy over 187 source files, and the dependency audit also passed. This run
+executed both the repaired Windows-drive-path case and the control-character filename case, so the
+host-dependent defect is closed.
