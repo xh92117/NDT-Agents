@@ -37,8 +37,9 @@ verifies that adding one declared error changes the hash.
 - `uv run python tools/check_controlled_docs.py`: `DOC=PASS version=1.68 files=4 gates=7 ascii=true`.
 - `git diff --check`: passed.
 
-## Remaining qualification
+## Remote qualification
 
-The local result is not sufficient to close a Linux process-randomization defect. The task remains
-in progress until protected Ubuntu quality passes the immutable repaired commit with the full S5-08
-suite and zero skipped tests.
+Protected GitHub Actions quality run `32920295360` passed commit
+`f25e4e840f2a029744c2954b2c7e9199ae56a491` on Ubuntu 24.04 with 1021 tests and zero skips.
+The full S5-08 suite, DOC 1.68, Ruff, strict mypy over 187 source files, and the dependency audit all
+passed. The process-dependent registration-hash defect is closed.
