@@ -51,6 +51,7 @@ class AppSettings(BaseModel):
     prompt_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
     agent_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
     general_model_delegate_enabled: bool = False
+    local_workbench_enabled: bool = False
     deepseek_policy_acknowledgement: str | None = Field(
         default=None,
         min_length=1,
@@ -84,6 +85,13 @@ class AppSettings(BaseModel):
                 raise ValueError("the General model delegate requires exact policy acknowledgement")
         elif self.deepseek_policy_acknowledgement is not None:
             raise ValueError("provider-policy acknowledgement requires the enabled local delegate")
+        if self.local_workbench_enabled:
+            if self.environment is not RuntimeEnvironment.LOCAL:
+                raise ValueError("the local workbench is local-only")
+            if self.host != "127.0.0.1":
+                raise ValueError("the local workbench requires the exact loopback host")
+            if not self.general_model_delegate_enabled:
+                raise ValueError("the local workbench requires the enabled General delegate")
         for path in (
             self.model_config_path,
             self.model_env_file,
@@ -111,6 +119,7 @@ class AppSettings(BaseModel):
             "NDT_PROMPT_CONFIG": "prompt_config_path",
             "NDT_AGENT_CONFIG": "agent_config_path",
             "NDT_GENERAL_MODEL_DELEGATE_ENABLED": "general_model_delegate_enabled",
+            "NDT_LOCAL_WORKBENCH_ENABLED": "local_workbench_enabled",
             "NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT": "deepseek_policy_acknowledgement",
         }
         unknown = sorted(

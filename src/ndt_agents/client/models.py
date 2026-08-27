@@ -26,6 +26,19 @@ class ClientTaskClass(StrEnum):
     KNOWLEDGE = "K1"
 
 
+class WorkbenchExecutionMode(StrEnum):
+    CONTRACT_ONLY = "CONTRACT_ONLY"
+    GENERAL_LOCAL = "GENERAL_LOCAL"
+    REVIEWED_PROFESSIONAL = "REVIEWED_PROFESSIONAL"
+
+
+class WorkbenchCapabilities(ClientModel):
+    schema_version: Literal["1.0.0"] = "1.0.0"
+    execution_mode: WorkbenchExecutionMode
+    task_classes: tuple[ClientTaskClass, ...]
+    limitations: tuple[str, ...] = Field(min_length=1, max_length=10)
+
+
 class TaskState(StrEnum):
     ACCEPTED = "ACCEPTED"
     RUNNING = "RUNNING"

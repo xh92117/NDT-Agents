@@ -12,6 +12,7 @@ approve production deployment, formal conclusions, physical actions, or publicat
 | `POST` | `/v1/workbench/tasks` | `workbench:task:create` | creates or replays one exact-scope task |
 | `GET` | `/v1/workbench/task` | `workbench:task:read` | reads one task selected by validated `task_id` query data |
 | `GET` | `/v1/workbench/events` | `workbench:event:read` | returns an SSE event batch after `after_sequence` |
+| `GET` | `/v1/workbench/capabilities` | `workbench:capability:read` | returns server-owned enabled task classes and limitations |
 
 The identity middleware derives scope from an approved bearer identity and exact tenant/project
 headers. Client bodies cannot provide or override scope, user, roles, permission version, task ID,
@@ -36,6 +37,13 @@ configuration, and budget denial fail before the provider; provider or schema fa
 one call and emits a typed failed event. The displayed result always states that the input is
 SYNTHETIC, the model evidence remains review-required, and formal use is forbidden.
 
+The default-off S6-02-LOCAL-APP composition installs the package and console entry point, binds only
+to the exact loopback host, creates one ephemeral same-origin HttpOnly session in memory, and grants
+only the four Workbench permissions above. It requires the existing local General delegate and exact
+provider-policy acknowledgement. The capability response is derived from installed executors rather
+than client input. The initial local composition reports only G0; a reviewed application composition
+reports G0 and P1. P2, P3, and K1 are not advertised. Startup and `--check` make no provider call.
+
 ## Event replay
 
 Events are immutable and sequence-contiguous. A client reconnects with the last acknowledged
@@ -54,3 +62,5 @@ The application-owned shell uses same-origin resources, a restrictive content se
 inline script, no token storage, no untrusted HTML insertion, semantic landmarks, labels, keyboard
 focus, a live status region, reduced-motion behavior, and a responsive one-column narrow layout.
 Authentication headers may be supplied only by an approved host session adapter at request time.
+The shell loads the authenticated capability response before enabling task creation and constructs
+its route selector from the returned task classes. It does not display disabled future task types.

@@ -6,7 +6,7 @@
     ],
     "state": "EVIDENCE_ONLY_PENDING_HUMAN_REVIEW"
   },
-  "captured_at": "2026-08-26T03:50:52Z",
+  "captured_at": "2026-08-27T06:12:00Z",
   "components": [
     {
       "evidence_state": "SPDX_EXPRESSION",
@@ -216,7 +216,7 @@
       "name": "click",
       "purl": "pkg:pypi/click@8.4.2",
       "scope": "TRANSITIVE",
-      "source_response_sha256": "d809b7d22a7184795fcd1eeb307815ae2a4f9fc09250e2fe0a8d6b3906cb7d15",
+      "source_response_sha256": "7460231d6577b1efcbbbd987ad21979770b09c4e377cbac428875ddc81812491",
       "source_url": "https://pypi.org/pypi/click/8.4.2/json",
       "version": "8.4.2"
     },
@@ -616,7 +616,7 @@
       "name": "langchain-protocol",
       "purl": "pkg:pypi/langchain-protocol@0.0.18",
       "scope": "TRANSITIVE",
-      "source_response_sha256": "c543120d413a4436977a15f4b04b6ea74738454180d62a2bb43d7c57b86e2c3d",
+      "source_response_sha256": "7682f6de8a5469d9c9d88458210d65e6deb1899589734d190a387683eb151a26",
       "source_url": "https://pypi.org/pypi/langchain-protocol/0.0.18/json",
       "version": "0.0.18"
     },
@@ -1752,6 +1752,22 @@
         "value": null
       },
       "license_classifiers": [],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "uv-build",
+      "purl": "pkg:pypi/uv-build@0.11.20",
+      "scope": "DEVELOPMENT_DIRECT",
+      "source_response_sha256": "91534d766d61d2537eff48d967601743f4f391d9369844fd57d506d71f3e0ff3",
+      "source_url": "https://pypi.org/pypi/uv-build/0.11.20/json",
+      "version": "0.11.20"
+    },
+    {
+      "evidence_state": "SPDX_EXPRESSION",
+      "legacy_license": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8_bytes": 0,
+        "value": null
+      },
+      "license_classifiers": [],
       "license_expression": "BSD-3-Clause",
       "name": "uvicorn",
       "purl": "pkg:pypi/uvicorn@0.52.4",
@@ -1772,7 +1788,7 @@
       "name": "websockets",
       "purl": "pkg:pypi/websockets@16.1.1",
       "scope": "TRANSITIVE",
-      "source_response_sha256": "23adea9e3afbd33da0dd1f8de77bdf214b980e49f60034871dc379087559913f",
+      "source_response_sha256": "294c2ae5e88fbef2bc5bf6f13c86e91fe4a4e6a454435d6db8524569e87adb68",
       "source_url": "https://pypi.org/pypi/websockets/16.1.1/json",
       "version": "16.1.1"
     },
@@ -1835,13 +1851,13 @@
     "source_api_documentation": "https://docs.pypi.org/api/json/"
   },
   "sbom_path": "sbom/cyclonedx.v1.json",
-  "sbom_sha256": "f96589be81f7602ce3979831c506f7a4d2d5fdb158797bf72aa6d1e65e8ce7d2",
+  "sbom_sha256": "e79b28b343b348cf679446d87397f677a58fec16caf0332bbbb836c42c8532b2",
   "summary": {
-    "component_count": 108,
+    "component_count": 109,
     "legacy_metadata_review_count": 41,
     "missing_license_metadata_count": 1,
-    "spdx_expression_count": 66
+    "spdx_expression_count": 67
   },
   "uv_lock_path": "uv.lock",
-  "uv_lock_sha256": "f198dd09fc36bf9658f8c8de8cb188e9a0caa9b9972bfc56471b087e6e4ca5ff"
+  "uv_lock_sha256": "7cdff2ed2771d928f218eef98fc6d75bdf3bf5460ba9c6f8c98283dbd77ebb4d"
 }

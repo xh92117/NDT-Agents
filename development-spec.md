@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.92
+**Specification version:** 1.93
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1277,6 +1277,20 @@ aggregation. The Web task stream records review-required and review-complete tra
 successful result. Execution or review failure remains typed and non-aggregatable. This offline
 slice uses injected deterministic delegates and enables no provider or network call, tools,
 customer data, qualified correction path, formal use, approval, publication, or production eligibility.
+
+S6-02-LOCAL-APP makes the local General Web slice reproducibly startable for frontend integration.
+The Python project uses one pinned build backend and console entry point rather than relying on a
+test-only source path. An explicit setting remains off by default and may compose the workbench only
+for the local environment on an exact loopback host with the existing General delegate, complete
+model, prompt, and agent configuration, and exact provider-policy acknowledgement. The composition
+creates an ephemeral signing key and same-origin HttpOnly session in memory, injects exact tenant,
+project, user, role, and permission context at the protected API boundary, persists no identity
+material, exposes no token, and grants no cross-origin access. The server returns one authenticated,
+versioned capability response derived from the installed workbench executors; the Web shell must
+offer only those task classes. Clean-start validation may use an injected deterministic provider and
+must make zero network calls. This slice retains the in-memory single-process repository and enables
+no customer data, live professional or Review Agent delegate, tools, formal use, publication,
+desktop grant, production deployment, or commercial eligibility.
 
 ## 15. Multi-tenancy, security, and audit
 
