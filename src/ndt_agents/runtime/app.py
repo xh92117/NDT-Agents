@@ -15,7 +15,11 @@ from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from starlette.exceptions import HTTPException as StarletteHttpException
 from starlette.staticfiles import StaticFiles
 
-from ndt_agents.client.execution import GeneralWorkbenchExecutor
+from ndt_agents.client.execution import (
+    GeneralWorkbenchExecutor,
+    ProfessionalWorkbenchExecutor,
+    ReviewedWorkbenchExecutorRouter,
+)
 from ndt_agents.client.models import TaskCreateRequest, TaskEventBatch, WorkbenchTask
 from ndt_agents.client.service import WorkbenchError, WorkbenchRuntime
 from ndt_agents.contracts.v1 import TenantScope
@@ -206,6 +210,7 @@ def create_app(
     app.state.orchestration_runtime = orchestration_runtime
     app.state.reviewed_orchestration_runtime = reviewed_orchestration_runtime
     app.state.general_model_delegate = general_delegate
+    app.state.professional_workbench_executor = None
     app.state.audit_service = audit_service
     if identity is not None:
         app.add_middleware(ScopeAuthorizationMiddleware, identity=identity)
@@ -299,7 +304,24 @@ def create_app(
             return knowledge_entry.response(result)
 
     if workbench is not None:
-        if active_settings.general_model_delegate_enabled:
+        if reviewed_orchestration_runtime is not None:
+            assert orchestration_runtime is not None
+            professional_executor = ProfessionalWorkbenchExecutor(reviewed_orchestration_runtime)
+            workbench.bind_executor(
+                ReviewedWorkbenchExecutorRouter(
+                    GeneralWorkbenchExecutor(
+                        orchestration_runtime,
+                        failure_code=(
+                            (lambda: general_delegate.last_error_code)
+                            if general_delegate is not None
+                            else None
+                        ),
+                    ),
+                    professional_executor,
+                )
+            )
+            app.state.professional_workbench_executor = professional_executor
+        elif active_settings.general_model_delegate_enabled:
             assert orchestration_runtime is not None
             assert general_delegate is not None
             workbench.bind_executor(

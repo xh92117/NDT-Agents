@@ -227,6 +227,12 @@ class ConfiguredReviewedOrchestrationRuntime:
         self._pending: dict[UUID, ConfiguredRunResult] = {}
         self._terminal: dict[UUID, ConfiguredReviewedRunResult] = {}
 
+    @property
+    def agent_runtime(self) -> ConfiguredAgentRuntime:
+        """Expose the immutable configuration used by execution and review."""
+
+        return self._orchestration.agent_runtime
+
     async def start(
         self,
         task: TaskContext,

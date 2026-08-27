@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.91
+**Specification version:** 1.92
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1266,6 +1266,17 @@ with finish reason `stop`, one physical LLM call, one physical network call, zer
 retry, fallback, formal-use candidate, or secret output. The temporary loopback service was stopped
 after evidence capture. This evidence completes S6-02-WEB-LIVE but does not approve provider policy,
 customer data, professional execution, formal use, production, or release.
+
+S6-02-PRO-APP adds the first application-owned professional Web execution slice. It accepts only a
+P1 request and deterministically selects the configured `technical_qa` profile; the client cannot
+select an arbitrary agent, reviewer, corrector, prompt, model, tool, or assignment identity. The
+executor constructs one minimal same-scope SYNTHETIC child input and calls the existing configured
+reviewed orchestration runtime. Success requires one completed professional result, one independent
+per-result Review Agent PASS, a non-empty review-manifest hash, and reviewed-professional Main
+aggregation. The Web task stream records review-required and review-complete transitions before a
+successful result. Execution or review failure remains typed and non-aggregatable. This offline
+slice uses injected deterministic delegates and enables no provider or network call, tools,
+customer data, qualified correction path, formal use, approval, publication, or production eligibility.
 
 ## 15. Multi-tenancy, security, and audit
 
