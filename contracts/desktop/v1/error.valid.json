@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "1.0.0",
+  "code": "DESKTOP_CANCEL_UNAVAILABLE",
+  "message": "No application-owned cancellation adapter is installed.",
+  "nextAction": "Wait for the current operation to finish or install a qualified cancellation adapter.",
+  "retryable": false,
+  "requestSha256": null
+}

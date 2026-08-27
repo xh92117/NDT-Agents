@@ -12,7 +12,7 @@ from threading import RLock
 from typing import Literal, Protocol, Self
 from uuid import UUID, uuid4
 
-from pydantic import Field, model_validator
+from pydantic import ConfigDict, Field, model_validator
 
 from ndt_agents.contracts.v1 import StrictModel, ToolResult
 from ndt_agents.observability.audit import AuditKind, AuditOutcome, AuditRecord, AuditService
@@ -27,23 +27,58 @@ from ndt_agents.tools.registry import (
 
 DESKTOP_BRIDGE_SCHEMA_VERSION: Literal["1.0.0"] = "1.0.0"
 MAX_DESKTOP_ARGUMENT_BYTES = 1024
+MAX_DESKTOP_CANCEL_REASON_BYTES = 512
 MAX_DESKTOP_SESSION_HANDLE_BYTES = 128
 _SESSION_HANDLE_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{31,127}$")
+
+
+def _to_camel(value: str) -> str:
+    head, *tail = value.split("_")
+    return head + "".join(part.capitalize() for part in tail)
+
+
+class DesktopWireModel(StrictModel):
+    """Strict camelCase JSON shared by the Python service and Rust shell."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+        alias_generator=_to_camel,
+        populate_by_name=True,
+    )
 
 
 class DesktopBridgeError(RuntimeError):
     """Stable desktop denial with an actionable recovery boundary."""
 
-    def __init__(self, code: str, message: str, *, next_action: str) -> None:
+    def __init__(
+        self,
+        code: str,
+        message: str,
+        *,
+        next_action: str,
+        retryable: bool = False,
+    ) -> None:
         self.code = code
         self.next_action = next_action
+        self.retryable = retryable
         super().__init__(message)
 
+    def to_payload(self, *, request_sha256: str | None = None) -> DesktopBridgeErrorPayload:
+        return DesktopBridgeErrorPayload(
+            code=self.code,
+            message=str(self),
+            next_action=self.next_action,
+            retryable=self.retryable,
+            request_sha256=request_sha256,
+        )
 
-class DesktopBridgeRequest(StrictModel):
+
+class DesktopBridgeRequest(DesktopWireModel):
     """Untrusted IPC input; authority fields intentionally do not exist here."""
 
     schema_version: Literal["1.0.0"] = DESKTOP_BRIDGE_SCHEMA_VERSION
+    operation: Literal["INVOKE"] = "INVOKE"
     session_handle: str = Field(min_length=32, max_length=MAX_DESKTOP_SESSION_HANDLE_BYTES)
     task_id: UUID
     run_id: UUID
@@ -74,10 +109,50 @@ class DesktopBridgeRequest(StrictModel):
 
     @property
     def request_sha256(self) -> str:
-        return canonical_sha256(self.model_dump(mode="json"))
+        return canonical_sha256(self.model_dump(mode="json", by_alias=True))
 
 
-class DesktopBridgeResult(StrictModel):
+class DesktopCancelRequest(DesktopWireModel):
+    """Hash-bound cancellation intent; it does not claim physical cancellation."""
+
+    schema_version: Literal["1.0.0"] = DESKTOP_BRIDGE_SCHEMA_VERSION
+    operation: Literal["CANCEL"] = "CANCEL"
+    session_handle: str = Field(min_length=32, max_length=MAX_DESKTOP_SESSION_HANDLE_BYTES)
+    task_id: UUID
+    run_id: UUID
+    registry_version: str = Field(pattern=r"^[0-9a-f]{64}$")
+    target_request_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    reason: str = Field(min_length=1, max_length=MAX_DESKTOP_CANCEL_REASON_BYTES)
+
+    @model_validator(mode="after")
+    def validate_untrusted_payload(self) -> Self:
+        if _SESSION_HANDLE_PATTERN.fullmatch(self.session_handle) is None:
+            raise ValueError("desktop session handle is malformed")
+        if self.task_id.int == 0 or self.run_id.int == 0:
+            raise ValueError("desktop task and run identities must be non-nil")
+        if self.reason.strip() != self.reason:
+            raise ValueError("desktop cancellation reason must not have outer whitespace")
+        if len(self.reason.encode("utf-8")) > MAX_DESKTOP_CANCEL_REASON_BYTES:
+            raise ValueError("desktop cancellation reason exceeds the UTF-8 byte budget")
+        return self
+
+    @property
+    def request_sha256(self) -> str:
+        return canonical_sha256(self.model_dump(mode="json", by_alias=True))
+
+
+class DesktopBridgeErrorPayload(DesktopWireModel):
+    """Versioned error envelope exposed by the native ABI."""
+
+    schema_version: Literal["1.0.0"] = DESKTOP_BRIDGE_SCHEMA_VERSION
+    code: str = Field(pattern=r"^[A-Z][A-Z0-9_]{2,127}$")
+    message: str = Field(min_length=1, max_length=2000)
+    next_action: str = Field(min_length=1, max_length=2000)
+    retryable: bool
+    request_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+
+
+class DesktopBridgeResult(DesktopWireModel):
     schema_version: Literal["1.0.0"] = DESKTOP_BRIDGE_SCHEMA_VERSION
     request_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     tool_result: ToolResult
@@ -225,6 +300,7 @@ class DesktopBridgeService:
                     error.code,
                     "The application Tool Registry denied the desktop invocation.",
                     next_action=error.next_action,
+                    retryable=error.retryable,
                 ) from error
             self._record(
                 grant,
@@ -238,6 +314,69 @@ class DesktopBridgeService:
             request_sha256=request.request_sha256,
             tool_result=tool_result,
         )
+
+    async def cancel(self, request: DesktopCancelRequest) -> None:
+        """Validate cancellation authority and fail closed until an adapter is installed."""
+
+        grant = self._authority.resolve(request.session_handle)
+        context = grant.context
+        with self._traces.start_span("desktop.bridge.cancel"):
+            if request.task_id != context.task_id or request.run_id != context.run_id:
+                self._deny_cancel(
+                    grant,
+                    request,
+                    "DESKTOP_SCOPE_MISMATCH",
+                    "The cancellation request does not match the session task and run scope.",
+                    "Rebuild the cancellation request from the active application task session.",
+                )
+            if (
+                request.registry_version != context.expected_registry_version
+                or request.registry_version != self._registry.version
+            ):
+                self._deny_cancel(
+                    grant,
+                    request,
+                    "DESKTOP_REGISTRY_STALE",
+                    "The cancellation request is not bound to the active Tool Registry snapshot.",
+                    "Refresh the desktop task session from the current registry.",
+                )
+            self._deny_cancel(
+                grant,
+                request,
+                "DESKTOP_CANCEL_UNAVAILABLE",
+                "No application-owned cancellation adapter is installed.",
+                "Wait for the current operation to finish or install a qualified "
+                "cancellation adapter.",
+            )
+
+    def _deny_cancel(
+        self,
+        grant: DesktopSessionGrant,
+        request: DesktopCancelRequest,
+        code: str,
+        message: str,
+        next_action: str,
+    ) -> None:
+        context = grant.context
+        self._audit.record(
+            AuditRecord(
+                event_id=self._event_id_factory(),
+                scope=context.scope,
+                kind=AuditKind.AUTHORIZATION,
+                action="desktop.bridge.cancel.deny",
+                target_type="desktop.request",
+                target_id=request.target_request_sha256,
+                task_id=context.task_id,
+                policy_version=context.policy_version,
+                decision=code,
+                outcome=AuditOutcome.DENIED,
+                input_sha256=request.request_sha256,
+                output_sha256=canonical_sha256({"error_code": code}),
+                request_id=context.request_id,
+                occurred_at=self._clock(),
+            )
+        )
+        raise DesktopBridgeError(code, message, next_action=next_action)
 
     def _deny(
         self,

@@ -3,15 +3,19 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from datetime import UTC, datetime, timedelta
+from pathlib import Path
 from uuid import UUID
 
 import pytest
 
 from ndt_agents.client.desktop import (
     DesktopBridgeError,
+    DesktopBridgeErrorPayload,
     DesktopBridgeRequest,
     DesktopBridgeService,
+    DesktopCancelRequest,
     DesktopSessionGrant,
     InMemoryDesktopSessionAuthority,
 )
@@ -28,6 +32,8 @@ from ndt_agents.tools.reference_adapters import (
 from ndt_agents.tools.registry import ToolDataDestination, ToolInvocationContext
 
 NOW = datetime(2026, 8, 26, 12, 0, tzinfo=UTC)
+ROOT = Path(__file__).resolve().parents[2]
+DESKTOP_CONTRACT_ROOT = ROOT / "contracts" / "desktop" / "v1"
 SESSION_HANDLE = "desktop-session-handle-000000000001"
 TASK_ID = UUID("00000000-0000-4000-8000-000000000601")
 RUN_ID = UUID("00000000-0000-4000-8000-000000000602")
@@ -108,6 +114,18 @@ class Harness:
         values.update(updates)
         return DesktopBridgeRequest.model_validate(values)
 
+    def cancel_request(self, **updates: object) -> DesktopCancelRequest:
+        values: dict[str, object] = {
+            "session_handle": SESSION_HANDLE,
+            "task_id": TASK_ID,
+            "run_id": RUN_ID,
+            "registry_version": self.runtime.tool_registry.version,
+            "target_request_sha256": "b" * 64,
+            "reason": "User requested cancellation.",
+        }
+        values.update(updates)
+        return DesktopCancelRequest.model_validate(values)
+
     @property
     def provider(self) -> DeterministicReferenceSimulatorProvider:
         provider = self.runtime.providers["UT"]
@@ -133,6 +151,50 @@ def test_request_rejects_scope_permissions_and_unknown_client_authority() -> Non
                 "granted_permissions": ["reference.ut.acquire"],
             }
         )
+
+
+def test_shared_invoke_contract_uses_camel_case_and_canonical_hash() -> None:
+    payload = json.loads((DESKTOP_CONTRACT_ROOT / "invoke.valid.json").read_text("utf-8"))
+    request = DesktopBridgeRequest.model_validate(payload)
+
+    assert request.model_dump(mode="json", by_alias=True) == payload
+    assert request.request_sha256 == (
+        "6b80c5f4f072a58352eec50c83b33d8fdf9b8d7933d81b544598c03fdf6b817b"
+    )
+
+
+def test_shared_cancel_contract_is_distinct_and_hash_bound() -> None:
+    payload = json.loads((DESKTOP_CONTRACT_ROOT / "cancel.valid.json").read_text("utf-8"))
+    request = DesktopCancelRequest.model_validate(payload)
+
+    assert request.model_dump(mode="json", by_alias=True) == payload
+    assert request.request_sha256 == (
+        "0a07509deb3aa3920938a23bff93e4353949617eccda5bbd4ceba24f9684fd6e"
+    )
+    with pytest.raises(ValueError):
+        DesktopBridgeRequest.model_validate(payload)
+
+
+def test_cancel_reason_uses_the_same_utf8_byte_budget_as_rust() -> None:
+    payload = json.loads((DESKTOP_CONTRACT_ROOT / "cancel.utf8-oversized.json").read_text("utf-8"))
+
+    assert len(payload["reason"]) <= 512
+    assert len(payload["reason"].encode("utf-8")) > 512
+    with pytest.raises(ValueError, match="UTF-8 byte budget"):
+        DesktopCancelRequest.model_validate(payload)
+
+
+def test_shared_error_contract_round_trips_and_exception_maps_without_authority() -> None:
+    payload = json.loads((DESKTOP_CONTRACT_ROOT / "error.valid.json").read_text("utf-8"))
+    expected = DesktopBridgeErrorPayload.model_validate(payload)
+    error = DesktopBridgeError(
+        expected.code,
+        expected.message,
+        next_action=expected.next_action,
+        retryable=expected.retryable,
+    )
+
+    assert error.to_payload().model_dump(mode="json", by_alias=True) == payload
 
 
 def test_missing_session_denies_before_registry_or_provider() -> None:
@@ -239,5 +301,30 @@ def test_expired_session_is_revoked_before_execution() -> None:
             asyncio.run(harness.service.invoke(harness.request()))
         assert captured.value.code == "DESKTOP_SESSION_EXPIRED"
         assert harness.provider.calls == 0
+    finally:
+        harness.close()
+
+
+def test_cancel_requires_authoritative_scope_then_fails_without_adapter() -> None:
+    harness = Harness()
+    try:
+        with pytest.raises(DesktopBridgeError) as captured:
+            asyncio.run(harness.service.cancel(harness.cancel_request()))
+        assert captured.value.code == "DESKTOP_CANCEL_UNAVAILABLE"
+        assert harness.provider.calls == 0
+        assert any(
+            event.action == "desktop.bridge.cancel.deny"
+            and event.target_id == "b" * 64
+            and event.decision == "DESKTOP_CANCEL_UNAVAILABLE"
+            for event in harness.audit_repository.list(SCOPE)
+        )
+
+        with pytest.raises(DesktopBridgeError) as mismatched:
+            asyncio.run(
+                harness.service.cancel(
+                    harness.cancel_request(task_id=UUID("00000000-0000-4000-8000-000000000699"))
+                )
+            )
+        assert mismatched.value.code == "DESKTOP_SCOPE_MISMATCH"
     finally:
         harness.close()
