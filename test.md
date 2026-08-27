@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Test Plan
 
-**Version:** 1.91
+**Version:** 1.92
 **Updated:** 2026-08-27
 **Development plan:** [plan.md](./plan.md)  
 **Development rules:** [AGENTS.md](./AGENTS.md)  
@@ -145,6 +145,7 @@ This table determines the minimum `TASK` profile. Add more groups when a change 
 | S6-02 | `E2E`, pinned Tauri manifests, Rust unit tests, explicit capability and command permissions, malformed IPC, session and registry denial, no-shell/no-network bridge checks, package build, upgrade, rollback, `SEC-TOOLS`, `SEC-BASH`, and `SEC-TENANT` |
 | S6-02-LIVE | one configured Main-to-General run, exact one-call DeepSeek gateway evidence, strict AgentResult validation, acknowledgement and zero-call denial, provider failure, budget, scope, audit, secret-redaction, no-tool, no-retry, no-fallback, and non-formal-use checks |
 | S6-02-APP | application-owned General delegate schema and same-scope synthetic input, no test/tool dependency, default-off and local-only startup acknowledgement, authenticated G0 Web Main-to-General aggregation, ordered terminal events, exact one-call accounting, wrong-class and configuration zero-call denial, malformed/provider/budget failures, audit, scope, secret-redaction, no-tool, no-retry, no-fallback, and non-formal-use checks |
+| S6-02-PRO-APP | application-owned P1 Web executor, deterministic Technical QA selection, minimal same-scope SYNTHETIC child input, mandatory independent per-result review, non-empty review-manifest binding, reviewed-professional Main aggregation, ordered review-visible events, idempotent replay, execution and non-PASS review failure, wrong-class denial, unchanged G0 path, zero model/network/tool calls, and non-formal-use checks |
 | S6-04 to S6-05 | `SEC-ALL`, `RES-ALL` |
 | S6-06 to S6-07 | `PERF`, `EVAL-TOKEN` |
 | S6-08 | `E2E`, `SEC-ALL`, `RES-ALL`, `PERF`, `EVAL-TOKEN`, and pilot acceptance |
@@ -280,6 +281,17 @@ cross-result review; a correction executor is selected from the configured child
 than a caller assignment map; PASS creates a manifest-bound Main aggregation input; and schedule
 failure, conflict, human requirement, review failure, missing correction, stale configuration, or
 invalid binding returns a typed non-aggregatable result with no user-delivery path.
+
+For S6-02-PRO-APP, dedicated client tests must verify that only a P1 request enters the new
+application executor, the server selects exactly one configured `technical_qa` assignment, and the
+child receives only the task goal, success criteria, same scope, SYNTHETIC dependency declaration,
+empty artifacts, and no tools. A successful authenticated request must append exact ordered
+`ACCEPTED`, `RUNNING`, `REVIEW_REQUIRED`, `RUNNING` review, and `SUCCEEDED` events; it must expose no
+raw review payload and must require reviewed-professional aggregation with a non-empty manifest.
+Execution failure, terminal reviewer `CONFLICT`, `HUMAN_REQUIRED`, or `FAILED`, missing binding,
+scope mismatch, and every non-P1 class must remain typed and non-aggregatable. Offline tests inject
+deterministic child, reviewer, and corrector delegates and perform zero model, network, tool,
+approval, publication, or formal-use action.
 
 For S1-17, model configuration tests must validate every checked-in provider and model against the
 strict registry schema, require unique provider, binding, endpoint, model, secret-variable, and
@@ -1292,6 +1304,7 @@ Append one row per meaningful test run. Do not overwrite prior evidence.
 
 | Run ID | Date | Task/build | Profile or group | Environment | Result | Evidence | Defects | Reviewer |
 |---|---|---|---|---|---|---|---|---|
+| S6-02-PRO-APP-20260827-01 | 2026-08-27 | S6-02-PRO-APP professional Web application path / branch `codex/s6-02-professional-app` / mutable build / base `79e2a1b` | dedicated P1 Web tests; affected `UNIT-CORE`, `INT-ORCH`, `INT-REVIEW`, `BUDGET`, `OBS-AUDIT`, `SEC-TENANT`, `E2E`; complete regression; `QUICK`; `DOC`; convergence audit | local Windows / deterministic injected child, reviewer, and corrector / zero model, network, and tool calls | `PASS` | [professional Web application evidence](./evidence/s6/s6-02-professional-app-20260827.md); server-owned `technical_qa` selection, minimal same-scope context, one professional execution, one independent review, non-empty manifest, reviewed-professional Main aggregation, ordered five-event success, idempotent replay, preserved G0 routing, terminal review-conflict failure, and non-P1 zero-call denial; 25 focused and all 1146 collected tests passed with one documented Windows skip; Ruff, format over 215 files, strict mypy over 215 source files, DOC 1.92, diff checks, graph refresh, and convergence audit passed | no task defect; live professional and Review Agent model delegates, correction qualification, customer data, tools, formal use, desktop grant, production, immutable CI, and release remain excluded | Codex |
 | S6-02-WEB-LIVE-SUCCESS-20260827-04 | 2026-08-27 | S6-02-WEB-LIVE authenticated live synthetic Web revalidation / branch `main` / commit `1f8c3d5` | acknowledged live `PROVIDER-SMOKE`, browser `E2E`, `BUDGET`, `OBS-AUDIT`, `SEC-PLATFORM`, `SEC-TENANT` | local Windows / ignored local DeepSeek binding / ephemeral local identity / fixed SYNTHETIC input only | `PASS` | [live Web E2E evidence](./evidence/s6/s6-02-web-live-20260827.md); task `49a0d310-8607-4307-90c5-548f3433e2f1` produced ordered ACCEPTED, RUNNING, and SUCCEEDED events; provider `deepseek`, model `deepseek-v4-pro`, snapshot `DeepSeek-V4-Pro-0813`, 3435 input and 1696 output tokens, finish reason `stop`, one delegate plus physical LLM/network call, zero tools, no retry, fallback, formal use, or secret output; temporary loopback service stopped after evidence capture | no task defect; provider policy, customer data, professional execution and review, formal use, desktop grant, production, immutable CI, and release remain excluded | Codex |
 | S6-02-WEB-LIVE-OUTPUT-CORRECTION-20260827-01 | 2026-08-27 | S6-02-WEB-LIVE bounded output correction / branch `codex/s6-02-web-live-output` / mutable build / base `fce807c` | focused runner, application delegate, budget, gateway, and smoke tests; complete regression; `QUICK`; `DOC`; no live provider call | local Windows / injected deterministic providers / zero physical network | `PASS` | [live Web E2E evidence](./evidence/s6/s6-02-web-live-20260827.md); raised only the output cap from 2048 to 2400, retained the 3600 input cap and unchanged 6000 active plus 8000 hard total limits, and passed 57 focused and all 1143 collected cases with one documented Windows skip; Ruff, format over 214 files, strict mypy over 214 files, DOC 1.90, and diff checks passed | no offline defect remains; a fresh exact acknowledgement is required for live revalidation; provider policy, customer data, professional execution, formal use, desktop grant, production, immutable CI, and release remain excluded | Codex |
 | S6-02-WEB-LIVE-OUTPUT-REVALIDATION-20260827-03 | 2026-08-27 | S6-02-WEB-LIVE 45-second live Web revalidation / branch `main` / commit `fce807c` | acknowledged live `PROVIDER-SMOKE`, browser `E2E`, `BUDGET`, `OBS-AUDIT`, `SEC-PLATFORM`, `SEC-TENANT` | local Windows / ignored local DeepSeek binding / ephemeral local identity / fixed SYNTHETIC input only | `FAIL` | [live Web E2E evidence](./evidence/s6/s6-02-web-live-20260827.md); ordered ACCEPTED, RUNNING, and FAILED events; `MODEL_INCOMPLETE` after 27.55 seconds, 3446 input and 2048 output tokens, finish reason `length`, one LLM/network call, zero tools, no retry, fallback, aggregation, formal use, or secret output | the timeout correction is effective, but output reached the exact 2048 cap; one 2400-output correction requires offline verification and a fresh acknowledgement before another call | Codex |
