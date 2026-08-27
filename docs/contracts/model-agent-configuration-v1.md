@@ -98,6 +98,12 @@ limit remains 8000. The input reservation was raised after the first live Web E2
 input tokens and was correctly rejected by the former 3400 limit. The 5648 maximum reservation
 remains below both active and hard limits.
 
+The local General profile uses a 45-second active timeout, below the 120-second provider-binding
+limit and 180-second hard child limit. Application startup derives the DeepSeek transport timeout
+from this profile instead of maintaining a second constant, so the child and transport boundaries
+cannot silently diverge. The value was raised from 30 seconds after an acknowledged live Web call
+was cancelled at 30.07 seconds without returned usage. No retry, token, or call limit changed.
+
 ## 5. MinerU
 
 The active parser boundary is still `MinerUCliRunner`, which runs the pinned local MinerU command

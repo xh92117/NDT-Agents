@@ -16,7 +16,7 @@ from ndt_agents.models.inference import (
 from ndt_agents.orchestration.general_model_delegate import (
     DEEPSEEK_POLICY_ACKNOWLEDGEMENT,
 )
-from ndt_agents.runtime.app import create_app
+from ndt_agents.runtime.app import _general_provider_timeout_seconds, create_app
 from ndt_agents.runtime.config import AppSettings, RuntimeEnvironment
 from tests.client.test_web_workbench import (
     PROJECT_ID,
@@ -103,6 +103,22 @@ def test_default_off_and_local_acknowledgement_fail_closed(tmp_path: Path) -> No
                 "deepseek_policy_acknowledgement": DEEPSEEK_POLICY_ACKNOWLEDGEMENT,
             }
         )
+
+
+def test_provider_timeout_is_derived_from_general_profile(tmp_path: Path) -> None:
+    private_key, jwks = signing_material()
+    del private_key
+    provider = DeterministicAgentProvider()
+    app = create_app(
+        local_settings(tmp_path),
+        configure_logs=False,
+        identity=identity(jwks),
+        workbench=WorkbenchRuntime(),
+        model_environment={"DEEPSEEK_API_KEY": "offline-placeholder"},
+        model_provider=provider,
+    )
+
+    assert _general_provider_timeout_seconds(app.state.agent_runtime) == 30.0
 
 
 def test_authenticated_g0_task_runs_main_general_and_terminal_events(tmp_path: Path) -> None:
