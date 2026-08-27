@@ -83,6 +83,19 @@ and its hash contributes to the immutable agent-configuration hash.
    `NDT_MODEL_ENV_FILE=.env` in the process or IDE before startup. The application deliberately does
    not auto-discover dotenv files.
 
+The application-owned General model delegate remains off unless both of these process settings are
+present:
+
+- `NDT_GENERAL_MODEL_DELEGATE_ENABLED=true`;
+- `NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT=I_ACKNOWLEDGE_UNVERIFIED_DEEPSEEK_PROVIDER_POLICY`.
+
+This switch is accepted only in the `local` environment and still requires the exact enabled
+DeepSeek binding, secret, prompt catalog, and agent catalog. It permits only authenticated G0 Web
+tasks over same-scope deterministic SIMULATED fixture data. It does not permit customer data,
+professional execution, formal use, publication, retry, fallback, tools, or production deployment.
+The active total-token limit is 6000 for the 3400-input plus 2048-output reservation; the hard G0
+limit remains 8000.
+
 ## 5. MinerU
 
 The active parser boundary is still `MinerUCliRunner`, which runs the pinned local MinerU command

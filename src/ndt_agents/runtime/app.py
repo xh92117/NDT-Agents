@@ -15,6 +15,7 @@ from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from starlette.exceptions import HTTPException as StarletteHttpException
 from starlette.staticfiles import StaticFiles
 
+from ndt_agents.client.execution import GeneralWorkbenchExecutor
 from ndt_agents.client.models import TaskCreateRequest, TaskEventBatch, WorkbenchTask
 from ndt_agents.client.service import WorkbenchError, WorkbenchRuntime
 from ndt_agents.contracts.v1 import TenantScope
@@ -23,6 +24,14 @@ from ndt_agents.identity.models import ScopeResponse
 from ndt_agents.knowledge.entry import KnowledgeEntryGraph
 from ndt_agents.knowledge.models import KnowledgeEntryResponse, KnowledgeUiStartRequest
 from ndt_agents.models.config import load_model_runtime_configuration
+from ndt_agents.models.deepseek import build_deepseek_provider
+from ndt_agents.models.inference import ModelInferenceProvider
+from ndt_agents.observability import (
+    AuditService,
+    InMemoryAuditRepository,
+    InMemorySpanExporter,
+    TraceService,
+)
 from ndt_agents.orchestration.agent_config import load_agent_runtime_configuration
 from ndt_agents.orchestration.configured_review_runtime import (
     ConfiguredReviewBindings,
@@ -31,6 +40,10 @@ from ndt_agents.orchestration.configured_review_runtime import (
 from ndt_agents.orchestration.configured_runtime import (
     ConfiguredExecutorFactory,
     ConfiguredOrchestrationRuntime,
+)
+from ndt_agents.orchestration.general_model_delegate import (
+    GeneralModelDelegate,
+    build_general_delegate_catalog,
 )
 from ndt_agents.orchestration.langgraph_runtime import ConfiguredChildDelegate
 from ndt_agents.orchestration.prompt_registry import load_prompt_registry
@@ -64,6 +77,9 @@ def create_app(
     knowledge_entry: KnowledgeEntryGraph | None = None,
     workbench: WorkbenchRuntime | None = None,
     model_environment: Mapping[str, str] | None = None,
+    model_provider: ModelInferenceProvider | None = None,
+    audit_service: AuditService | None = None,
+    trace_service: TraceService | None = None,
     agent_tool_references: frozenset[str] = frozenset(),
     agent_delegates: Mapping[str, ConfiguredChildDelegate] | None = None,
     review_bindings: ConfiguredReviewBindings | None = None,
@@ -99,9 +115,41 @@ def create_app(
         )
     if agent_delegates is not None and agent_runtime is None:
         raise ValueError("Configured agent delegates require an agent runtime configuration.")
+    owned_trace_service: TraceService | None = None
+    active_delegates = agent_delegates
+    general_delegate = None
+    if active_settings.general_model_delegate_enabled:
+        assert model_runtime is not None
+        assert agent_runtime is not None
+        if agent_delegates is not None:
+            raise ValueError("The local General model delegate cannot replace injected delegates.")
+        if audit_service is not None and trace_service is None:
+            raise ValueError("An injected audit service requires its active trace service.")
+        if audit_service is None:
+            if trace_service is not None:
+                audit_service = AuditService(InMemoryAuditRepository(), trace_service)
+            else:
+                owned_trace_service = TraceService(
+                    service_name=active_settings.service_name,
+                    service_version=active_settings.service_version,
+                    exporter=InMemorySpanExporter(),
+                )
+                trace_service = owned_trace_service
+                audit_service = AuditService(InMemoryAuditRepository(), trace_service)
+        active_provider = model_provider or build_deepseek_provider(
+            model_runtime,
+            timeout_seconds=30,
+        )
+        general_delegate = GeneralModelDelegate(
+            model_runtime,
+            active_provider,
+            audit_service,
+            trace_service=trace_service,
+        )
+        active_delegates = build_general_delegate_catalog(agent_runtime, general_delegate)
     orchestration_runtime = (
-        ConfiguredOrchestrationRuntime(ConfiguredExecutorFactory(agent_runtime, agent_delegates))
-        if agent_runtime is not None and agent_delegates is not None
+        ConfiguredOrchestrationRuntime(ConfiguredExecutorFactory(agent_runtime, active_delegates))
+        if agent_runtime is not None and active_delegates is not None
         else None
     )
     if review_bindings is not None and orchestration_runtime is None:
@@ -127,8 +175,12 @@ def create_app(
     @asynccontextmanager
     async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
         _LOGGER.info("runtime started", extra={"event": "runtime_started"})
-        yield
-        _LOGGER.info("runtime stopped", extra={"event": "runtime_stopped"})
+        try:
+            yield
+        finally:
+            if owned_trace_service is not None:
+                owned_trace_service.shutdown()
+            _LOGGER.info("runtime stopped", extra={"event": "runtime_stopped"})
 
     docs_url = "/docs" if active_settings.expose_api_docs else None
     openapi_url = "/openapi.json" if active_settings.expose_api_docs else None
@@ -146,6 +198,8 @@ def create_app(
     app.state.agent_runtime = agent_runtime
     app.state.orchestration_runtime = orchestration_runtime
     app.state.reviewed_orchestration_runtime = reviewed_orchestration_runtime
+    app.state.general_model_delegate = general_delegate
+    app.state.audit_service = audit_service
     if identity is not None:
         app.add_middleware(ScopeAuthorizationMiddleware, identity=identity)
     app.add_middleware(RequestContextMiddleware)
@@ -238,6 +292,15 @@ def create_app(
             return knowledge_entry.response(result)
 
     if workbench is not None:
+        if active_settings.general_model_delegate_enabled:
+            assert orchestration_runtime is not None
+            assert general_delegate is not None
+            workbench.bind_executor(
+                GeneralWorkbenchExecutor(
+                    orchestration_runtime,
+                    failure_code=lambda: general_delegate.last_error_code,
+                )
+            )
         asset_root = Path(__file__).resolve().parents[1] / "client" / "web"
         app.mount(
             "/workbench/assets",
@@ -273,7 +336,7 @@ def create_app(
             payload: TaskCreateRequest, request: Request
         ) -> WorkbenchTask:
             scope = cast(TenantScope, request.state.scope)
-            return workbench.create(scope, payload)
+            return await workbench.create_and_execute(scope, payload)
 
         @app.get(
             "/v1/workbench/task",

@@ -10,6 +10,9 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 from ndt_agents import __version__
+from ndt_agents.orchestration.general_model_delegate import (
+    DEEPSEEK_POLICY_ACKNOWLEDGEMENT,
+)
 
 LogLevel = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 
@@ -47,6 +50,12 @@ class AppSettings(BaseModel):
     model_env_file: str | None = Field(default=None, min_length=1, max_length=4096)
     prompt_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
     agent_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
+    general_model_delegate_enabled: bool = False
+    deepseek_policy_acknowledgement: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=128,
+    )
 
     @model_validator(mode="after")
     def validate_production_docs(self) -> Self:
@@ -62,6 +71,19 @@ class AppSettings(BaseModel):
             raise ValueError("a prompt catalog requires an agent configuration")
         if self.environment is RuntimeEnvironment.PRODUCTION and self.model_env_file is not None:
             raise ValueError("a local model environment file is forbidden in production")
+        if self.general_model_delegate_enabled:
+            if self.environment is not RuntimeEnvironment.LOCAL:
+                raise ValueError("the General model delegate is local-only")
+            if (
+                self.model_config_path is None
+                or self.prompt_config_path is None
+                or self.agent_config_path is None
+            ):
+                raise ValueError("the General model delegate requires complete model configuration")
+            if self.deepseek_policy_acknowledgement != DEEPSEEK_POLICY_ACKNOWLEDGEMENT:
+                raise ValueError("the General model delegate requires exact policy acknowledgement")
+        elif self.deepseek_policy_acknowledgement is not None:
+            raise ValueError("provider-policy acknowledgement requires the enabled local delegate")
         for path in (
             self.model_config_path,
             self.model_env_file,
@@ -88,6 +110,8 @@ class AppSettings(BaseModel):
             "NDT_MODEL_ENV_FILE": "model_env_file",
             "NDT_PROMPT_CONFIG": "prompt_config_path",
             "NDT_AGENT_CONFIG": "agent_config_path",
+            "NDT_GENERAL_MODEL_DELEGATE_ENABLED": "general_model_delegate_enabled",
+            "NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT": "deepseek_policy_acknowledgement",
         }
         unknown = sorted(
             key for key in source if key.startswith("NDT_") and key not in environment_keys

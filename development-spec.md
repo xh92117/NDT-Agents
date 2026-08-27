@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.85
+**Specification version:** 1.87
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1211,6 +1211,19 @@ desktop execution binding.
 Offline S6-02-LIVE verification injects explicit model and agent runtime objects. It must not read
 ignored local bindings, local environment files, or credentials, so the complete test suite remains
 reproducible on a clean Linux CI checkout while the physical command retains explicit local loading.
+
+S6-02-APP productizes the bounded General model delegate as an application-owned runtime component.
+It accepts only an exact General child context, builds a same-scope deterministic SIMULATED reference
+dataset, calls the existing S5-07 gateway once, validates a strict task- and run-bound AgentResult,
+and preserves review-required, non-formal, no-tool, no-retry, and no-fallback evidence. The delegate
+and its schemas must not import tests or live-smoke tools. Application startup keeps the binding off
+by default and permits it only in the local environment with the exact unverified-provider-policy
+acknowledgement, configured model, prompt, and agent catalogs, and an application-owned audit service.
+When enabled, only a G0 Web workbench task may synchronously traverse authenticated task creation,
+Main routing, the configured General child, model inference, Main aggregation, and ordered terminal
+events. Every other client task class fails closed without a provider call. This local Web path uses
+SYNTHETIC input only and enables no customer data, professional conclusion, formal use, publication,
+desktop permission, production deployment, retry, fallback, or tool access.
 
 ## 15. Multi-tenancy, security, and audit
 

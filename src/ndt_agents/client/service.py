@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from asyncio import Lock
 from collections.abc import Callable
 from datetime import UTC, datetime
 from threading import RLock
@@ -18,6 +19,17 @@ from ndt_agents.client.models import (
     WorkbenchTask,
 )
 from ndt_agents.contracts.v1 import TenantScope
+
+
+class WorkbenchTaskExecutor:
+    """Application-owned async executor port for a server-created workbench task."""
+
+    async def execute(
+        self,
+        task: WorkbenchTask,
+        repository: InMemoryTaskRepository,
+    ) -> WorkbenchTask:
+        raise NotImplementedError
 
 
 class WorkbenchError(RuntimeError):
@@ -226,11 +238,37 @@ class InMemoryTaskRepository:
 
 
 class WorkbenchRuntime:
-    def __init__(self, repository: InMemoryTaskRepository | None = None) -> None:
+    def __init__(
+        self,
+        repository: InMemoryTaskRepository | None = None,
+        *,
+        executor: WorkbenchTaskExecutor | None = None,
+    ) -> None:
         self.repository = repository or InMemoryTaskRepository()
+        self._executor = executor
+        self._execution_lock = Lock()
+
+    def bind_executor(self, executor: WorkbenchTaskExecutor) -> None:
+        if self._executor is not None:
+            raise ValueError("workbench executor is already bound")
+        self._executor = executor
 
     def create(self, scope: TenantScope, request: TaskCreateRequest) -> WorkbenchTask:
         return self.repository.create(scope, request)
+
+    async def create_and_execute(
+        self,
+        scope: TenantScope,
+        request: TaskCreateRequest,
+    ) -> WorkbenchTask:
+        task = self.create(scope, request)
+        if self._executor is None:
+            return task
+        async with self._execution_lock:
+            current = self.repository.get(scope, task.task_id)
+            if current.state is not TaskState.ACCEPTED:
+                return current
+            return await self._executor.execute(current, self.repository)
 
     def get(self, scope: TenantScope, task_id: UUID) -> WorkbenchTask:
         return self.repository.get(scope, task_id)
