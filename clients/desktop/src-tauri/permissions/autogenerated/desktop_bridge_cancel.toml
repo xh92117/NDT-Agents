@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-desktop-bridge-cancel"
+description = "Enables the desktop_bridge_cancel command without any pre-configured scope."
+commands.allow = ["desktop_bridge_cancel"]
+
+[[permission]]
+identifier = "deny-desktop-bridge-cancel"
+description = "Denies the desktop_bridge_cancel command without any pre-configured scope."
+commands.deny = ["desktop_bridge_cancel"]

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "operation": "INVOKE",
+  "sessionHandle": "desktop-session-handle-000000000001",
+  "taskId": "00000000-0000-4000-8000-000000000601",
+  "runId": "00000000-0000-4000-8000-000000000602",
+  "registryVersion": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "toolName": "adapter.reference.ut.acquire",
+  "toolVersion": "1.0.0",
+  "arguments": {
+    "fixture_id": "reference-ut-baseline"
+  },
+  "idempotencyKey": "desktop-call-0001"
+}

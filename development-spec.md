@@ -1,7 +1,7 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.78
-**Date:** 2026-08-26
+**Specification version:** 1.80
+**Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)
@@ -1241,21 +1241,29 @@ not grant it until an authenticated application session and registry-bound execu
 The frontend has no shell, process, filesystem, network, credential storage, permission, approval,
 review, or formal-state authority and may query bridge readiness only.
 
-The native bridge accepts one strict versioned envelope with an opaque session handle, non-nil task
-and run identities, registry version, one compiled reference-adapter identity and version, bounded
-JSON object, and bounded idempotency key. It rejects unknown fields, malformed identities, changed
-versions, unknown tools, non-object arguments, and oversized input before execution. The
+The native bridge and application service share strict camelCase invoke, cancel, and error envelopes.
+The checked-in golden JSON and canonical UTF-8 SHA-256 rules bind both implementations to identical
+wire values. Invoke carries an opaque session handle, non-nil task and run identities, an exact
+lowercase SHA-256 registry version, one compiled reference-adapter identity and version, a bounded
+JSON object, and a bounded idempotency key. Cancel is a distinct operation bound to the same session,
+task, run, and registry plus the exact target request hash and a 512-byte UTF-8 reason. Unknown fields,
+malformed identities or hashes, changed versions, unknown tools, non-object arguments, and oversized
+input fail before execution. The
 application-owned desktop service hashes rather than persists raw handles, resolves exact task,
 run, tenant, project, user, permission, policy, registry, allowlist, budget, observation, and expiry
 state from the session, and invokes only the shared Tool Registry. Therefore approval, permission,
 destination, budget, idempotency, strict schema, typed ToolResult, and hash-only audit controls remain
 server-owned and cannot be supplied by IPC. Missing, expired, mismatched, stale, or unauthorized
-requests stop before the provider; same-scope replay reuses the committed registry result.
+requests stop before the provider; same-scope replay reuses the committed registry result. A valid
+cancellation intent is scope-checked and hash-only audited, but returns the typed
+`DESKTOP_CANCEL_UNAVAILABLE` denial until a qualified application-owned cancellation adapter exists;
+receipt of intent is never reported as physical cancellation.
 
-The Tauri window still receives status permission only, and the native command still returns
-`DESKTOP_SESSION_REQUIRED` with zero action until a fixed qualified ABI binds it to the application
-service. A local no-bundle binary proves compilation only; native ABI qualification, invocation
-permission, signing, installers, upgrade, rollback, live desktop E2E, and immutable release
+The Tauri window still receives status permission only. Invoke returns
+`DESKTOP_SESSION_REQUIRED`, and cancel returns `DESKTOP_CANCEL_UNAVAILABLE`, with zero external action
+until the native commands bind to the application service. A local no-bundle binary proves
+compilation only; native service process binding, invocation and cancellation permission, signing,
+installers, upgrade, rollback, live desktop E2E, and immutable release
 qualification remain required.
 
 S6-03 extends the same shell into a PWA without creating a second business path. Its service worker

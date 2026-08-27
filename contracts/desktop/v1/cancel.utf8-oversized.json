@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "operation": "CANCEL",
+  "sessionHandle": "desktop-session-handle-000000000001",
+  "taskId": "00000000-0000-4000-8000-000000000601",
+  "runId": "00000000-0000-4000-8000-000000000602",
+  "registryVersion": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "targetRequestSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "reason": "取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消取消"
+}
