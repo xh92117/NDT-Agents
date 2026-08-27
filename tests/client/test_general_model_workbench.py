@@ -150,7 +150,7 @@ def test_authenticated_g0_task_runs_main_general_and_terminal_events(tmp_path: P
     assert response.json()["formal_use_allowed"] is False
     assert provider.calls == 1, events.text
     assert provider.last_request is not None
-    assert provider.last_request.maximum_input_tokens == 3_400
+    assert provider.last_request.maximum_input_tokens == 3_600
     assert provider.last_request.maximum_output_tokens == 2_048
     assert (
         str(provider.last_request.canonical_data.scope.tenant_id)

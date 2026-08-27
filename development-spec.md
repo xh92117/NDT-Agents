@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.87
+**Specification version:** 1.88
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1224,6 +1224,24 @@ Main routing, the configured General child, model inference, Main aggregation, a
 events. Every other client task class fails closed without a provider call. This local Web path uses
 SYNTHETIC input only and enables no customer data, professional conclusion, formal use, publication,
 desktop permission, production deployment, retry, fallback, or tool access.
+
+S6-02-WEB-LIVE adds a loopback-only local E2E runner around the same application factory. The
+runner creates an ephemeral signing key and authenticated project identity in memory, injects the
+existing WorkbenchRuntime, and converts one HttpOnly same-origin development session cookie into
+the existing authorization header before the identity middleware. It must not import tests, print
+the token, persist identity material, bind a non-loopback host, weaken the production application
+entry point, or bypass the exact local delegate and provider-policy gates. Only one browser-created
+G0 task with fixed SYNTHETIC limitation text may make one physical provider call; terminal replay,
+all other routes, and every failure remain zero-call or one-call as already specified. The runner
+enables no customer data, professional execution, formal use, publication, desktop grant, retry,
+fallback, or production eligibility.
+
+The first live Web E2E call completed at the provider with 3432 input and 1514 output tokens and a
+`stop` finish reason, but the inference gateway returned typed `MODEL_USAGE_LIMIT_EXCEEDED` because
+the actual input exceeded the 3400 reservation by 32 tokens. No result entered Main aggregation.
+The single-variable correction raises only the input reservation to 3600; together with the
+unchanged 2048 output cap, the 5648 reservation remains below the 6000 active and 8000 hard G0
+limits. Revalidation requires a fresh exact acknowledgement and must not reuse the consumed call.
 
 ## 15. Multi-tenancy, security, and audit
 

@@ -160,7 +160,7 @@ def test_offline_provider_runs_main_general_and_aggregation_once(tmp_path: Path)
     assert report["formal_use_candidate"] is False
     assert report["secret_output"] is False
     assert provider.last_request is not None
-    assert provider.last_request.maximum_input_tokens == 3_400
+    assert provider.last_request.maximum_input_tokens == 3_600
     assert provider.last_request.maximum_output_tokens == 2_048
     assert (
         provider.last_request.maximum_input_tokens + provider.last_request.maximum_output_tokens
