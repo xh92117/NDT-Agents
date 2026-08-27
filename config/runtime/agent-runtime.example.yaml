@@ -97,7 +97,7 @@ subagents:
       graph_version: child-react-1.0.0
       allowed_tools: []
       max_turns: 2
-      timeout_ms: 30000
+      timeout_ms: 45000
     - name: technical_qa
       kind: PROFESSIONAL
       description: Evidence-grounded technical question answering with citation and applicability checks.

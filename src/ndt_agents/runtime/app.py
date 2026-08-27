@@ -32,7 +32,10 @@ from ndt_agents.observability import (
     InMemorySpanExporter,
     TraceService,
 )
-from ndt_agents.orchestration.agent_config import load_agent_runtime_configuration
+from ndt_agents.orchestration.agent_config import (
+    ConfiguredAgentRuntime,
+    load_agent_runtime_configuration,
+)
 from ndt_agents.orchestration.configured_review_runtime import (
     ConfiguredReviewBindings,
     ConfiguredReviewedOrchestrationRuntime,
@@ -56,6 +59,10 @@ from ndt_agents.runtime.readiness import DependencyProbe
 from ndt_agents.security.models import SecurityEnvironment
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def _general_provider_timeout_seconds(agent_runtime: ConfiguredAgentRuntime) -> float:
+    return agent_runtime.profile("general").timeout_ms / 1_000
 
 
 def _request_id(request: Request) -> str:
@@ -138,7 +145,7 @@ def create_app(
                 audit_service = AuditService(InMemoryAuditRepository(), trace_service)
         active_provider = model_provider or build_deepseek_provider(
             model_runtime,
-            timeout_seconds=30,
+            timeout_seconds=_general_provider_timeout_seconds(agent_runtime),
         )
         general_delegate = GeneralModelDelegate(
             model_runtime,

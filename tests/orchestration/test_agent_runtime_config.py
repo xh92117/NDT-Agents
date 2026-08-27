@@ -91,7 +91,7 @@ def test_checked_in_deerflow_shaped_example_resolves_model_and_agent_profiles() 
         == runtime.prompt_instruction("general").instruction_sha256
     )
     assert runtime.profile("general").max_turns == 2
-    assert runtime.profile("general").timeout_ms == 30000
+    assert runtime.profile("general").timeout_ms == 45000
     definition = runtime.build_agent_registry().require("general", ChildAgentKind.GENERAL)
     assert definition.model_version == "primary"
     assert definition.allowed_tools == frozenset()

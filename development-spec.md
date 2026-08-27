@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.88
+**Specification version:** 1.89
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1242,6 +1242,14 @@ the actual input exceeded the 3400 reservation by 32 tokens. No result entered M
 The single-variable correction raises only the input reservation to 3600; together with the
 unchanged 2048 output cap, the 5648 reservation remains below the 6000 active and 8000 hard G0
 limits. Revalidation requires a fresh exact acknowledgement and must not reuse the consumed call.
+
+The separately acknowledged token-correction revalidation reached the equal 30-second General and
+provider timeout before any response usage was available and returned typed
+`MODEL_INFERENCE_CANCELLED`. It made one physical LLM/network call, zero tool calls, and no retry,
+fallback, or aggregation. The next single-dimension correction raises both layers of the same
+timeout boundary to 45 seconds. This remains below the configured 120-second provider-binding limit
+and 180-second hard child limit, changes no token or call budget, and requires offline verification
+plus a fresh exact acknowledgement before another physical call.
 
 ## 15. Multi-tenancy, security, and audit
 
