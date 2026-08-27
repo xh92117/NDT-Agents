@@ -350,12 +350,18 @@ def _agent_runtime(configured_models: ConfiguredModelRuntime) -> ConfiguredAgent
     )
 
 
-async def run_with_provider(provider: ModelInferenceProvider) -> tuple[dict[str, object], bool]:
-    configured_models = load_model_runtime_configuration(
-        ROOT / "config/runtime/model-bindings.local.yaml",
-        env_file_path=ROOT / ".env",
-        expected_environment=SecurityEnvironment.LOCAL,
-    )
+async def run_with_provider(
+    provider: ModelInferenceProvider,
+    *,
+    configured_models: ConfiguredModelRuntime | None = None,
+    agent_runtime: ConfiguredAgentRuntime | None = None,
+) -> tuple[dict[str, object], bool]:
+    if configured_models is None:
+        configured_models = load_model_runtime_configuration(
+            ROOT / "config/runtime/model-bindings.local.yaml",
+            env_file_path=ROOT / ".env",
+            expected_environment=SecurityEnvironment.LOCAL,
+        )
     exporter = InMemorySpanExporter()
     traces = TraceService(
         service_name="deepseek-live-agent-smoke",
@@ -365,7 +371,8 @@ async def run_with_provider(provider: ModelInferenceProvider) -> tuple[dict[str,
     repository = InMemoryAuditRepository()
     audit = AuditService(repository, traces)
     try:
-        agent_runtime = _agent_runtime(configured_models)
+        if agent_runtime is None:
+            agent_runtime = _agent_runtime(configured_models)
         live_delegate = LiveGeneralDelegate(configured_models, provider, audit)
         delegates = {
             profile.name: live_delegate if profile.name == "general" else DeniedDelegate()

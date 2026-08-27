@@ -4,16 +4,28 @@ from __future__ import annotations
 
 import asyncio
 from decimal import Decimal
+from pathlib import Path
 from typing import Any
 
 from jsonschema import Draft202012Validator
 
+from ndt_agents.models.config import (
+    ConfiguredModelRuntime,
+    load_model_runtime_configuration,
+)
 from ndt_agents.models.inference import (
     ModelMetric,
     ModelProviderReply,
     ModelProviderRequest,
     ModelProviderStatus,
 )
+from ndt_agents.orchestration.agent_config import (
+    ConfiguredAgentRuntime,
+    load_agent_runtime_configuration,
+)
+from ndt_agents.orchestration.prompt_registry import load_prompt_registry
+from tests.models.test_model_runtime_config import write_configuration
+from tests.orchestration.test_agent_runtime_config import valid_yaml, write_yaml
 from tools.deepseek_agent_live_smoke import (
     TASK_ID,
     _agent_result_schema,
@@ -21,6 +33,25 @@ from tools.deepseek_agent_live_smoke import (
     _task,
     run_with_provider,
 )
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def _offline_runtimes(
+    tmp_path: Path,
+) -> tuple[ConfiguredModelRuntime, ConfiguredAgentRuntime]:
+    configured_models = load_model_runtime_configuration(
+        write_configuration(tmp_path / "models"),
+        environ={"DEEPSEEK_API_KEY": "offline-placeholder"},
+    )
+    agent_directory = tmp_path / "agents"
+    agent_directory.mkdir()
+    agent_runtime = load_agent_runtime_configuration(
+        write_yaml(agent_directory, valid_yaml()),
+        model_runtime=configured_models,
+        prompt_registry=load_prompt_registry(ROOT / "prompts/professional/catalog.v1.yaml"),
+    )
+    return configured_models, agent_runtime
 
 
 class DeterministicAgentProvider:
@@ -96,9 +127,16 @@ def test_live_agent_schema_is_exact_scope_and_non_formal() -> None:
     assert schema["properties"]["evidence"]["maxItems"] == 0
 
 
-def test_offline_provider_runs_main_general_and_aggregation_once() -> None:
+def test_offline_provider_runs_main_general_and_aggregation_once(tmp_path: Path) -> None:
     provider = DeterministicAgentProvider()
-    report, success = asyncio.run(run_with_provider(provider))
+    configured_models, agent_runtime = _offline_runtimes(tmp_path)
+    report, success = asyncio.run(
+        run_with_provider(
+            provider,
+            configured_models=configured_models,
+            agent_runtime=agent_runtime,
+        )
+    )
 
     errors = []
     if provider.last_request is not None and provider.last_output is not None:
@@ -130,9 +168,16 @@ def test_offline_provider_runs_main_general_and_aggregation_once() -> None:
     )
 
 
-def test_malformed_provider_output_fails_without_aggregation() -> None:
+def test_malformed_provider_output_fails_without_aggregation(tmp_path: Path) -> None:
     provider = DeterministicAgentProvider(malformed=True)
-    report, success = asyncio.run(run_with_provider(provider))
+    configured_models, agent_runtime = _offline_runtimes(tmp_path)
+    report, success = asyncio.run(
+        run_with_provider(
+            provider,
+            configured_models=configured_models,
+            agent_runtime=agent_runtime,
+        )
+    )
 
     assert success is False
     assert provider.calls == 1

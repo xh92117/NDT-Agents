@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Plan
 
-**Plan version:** 1.84
+**Plan version:** 1.85
 **Specification:** [development-spec.md](./development-spec.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)  
@@ -502,3 +502,4 @@ required before TG-01 and are not claimed by local restart tests.
 | 2026-08-27 | 1.82 | Recorded the first S6-02-LIVE physical attempt as typed `MODEL_INCOMPLETE` with one LLM/network call, zero tools, no retry, fallback, or secret output; prepared a bounded 1024-output-token correction below the unchanged G0 hard token limit for separately acknowledged revalidation | S6-02-LIVE, PROVIDER-SMOKE, BUDGET, OBS-AUDIT, and DOC |
 | 2026-08-27 | 1.83 | Recorded the second S6-02-LIVE physical attempt as typed `MODEL_INCOMPLETE` at 3344 input and 1024 output tokens with finish reason `length`; prepared a 2048-output-token correction whose 5448-token reservation remains within the unchanged active and hard limits | S6-02-LIVE, PROVIDER-SMOKE, BUDGET, OBS-AUDIT, and DOC |
 | 2026-08-27 | 1.84 | Completed S6-02-LIVE after the separately acknowledged 2048-output-token call returned a strict AgentResult through `GENERAL_SYNC` Main aggregation with 3350 input and 1853 output tokens, one LLM/network call, zero tools, no retry, fallback, formal use, or secret output | S6-02-LIVE, INT-ORCH, PROVIDER-SMOKE, BUDGET, OBS-AUDIT, E2E, and DOC |
+| 2026-08-27 | 1.85 | Repaired S6-02-LIVE clean-checkout reproducibility after Linux CI exposed two offline tests reading ignored local runtime files; tests now inject explicit self-contained runtimes and the complete local regression passes without another provider call | S6-02-LIVE, PROVIDER-SMOKE, QUICK, and DOC |
