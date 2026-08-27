@@ -129,10 +129,17 @@ uv run mypy
 
 ## Local runtime
 
+`uv sync --locked` installs the `src` package and the `ndt-agents` console entry point. Validate the
+default health-only composition without starting a listener:
+
+```text
+uv run ndt-agents --check
+```
+
 Start the API without storage, cache, model, or network dependencies:
 
 ```text
-uv run python -m ndt_agents.runtime
+uv run ndt-agents
 ```
 
 To assemble the disabled common hosted-model bindings and the planned bounded child profiles
@@ -165,6 +172,24 @@ The first synthetic network smoke was an explicit operator action because the ca
 DeepSeek processing region, retention, training use, and commercial terms as unverified. Its single
 successful call does not change production eligibility or authorize real inspection data.
 
+For the authenticated loopback-only local Web workbench, also set the following values after the
+selected local DeepSeek binding is enabled and its secret is present:
+
+```text
+NDT_GENERAL_MODEL_DELEGATE_ENABLED=true
+NDT_LOCAL_WORKBENCH_ENABLED=true
+NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT=I_ACKNOWLEDGE_UNVERIFIED_DEEPSEEK_PROVIDER_POLICY
+```
+
+Run `uv run ndt-agents --check` first. It must list `/workbench`,
+`/v1/workbench/capabilities`, `/v1/workbench/tasks`, `/v1/workbench/task`, and
+`/v1/workbench/events` without making a provider call. Then start `uv run ndt-agents` and open
+`http://127.0.0.1:8000/local/workbench/session`. The application creates an ephemeral HttpOnly
+same-origin session in memory and redirects to the workbench. The local composition exposes only
+the enabled G0 route and accepts SYNTHETIC input only. It is single-process, non-persistent, and not
+eligible for customer data, professional conclusions, formal use, publication, production, or
+commercial release.
+
 The example includes OpenAI, Anthropic, Gemini, DeepSeek, Qwen, Kimi, GLM, MiniMax, ERNIE,
 Hunyuan, and Doubao bindings. All planned child profiles use the `primary` model alias by default;
 change a profile's `model` value and enable the matching binding to select another provider. See
@@ -174,7 +199,9 @@ network parser.
 
 Supported settings are `NDT_SERVICE_NAME`, `NDT_ENVIRONMENT`, `NDT_LOG_LEVEL`, `NDT_HOST`,
 `NDT_PORT`, `NDT_EXPOSE_API_DOCS`, `NDT_MODEL_CONFIG`, `NDT_PROMPT_CONFIG`,
-`NDT_AGENT_CONFIG`, and `NDT_MODEL_ENV_FILE`. Unknown `NDT_` settings fail startup. An agent
+`NDT_AGENT_CONFIG`, `NDT_MODEL_ENV_FILE`, `NDT_GENERAL_MODEL_DELEGATE_ENABLED`,
+`NDT_LOCAL_WORKBENCH_ENABLED`, and `NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT`. Unknown `NDT_` settings
+fail startup. An agent
 configuration requires both model and prompt configuration. API documentation is disabled by default and cannot be enabled when
 `NDT_ENVIRONMENT=production`. Local environment files are forbidden in production.
 

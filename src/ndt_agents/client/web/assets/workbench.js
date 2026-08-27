@@ -11,6 +11,12 @@ const connectionLabel = document.querySelector("#connection-label");
 let activeTask = null;
 let lastSequence = 0;
 let stopped = false;
+let capabilitiesReady = false;
+
+const routeLabels = {
+  G0: "General analysis",
+  P1: "Professional synchronous",
+};
 
 function updateConnection() {
   if (!navigator.onLine) connectionLabel.textContent = "Offline / read-only shell";
@@ -26,6 +32,38 @@ if ("serviceWorker" in navigator) {
     connectionLabel.textContent = "Install support unavailable";
   });
 }
+
+async function loadCapabilities() {
+  const select = form.elements.task_class;
+  const button = form.querySelector("button");
+  try {
+    const response = await fetch("/v1/workbench/capabilities", {
+      headers: authHeaders(), credentials: "same-origin", cache: "no-store"
+    });
+    if (!response.ok) throw new Error("An authenticated workbench session is required.");
+    const capabilities = await response.json();
+    const options = capabilities.task_classes.map((taskClass) => {
+      const option = document.createElement("option");
+      option.value = taskClass;
+      option.textContent = routeLabels[taskClass] || taskClass;
+      return option;
+    });
+    select.replaceChildren(...options);
+    capabilitiesReady = options.length > 0;
+    select.disabled = !capabilitiesReady;
+    button.disabled = !capabilitiesReady;
+    connectionLabel.textContent = capabilitiesReady ? "Session ready" : "No execution route enabled";
+  } catch (error) {
+    capabilitiesReady = false;
+    select.replaceChildren();
+    select.disabled = true;
+    button.disabled = true;
+    connectionLabel.textContent = "Session required";
+    liveStatus.textContent = error.message;
+  }
+}
+
+loadCapabilities();
 
 function authHeaders() {
   const provider = globalThis.ndtWorkbenchAuthHeaders;
@@ -84,6 +122,10 @@ async function pollEvents() {
 
 form.addEventListener("submit", async (submitEvent) => {
   submitEvent.preventDefault();
+  if (!capabilitiesReady) {
+    liveStatus.textContent = "No authenticated execution route is enabled.";
+    return;
+  }
   if (!navigator.onLine) {
     liveStatus.textContent = "Task creation is unavailable offline. Reconnect and submit again.";
     connectionLabel.textContent = "Offline / no task queued";

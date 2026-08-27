@@ -2577,6 +2577,31 @@
       "version": "0.17.0"
     },
     {
+      "bom-ref": "pkg:pypi/uv-build@0.11.20",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://pypi.org/simple"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "111bee2cf5de314d43c60dd1af364c6268e73b32d8f6ac1e941242ff56086366"
+        }
+      ],
+      "name": "uv-build",
+      "properties": [
+        {
+          "name": "ndt:dependency-scope",
+          "value": "DEVELOPMENT_DIRECT"
+        }
+      ],
+      "purl": "pkg:pypi/uv-build@0.11.20",
+      "type": "library",
+      "version": "0.11.20"
+    },
+    {
       "bom-ref": "pkg:pypi/uvicorn@0.52.4",
       "externalReferences": [
         {
@@ -2712,7 +2737,7 @@
     "properties": [
       {
         "name": "ndt:uv-lock-sha256",
-        "value": "f198dd09fc36bf9658f8c8de8cb188e9a0caa9b9972bfc56471b087e6e4ca5ff"
+        "value": "7cdff2ed2771d928f218eef98fc6d75bdf3bf5460ba9c6f8c98283dbd77ebb4d"
       }
     ],
     "timestamp": "2026-08-21T12:00:00Z",
@@ -2726,7 +2751,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:6a9dcdae-7597-5b75-bb59-198308d92109",
+  "serialNumber": "urn:uuid:009ef993-19cc-5109-9b20-dcc947815248",
   "specVersion": "1.6",
   "version": 1
 }

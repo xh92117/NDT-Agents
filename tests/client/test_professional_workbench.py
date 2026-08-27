@@ -131,6 +131,10 @@ def test_authenticated_p1_runs_one_technical_qa_and_review_before_success() -> N
                 idempotency_key="workbench-general-reviewed-0001",
             ).model_dump(mode="json"),
         )
+        capabilities = client.get(
+            "/v1/workbench/capabilities",
+            headers=headers(token(private_key)),
+        )
 
     assert response.status_code == 202
     assert response.json()["state"] == "SUCCEEDED"
@@ -140,6 +144,7 @@ def test_authenticated_p1_runs_one_technical_qa_and_review_before_success() -> N
     assert replay.json()["task_id"] == response.json()["task_id"]
     assert replay.json()["state"] == "SUCCEEDED"
     assert general.json()["state"] == "SUCCEEDED"
+    assert capabilities.json()["task_classes"] == ["G0", "P1"]
     assert len(children["technical_qa"].contexts) == 1
     assert len(children["general"].contexts) == 1
     assert all(

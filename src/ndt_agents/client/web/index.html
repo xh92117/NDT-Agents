@@ -36,12 +36,8 @@
         </div>
         <form id="task-form">
           <label for="task-class">Task route</label>
-          <select id="task-class" name="task_class">
-            <option value="G0">General analysis</option>
-            <option value="P1">Professional synchronous</option>
-            <option value="P2">Professional asynchronous</option>
-            <option value="P3">Multi-professional review</option>
-            <option value="K1">Knowledge construction</option>
+          <select id="task-class" name="task_class" disabled>
+            <option value="">Loading enabled routes</option>
           </select>
           <label for="goal">Goal</label>
           <textarea id="goal" name="goal" maxlength="8000" required
@@ -49,7 +45,7 @@
           <label for="criteria">Success criteria <span>(one per line)</span></label>
           <textarea id="criteria" name="criteria" maxlength="4000" required
             placeholder="Evidence is traceable&#10;Uncertainty is explicit"></textarea>
-          <button type="submit">Create task <span aria-hidden="true">-&gt;</span></button>
+          <button type="submit" disabled>Create task <span aria-hidden="true">-&gt;</span></button>
         </form>
       </section>
       <section class="task-panel" aria-labelledby="task-title">

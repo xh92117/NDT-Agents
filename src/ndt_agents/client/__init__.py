@@ -14,6 +14,8 @@ from ndt_agents.client.models import (
     TaskEvent,
     TaskEventKind,
     TaskState,
+    WorkbenchCapabilities,
+    WorkbenchExecutionMode,
     WorkbenchTask,
 )
 from ndt_agents.client.service import InMemoryTaskRepository, WorkbenchError, WorkbenchRuntime
@@ -32,6 +34,8 @@ __all__ = [
     "TaskEventKind",
     "TaskState",
     "WorkbenchError",
+    "WorkbenchCapabilities",
+    "WorkbenchExecutionMode",
     "WorkbenchRuntime",
     "WorkbenchTask",
 ]

@@ -175,6 +175,7 @@ def _identity_and_token() -> tuple[IdentityRuntime, str]:
             Permission.WORKBENCH_TASK_CREATE,
             Permission.WORKBENCH_TASK_READ,
             Permission.WORKBENCH_EVENT_READ,
+            Permission.WORKBENCH_CAPABILITY_READ,
         }
     )
     identity = IdentityRuntime(
@@ -189,6 +190,7 @@ def _identity_and_token() -> tuple[IdentityRuntime, str]:
                 ("POST", "/v1/workbench/tasks"): Permission.WORKBENCH_TASK_CREATE,
                 ("GET", "/v1/workbench/task"): Permission.WORKBENCH_TASK_READ,
                 ("GET", "/v1/workbench/events"): Permission.WORKBENCH_EVENT_READ,
+                ("GET", "/v1/workbench/capabilities"): Permission.WORKBENCH_CAPABILITY_READ,
             },
         ),
     )

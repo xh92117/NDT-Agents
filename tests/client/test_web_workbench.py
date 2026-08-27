@@ -97,6 +97,7 @@ def identity(jwks: dict[str, Any], *, grant: bool = True) -> IdentityRuntime:
                 Permission.WORKBENCH_TASK_CREATE,
                 Permission.WORKBENCH_TASK_READ,
                 Permission.WORKBENCH_EVENT_READ,
+                Permission.WORKBENCH_CAPABILITY_READ,
             }
         )
         if grant
@@ -116,6 +117,7 @@ def identity(jwks: dict[str, Any], *, grant: bool = True) -> IdentityRuntime:
                 ("POST", "/v1/workbench/tasks"): Permission.WORKBENCH_TASK_CREATE,
                 ("GET", "/v1/workbench/task"): Permission.WORKBENCH_TASK_READ,
                 ("GET", "/v1/workbench/events"): Permission.WORKBENCH_EVENT_READ,
+                ("GET", "/v1/workbench/capabilities"): Permission.WORKBENCH_CAPABILITY_READ,
             },
         ),
     )
@@ -312,6 +314,7 @@ def test_authenticated_api_creates_reads_and_replays_sse_without_duplicates() ->
             params={"task_id": task_id, "after_sequence": 1},
             headers=headers(token(private_key)),
         )
+        capabilities = client.get("/v1/workbench/capabilities", headers=headers(token(private_key)))
 
     assert denied.status_code == 401
     assert created.status_code == 202
@@ -323,6 +326,9 @@ def test_authenticated_api_creates_reads_and_replays_sse_without_duplicates() ->
     assert replay.text.count("event: task-event") == 0
     assert '"last_sequence":1' in replay.text
     assert "authorization" not in stream.text.lower()
+    assert capabilities.status_code == 200
+    assert capabilities.json()["execution_mode"] == "CONTRACT_ONLY"
+    assert capabilities.json()["task_classes"] == []
 
 
 def test_route_permission_is_default_deny_and_error_is_non_disclosing() -> None:
@@ -366,6 +372,11 @@ def test_web_shell_has_security_accessibility_and_responsive_controls() -> None:
     assert "@media (max-width: 760px)" in styles.text
     assert "prefers-reduced-motion" in styles.text
     assert ":focus-visible" in styles.text
+    assert "/v1/workbench/capabilities" in script.text
+    assert "replaceChildren" in script.text
+    assert 'option value="P2"' not in shell.text
+    assert 'option value="P3"' not in shell.text
+    assert 'option value="K1"' not in shell.text
 
 
 def test_contract_document_and_assets_are_ascii_safe() -> None:

@@ -1142,6 +1142,17 @@
     },
     {
       "decision": "PENDING",
+      "declared_license": "MIT OR Apache-2.0",
+      "license_evidence_state": "SPDX_EXPRESSION",
+      "license_source_url": "https://pypi.org/pypi/uv-build/0.11.20/json",
+      "name": "uv-build",
+      "purl": "pkg:pypi/uv-build@0.11.20",
+      "replacement_path": "REQUIRED_BEFORE_PRODUCTION_APPROVAL",
+      "scope": "DEVELOPMENT_DIRECT",
+      "version": "0.11.20"
+    },
+    {
+      "decision": "PENDING",
       "declared_license": "BSD-3-Clause",
       "license_evidence_state": "SPDX_EXPRESSION",
       "license_source_url": "https://pypi.org/pypi/uvicorn/0.52.4/json",
@@ -1198,7 +1209,7 @@
   ],
   "inventory_version": "1.1.0",
   "license_evidence_path": "security/license-evidence.v1.json",
-  "license_evidence_sha256": "6d1cd0cf51008e60bdc12ef7ad8e902852485d15f433a7918477eb330af136a8",
+  "license_evidence_sha256": "6cf9770ae982edda3a532b65221bfd992fa18479a85e9db1fc2c595e93605972",
   "sbom_path": "sbom/cyclonedx.v1.json",
-  "sbom_sha256": "f96589be81f7602ce3979831c506f7a4d2d5fdb158797bf72aa6d1e65e8ce7d2"
+  "sbom_sha256": "e79b28b343b348cf679446d87397f677a58fec16caf0332bbbb836c42c8532b2"
 }

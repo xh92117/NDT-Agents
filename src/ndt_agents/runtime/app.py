@@ -20,7 +20,14 @@ from ndt_agents.client.execution import (
     ProfessionalWorkbenchExecutor,
     ReviewedWorkbenchExecutorRouter,
 )
-from ndt_agents.client.models import TaskCreateRequest, TaskEventBatch, WorkbenchTask
+from ndt_agents.client.models import (
+    ClientTaskClass,
+    TaskCreateRequest,
+    TaskEventBatch,
+    WorkbenchCapabilities,
+    WorkbenchExecutionMode,
+    WorkbenchTask,
+)
 from ndt_agents.client.service import WorkbenchError, WorkbenchRuntime
 from ndt_agents.contracts.v1 import TenantScope
 from ndt_agents.identity.middleware import IdentityRuntime, ScopeAuthorizationMiddleware
@@ -211,6 +218,7 @@ def create_app(
     app.state.reviewed_orchestration_runtime = reviewed_orchestration_runtime
     app.state.general_model_delegate = general_delegate
     app.state.professional_workbench_executor = None
+    app.state.workbench_capabilities = None
     app.state.audit_service = audit_service
     if identity is not None:
         app.add_middleware(ScopeAuthorizationMiddleware, identity=identity)
@@ -304,6 +312,8 @@ def create_app(
             return knowledge_entry.response(result)
 
     if workbench is not None:
+        enabled_task_classes: tuple[ClientTaskClass, ...] = ()
+        execution_mode = WorkbenchExecutionMode.CONTRACT_ONLY
         if reviewed_orchestration_runtime is not None:
             assert orchestration_runtime is not None
             professional_executor = ProfessionalWorkbenchExecutor(reviewed_orchestration_runtime)
@@ -321,6 +331,11 @@ def create_app(
                 )
             )
             app.state.professional_workbench_executor = professional_executor
+            enabled_task_classes = (
+                ClientTaskClass.GENERAL,
+                ClientTaskClass.PROFESSIONAL_SYNC,
+            )
+            execution_mode = WorkbenchExecutionMode.REVIEWED_PROFESSIONAL
         elif active_settings.general_model_delegate_enabled:
             assert orchestration_runtime is not None
             assert general_delegate is not None
@@ -330,6 +345,18 @@ def create_app(
                     failure_code=lambda: general_delegate.last_error_code,
                 )
             )
+            enabled_task_classes = (ClientTaskClass.GENERAL,)
+            execution_mode = WorkbenchExecutionMode.GENERAL_LOCAL
+        capabilities = WorkbenchCapabilities(
+            execution_mode=execution_mode,
+            task_classes=enabled_task_classes,
+            limitations=(
+                "SYNTHETIC input only.",
+                "Customer, confidential, restricted, and production data are forbidden.",
+                "Formal conclusions and publication are disabled.",
+            ),
+        )
+        app.state.workbench_capabilities = capabilities
         asset_root = Path(__file__).resolve().parents[1] / "client" / "web"
         app.mount(
             "/workbench/assets",
@@ -354,6 +381,14 @@ def create_app(
             response.headers["cache-control"] = "no-cache"
             response.headers["service-worker-allowed"] = "/workbench"
             return response
+
+        @app.get(
+            "/v1/workbench/capabilities",
+            response_model=WorkbenchCapabilities,
+            tags=["workbench"],
+        )
+        async def read_workbench_capabilities() -> WorkbenchCapabilities:
+            return capabilities
 
         @app.post(
             "/v1/workbench/tasks",

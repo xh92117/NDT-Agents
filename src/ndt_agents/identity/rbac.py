@@ -16,6 +16,7 @@ class Permission(StrEnum):
     WORKBENCH_TASK_CREATE = "workbench:task:create"
     WORKBENCH_TASK_READ = "workbench:task:read"
     WORKBENCH_EVENT_READ = "workbench:event:read"
+    WORKBENCH_CAPABILITY_READ = "workbench:capability:read"
 
 
 @dataclass(frozen=True, slots=True)
