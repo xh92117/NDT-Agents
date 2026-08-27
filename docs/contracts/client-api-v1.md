@@ -25,8 +25,16 @@ idempotency key with the same exact scope and request returns the original task.
 input returns `CLIENT_IDEMPOTENCY_CONFLICT` and makes no change.
 
 Every new task starts at sequence 1 and state `ACCEPTED` with the message that Main Agent routing is
-pending. This boundary does not dispatch a child or call an LLM, tool, provider, instrument, review,
-approval, publication, or formal conclusion service.
+pending. By default this boundary does not dispatch a child or call an LLM, tool, provider,
+instrument, review, approval, publication, or formal conclusion service.
+
+In the explicitly acknowledged, local-only S6-02-APP profile, an authenticated G0 task continues
+synchronously through `RUNNING` and one terminal event after Main routing, one configured General
+child, one bounded model-gateway attempt, and Main aggregation. Idempotent replay returns the same
+terminal task without another provider call. Non-G0 tasks, wrong-scope model bindings, missing
+configuration, and budget denial fail before the provider; provider or schema failure makes at most
+one call and emits a typed failed event. The displayed result always states that the input is
+SYNTHETIC, the model evidence remains review-required, and formal use is forbidden.
 
 ## Event replay
 

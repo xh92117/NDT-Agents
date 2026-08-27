@@ -572,6 +572,21 @@ def default_reference_adapter_profiles() -> tuple[ReferenceAdapterProfile, ...]:
     return tuple(_build_reference_profile(definitions[method]) for method in METHOD_CODES)
 
 
+def build_reference_fixture_dataset(
+    scope: TenantScope,
+    *,
+    method_code: str = "UT",
+) -> CanonicalInspectionDataset:
+    """Build one deterministic same-scope SIMULATED dataset without invoking a tool."""
+
+    profiles = {profile.method_code: profile for profile in default_reference_adapter_profiles()}
+    try:
+        profile = profiles[method_code]
+    except KeyError:
+        raise ValueError("reference fixture method is not registered") from None
+    return _build_reference_dataset(profile, scope)
+
+
 def _build_reference_profile(definition: MethodSkillDefinition) -> ReferenceAdapterProfile:
     method = definition.method_code
     signal = definition.input_signals[0]
