@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.80
+**Specification version:** 1.84
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1178,6 +1178,35 @@ physical network call. A live synthetic smoke requires a separate explicit opera
 acknowledgement because processing region, retention, training use, and commercial terms remain
 unverified. Without that acknowledgement, smoke preflight returns a typed blocked result and makes
 zero network calls.
+
+S6-02-LIVE adds a bounded local integration harness before native desktop binding. It runs the
+existing Main Graph, configured General LangGraph child, S5-07 ModelInferenceGateway, and Main
+aggregation gate with one fixed SYNTHETIC request. The harness uses the exact ignored local model,
+agent, and prompt configurations; performs no tool call, retry, fallback, review bypass, direct
+child delivery, formal conclusion, or publication; and returns only a strict AgentResult plus
+sanitized provider, model, usage, budget, audit, and hash evidence. Offline injected-provider tests
+must prove acknowledgement denial, exact one-call accounting, output validation, typed provider and
+budget failure, scope isolation, and zero secret output before a separately acknowledged physical
+call. This harness is personal-development evidence only and does not enable a production delegate,
+desktop invocation permission, confidential or restricted data, or commercial release.
+
+The first S6-02-LIVE physical attempt used a 512-token output cap and stopped with the typed
+`MODEL_INCOMPLETE` result after exactly one LLM and network call and zero tool calls. It did not
+retry or fall back. The bounded correction raises only the local smoke total-token active limit from
+the G0 default 4000 to 6000, below the unchanged hard limit of 8000, and raises the output cap to
+1024. A second physical attempt still requires a fresh explicit acknowledgement.
+
+The separately acknowledged second attempt also stopped as `MODEL_INCOMPLETE`, with 3344 input
+tokens, exactly 1024 output tokens, finish reason `length`, one LLM/network call, zero tool calls,
+and no retry, fallback, or secret output. The next bounded correction raises only the output cap to
+2048; the 5448-token maximum reservation remains below the unchanged 6000 active and 8000 hard
+limits. A third attempt requires another fresh acknowledgement.
+
+The separately acknowledged third attempt completed successfully with 3350 input tokens, 1853
+output tokens, finish reason `stop`, one LLM/network call, zero tool calls, no retry or fallback,
+strict AgentResult validation, and `GENERAL_SYNC` Main aggregation. The output remains untrusted,
+review-required model evidence, is not a formal-use candidate, and does not enable a production or
+desktop execution binding.
 
 ## 15. Multi-tenancy, security, and audit
 
