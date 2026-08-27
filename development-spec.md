@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.89
+**Specification version:** 1.90
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1250,6 +1250,14 @@ fallback, or aggregation. The next single-dimension correction raises both layer
 timeout boundary to 45 seconds. This remains below the configured 120-second provider-binding limit
 and 180-second hard child limit, changes no token or call budget, and requires offline verification
 plus a fresh exact acknowledgement before another physical call.
+
+The separately acknowledged 45-second revalidation returned within 27.55 seconds but reached the
+exact 2048 output cap and produced typed `MODEL_INCOMPLETE` with finish reason `length`. It reported
+3446 input and 2048 output tokens, made one physical LLM/network call, zero tool calls, and performed
+no retry, fallback, or aggregation. The next single-dimension correction raises only the output cap
+to 2400. Together with the unchanged 3600 input reservation, it equals the existing 6000 active
+total-token limit and remains below the unchanged 8000 hard limit. It requires offline verification
+and a fresh exact acknowledgement before another physical call.
 
 ## 15. Multi-tenancy, security, and audit
 

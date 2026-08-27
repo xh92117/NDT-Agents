@@ -278,7 +278,7 @@ class GeneralModelDelegate:
                     }
                 },
                 "maximum_input_tokens": 3_600,
-                "maximum_output_tokens": 2_048,
+                "maximum_output_tokens": 2_400,
                 "formal_use_requested": False,
             }
         )

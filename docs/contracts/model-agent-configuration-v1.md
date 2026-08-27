@@ -93,10 +93,11 @@ This switch is accepted only in the `local` environment and still requires the e
 DeepSeek binding, secret, prompt catalog, and agent catalog. It permits only authenticated G0 Web
 tasks over same-scope deterministic SIMULATED fixture data. It does not permit customer data,
 professional execution, formal use, publication, retry, fallback, tools, or production deployment.
-The active total-token limit is 6000 for the 3600-input plus 2048-output reservation; the hard G0
+The active total-token limit is 6000 for the 3600-input plus 2400-output reservation; the hard G0
 limit remains 8000. The input reservation was raised after the first live Web E2E returned 3432
 input tokens and was correctly rejected by the former 3400 limit. The 5648 maximum reservation
-remains below both active and hard limits.
+was later raised to the full 6000 active limit after a 45-second live Web response reached the exact
+2048 output cap with finish reason `length`. The hard limit remains unchanged.
 
 The local General profile uses a 45-second active timeout, below the 120-second provider-binding
 limit and 180-second hard child limit. Application startup derives the DeepSeek transport timeout

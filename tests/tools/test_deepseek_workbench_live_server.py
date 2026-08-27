@@ -74,7 +74,7 @@ def test_fixed_session_task_calls_injected_provider_once(tmp_path: Path) -> None
     assert provider.calls == 1
     assert provider.last_request is not None
     assert provider.last_request.maximum_input_tokens == 3_600
-    assert provider.last_request.maximum_output_tokens == 2_048
+    assert provider.last_request.maximum_output_tokens == 2_400
     assert evidence.json()["result"] == "SUCCESS"
     assert evidence.json()["physical_llm_calls"] == 1
     assert evidence.json()["physical_network_calls"] == 1
