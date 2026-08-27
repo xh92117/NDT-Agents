@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.90
+**Specification version:** 1.91
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1258,6 +1258,14 @@ no retry, fallback, or aggregation. The next single-dimension correction raises 
 to 2400. Together with the unchanged 3600 input reservation, it equals the existing 6000 active
 total-token limit and remains below the unchanged 8000 hard limit. It requires offline verification
 and a fresh exact acknowledgement before another physical call.
+
+The separately acknowledged output-correction revalidation completed the authenticated Web path.
+The fixed SYNTHETIC task produced contiguous `ACCEPTED`, `RUNNING`, and `SUCCEEDED` events and a
+strict non-production limitation result. The provider reported 3435 input and 1696 output tokens
+with finish reason `stop`, one physical LLM call, one physical network call, zero tools, and no
+retry, fallback, formal-use candidate, or secret output. The temporary loopback service was stopped
+after evidence capture. This evidence completes S6-02-WEB-LIVE but does not approve provider policy,
+customer data, professional execution, formal use, production, or release.
 
 ## 15. Multi-tenancy, security, and audit
 
