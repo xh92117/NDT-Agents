@@ -1,6 +1,6 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.84
+**Specification version:** 1.85
 **Date:** 2026-08-27
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
@@ -1207,6 +1207,10 @@ output tokens, finish reason `stop`, one LLM/network call, zero tool calls, no r
 strict AgentResult validation, and `GENERAL_SYNC` Main aggregation. The output remains untrusted,
 review-required model evidence, is not a formal-use candidate, and does not enable a production or
 desktop execution binding.
+
+Offline S6-02-LIVE verification injects explicit model and agent runtime objects. It must not read
+ignored local bindings, local environment files, or credentials, so the complete test suite remains
+reproducible on a clean Linux CI checkout while the physical command retains explicit local loading.
 
 ## 15. Multi-tenancy, security, and audit
 
