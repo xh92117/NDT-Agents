@@ -2,7 +2,7 @@
 
 **Task:** S5-07-LIVE first hosted-model transport
 
-**Contract version:** 1.0.0
+**Contract version:** 1.2.0
 
 **Required tests:** UNIT-MODELREG, PROVIDER-SMOKE, SEC-PLATFORM, SEC-TOOLS, BUDGET,
 OBS-AUDIT, QUICK, DOC
@@ -24,7 +24,7 @@ purpose `model.deepseek.credential`. Any mismatch stops before secret resolution
 
 The gateway includes the exact application instruction, canonical inspection manifest, bounded
 parameters, registered output schema identity/content/hash, and sorted required quality metrics in
-the hash-protected `ModelProviderRequest@1.0.0`. The adapter creates one non-streaming Chat
+the hash-protected `ModelProviderRequest@1.2.0`. The adapter creates one non-streaming Chat
 Completions request with:
 
 - the registered instruction as the system message;
@@ -32,6 +32,19 @@ Completions request with:
 - the selected model ID and maximum output-token cap;
 - JSON-object response mode, `stream: false`, and deterministic temperature zero;
 - no caller-selected URL, header, model control, retry, fallback, tool call, or redirect.
+
+The request binds an enum-typed canonical prompt mode. `FULL` is the default and sends the validated
+canonical dataset. `IDENTITY_ONLY` sends only schema version, dataset ID, exact scope, origin, method
+code, and manifest hash. The gateway always validates and audits the complete dataset before either
+mode reaches the adapter. Identity-only mode is used by the independent Review Agent because it
+reviews an exact hash-bound typed target and must not re-interpret raw inspection channels.
+
+The request also binds a provider-neutral reasoning mode. `PROVIDER_DEFAULT` omits a provider
+override and preserves existing behavior. `DISABLED` maps to DeepSeek's exact
+`thinking: {type: disabled}` request control. The bounded independent Review Agent selects
+`DISABLED` because DeepSeek V4 otherwise enables thinking by default and counts reasoning within the
+completion-token limit. Technical QA retains `PROVIDER_DEFAULT`. Callers cannot inject arbitrary
+provider options, and the reasoning mode participates in both inference and provider request hashes.
 
 The response contract is an envelope with `output`, `confidence`, and exactly the registered metric
 names. The gateway independently validates the inner output against the registered JSON Schema and

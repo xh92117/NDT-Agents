@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -372,11 +373,31 @@ def test_web_shell_has_security_accessibility_and_responsive_controls() -> None:
     assert "@media (max-width: 760px)" in styles.text
     assert "prefers-reduced-motion" in styles.text
     assert ":focus-visible" in styles.text
+    assert ".empty-state[hidden] { display: none; }" in styles.text
     assert "/v1/workbench/capabilities" in script.text
     assert "replaceChildren" in script.text
+    assert 'id="action-panel"' in shell.text
+    assert 'id="resume-events"' in shell.text
+    assert "event.error_code" in script.text
+    assert "event.next_action" in script.text
+    assert "CLIENT_EVENT_SEQUENCE_GAP" in script.text
     assert 'option value="P2"' not in shell.text
     assert 'option value="P3"' not in shell.text
     assert 'option value="K1"' not in shell.text
+
+
+def test_web_shell_browser_behavior_contract() -> None:
+    root = Path(__file__).resolve().parents[2]
+    result = subprocess.run(
+        ["node", "--test", "tests/client/web-workbench.test.js"],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=15,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
 
 
 def test_contract_document_and_assets_are_ascii_safe() -> None:

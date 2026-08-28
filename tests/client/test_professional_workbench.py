@@ -123,6 +123,11 @@ def test_authenticated_p1_runs_one_technical_qa_and_review_before_success() -> N
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
         general = client.post(
             "/v1/workbench/tasks",
             headers=headers(token(private_key)),
@@ -131,19 +136,31 @@ def test_authenticated_p1_runs_one_technical_qa_and_review_before_success() -> N
                 idempotency_key="workbench-general-reviewed-0001",
             ).model_dump(mode="json"),
         )
+        general_events = client.get(
+            "/v1/workbench/events",
+            params={"task_id": general.json()["task_id"], "after_sequence": 0},
+            headers=headers(token(private_key)),
+        )
+        general_terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": general.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
         capabilities = client.get(
             "/v1/workbench/capabilities",
             headers=headers(token(private_key)),
         )
 
     assert response.status_code == 202
-    assert response.json()["state"] == "SUCCEEDED"
-    assert response.json()["review_required"] is True
-    assert response.json()["review_completed"] is True
-    assert response.json()["formal_use_allowed"] is False
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "SUCCEEDED"
+    assert terminal.json()["review_required"] is True
+    assert terminal.json()["review_completed"] is True
+    assert terminal.json()["formal_use_allowed"] is False
     assert replay.json()["task_id"] == response.json()["task_id"]
-    assert replay.json()["state"] == "SUCCEEDED"
-    assert general.json()["state"] == "SUCCEEDED"
+    assert general.json()["state"] == "ACCEPTED"
+    assert general_terminal.json()["state"] == "SUCCEEDED"
+    assert '"state":"SUCCEEDED"' in general_events.text
     assert capabilities.json()["task_classes"] == ["G0", "P1"]
     assert len(children["technical_qa"].contexts) == 1
     assert len(children["general"].contexts) == 1
@@ -219,8 +236,14 @@ def test_non_pass_review_fails_without_main_result() -> None:
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
-    assert response.json()["state"] == "FAILED"
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "FAILED"
     assert len(children["technical_qa"].contexts) == 1
     assert len(reviewer.contexts) == 1
     assert "REVIEW_CONFLICT" in events.text
@@ -269,8 +292,20 @@ def test_non_p1_task_is_denied_before_child_or_review() -> None:
                 mode="json"
             ),
         )
+        events = client.get(
+            "/v1/workbench/events",
+            params={"task_id": response.json()["task_id"], "after_sequence": 0},
+            headers=headers(token(private_key)),
+        )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
-    assert response.json()["state"] == "FAILED"
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "FAILED"
+    assert "CLIENT_PROFESSIONAL_TASK_CLASS_DENIED" in events.text
     assert all(not child.contexts for child in children.values())
     assert reviewer.contexts == []
     assert app.state.professional_workbench_executor.calls == 0

@@ -42,12 +42,18 @@ button:disabled { cursor: wait; opacity: .65; }
 .status-grid div:last-child { border: 0; }
 .status-grid span, .status-grid strong { display: block; }
 .status-grid span { margin-bottom: .35rem; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+.action-panel { margin-top: 1.5rem; padding: 1rem 1.2rem; border: 2px solid var(--signal); background: color-mix(in srgb, var(--panel) 82%, #f4b49f); }
+.action-panel h3 { margin: 0 0 .75rem; font-size: 1.1rem; }
+.action-panel p { margin: .45rem 0; line-height: 1.5; }
+.action-panel #issue-code { font-family: ui-monospace, monospace; overflow-wrap: anywhere; }
+.action-panel button { margin-top: .6rem; }
 .timeline { list-style: none; padding: 0; margin: 2rem 0; }
 .timeline li { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
 .event-sequence { color: var(--signal-dark); font-family: ui-monospace, monospace; font-weight: 800; }
 .event-kind { margin: 0 0 .25rem; font-size: .73rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .event-message { margin: 0; line-height: 1.5; }
 .empty-state { display: grid; place-items: center; min-height: 14rem; border: 1px dashed var(--line); text-align: center; color: var(--muted); }
+.empty-state[hidden] { display: none; }
 .empty-state span { font-family: Georgia, serif; font-size: 3.2rem; color: var(--line); }
 .empty-state p { max-width: 35ch; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }

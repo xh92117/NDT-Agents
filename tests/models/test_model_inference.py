@@ -27,6 +27,7 @@ from ndt_agents.models.inference import (
     ModelProviderReply,
     ModelProviderRequest,
     ModelProviderStatus,
+    ModelReasoningMode,
     build_application_instruction,
     build_model_inference_request,
     model_inference_evidence_sha256,
@@ -520,6 +521,21 @@ def test_request_hash_is_stable_across_unordered_input_insertion() -> None:
         )
 
         assert forward.request_sha256 == reverse.request_sha256
+    finally:
+        runtime.close()
+
+
+def test_reasoning_mode_is_hash_bound_and_reaches_provider() -> None:
+    runtime = InferenceRuntime()
+    try:
+        provider_default = runtime.request()
+        disabled = runtime.request(reasoning_mode=ModelReasoningMode.DISABLED)
+
+        assert provider_default.request_sha256 != disabled.request_sha256
+        result = runtime.run(disabled)
+        assert result.status is ModelInferenceStatus.SUCCESS
+        assert runtime.provider.last_request is not None
+        assert runtime.provider.last_request.reasoning_mode is ModelReasoningMode.DISABLED
     finally:
         runtime.close()
 

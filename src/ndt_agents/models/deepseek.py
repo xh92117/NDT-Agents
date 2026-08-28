@@ -15,11 +15,13 @@ from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, HTTPSHandler, Request, build_opener
 
 from ndt_agents.models.inference import (
+    CanonicalPromptMode,
     ModelMetric,
     ModelProviderError,
     ModelProviderReply,
     ModelProviderRequest,
     ModelProviderStatus,
+    ModelReasoningMode,
 )
 from ndt_agents.models.registry import ApiProtocol
 from ndt_agents.security.models import SecurityError
@@ -283,7 +285,7 @@ def _request_payload(request: ModelProviderRequest) -> dict[str, object]:
         "required": ["output", "confidence", "metrics"],
     }
     user_content = {
-        "canonical_data": request.canonical_data.model_dump(mode="json"),
+        "canonical_data": _canonical_prompt_data(request),
         "parameters": request.parameters,
         "response_contract": {
             "output_schema_id": request.output_schema_id,
@@ -291,7 +293,7 @@ def _request_payload(request: ModelProviderRequest) -> dict[str, object]:
             "json_schema": response_contract,
         },
     }
-    return {
+    payload: dict[str, object] = {
         "max_tokens": request.maximum_output_tokens,
         "messages": [
             {"role": "system", "content": request.instruction_text},
@@ -309,6 +311,25 @@ def _request_payload(request: ModelProviderRequest) -> dict[str, object]:
         "response_format": {"type": "json_object"},
         "stream": False,
         "temperature": 0,
+    }
+    if request.reasoning_mode is ModelReasoningMode.DISABLED:
+        payload["thinking"] = {"type": "disabled"}
+    return payload
+
+
+def _canonical_prompt_data(request: ModelProviderRequest) -> dict[str, object]:
+    """Project validated canonical data to the minimum provider-visible form requested."""
+
+    if request.canonical_prompt_mode is CanonicalPromptMode.FULL:
+        return request.canonical_data.model_dump(mode="json")
+    canonical = request.canonical_data
+    return {
+        "schema_version": canonical.schema_version,
+        "dataset_id": str(canonical.dataset_id),
+        "scope": canonical.scope.model_dump(mode="json"),
+        "origin": canonical.origin.value,
+        "method_code": canonical.method_code,
+        "manifest_sha256": canonical.manifest_sha256,
     }
 
 

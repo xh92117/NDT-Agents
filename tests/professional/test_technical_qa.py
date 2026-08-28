@@ -370,6 +370,6 @@ def test_versioned_skill_and_prompt_assets_match_runtime_versions() -> None:
 
     assert "version: 1.0.0" in skill_text
     assert "TechnicalQAResult@1.0.0" in skill_text
-    assert "Technical QA system prompt v1.1.0" in prompt_text
+    assert "Technical QA system prompt v1.2.0" in prompt_text
     assert "human_confirmation_required=true" in prompt_text
-    assert skill().prompt_version == "technical-qa-prompt-1.1.0"
+    assert skill().prompt_version == "technical-qa-prompt-1.2.0"

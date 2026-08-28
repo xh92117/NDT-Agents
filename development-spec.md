@@ -1,7 +1,7 @@
 # Civil Infrastructure NDT Agent Platform Development Specification
 
-**Specification version:** 1.93
-**Date:** 2026-08-27
+**Specification version:** 2.11
+**Date:** 2026-08-28
 **Plan:** [plan.md](./plan.md)  
 **Test schedule:** [test.md](./test.md)  
 **Codex rules:** [AGENTS.md](./AGENTS.md)
@@ -1292,6 +1292,44 @@ must make zero network calls. This slice retains the in-memory single-process re
 no customer data, live professional or Review Agent delegate, tools, formal use, publication,
 desktop grant, production deployment, or commercial eligibility.
 
+S6-02-PRO-LIVE adds a separate default-off local professional-model composition. It reuses the
+existing P1 Technical QA scheduler, mandatory review workflow, and Main aggregation gate while
+installing exactly one no-tool Technical QA model delegate and one independent read-only Review
+Agent model delegate. Every other professional profile and every correction path remain denied.
+The two model requests use strict task, run, scope, prompt, model, output-schema, and hash bindings;
+disable fallback and retry; accept SYNTHETIC data only; reserve at most 6,000 tokens for Technical
+QA plus 4,000 for review; and cannot publish, issue a formal conclusion, or deliver directly to the
+user. The internal Technical QA output contract bounds its summary to 600 characters and each of
+at most three observations and three limitations to 300 characters, preserving the unchanged
+2,400-output-token reservation after a live response reached that limit. The versioned Technical
+QA prompt must follow the exact request `response_contract` instead of unconditionally naming a
+different candidate schema, and it targets a complete response within 1,200 completion tokens. A non-PASS, malformed,
+stale, over-budget, timed-out, or provider-failed review cannot reach
+Main aggregation. Startup and deterministic injected-provider tests make zero physical calls. One
+fixed live P1 smoke requires a separate explicit operator acknowledgement and evidence record.
+
+The Review Agent request uses a separate compact model-visible context instead of serializing the
+complete internal review context. It retains exact task, target-run, target-hash, context-manifest,
+scope, reviewer, checklist, read-only, delivery, and correction-count fields. Review prompt 1.2.0
+must follow the exact response contract, use only its permitted decision enum, and target complete
+JSON within 300 completion tokens. Review findings are limited to three concise blocking findings.
+The complete internal review context and audit record remain available to deterministic runtime
+validation; compact model context does not weaken scope, identity, hash, or aggregation gates.
+The versioned model-inference contract validates the complete same-scope canonical dataset before
+either call. Technical QA receives the complete canonical dataset. Review receives only its
+provider-visible identity projection: schema version, dataset ID, exact scope, synthetic origin,
+method code, and manifest hash. The full dataset remains hash-bound in the request, gateway
+validation, evidence, and audit but is not duplicated into the Review prompt because Review judges
+the typed professional target rather than reinterpreting inspection channels. The projection mode
+is explicit, enum-typed, hash-bound, defaults to full data, and does not alter the 4,000-token Review
+or 10,000-token P1 reservation. Sanitized live evidence reports Technical QA and Review token usage
+and finish reason separately as well as in aggregate.
+The DeepSeek V4 Chat Completions transport defaults to provider-controlled thinking, whose reasoning
+tokens share the completion-token limit. The Review request therefore binds an explicit
+provider-neutral `DISABLED` reasoning mode and the adapter emits the exact provider thinking-off
+control. Technical QA keeps the provider default. This is a request-contract change, not a budget
+increase: Review remains limited to 3,000 input, 1,000 output, and 4,000 total tokens.
+
 ## 15. Multi-tenancy, security, and audit
 
 - Every business row carries `tenant_id`; project data also carries `project_id`.
@@ -1324,6 +1362,12 @@ requirements; local contract tests cannot promote them to production gate eviden
 
 ### 15.1 S6 client boundary
 
+Current S6 sequencing prioritizes authenticated Web debugging and agent stability. S6-02 Tauri
+desktop work is paused under an explicit user priority decision. Completed desktop shell, runtime,
+and ABI artifacts remain preserved, and every native binding, permission, packaging, upgrade,
+rollback, and release requirement below remains unchanged. Desktop implementation may resume only
+after S6-02-WEB-STABILITY passes its defined tests and the user explicitly reprioritizes desktop work.
+
 S6-01 adds one provider-neutral Web workbench over application-owned client contracts. The server,
 not browser input, derives tenant, project, user, roles, and permission version from the authenticated
 request. Task creation accepts only a bounded goal, success criteria, task class, and an idempotency
@@ -1346,6 +1390,78 @@ motion, renders event text as text rather than trusted markup, stores no bearer 
 client/API caching. Local S6-01 uses an in-memory repository and deterministic event injection only;
 durable queues, multi-process fan-out, production identity, browser and assistive-technology matrices,
 and load qualification remain later S6 evidence.
+
+S6-02-WEB-STABILITY completes the current authenticated Web stabilization prerequisite before desktop
+may be reconsidered. Deterministic browser and application tests cover both G0 Main-to-General and P1
+Technical QA, independent Review Agent, and Main aggregation paths. The shell renders typed task and
+request failures with an actionable next step, validates contiguous event sequences and stream
+cursors, ignores an already acknowledged duplicate, and performs one event read per initial or
+explicit user-controlled resume action. It has no hidden polling, retry, fallback, or correction loop,
+and separate local guards prevent duplicate task creation and concurrent resume calls. Terminal
+replay is side-effect free, review state stops visibly on failure, and the timeline empty state is
+removed after the first event. Offline qualification uses injected providers and covers exact event
+order, idempotency, responsive layout, accessibility, scope isolation, and the covered failure paths.
+Completing this task satisfies only the technical Web prerequisite: S6-02 desktop remains paused until
+the user explicitly reprioritizes it. A physical model call still requires separate exact
+authorization, and this task enables no customer data, tool action, formal conclusion, publication,
+production eligibility, or release.
+
+S6-02-WEB-DURABILITY replaces the local Web runtime's mandatory dependency on a concrete in-memory
+task repository with one application-owned repository port and an explicitly configured, versioned
+SQLite adapter for local development. Task creation, its accepted event, and idempotency binding are
+one transaction. Event append validates exact tenant, project, user, permission version, sequence,
+state transition, and review completion before inserting the event and replacing the task snapshot in
+one transaction. Task and event reads use one consistent database snapshot. Reopening the same local
+database must preserve tasks, contiguous events, terminal replay, and same-input idempotency without
+rerunning an executor. Changed-input idempotency, cross-scope access, concurrent same-sequence append,
+unknown schema version, malformed persisted payload, locked storage, and filesystem failure return
+stable non-disclosing errors without an in-memory fallback or hidden retry. The adapter accepts only
+an explicit local state path, never stores credentials, and is not a production database, RLS,
+encryption, backup, multi-host, or release qualification. The default contract-only runtime may still
+use deterministic in-memory storage; the installed local Web composition uses durable storage only
+when the explicit local path is configured. Customer data remains forbidden.
+Local deterministic task and event durability qualification completed under
+S6-02-WEB-DURABILITY. Local execution ownership and bounded notification delivery are qualified
+under S6-02-WEB-ASYNC; distributed ownership and production delivery remain future gated
+capabilities.
+
+S6-02-WEB-ASYNC adds one local application-owned execution coordinator behind the same repository
+boundary. New tasks atomically create a pending execution record and the authenticated create route
+returns the accepted snapshot before executor completion. One runtime owner may claim an accepted
+task for a bounded lease and start it at most once. A terminal task event atomically completes the
+execution record. After process loss, an expired accepted claim may be reclaimed because no running
+event was committed; an expired claim whose task already reached running, review-required, or
+human-required state becomes a typed blocked terminal event and is never automatically re-executed.
+Startup recovery is bounded by a versioned batch and sweep policy and performs no provider retry.
+The local SQLite schema migrates version 1 to version 2 transactionally and fails closed on an
+incompatible or partial execution schema.
+
+The event route becomes a bounded notification-driven SSE connection. It emits committed exact-scope
+events as they arrive, sends snapshot-consistent stream-state controls, closes on a terminal task or
+the configured duration or batch limit, and performs no hidden database polling. The browser parses
+response-body chunks incrementally, preserves contiguous-sequence and cursor validation, and offers
+one explicit resume action after a non-terminal bounded close. These changes qualify only one local
+single-host coordinator with deterministic providers. They do not qualify distributed queues,
+multi-host worker election, provider idempotency after an unknown remote outcome, production proxy
+timeouts, customer data, formal use, desktop, publication, or release.
+Local deterministic qualification completed under S6-02-WEB-ASYNC with zero physical provider,
+network, or tool calls. The qualified topology is one process, one coordinator, and bounded manual
+client resume; it is not a durable distributed worker or production push service.
+
+S6-02-WEB-AGENT-ACCEPTANCE adds a versioned Web-first acceptance gate without changing runtime
+authority or enabling another execution path. One deterministic matrix covers G0 success, reviewed
+P1 success, non-PASS and malformed review, malformed General output, provider failure, budget
+preflight denial, exact call and event counts, terminal idempotency, SQLite restart replay, bounded
+event resume, authorization and scope denial, and actionable browser rendering. A loopback browser
+run must use the same production application composition with an injected deterministic provider,
+fixed SYNTHETIC inputs, ephemeral identity, and zero external provider, network, tool, correction,
+customer-data, formal-use, publication, release, or desktop action. Passing this gate qualifies the
+covered local Web agent behaviors only; it does not replace live-provider, production identity,
+distributed recovery, load, security, pilot, or release gates.
+S6-02-WEB-AGENT-ACCEPTANCE completed with the strict version 1.0.0 scenario catalog, deterministic
+G0 and reviewed P1 success and failure coverage, zero-call authorization, scope, and budget denials,
+terminal and restart replay, the production-composed loopback browser UI, and zero physical provider,
+network, or tool calls. Desktop development remains paused.
 
 S6-02 packages a pinned Rust and Tauri desktop shell around one application-owned local origin. One
 exact local window receives only the generated readiness-status permission. The native invocation

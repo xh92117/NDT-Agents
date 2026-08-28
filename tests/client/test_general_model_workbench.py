@@ -154,12 +154,17 @@ def test_authenticated_g0_task_runs_main_general_and_terminal_events(tmp_path: P
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
     assert response.status_code == 202
+    assert response.json()["state"] == "ACCEPTED"
     assert replay.json()["task_id"] == response.json()["task_id"]
-    assert replay.json()["state"] == "SUCCEEDED"
-    assert response.json()["state"] == "SUCCEEDED", (
-        response.json(),
+    assert terminal.json()["state"] == "SUCCEEDED", (
+        terminal.json(),
         events.text,
         app.state.general_model_delegate.last_error_code,
     )
@@ -208,8 +213,14 @@ def test_non_general_task_is_denied_before_provider_call(tmp_path: Path) -> None
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
-    assert response.json()["state"] == "FAILED"
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "FAILED"
     assert provider.calls == 0
     assert "CLIENT_GENERAL_MODEL_TASK_CLASS_DENIED" in events.text
 
@@ -236,8 +247,14 @@ def test_model_binding_scope_mismatch_is_denied_before_provider_call(tmp_path: P
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
-    assert response.json()["state"] == "FAILED"
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "FAILED"
     assert provider.calls == 0
     assert "MODEL_SCOPE_MISMATCH" in events.text
 
@@ -264,8 +281,14 @@ def test_malformed_model_output_fails_typed_after_one_call(tmp_path: Path) -> No
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
-    assert response.json()["state"] == "FAILED"
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "FAILED"
     assert provider.calls == 1
     assert "MODEL_OUTPUT_SCHEMA_INVALID" in events.text
 
@@ -292,8 +315,14 @@ def test_provider_failure_is_typed_without_retry(tmp_path: Path) -> None:
             params={"task_id": response.json()["task_id"], "after_sequence": 0},
             headers=headers(token(private_key)),
         )
+        terminal = client.get(
+            "/v1/workbench/task",
+            params={"task_id": response.json()["task_id"]},
+            headers=headers(token(private_key)),
+        )
 
-    assert response.json()["state"] == "FAILED"
+    assert response.json()["state"] == "ACCEPTED"
+    assert terminal.json()["state"] == "FAILED"
     assert provider.calls == 1
     assert "MODEL_PROVIDER_UNAVAILABLE" in events.text
 

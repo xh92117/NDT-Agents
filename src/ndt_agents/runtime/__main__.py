@@ -43,6 +43,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 {
                     "result": "READY",
                     "local_workbench_enabled": settings.local_workbench_enabled,
+                    "professional_model_delegate_enabled": (
+                        settings.professional_model_delegate_enabled
+                    ),
                     "routes": routes,
                 }
             )

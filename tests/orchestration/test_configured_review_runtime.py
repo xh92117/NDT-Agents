@@ -68,7 +68,7 @@ PROMPT_CONFIG = ROOT / "prompts/professional/catalog.v1.yaml"
 REVIEW_NAMESPACE = UUID("00000000-0000-4000-8000-000000001116")
 REVIEWER_DEFINITION = ReviewerDefinition(
     reviewer_version="configured-reviewer-1",
-    prompt_version="1.1.0",
+    prompt_version="1.2.0",
     model_version="configured-review-model-1",
 )
 

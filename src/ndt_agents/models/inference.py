@@ -51,7 +51,7 @@ from ndt_agents.orchestration.budget import (
 )
 from ndt_agents.security.models import SecretSelector, SecurityEnvironment
 
-MODEL_INFERENCE_CONTRACT_VERSION: Literal["1.0.0"] = "1.0.0"
+MODEL_INFERENCE_CONTRACT_VERSION: Literal["1.2.0"] = "1.2.0"
 
 
 class ModelProviderStatus(StrEnum):
@@ -71,8 +71,22 @@ class ModelInferenceStatus(StrEnum):
     CANCELLED = "CANCELLED"
 
 
+class CanonicalPromptMode(StrEnum):
+    """Control how validated canonical data enters the provider-visible prompt."""
+
+    FULL = "FULL"
+    IDENTITY_ONLY = "IDENTITY_ONLY"
+
+
+class ModelReasoningMode(StrEnum):
+    """Control provider reasoning without exposing provider-specific request fields."""
+
+    PROVIDER_DEFAULT = "PROVIDER_DEFAULT"
+    DISABLED = "DISABLED"
+
+
 class _ModelInferenceRequestContent(StrictModel):
-    schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
+    schema_version: Literal["1.2.0"] = MODEL_INFERENCE_CONTRACT_VERSION
     task_id: UUID
     run_id: UUID
     call_id: UUID
@@ -94,6 +108,8 @@ class _ModelInferenceRequestContent(StrictModel):
     allow_network: bool
     allow_fallback: bool = False
     canonical_data: CanonicalInspectionDataset
+    canonical_prompt_mode: CanonicalPromptMode = CanonicalPromptMode.FULL
+    reasoning_mode: ModelReasoningMode = ModelReasoningMode.PROVIDER_DEFAULT
     canonical_manifest_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     instruction_id: str = Field(pattern=r"^[a-z][a-z0-9_.-]{0,127}$")
     instruction_version: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
@@ -131,7 +147,7 @@ class ModelMetric(StrictModel):
 
 
 class ModelProviderRequest(StrictModel):
-    schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
+    schema_version: Literal["1.2.0"] = MODEL_INFERENCE_CONTRACT_VERSION
     call_id: UUID
     request_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     profile_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
@@ -144,6 +160,8 @@ class ModelProviderRequest(StrictModel):
     model_snapshot: str
     secret_selector: SecretSelector
     canonical_data: CanonicalInspectionDataset
+    canonical_prompt_mode: CanonicalPromptMode = CanonicalPromptMode.FULL
+    reasoning_mode: ModelReasoningMode = ModelReasoningMode.PROVIDER_DEFAULT
     instruction_id: str
     instruction_version: str
     instruction_text: str = Field(min_length=1, max_length=100_000)
@@ -168,7 +186,7 @@ class ModelProviderRequest(StrictModel):
 
 
 class ModelProviderReply(StrictModel):
-    schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
+    schema_version: Literal["1.2.0"] = MODEL_INFERENCE_CONTRACT_VERSION
     call_id: UUID
     provider_request_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     provider_id: str
@@ -208,7 +226,7 @@ class ModelProviderReply(StrictModel):
 
 
 class ModelInferenceEvidence(StrictModel):
-    schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
+    schema_version: Literal["1.2.0"] = MODEL_INFERENCE_CONTRACT_VERSION
     scope: TenantScope
     task_id: UUID
     run_id: UUID
@@ -267,7 +285,7 @@ class ModelInferenceEvidence(StrictModel):
 
 
 class ModelInferenceResult(StrictModel):
-    schema_version: Literal["1.0.0"] = MODEL_INFERENCE_CONTRACT_VERSION
+    schema_version: Literal["1.2.0"] = MODEL_INFERENCE_CONTRACT_VERSION
     status: ModelInferenceStatus
     output: dict[str, Any]
     artifacts: tuple[ArtifactRef, ...]
@@ -962,6 +980,8 @@ def _provider_request(
         "model_snapshot": route.model_snapshot,
         "secret_selector": route.secret_selector,
         "canonical_data": request.canonical_data,
+        "canonical_prompt_mode": request.canonical_prompt_mode,
+        "reasoning_mode": request.reasoning_mode,
         "instruction_id": instruction.instruction_id,
         "instruction_version": instruction.instruction_version,
         "instruction_text": instruction.text,

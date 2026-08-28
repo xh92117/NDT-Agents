@@ -59,6 +59,14 @@
           <div><span>Review</span><strong id="review-state">Not evaluated</strong></div>
           <div><span>Formal use</span><strong>Not allowed</strong></div>
         </div>
+        <section id="action-panel" class="action-panel" aria-labelledby="action-title" hidden>
+          <p class="step">Action required</p>
+          <h3 id="action-title">The current task needs attention</h3>
+          <p><strong id="issue-code">WORKBENCH_ACTION_REQUIRED</strong></p>
+          <p id="issue-message">Inspect the latest task event.</p>
+          <p><strong>Next action:</strong> <span id="next-action">Review the task evidence.</span></p>
+          <button id="resume-events" type="button" hidden>Resume event stream</button>
+        </section>
         <ol id="event-list" class="timeline" aria-label="Task events"></ol>
         <div id="empty-state" class="empty-state">
           <span aria-hidden="true">NDT</span>
