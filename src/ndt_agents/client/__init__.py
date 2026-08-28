@@ -18,7 +18,18 @@ from ndt_agents.client.models import (
     WorkbenchExecutionMode,
     WorkbenchTask,
 )
-from ndt_agents.client.service import InMemoryTaskRepository, WorkbenchError, WorkbenchRuntime
+from ndt_agents.client.service import (
+    InMemoryTaskRepository,
+    TaskRepository,
+    WorkbenchAsyncPolicy,
+    WorkbenchError,
+    WorkbenchRuntime,
+)
+from ndt_agents.client.sqlite_repository import (
+    SQLITE_WORKBENCH_SCHEMA_VERSION,
+    SqliteTaskRepository,
+    WorkbenchPersistenceError,
+)
 
 __all__ = [
     "ClientTaskClass",
@@ -29,11 +40,16 @@ __all__ = [
     "DesktopSessionGrant",
     "InMemoryTaskRepository",
     "InMemoryDesktopSessionAuthority",
+    "SQLITE_WORKBENCH_SCHEMA_VERSION",
+    "SqliteTaskRepository",
+    "TaskRepository",
     "TaskCreateRequest",
     "TaskEvent",
     "TaskEventKind",
     "TaskState",
     "WorkbenchError",
+    "WorkbenchAsyncPolicy",
+    "WorkbenchPersistenceError",
     "WorkbenchCapabilities",
     "WorkbenchExecutionMode",
     "WorkbenchRuntime",

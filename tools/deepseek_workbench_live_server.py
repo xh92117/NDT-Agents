@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hmac
+import html
 import json
 import sys
 from collections.abc import Mapping
@@ -17,7 +18,7 @@ import jwt
 import uvicorn
 from cryptography.hazmat.primitives.asymmetric import rsa
 from fastapi import Request
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -138,7 +139,7 @@ class LiveWorkbenchGuardMiddleware:
         return (
             isinstance(payload, dict)
             and payload.get("schema_version") == "1.0.0"
-            and payload.get("task_class") == "G0"
+            and payload.get("task_class") == "P1"
             and payload.get("goal") == FIXED_GOAL
             and payload.get("success_criteria") == list(FIXED_SUCCESS_CRITERIA)
         )
@@ -209,6 +210,7 @@ def live_settings(acknowledgement: str) -> AppSettings:
         prompt_config_path=str(ROOT / "prompts/professional/catalog.v1.yaml"),
         agent_config_path=str(ROOT / "config/runtime/agent-runtime.local.yaml"),
         general_model_delegate_enabled=True,
+        professional_model_delegate_enabled=True,
         deepseek_policy_acknowledgement=acknowledgement,
     )
 
@@ -249,34 +251,85 @@ def create_live_app(
     async def local_live_evidence(request: Request) -> JSONResponse:
         if not hmac.compare_digest(request.cookies.get(COOKIE_NAME, ""), token):
             return JSONResponse(status_code=404, content={"result": "NOT_FOUND"})
-        delegate = app.state.general_model_delegate
-        inference = delegate.last_inference if delegate is not None else None
-        evidence = inference.evidence if inference is not None else None
-        return JSONResponse(
-            content={
-                "result": "SUCCESS"
-                if inference is not None and inference.status == "SUCCESS"
-                else "PENDING_OR_FAILED",
-                "failure_code": delegate.last_error_code if delegate is not None else None,
-                "delegate_calls": delegate.calls if delegate is not None else 0,
-                "provider_id": evidence.provider_id if evidence is not None else None,
-                "model_id": evidence.model_id if evidence is not None else None,
-                "model_snapshot": evidence.model_snapshot if evidence is not None else None,
-                "input_tokens": evidence.input_tokens if evidence is not None else 0,
-                "output_tokens": evidence.output_tokens if evidence is not None else 0,
-                "finish_reason": evidence.finish_reason if evidence is not None else None,
-                "physical_llm_calls": evidence.physical_llm_calls if evidence is not None else 0,
-                "physical_tool_calls": evidence.physical_tool_calls if evidence is not None else 0,
-                "physical_network_calls": evidence.physical_network_calls
-                if evidence is not None
-                else 0,
-                "review_required": inference.review_required if inference is not None else None,
-                "formal_use_candidate": inference.formal_use_candidate
-                if inference is not None
-                else None,
-                "secret_output": False,
-            }
+        return JSONResponse(content=_live_evidence_payload())
+
+    @app.get("/local-live/evidence/view", include_in_schema=False)
+    async def local_live_evidence_view(request: Request) -> HTMLResponse:
+        if not hmac.compare_digest(request.cookies.get(COOKIE_NAME, ""), token):
+            return HTMLResponse(status_code=404, content="Not found")
+        payload = html.escape(json.dumps(_live_evidence_payload(), indent=2, sort_keys=True))
+        return HTMLResponse(
+            content=f"<!doctype html><title>Sanitized live evidence</title><pre>{payload}</pre>",
+            headers={"Cache-Control": "no-store"},
         )
+
+    def _live_evidence_payload() -> dict[str, object]:
+        professional = app.state.professional_model_delegate
+        reviewer = app.state.review_model_delegate
+        professional_inference = professional.last_inference if professional is not None else None
+        review_inference = reviewer.last_inference if reviewer is not None else None
+        inferences = tuple(
+            inference
+            for inference in (professional_inference, review_inference)
+            if inference is not None
+        )
+        evidences = tuple(
+            inference.evidence for inference in inferences if inference.evidence is not None
+        )
+        successful = (
+            len(inferences) == 2
+            and all(inference.status == "SUCCESS" for inference in inferences)
+            and app.state.professional_workbench_executor.last_review_manifest_sha256 is not None
+        )
+        first_evidence = evidences[0] if evidences else None
+        professional_evidence = (
+            professional_inference.evidence if professional_inference is not None else None
+        )
+        review_evidence = review_inference.evidence if review_inference is not None else None
+        return {
+            "result": "SUCCESS" if successful else "PENDING_OR_FAILED",
+            "professional_failure_code": (
+                professional.last_error_code if professional is not None else None
+            ),
+            "review_failure_code": reviewer.last_error_code if reviewer is not None else None,
+            "professional_delegate_calls": professional.calls if professional is not None else 0,
+            "review_delegate_calls": reviewer.calls if reviewer is not None else 0,
+            "provider_id": first_evidence.provider_id if first_evidence is not None else None,
+            "model_id": first_evidence.model_id if first_evidence is not None else None,
+            "model_snapshot": (
+                first_evidence.model_snapshot if first_evidence is not None else None
+            ),
+            "input_tokens": sum(evidence.input_tokens for evidence in evidences),
+            "output_tokens": sum(evidence.output_tokens for evidence in evidences),
+            "professional_input_tokens": (
+                professional_evidence.input_tokens if professional_evidence is not None else 0
+            ),
+            "professional_output_tokens": (
+                professional_evidence.output_tokens if professional_evidence is not None else 0
+            ),
+            "professional_finish_reason": (
+                professional_evidence.finish_reason if professional_evidence is not None else None
+            ),
+            "review_input_tokens": (
+                review_evidence.input_tokens if review_evidence is not None else 0
+            ),
+            "review_output_tokens": (
+                review_evidence.output_tokens if review_evidence is not None else 0
+            ),
+            "review_finish_reason": (
+                review_evidence.finish_reason if review_evidence is not None else None
+            ),
+            "finish_reasons": [evidence.finish_reason for evidence in evidences],
+            "physical_llm_calls": sum(evidence.physical_llm_calls for evidence in evidences),
+            "physical_tool_calls": sum(evidence.physical_tool_calls for evidence in evidences),
+            "physical_network_calls": sum(
+                evidence.physical_network_calls for evidence in evidences
+            ),
+            "review_required": True,
+            "review_completed": successful,
+            "formal_use_candidate": False,
+            "secret_output": False,
+        }
 
     app.add_middleware(LiveWorkbenchGuardMiddleware, token=token)
     return app

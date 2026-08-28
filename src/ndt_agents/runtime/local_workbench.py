@@ -15,7 +15,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from starlette.types import ASGIApp, Receive, Scope, Send
 
-from ndt_agents.client import WorkbenchRuntime
+from ndt_agents.client import InMemoryTaskRepository, SqliteTaskRepository, WorkbenchRuntime
 from ndt_agents.identity.middleware import IdentityRuntime
 from ndt_agents.identity.models import OidcSettings
 from ndt_agents.identity.oidc import OidcJwtVerifier
@@ -135,11 +135,16 @@ def create_local_workbench_app(
     if not settings.local_workbench_enabled:
         raise ValueError("the local workbench setting is disabled")
     identity, token = _identity_and_token()
+    repository = (
+        SqliteTaskRepository(settings.local_workbench_state_path)
+        if settings.local_workbench_state_path is not None
+        else InMemoryTaskRepository()
+    )
     app = create_app(
         settings,
         configure_logs=configure_logs,
         identity=identity,
-        workbench=WorkbenchRuntime(),
+        workbench=WorkbenchRuntime(repository),
         model_environment=model_environment,
         model_provider=model_provider,
     )

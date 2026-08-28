@@ -78,10 +78,14 @@ runtime and resource bounds; declared provider failures; and report eligibility.
 requires explicit validation evidence and still requires independent review and qualified human
 confirmation.
 
-`ModelInferenceRequest@1.0.0` binds exact scope/task/run/call/request, API and profile registry
+`ModelInferenceRequest@1.2.0` binds exact scope/task/run/call/request, API and profile registry
 hashes, profile, canonical manifest, application-owned instruction identity/version/hash, bounded
 canonical parameters, data class, capabilities, network authorization, token reservations, and
-formal-use intent. Preflight denial makes zero provider calls. An accepted request reserves one LLM
+formal-use intent. It also hash-binds an enum-typed provider prompt projection that defaults to the
+full validated canonical dataset and can expose identity only for a review of an exact typed target.
+It also binds a provider-neutral reasoning mode that defaults to provider behavior and supports an
+explicit disabled state without accepting arbitrary provider parameters.
+Preflight denial makes zero provider calls. An accepted request reserves one LLM
 call and total tokens, invokes one injected provider at most once, completes actual token telemetry,
 and never increments the physical-tool counter or performs an implicit fallback call.
 

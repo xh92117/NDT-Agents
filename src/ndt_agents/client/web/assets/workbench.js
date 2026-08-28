@@ -8,10 +8,17 @@ const reviewState = document.querySelector("#review-state");
 const taskMeta = document.querySelector("#task-meta");
 const liveStatus = document.querySelector("#live-status");
 const connectionLabel = document.querySelector("#connection-label");
+const actionPanel = document.querySelector("#action-panel");
+const issueCode = document.querySelector("#issue-code");
+const issueMessage = document.querySelector("#issue-message");
+const nextAction = document.querySelector("#next-action");
+const resumeButton = document.querySelector("#resume-events");
 let activeTask = null;
 let lastSequence = 0;
 let stopped = false;
 let capabilitiesReady = false;
+let creating = false;
+let polling = false;
 
 const routeLabels = {
   G0: "General analysis",
@@ -20,6 +27,7 @@ const routeLabels = {
 
 function updateConnection() {
   if (!navigator.onLine) connectionLabel.textContent = "Offline / read-only shell";
+  else if (activeTask && !stopped && !polling) connectionLabel.textContent = "Ready to resume";
   else if (!activeTask) connectionLabel.textContent = "Session required";
 }
 
@@ -40,7 +48,12 @@ async function loadCapabilities() {
     const response = await fetch("/v1/workbench/capabilities", {
       headers: authHeaders(), credentials: "same-origin", cache: "no-store"
     });
-    if (!response.ok) throw new Error("An authenticated workbench session is required.");
+    await requireOk(
+      response,
+      "An authenticated workbench session is required.",
+      "WORKBENCH_CAPABILITIES_UNAVAILABLE",
+      "Restore the authenticated same-origin session and reload capabilities."
+    );
     const capabilities = await response.json();
     const options = capabilities.task_classes.map((taskClass) => {
       const option = document.createElement("option");
@@ -59,18 +72,81 @@ async function loadCapabilities() {
     select.disabled = true;
     button.disabled = true;
     connectionLabel.textContent = "Session required";
-    liveStatus.textContent = error.message;
+    showAction(
+      error,
+      "WORKBENCH_CAPABILITIES_UNAVAILABLE",
+      "Restore the authenticated same-origin session and reload capabilities."
+    );
   }
 }
-
-loadCapabilities();
 
 function authHeaders() {
   const provider = globalThis.ndtWorkbenchAuthHeaders;
   return typeof provider === "function" ? provider() : {};
 }
 
+function requestError(payload, fallbackMessage, fallbackCode, fallbackNextAction) {
+  const error = new Error(
+    typeof payload?.message === "string" && payload.message ? payload.message : fallbackMessage
+  );
+  error.code = typeof payload?.error_code === "string" && payload.error_code
+    ? payload.error_code : fallbackCode;
+  error.nextAction = typeof payload?.next_action === "string" && payload.next_action
+    ? payload.next_action : fallbackNextAction;
+  return error;
+}
+
+async function requireOk(response, fallbackMessage, fallbackCode, fallbackNextAction) {
+  if (response.ok) return;
+  let payload = {};
+  try {
+    payload = await response.json();
+  } catch (_error) {
+    payload = {};
+  }
+  throw requestError(payload, fallbackMessage, fallbackCode, fallbackNextAction);
+}
+
+function clearAction() {
+  actionPanel.hidden = true;
+  issueCode.textContent = "WORKBENCH_ACTION_REQUIRED";
+  issueMessage.textContent = "Inspect the latest task event.";
+  nextAction.textContent = "Review the task evidence.";
+  resumeButton.hidden = true;
+  resumeButton.disabled = false;
+}
+
+function showAction(error, fallbackCode, fallbackNextAction) {
+  const message = typeof error?.message === "string" && error.message
+    ? error.message : "The workbench action stopped.";
+  issueCode.textContent = typeof error?.code === "string" ? error.code : fallbackCode;
+  issueMessage.textContent = message;
+  nextAction.textContent = typeof error?.nextAction === "string"
+    ? error.nextAction : fallbackNextAction;
+  actionPanel.hidden = false;
+  liveStatus.textContent = `${issueCode.textContent}: ${message} Next action: ${nextAction.textContent}`;
+}
+
+loadCapabilities();
+
 function renderEvent(event) {
+  if (!Number.isInteger(event.sequence) || event.sequence < 1) {
+    throw requestError(
+      {},
+      "The event stream returned an invalid sequence.",
+      "CLIENT_EVENT_SEQUENCE_INVALID",
+      "Resume from the last acknowledged event after the service is corrected."
+    );
+  }
+  if (event.sequence <= lastSequence) return;
+  if (event.sequence !== lastSequence + 1) {
+    throw requestError(
+      {},
+      "The event stream contains a sequence gap.",
+      "CLIENT_EVENT_SEQUENCE_GAP",
+      `Resume from acknowledged sequence ${lastSequence}.`
+    );
+  }
   const item = document.createElement("li");
   const sequence = document.createElement("span");
   const detail = document.createElement("div");
@@ -89,39 +165,130 @@ function renderEvent(event) {
   lastSequence = event.sequence;
   taskState.textContent = event.state.replaceAll("_", " ");
   if (event.kind === "REVIEW" && event.state === "REVIEW_REQUIRED") reviewState.textContent = "In progress";
-  if (event.kind === "REVIEW" && event.state === "RUNNING") reviewState.textContent = "Completed";
+  if (event.kind === "REVIEW" && event.state === "RUNNING") reviewState.textContent = "Passed";
+  if (event.kind === "ISSUE" && event.state === "FAILED" && reviewState.textContent === "In progress") {
+    reviewState.textContent = "Stopped";
+  }
+  if (event.error_code || event.next_action) {
+    showAction(
+      {
+        code: event.error_code,
+        message: event.message,
+        nextAction: event.next_action,
+      },
+      "CLIENT_TASK_ACTION_REQUIRED",
+      "Inspect the sanitized task evidence."
+    );
+  }
   liveStatus.textContent = `Task event ${event.sequence}: ${event.message}`;
 }
 
-async function readEventStream(response) {
-  const text = await response.text();
-  for (const block of text.split("\n\n")) {
-    const eventName = block.split("\n").find((line) => line.startsWith("event: "))?.slice(7);
-    const data = block.split("\n").find((line) => line.startsWith("data: "))?.slice(6);
-    if (!data) continue;
-    const payload = JSON.parse(data);
-    if (eventName === "task-event") renderEvent(payload);
-    if (eventName === "stream-state" && payload.terminal) stopped = true;
+function processEventBlock(block) {
+  const lines = block.replaceAll("\r\n", "\n").split("\n");
+  const eventName = lines.find((line) => line.startsWith("event: "))?.slice(7);
+  const data = lines.filter((line) => line.startsWith("data: "))
+    .map((line) => line.slice(6)).join("\n");
+  if (!data) return;
+  const payload = JSON.parse(data);
+  if (eventName === "task-event") renderEvent(payload);
+  if (eventName === "stream-state") {
+    if (payload.last_sequence !== lastSequence) {
+      throw requestError(
+        {},
+        "The event stream cursor does not match the rendered timeline.",
+        "CLIENT_EVENT_CURSOR_MISMATCH",
+        `Resume from acknowledged sequence ${lastSequence}.`
+      );
+    }
+    stopped = payload.terminal === true;
   }
 }
 
+async function readEventStream(response) {
+  if (!response.body || typeof response.body.getReader !== "function") {
+    const text = (await response.text()).replaceAll("\r\n", "\n");
+    for (const block of text.split("\n\n")) processEventBlock(block);
+    return;
+  }
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  while (true) {
+    const {value, done} = await reader.read();
+    buffer += decoder.decode(value, {stream: !done});
+    let boundary = buffer.indexOf("\n\n");
+    while (boundary >= 0) {
+      processEventBlock(buffer.slice(0, boundary));
+      buffer = buffer.slice(boundary + 2);
+      boundary = buffer.indexOf("\n\n");
+    }
+    if (done) break;
+  }
+  if (buffer.trim()) processEventBlock(buffer);
+}
+
 async function pollEvents() {
-  while (activeTask && !stopped) {
+  if (!activeTask || stopped || polling) return;
+  polling = true;
+  clearAction();
+  resumeButton.disabled = true;
+  resumeButton.hidden = true;
+  try {
     connectionLabel.textContent = "Connecting";
     const query = new URLSearchParams({task_id: activeTask, after_sequence: String(lastSequence)});
     const response = await fetch(`/v1/workbench/events?${query}`, {
       headers: authHeaders(), credentials: "same-origin", cache: "no-store"
     });
-    if (!response.ok) throw new Error("The event stream is unavailable.");
+    await requireOk(
+      response,
+      "The event stream is unavailable.",
+      "CLIENT_EVENT_STREAM_UNAVAILABLE",
+      `Resume from acknowledged sequence ${lastSequence}.`
+    );
     connectionLabel.textContent = "Connected";
     await readEventStream(response);
-    if (!stopped) await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (stopped) {
+      connectionLabel.textContent = "Task complete";
+    } else {
+      connectionLabel.textContent = "Task still running";
+      showAction(
+        requestError(
+          {},
+          "The task has no terminal event yet.",
+          "CLIENT_EVENT_STREAM_CONTINUE_REQUIRED",
+          `Resume from acknowledged sequence ${lastSequence}.`
+        ),
+        "CLIENT_EVENT_STREAM_CONTINUE_REQUIRED",
+        `Resume from acknowledged sequence ${lastSequence}.`
+      );
+      resumeButton.hidden = false;
+    }
+  } catch (error) {
+    connectionLabel.textContent = "Action required";
+    showAction(
+      error,
+      "CLIENT_EVENT_STREAM_UNAVAILABLE",
+      `Resume from acknowledged sequence ${lastSequence}.`
+    );
+    resumeButton.hidden = !activeTask || stopped;
+  } finally {
+    polling = false;
+    resumeButton.disabled = false;
   }
-  if (stopped) connectionLabel.textContent = "Task complete";
 }
+
+resumeButton.addEventListener("click", () => {
+  if (!navigator.onLine) {
+    connectionLabel.textContent = "Offline / no request sent";
+    liveStatus.textContent = "Reconnect before resuming the event stream.";
+    return;
+  }
+  void pollEvents();
+});
 
 form.addEventListener("submit", async (submitEvent) => {
   submitEvent.preventDefault();
+  if (creating || polling) return;
   if (!capabilitiesReady) {
     liveStatus.textContent = "No authenticated execution route is enabled.";
     return;
@@ -133,8 +300,10 @@ form.addEventListener("submit", async (submitEvent) => {
   }
   const button = form.querySelector("button");
   const criteria = form.elements.criteria.value.split("\n").map((item) => item.trim()).filter(Boolean);
+  creating = true;
   button.disabled = true;
   connectionLabel.textContent = "Creating task";
+  clearAction();
   try {
     const response = await fetch("/v1/workbench/tasks", {
       method: "POST", headers: {...authHeaders(), "content-type": "application/json"},
@@ -143,7 +312,12 @@ form.addEventListener("submit", async (submitEvent) => {
         goal: form.elements.goal.value.trim(), success_criteria: criteria,
         idempotency_key: crypto.randomUUID()})
     });
-    if (!response.ok) throw new Error("The task could not be created.");
+    await requireOk(
+      response,
+      "The task could not be created.",
+      "CLIENT_TASK_CREATE_FAILED",
+      "Correct the request or restore the authenticated session before submitting again."
+    );
     const task = await response.json();
     activeTask = task.task_id;
     lastSequence = 0;
@@ -154,8 +328,13 @@ form.addEventListener("submit", async (submitEvent) => {
     await pollEvents();
   } catch (error) {
     connectionLabel.textContent = "Action required";
-    liveStatus.textContent = error.message;
+    showAction(
+      error,
+      "CLIENT_TASK_CREATE_FAILED",
+      "Correct the request or restore the authenticated session before submitting again."
+    );
   } finally {
-    button.disabled = false;
+    creating = false;
+    button.disabled = !capabilitiesReady;
   }
 });

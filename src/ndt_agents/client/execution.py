@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from uuid import uuid4
 
 from ndt_agents.client.models import TaskEvent, TaskEventKind, TaskState, WorkbenchTask
-from ndt_agents.client.service import InMemoryTaskRepository, WorkbenchTaskExecutor
+from ndt_agents.client.service import TaskRepository, WorkbenchTaskExecutor
 from ndt_agents.contracts.v1 import BudgetPolicy, RiskLevel, TaskContext
 from ndt_agents.models.registry import canonical_sha256
 from ndt_agents.orchestration.budget import default_budget_policy
@@ -50,7 +50,7 @@ class GeneralWorkbenchExecutor(WorkbenchTaskExecutor):
     async def execute(
         self,
         task: WorkbenchTask,
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
     ) -> WorkbenchTask:
         if task.task_class.value != "G0":
             return self._failure(
@@ -163,7 +163,7 @@ class GeneralWorkbenchExecutor(WorkbenchTaskExecutor):
 
     @staticmethod
     def _append(
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
         task: WorkbenchTask,
         *,
         kind: TaskEventKind,
@@ -194,7 +194,7 @@ class GeneralWorkbenchExecutor(WorkbenchTaskExecutor):
 
     def _failure(
         self,
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
         task: WorkbenchTask,
         *,
         code: str,
@@ -226,7 +226,7 @@ class ReviewedWorkbenchExecutorRouter(WorkbenchTaskExecutor):
     async def execute(
         self,
         task: WorkbenchTask,
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
     ) -> WorkbenchTask:
         if task.task_class.value == "G0":
             return await self._general.execute(task, repository)
@@ -251,7 +251,7 @@ class ProfessionalWorkbenchExecutor(WorkbenchTaskExecutor):
     async def execute(
         self,
         task: WorkbenchTask,
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
     ) -> WorkbenchTask:
         if task.task_class.value != "P1":
             return self._failure(
@@ -415,7 +415,7 @@ class ProfessionalWorkbenchExecutor(WorkbenchTaskExecutor):
 
     @staticmethod
     def _append(
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
         task: WorkbenchTask,
         *,
         kind: TaskEventKind,
@@ -445,7 +445,7 @@ class ProfessionalWorkbenchExecutor(WorkbenchTaskExecutor):
 
     def _failure(
         self,
-        repository: InMemoryTaskRepository,
+        repository: TaskRepository,
         task: WorkbenchTask,
         *,
         code: str,

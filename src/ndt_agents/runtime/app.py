@@ -60,6 +60,13 @@ from ndt_agents.orchestration.general_model_delegate import (
     build_general_delegate_catalog,
 )
 from ndt_agents.orchestration.langgraph_runtime import ConfiguredChildDelegate
+from ndt_agents.orchestration.professional_model_delegate import (
+    REVIEWER_VERSION,
+    ReviewModelDelegate,
+    TechnicalQaModelDelegate,
+    build_professional_delegate_catalog,
+    build_professional_review_bindings,
+)
 from ndt_agents.orchestration.prompt_registry import load_prompt_registry
 from ndt_agents.orchestration.review_recovery import ReviewRecoveryRepository
 from ndt_agents.runtime.config import AppSettings
@@ -74,6 +81,16 @@ _LOGGER = logging.getLogger(__name__)
 
 def _general_provider_timeout_seconds(agent_runtime: ConfiguredAgentRuntime) -> float:
     return agent_runtime.profile("general").timeout_ms / 1_000
+
+
+def _professional_provider_timeout_seconds(agent_runtime: ConfiguredAgentRuntime) -> float:
+    return (
+        max(
+            agent_runtime.profile("general").timeout_ms,
+            agent_runtime.profile("technical_qa").timeout_ms,
+        )
+        / 1_000
+    )
 
 
 def _request_id(request: Request) -> str:
@@ -136,6 +153,8 @@ def create_app(
     owned_trace_service: TraceService | None = None
     active_delegates = agent_delegates
     general_delegate = None
+    professional_delegate = None
+    review_model_delegate = None
     if active_settings.general_model_delegate_enabled:
         assert model_runtime is not None
         assert agent_runtime is not None
@@ -156,7 +175,11 @@ def create_app(
                 audit_service = AuditService(InMemoryAuditRepository(), trace_service)
         active_provider = model_provider or build_deepseek_provider(
             model_runtime,
-            timeout_seconds=_general_provider_timeout_seconds(agent_runtime),
+            timeout_seconds=(
+                _professional_provider_timeout_seconds(agent_runtime)
+                if active_settings.professional_model_delegate_enabled
+                else _general_provider_timeout_seconds(agent_runtime)
+            ),
         )
         general_delegate = GeneralModelDelegate(
             model_runtime,
@@ -164,7 +187,37 @@ def create_app(
             audit_service,
             trace_service=trace_service,
         )
-        active_delegates = build_general_delegate_catalog(agent_runtime, general_delegate)
+        if active_settings.professional_model_delegate_enabled:
+            if review_bindings is not None:
+                raise ValueError(
+                    "The local professional model delegate cannot replace injected review bindings."
+                )
+            professional_delegate = TechnicalQaModelDelegate(
+                model_runtime,
+                active_provider,
+                audit_service,
+                trace_service=trace_service,
+            )
+            technical_profile = agent_runtime.profile("technical_qa")
+            review_model_delegate = ReviewModelDelegate(
+                model_runtime,
+                active_provider,
+                audit_service,
+                reviewer_version=REVIEWER_VERSION,
+                model_version=technical_profile.model_id,
+                trace_service=trace_service,
+            )
+            active_delegates = build_professional_delegate_catalog(
+                agent_runtime,
+                general_delegate,
+                professional_delegate,
+            )
+            review_bindings = build_professional_review_bindings(
+                agent_runtime,
+                review_model_delegate,
+            )
+        else:
+            active_delegates = build_general_delegate_catalog(agent_runtime, general_delegate)
     orchestration_runtime = (
         ConfiguredOrchestrationRuntime(ConfiguredExecutorFactory(agent_runtime, active_delegates))
         if agent_runtime is not None and active_delegates is not None
@@ -194,8 +247,12 @@ def create_app(
     async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
         _LOGGER.info("runtime started", extra={"event": "runtime_started"})
         try:
+            if workbench is not None:
+                await workbench.start()
             yield
         finally:
+            if workbench is not None:
+                await workbench.stop()
             if owned_trace_service is not None:
                 owned_trace_service.shutdown()
             _LOGGER.info("runtime stopped", extra={"event": "runtime_stopped"})
@@ -217,6 +274,8 @@ def create_app(
     app.state.orchestration_runtime = orchestration_runtime
     app.state.reviewed_orchestration_runtime = reviewed_orchestration_runtime
     app.state.general_model_delegate = general_delegate
+    app.state.professional_model_delegate = professional_delegate
+    app.state.review_model_delegate = review_model_delegate
     app.state.professional_workbench_executor = None
     app.state.workbench_capabilities = None
     app.state.audit_service = audit_service
@@ -400,7 +459,7 @@ def create_app(
             payload: TaskCreateRequest, request: Request
         ) -> WorkbenchTask:
             scope = cast(TenantScope, request.state.scope)
-            return await workbench.create_and_execute(scope, payload)
+            return await workbench.create_and_schedule(scope, payload)
 
         @app.get(
             "/v1/workbench/task",
@@ -420,20 +479,21 @@ def create_app(
             task_id: UUID, request: Request, after_sequence: int = 0
         ) -> StreamingResponse:
             scope = cast(TenantScope, request.state.scope)
-            batch = workbench.events(scope, task_id, after_sequence)
+            workbench.events(scope, task_id, after_sequence)
 
             async def encode_events() -> AsyncIterator[bytes]:
-                for event in batch.events:
-                    data = event.model_dump_json()
-                    yield f"id: {event.sequence}\nevent: task-event\ndata: {data}\n\n".encode()
-                control = TaskEventBatch(
-                    task_id=batch.task_id,
-                    after_sequence=batch.after_sequence,
-                    last_sequence=batch.last_sequence,
-                    terminal=batch.terminal,
-                    events=(),
-                ).model_dump_json()
-                yield f"event: stream-state\ndata: {control}\n\n".encode()
+                async for batch in workbench.stream_events(scope, task_id, after_sequence):
+                    for event in batch.events:
+                        data = event.model_dump_json()
+                        yield f"id: {event.sequence}\nevent: task-event\ndata: {data}\n\n".encode()
+                    control = TaskEventBatch(
+                        task_id=batch.task_id,
+                        after_sequence=batch.after_sequence,
+                        last_sequence=batch.last_sequence,
+                        terminal=batch.terminal,
+                        events=(),
+                    ).model_dump_json()
+                    yield f"event: stream-state\ndata: {control}\n\n".encode()
 
             return StreamingResponse(
                 encode_events(),

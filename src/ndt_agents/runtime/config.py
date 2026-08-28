@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from collections.abc import Mapping
 from enum import StrEnum
+from pathlib import Path
 from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
@@ -51,7 +52,9 @@ class AppSettings(BaseModel):
     prompt_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
     agent_config_path: str | None = Field(default=None, min_length=1, max_length=4096)
     general_model_delegate_enabled: bool = False
+    professional_model_delegate_enabled: bool = False
     local_workbench_enabled: bool = False
+    local_workbench_state_path: str | None = Field(default=None, min_length=1, max_length=4096)
     deepseek_policy_acknowledgement: str | None = Field(
         default=None,
         min_length=1,
@@ -85,6 +88,8 @@ class AppSettings(BaseModel):
                 raise ValueError("the General model delegate requires exact policy acknowledgement")
         elif self.deepseek_policy_acknowledgement is not None:
             raise ValueError("provider-policy acknowledgement requires the enabled local delegate")
+        if self.professional_model_delegate_enabled and not self.general_model_delegate_enabled:
+            raise ValueError("the professional model delegate requires the General model delegate")
         if self.local_workbench_enabled:
             if self.environment is not RuntimeEnvironment.LOCAL:
                 raise ValueError("the local workbench is local-only")
@@ -92,11 +97,17 @@ class AppSettings(BaseModel):
                 raise ValueError("the local workbench requires the exact loopback host")
             if not self.general_model_delegate_enabled:
                 raise ValueError("the local workbench requires the enabled General delegate")
+        if self.local_workbench_state_path is not None:
+            if not self.local_workbench_enabled:
+                raise ValueError("the local workbench state path requires the enabled workbench")
+            if not Path(self.local_workbench_state_path).is_absolute():
+                raise ValueError("the local workbench state path must be absolute")
         for path in (
             self.model_config_path,
             self.model_env_file,
             self.prompt_config_path,
             self.agent_config_path,
+            self.local_workbench_state_path,
         ):
             if path is not None and ("\x00" in path or "\r" in path or "\n" in path):
                 raise ValueError("model configuration paths contain forbidden characters")
@@ -119,7 +130,9 @@ class AppSettings(BaseModel):
             "NDT_PROMPT_CONFIG": "prompt_config_path",
             "NDT_AGENT_CONFIG": "agent_config_path",
             "NDT_GENERAL_MODEL_DELEGATE_ENABLED": "general_model_delegate_enabled",
+            "NDT_PROFESSIONAL_MODEL_DELEGATE_ENABLED": "professional_model_delegate_enabled",
             "NDT_LOCAL_WORKBENCH_ENABLED": "local_workbench_enabled",
+            "NDT_LOCAL_WORKBENCH_STATE_PATH": "local_workbench_state_path",
             "NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT": "deepseek_policy_acknowledgement",
         }
         unknown = sorted(

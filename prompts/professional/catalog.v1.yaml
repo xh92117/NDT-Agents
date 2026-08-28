@@ -6,9 +6,9 @@ prompts:
     path: general.v1.md
     sha256: 51f16e94ba775c06046e7dc06c7ed60415b38fd9ccbbadb41c80341018ed0957
   - prompt_id: technical_qa
-    version: 1.1.0
+    version: 1.2.0
     path: technical-qa.v1.md
-    sha256: f97b3f38dc1e5540115d7885f562688f4134b87ed5458d127c30fd99eaf8ad3f
+    sha256: dde1153bca5fe34b522b95b826535ce9d8d4c95dddac453b74bf600009b0d742
   - prompt_id: inspection_plan
     version: 1.1.0
     path: inspection-plan.v1.md
@@ -30,6 +30,6 @@ prompts:
     path: knowledge.v1.md
     sha256: e8bdaddd885a6ee0a1e48273a5c35c4b71c01de838fefc81a58ece99c3dbbc83
   - prompt_id: review
-    version: 1.1.0
+    version: 1.2.0
     path: review.v1.md
-    sha256: 35b7e57af6c4e0a59281c031206bcde033c6b53a4e771096d554cbff3b4277b6
+    sha256: c594bbdc46725b3c58ccc8c086bb191a4a853616fcfc943e2a2097c6ce73924c

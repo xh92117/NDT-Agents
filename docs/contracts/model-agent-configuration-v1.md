@@ -105,6 +105,35 @@ from this profile instead of maintaining a second constant, so the child and tra
 cannot silently diverge. The value was raised from 30 seconds after an acknowledged live Web call
 was cancelled at 30.07 seconds without returned usage. No retry, token, or call limit changed.
 
+`NDT_PROFESSIONAL_MODEL_DELEGATE_ENABLED=true` is a second default-off switch and is valid only
+when the local General delegate is already enabled. It installs the configured no-tool
+`technical_qa` model delegate and a separate read-only Review Agent model delegate. Every other
+professional profile and every correction delegate remains denied. The Technical QA request
+reserves at most 3600 input plus 2400 output tokens; the review request reserves at most 3000 input
+plus 1000 output tokens. Their combined reservation equals, but cannot exceed, the unchanged P1
+active total-token limit of 10000. The Technical QA schema bounds the summary to 600 characters,
+at most three 300-character observations, at most three 300-character limitations, and one
+300-character next action so the internal limitations-only result stays concise without increasing
+the output reservation. Technical QA prompt `1.2.0` follows the exact request response contract and
+targets complete JSON within 1200 completion tokens; it no longer unconditionally requests the
+separate Technical QA candidate contract. Review prompt `1.2.0` follows its exact response contract,
+uses only its permitted decision enum, and targets complete JSON within 300 completion tokens. The
+model-visible review context is limited to the exact task, target run and hash, context-manifest,
+scope, reviewer, checklist, read-only, user-delivery, and correction-count bindings; the complete
+internal review context remains available to deterministic runtime validation and audit. Review
+findings are limited to three items with concise bounded fields. ModelInference contract `1.2.0`
+validates and hash-binds the complete canonical dataset for both calls. Technical QA uses the
+default full provider prompt; Review uses the explicit identity-only projection containing schema,
+dataset, scope, synthetic origin, method, and manifest identities. The complete dataset remains in
+gateway validation, evidence, and audit. Sanitized live evidence reports input tokens, output tokens,
+and finish reason separately for both stages. Technical QA preserves provider-default reasoning;
+Review selects the typed disabled reasoning mode so the DeepSeek adapter emits the exact thinking-off
+control and reserves its bounded completion tokens for the final JSON. Both requests are
+SYNTHETIC-only, disable retry and fallback,
+cannot deliver directly to the user, and cannot request formal use. A non-PASS or invalid review
+stops before Main aggregation. Startup makes no provider call, and one physical P1 smoke requires a
+separate explicit operator acknowledgement and evidence record.
+
 ## 5. MinerU
 
 The active parser boundary is still `MinerUCliRunner`, which runs the pinned local MinerU command

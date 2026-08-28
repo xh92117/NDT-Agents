@@ -177,7 +177,9 @@ selected local DeepSeek binding is enabled and its secret is present:
 
 ```text
 NDT_GENERAL_MODEL_DELEGATE_ENABLED=true
+NDT_PROFESSIONAL_MODEL_DELEGATE_ENABLED=true
 NDT_LOCAL_WORKBENCH_ENABLED=true
+NDT_LOCAL_WORKBENCH_STATE_PATH=C:/absolute/local/path/ndt-workbench.sqlite3
 NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT=I_ACKNOWLEDGE_UNVERIFIED_DEEPSEEK_PROVIDER_POLICY
 ```
 
@@ -185,10 +187,33 @@ Run `uv run ndt-agents --check` first. It must list `/workbench`,
 `/v1/workbench/capabilities`, `/v1/workbench/tasks`, `/v1/workbench/task`, and
 `/v1/workbench/events` without making a provider call. Then start `uv run ndt-agents` and open
 `http://127.0.0.1:8000/local/workbench/session`. The application creates an ephemeral HttpOnly
-same-origin session in memory and redirects to the workbench. The local composition exposes only
-the enabled G0 route and accepts SYNTHETIC input only. It is single-process, non-persistent, and not
-eligible for customer data, professional conclusions, formal use, publication, production, or
-commercial release.
+same-origin session in memory and redirects to the workbench. Leave
+`NDT_PROFESSIONAL_MODEL_DELEGATE_ENABLED` unset for the G0-only slice. When it is set, the server
+also exposes P1 and routes one no-tool Technical QA model result through one independent read-only
+Review Agent model call before Main aggregation. The two requests reserve at most 6,000 plus 4,000
+tokens, use no retry or fallback, and keep every model-driven correction path disabled. The gateway
+validates the complete synthetic canonical dataset for both calls; the Review provider prompt carries
+only its hash-bound identity projection plus the exact typed review target, and the Review request
+explicitly disables provider thinking so its bounded completion budget is available to the final JSON.
+Both modes accept SYNTHETIC input only. A successful task submission returns the persisted
+`ACCEPTED` task before local execution finishes. One bounded in-process coordinator owns execution,
+and the Web event stream waits on committed event notifications instead of polling the repository.
+The stream closes at its configured wait, duration, or batch bound; a nonterminal close leaves the
+explicit resume control available from the last acknowledged sequence. State remains non-persistent
+unless the explicit local SQLite path below is configured. Neither mode is eligible
+for customer data, professional conclusions, formal use, publication, production, or commercial release. A
+physical P1 smoke requires a separate explicit operator acknowledgement; startup and `--check`
+make no provider call.
+
+`NDT_LOCAL_WORKBENCH_STATE_PATH` is optional but, when present, must be an absolute path whose parent
+already exists. It enables the versioned local SQLite task, event, and execution-ownership repository
+so terminal tasks, events, idempotency, and accepted local work survive a process restart. An expired
+claim that never advanced beyond `ACCEPTED` may be reclaimed once by the local coordinator. An
+expired claim that already started is stopped as `CLIENT_EXECUTION_RECOVERY_REQUIRED`; it is never
+silently rerun because the prior external outcome may be unknown. The adapter is for SYNTHETIC local
+development only: it has one local coordinator and is not a distributed queue, PostgreSQL, RLS,
+encryption, backup, multi-host, production, or customer-data qualification. Startup fails closed on
+an unavailable, locked, corrupt, or unsupported database and does not fall back to in-memory state.
 
 The example includes OpenAI, Anthropic, Gemini, DeepSeek, Qwen, Kimi, GLM, MiniMax, ERNIE,
 Hunyuan, and Doubao bindings. All planned child profiles use the `primary` model alias by default;
@@ -200,7 +225,9 @@ network parser.
 Supported settings are `NDT_SERVICE_NAME`, `NDT_ENVIRONMENT`, `NDT_LOG_LEVEL`, `NDT_HOST`,
 `NDT_PORT`, `NDT_EXPOSE_API_DOCS`, `NDT_MODEL_CONFIG`, `NDT_PROMPT_CONFIG`,
 `NDT_AGENT_CONFIG`, `NDT_MODEL_ENV_FILE`, `NDT_GENERAL_MODEL_DELEGATE_ENABLED`,
-`NDT_LOCAL_WORKBENCH_ENABLED`, and `NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT`. Unknown `NDT_` settings
+`NDT_PROFESSIONAL_MODEL_DELEGATE_ENABLED`, `NDT_LOCAL_WORKBENCH_ENABLED`,
+`NDT_LOCAL_WORKBENCH_STATE_PATH`, and
+`NDT_DEEPSEEK_POLICY_ACKNOWLEDGEMENT`. Unknown `NDT_` settings
 fail startup. An agent
 configuration requires both model and prompt configuration. API documentation is disabled by default and cannot be enabled when
 `NDT_ENVIRONMENT=production`. Local environment files are forbidden in production.

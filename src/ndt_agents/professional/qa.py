@@ -223,7 +223,7 @@ class TechnicalQASkill:
         embedding: EmbeddingPort,
         *,
         skill_version: str = "technical-qa-skill-1.0.0",
-        prompt_version: str = "technical-qa-prompt-1.1.0",
+        prompt_version: str = "technical-qa-prompt-1.2.0",
     ) -> None:
         self._repository = repository
         self._embedding = embedding

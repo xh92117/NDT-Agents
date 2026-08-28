@@ -18,9 +18,12 @@ from ndt_agents.models.deepseek import (
     UrllibDeepSeekHttpTransport,
 )
 from ndt_agents.models.inference import (
+    MODEL_INFERENCE_CONTRACT_VERSION,
+    CanonicalPromptMode,
     ModelProviderError,
     ModelProviderRequest,
     ModelProviderStatus,
+    ModelReasoningMode,
     model_provider_request_sha256,
 )
 from ndt_agents.models.registry import ApiProtocol, canonical_sha256
@@ -97,7 +100,7 @@ def selector() -> SecretSelector:
 
 def request(**updates: object) -> ModelProviderRequest:
     payload: dict[str, object] = {
-        "schema_version": "1.0.0",
+        "schema_version": MODEL_INFERENCE_CONTRACT_VERSION,
         "call_id": UUID("00000000-0000-4000-8000-000000000401"),
         "request_sha256": "1" * 64,
         "profile_sha256": "2" * 64,
@@ -204,15 +207,58 @@ def test_success_uses_exact_route_prompt_contract_json_mode_and_one_call() -> No
     assert payload["model"] == provider_request.model_id
     assert payload["stream"] is False
     assert payload["response_format"] == {"type": "json_object"}
+    assert "thinking" not in payload
     assert payload["messages"][0] == {
         "role": "system",
         "content": provider_request.instruction_text,
     }
     user_payload = json.loads(payload["messages"][1]["content"])
+    assert "topology" in user_payload["canonical_data"]
     assert user_payload["response_contract"]["output_schema_sha256"] == (
         provider_request.output_schema_sha256
     )
     assert secrets.value.encode() not in transport.body
+
+
+def test_identity_only_prompt_projection_retains_binding_without_raw_dataset() -> None:
+    provider_request = request(canonical_prompt_mode=CanonicalPromptMode.IDENTITY_ONLY)
+    secrets = RecordingSecrets(provider_request.secret_selector)
+    transport = RecordingTransport(response())
+    provider = DeepSeekModelInferenceProvider(secrets, transport=transport)
+
+    reply = provider_result(provider, provider_request)
+
+    assert reply.status is ModelProviderStatus.SUCCESS
+    payload = json.loads(transport.body)
+    user_payload = json.loads(payload["messages"][1]["content"])
+    canonical = user_payload["canonical_data"]
+    assert set(canonical) == {
+        "dataset_id",
+        "manifest_sha256",
+        "method_code",
+        "origin",
+        "schema_version",
+        "scope",
+    }
+    assert canonical["dataset_id"] == str(provider_request.canonical_data.dataset_id)
+    assert canonical["manifest_sha256"] == provider_request.canonical_data.manifest_sha256
+    assert canonical["scope"] == provider_request.canonical_data.scope.model_dump(mode="json")
+    assert "topology" not in canonical
+    assert "source" not in canonical
+    assert "channels" not in canonical
+
+
+def test_disabled_reasoning_emits_exact_thinking_off_control() -> None:
+    provider_request = request(reasoning_mode=ModelReasoningMode.DISABLED)
+    secrets = RecordingSecrets(provider_request.secret_selector)
+    transport = RecordingTransport(response())
+    provider = DeepSeekModelInferenceProvider(secrets, transport=transport)
+
+    reply = provider_result(provider, provider_request)
+
+    assert reply.status is ModelProviderStatus.SUCCESS
+    payload = json.loads(transport.body)
+    assert payload["thinking"] == {"type": "disabled"}
 
 
 @pytest.mark.parametrize(

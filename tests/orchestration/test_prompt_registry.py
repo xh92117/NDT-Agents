@@ -61,7 +61,13 @@ def test_checked_in_catalog_resolves_exact_optimized_prompts() -> None:
     registry = load_prompt_registry(PROMPT_CONFIG)
 
     assert {prompt.prompt_id for prompt in registry.prompts} == EXPECTED_PROMPTS
-    assert all(prompt.version == "1.1.0" for prompt in registry.prompts)
+    assert registry.resolve("technical_qa").version == "1.2.0"
+    assert registry.resolve("review").version == "1.2.0"
+    assert all(
+        prompt.version == "1.1.0"
+        for prompt in registry.prompts
+        if prompt.prompt_id not in {"review", "technical_qa"}
+    )
     assert len({prompt.relative_path for prompt in registry.prompts}) == len(registry.prompts)
     assert len({prompt.sha256 for prompt in registry.prompts}) == len(registry.prompts)
     assert all(prompt.instruction.text for prompt in registry.prompts)
