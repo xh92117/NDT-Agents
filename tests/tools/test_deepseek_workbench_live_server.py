@@ -2,18 +2,20 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi.testclient import TestClient
 
-from ndt_agents.orchestration.general_model_delegate import DEEPSEEK_POLICY_ACKNOWLEDGEMENT
 from tests.orchestration.test_professional_model_delegate import (
     ProfessionalReviewProvider,
+    professional_settings,
 )
 from tools.deepseek_workbench_live_server import (
     FIXED_GOAL,
     FIXED_SUCCESS_CRITERIA,
+    HOST,
     PORT,
     create_live_app,
-    live_settings,
 )
 
 
@@ -27,9 +29,9 @@ def _request(*, goal: str = FIXED_GOAL) -> dict[str, object]:
     }
 
 
-def test_runner_rejects_non_loopback_settings_before_provider() -> None:
+def test_runner_rejects_non_loopback_settings_before_provider(tmp_path: Path) -> None:
     provider = ProfessionalReviewProvider()
-    settings = live_settings(DEEPSEEK_POLICY_ACKNOWLEDGEMENT).model_copy(
+    settings = professional_settings(tmp_path, match_workbench_scope=False).model_copy(
         update={"host": "0.0.0.0", "port": PORT}
     )
     try:
@@ -41,9 +43,11 @@ def test_runner_rejects_non_loopback_settings_before_provider() -> None:
     assert provider.calls == 0
 
 
-def test_fixed_session_p1_task_calls_professional_and_review_once_each() -> None:
+def test_fixed_session_p1_task_calls_professional_and_review_once_each(tmp_path: Path) -> None:
     provider = ProfessionalReviewProvider()
-    settings = live_settings(DEEPSEEK_POLICY_ACKNOWLEDGEMENT)
+    settings = professional_settings(tmp_path, match_workbench_scope=False).model_copy(
+        update={"host": HOST, "port": PORT}
+    )
     app = create_live_app(
         settings,
         model_provider=provider,

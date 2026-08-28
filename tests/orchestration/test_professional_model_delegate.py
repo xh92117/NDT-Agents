@@ -134,8 +134,12 @@ class ProfessionalReviewProvider:
         )
 
 
-def professional_settings(tmp_path: Path) -> AppSettings:
-    base = local_settings(tmp_path)
+def professional_settings(
+    tmp_path: Path,
+    *,
+    match_workbench_scope: bool = True,
+) -> AppSettings:
+    base = local_settings(tmp_path, match_workbench_scope=match_workbench_scope)
     assert base.agent_config_path is not None
     agent_path = Path(base.agent_config_path)
     agent_path.write_text(
